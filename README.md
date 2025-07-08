@@ -29,7 +29,7 @@ Flowque（Flow + Technique）は、ブラジリアン柔術の練習メモを”
 
 ## ユーザーの獲得について
 
-- 同じ道場に所属している会員に対して周知。
+- 同じ道場に所属している会員に対して周知
 - Xを利用した拡散（場合によっては道場のSNSで周知してもらうなど？）
 
 ## サービスの差別化ポイント・推しポイント
@@ -73,10 +73,16 @@ Flowque（Flow + Technique）は、ブラジリアン柔術の練習メモを”
 - チャートサンプル準備
 
 ## 機能の実装方針
-
-- Stimulus によるテクニックノート画面の右パネル表示
-- Stimulus Autocomplete による検索機能
-- cytoscape.js によるフロー図の可視化
-- dagre.js によるノードレイアウト
-- cytoscape-popper + floating-ui によるノード追加ボタン / 子ノード折りたたみボタン配置
-- Devise + OmniAuth-Google-OAuth2 による Google認証(SSO)
+| 機能 / カテゴリ | 技術 |
+| --- | --- |
+| バックエンド | Ruby on Rails 7.2.2 / Ruby 3.3.6 |
+| フロントエンド | JavaScript / Stimulus | 
+| CSSフレームワーク | Tailwind CSS |
+| 環境構築 | Docker |
+| インフラ | Render / Cloudflare|
+| データベース | PostgreSQL |
+| 検索機能 | Stimulus Autocomplete |
+| チャート可視化 | cytoscape.js |
+| ノードレイアウト | dagre.js |
+| ノード追加ボタン / 子ノード折りたたみボタン配置 | cytoscape-popper / floating-ui |
+| 認証機能 | Devise / OmniAuth-Google-OAuth2 |
