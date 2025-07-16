@@ -52,7 +52,6 @@ Flowque（Flow + Technique）は、ブラジリアン柔術の練習メモを”
 - スニペットフロー作成機能
 - スニペットフロー編集機能
 - スニペットフロー削除機能
-- タグ機能(練度、アクションタイプ別)
 - クイックメモ編集機能
 - お気に入り登録機能
 - お気に入り一覧機能
@@ -65,7 +64,6 @@ Flowque（Flow + Technique）は、ブラジリアン柔術の練習メモを”
 - ゲストログイン機能
 - テクニックノート検索機能（マルチ検索・オートコンプリート）
 - テクニック名オートコンプリート機能
-- タグ別検索機能
 - 多言語(英語)対応
 - PWA対応
 - テクニックノート・スニペットフロー共有機能（要検討）
@@ -86,3 +84,6 @@ Flowque（Flow + Technique）は、ブラジリアン柔術の練習メモを”
 | ノードレイアウト | dagre.js |
 | ノード追加ボタン / 子ノード折りたたみボタン配置 | cytoscape-popper / floating-ui |
 | 認証機能 | Devise / OmniAuth-Google-OAuth2 |
+
+## 画面遷移図
+[Figma - Flowque画面遷移図](https://www.figma.com/design/50XTJ2AdMyuF8x4kjTbcvT/Flowque)
