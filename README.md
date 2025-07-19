@@ -87,3 +87,6 @@ Flowque（Flow + Technique）は、ブラジリアン柔術の練習メモを”
 
 ## 画面遷移図
 [Figma - Flowque画面遷移図](https://www.figma.com/design/50XTJ2AdMyuF8x4kjTbcvT/Flowque)
+
+## ER図
+[![Image from Gyazo](https://i.gyazo.com/d0c071da3ed0f587db6cc76aa3856a99.png)](https://gyazo.com/d0c071da3ed0f587db6cc76aa3856a99)
