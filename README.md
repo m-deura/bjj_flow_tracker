@@ -82,6 +82,7 @@ Flowque（Flow + Technique）は、ブラジリアン柔術の練習メモを”
 | 検索機能 | Stimulus Autocomplete |
 | チャート可視化 | cytoscape.js |
 | ノードレイアウト | dagre.js |
+| ノードのツリー構造管理 | Ancestry |
 | 認証機能 | Devise / OmniAuth-Google-OAuth2 |
 
 ## 画面遷移図
