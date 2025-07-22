@@ -53,6 +53,7 @@ Flowque（Flow + Technique）は、ブラジリアン柔術の練習メモを”
 - フローパーツ編集機能
 - フローパーツ削除機能
 - クイックメモ編集機能
+- クイックメモ一括取り込み機能
 - お気に入り登録機能
 - お気に入り一覧機能
 - お気に入り解除機能
@@ -82,8 +83,110 @@ Flowque（Flow + Technique）は、ブラジリアン柔術の練習メモを”
 | 検索機能 | Stimulus Autocomplete |
 | チャート可視化 | cytoscape.js |
 | ノードレイアウト | dagre.js |
-| ノード追加ボタン / 子ノード折りたたみボタン配置 | cytoscape-popper / floating-ui |
+| ノードのツリー構造管理 | Ancestry |
 | 認証機能 | Devise / OmniAuth-Google-OAuth2 |
 
 ## 画面遷移図
 [Figma - Flowque画面遷移図](https://www.figma.com/design/50XTJ2AdMyuF8x4kjTbcvT/Flowque)
+
+## ER図
+```mermaid
+erDiagram
+  users {
+    int id PK "ID (NOT NULL)"
+    string provider "OAuthプロバイダー名 (NOT NULL)"
+    string uid "OAuthプロバイダー上のuid (NOT NULL)"
+    string name "ユーザー名 (NOT NULL)"
+    string email "メールアドレス(NOT NULL)"
+    text quick_memo "Quick Memo"
+    datetime created_at "作成日時 (NOT NULL)"
+    datetime updated_at "更新日時 (NOT NULL)"
+  }
+
+  techniques {
+    int id PK "(NOT NULL)"
+    int template_technique_id FK "テンプレートID (NOT NULL)"
+    int user_id FK "ユーザーID (NOT NULL)"
+    string name "テクニック名 (NOT NULL)"
+    text note "練習ノート"
+    bool is_submission "極め技？ (NOT NULL)"
+    int mastery_level "enumを使い、技の習熟度を5段階で表現 (NOT NULL)"
+    bool is_bookmarked "ブックマーク対象？ (NOT NULL)"
+    datetime created_at "作成日時 (NOT NULL)"
+    datetime updated_at "更新日時 (NOT NULL)"
+  }
+
+  transitions {
+    int id PK "ID (NOT NULL)"
+    int from_technique_id FK "展開元テクニックID (NOT NULL)"
+    int to_technique_id FK "展開先テクニックID (NOT NULL)"
+    datetime created_at "作成日時 (NOT NULL)"
+    datetime updated_at "更新日時 (NOT NULL)"
+  }
+
+  charts {
+    int id PK "ID (NOT NULL)"
+    int template_chart_id FK "テンプレートID"
+    int user_id FK "ユーザーID (NOT NULL)"
+    datetime created_at "作成日時 (NOT NULL)"
+    datetime updated_at "更新日時 (NOT NULL)"
+  }
+
+  nodes {
+    int id PK "ID (NOT NULL)"
+    int chart_id FK "チャートID (NOT NULL)"
+    int technique_id FK "テクニックID (NOT NULL)"
+    string ancestry "ツリー構造上で本ノードに至るまでのパス"
+    datetime created_at "作成日時 (NOT NULL)"
+    datetime updated_at "更新日時 (NOT NULL)"
+  }
+
+
+  template_techniques {
+    int id PK "ID (NOT NULL)"
+    string name "テンプレート名 (NOT NULL)"
+    text note "サンプル練習ノート"
+    bool is_submission "極め技？ (NOT NULL)"
+    datetime created_at "作成日時 (NOT NULL)"
+    datetime updated_at "更新日時 (NOT NULL)"
+  }
+
+  template_transitions {
+    int id PK "ID (NOT NULL)"
+    int from_technique_id FK "展開元テクニックID (NOT NULL)"
+    int to_technique_id FK "展開先テクニックID (NOT NULL)"
+    datetime created_at "作成日時 (NOT NULL)"
+    datetime updated_at "更新日時 (NOT NULL)"
+  }
+
+  template_charts {
+    int id PK "ID (NOT NULL)"
+    datetime created_at "作成日時 (NOT NULL)"
+    datetime updated_at "更新日時 (NOT NULL)"
+  }
+
+  template_nodes {
+    int id PK "ID (NOT NULL)"
+    int template_chart_id FK "テンプレートチャートID (NOT NULL)"
+    int template_technique_id FK "テンプレートテクニックID (NOT NULL)"
+    string ancestry "ツリー構造上で本ノードに至るまでのパス"
+    datetime created_at "作成日時 (NOT NULL)"
+    datetime updated_at "更新日時 (NOT NULL)"
+  }
+
+  users ||--o{ techniques : "1:多"
+  users ||--o{ charts : "1:多"
+
+  techniques ||--o{ nodes : "1:多"
+  techniques ||--o{ transitions : "1:多 (from + to)"
+
+  charts ||--o{ nodes : "1:多"
+  
+  template_techniques ||--o{ techniques     : "1:多"
+  template_techniques ||--o{ template_nodes : "1:多"
+  template_techniques ||--o{ template_transitions : "1:多 (from + to)"
+
+  template_charts ||--o{ charts : "1:多"
+  template_charts ||--o{ template_nodes : "1:多"
+
+```
