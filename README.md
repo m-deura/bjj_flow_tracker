@@ -74,7 +74,7 @@ Flowque（Flow + Technique）は、ブラジリアン柔術の練習メモを”
 ## 機能の実装方針
 | 機能 / カテゴリ | 技術 |
 | --- | --- |
-| バックエンド | Ruby on Rails 7.2.2 / Ruby 3.3.6 |
+| バックエンド | Ruby on Rails 7.2.2.1 / Ruby 3.3.8 |
 | フロントエンド | JavaScript / Stimulus | 
 | CSSフレームワーク | Tailwind CSS |
 | 環境構築 | Docker |
@@ -98,6 +98,8 @@ erDiagram
     string uid "OAuthプロバイダー上のuid (NOT NULL)"
     string name "ユーザー名 (NOT NULL)"
     string email "メールアドレス(NOT NULL)"
+    string encrypted_password "暗号化済みパスワード (NOT NULL)"
+    string image "ユーザーアイコン"
     text quick_memo "Quick Memo"
     datetime created_at "作成日時 (NOT NULL)"
     datetime updated_at "更新日時 (NOT NULL)"
