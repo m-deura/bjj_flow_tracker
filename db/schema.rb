@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_23_061918) do
     t.string "uid", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.datetime "remember_created_at"
     t.string "name", default: "", null: false
     t.string "image"
     t.text "quick_memo"
