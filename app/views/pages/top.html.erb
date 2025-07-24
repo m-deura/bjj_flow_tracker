@@ -1,0 +1,43 @@
+<div class="min-h-screen text-center items-center justify-center px-4 py-6 space-y-8">
+  <div class="mt-4 space-y-2">
+    <%= image_tag "flowque-logo.svg", alt: "flowque-logo", class: "w-100 h-auto mx-auto"%>
+    <h1 class="text-5xl font-bold">Flowque</h2>
+    <h3 class="text-lg font-bold">
+      技は点でなく<br><span>“流れ”で覚える</span>
+    </h3>
+    <p class="text-sm text-gray-500">Flowqueは、あなたの柔術ノートを<br>“流れ”でつなぐツールです。</p>
+  </div>
+
+  <div class="space-y-3">
+    <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "btn btn-ounline w-72 bg-white text-gray-700" do %>
+      <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="google logo" class="w-5 h-5" loading="lazy">
+      <span>Google でログイン</span>
+    <% end %>
+    <%= link_to "デモを触ってみる", "#", class: "btn btn-primary w-72 shwdow-md" %>
+  </div>
+
+  <div class="space-y-8 text-sm">
+    <div class="space-y-2">
+      <h4 class="font-bold">練習内容を手早く記録する</h4>
+      <div class="border border-dashed p-4 w-60 mx-auto">操作の流れを説明する<br>画像 or GIFの挿入</div>
+    </div>
+    <div class="space-y-2">
+      <h4 class="font-bold">練習ノートを整理する</h4>
+      <div class="border border-dashed p-4 w-60 mx-auto">操作の流れを説明する<br>画像 or GIFの挿入</div>
+    </div>
+    <div class="space-y-2">
+      <h4 class="font-bold">テクニック同士の繋がりを可視化する</h4>
+      <div class="border border-dashed p-4 w-60 mx-auto">操作の流れを説明する<br>画像 or GIFの挿入</div>
+    </div>
+  </div>
+
+  <!-- フッターにも同じボタン -->
+  <div class="pt-4 space-y-3">
+    <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "btn btn-outline w-72 bg-white text-gray-700" do %>
+      <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="google logo" class="w-5 h-5" loading="lazy">
+      <span>Google でログイン</span>
+    <% end %>
+
+    <%= link_to "デモを触ってみる", "#", class: "btn btn-primary shadow-md w-72" %>
+  </div>
+</div>
