@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Myapp" %></title>
+    <title><%= content_for(:title) || "Flowque" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -18,25 +18,34 @@
   </head>
 
   <body>
-    <header>
-      <% if user_signed_in? %>
+    <header class="navbar bg-base-100 shadow">
+      <div class="flex navbar-start">
+        <%= image_tag "flowque-logo.svg", alto: "flowque-logo", class: "w-10 h-auto mr-1" %>
+        <h1 class="text-xl font-semibold">Flowque</h1>
+      </div>
+      <div class="flex navbar-end">
+        <% if user_signed_in? %>
         <p class="inline-block mr-5 font-medium">ユーザー名：<%= current_user.name %></p>
-        <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
+        <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: "btn bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
       <% else %>
-        <div class="m-2 flex gap-2">
-          <%#= link_to 'Sign up', new_user_session_path, class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
-          <%#= link_to 'Login', user_session_path, class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
-          <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "dark:bg-gray-800 px-4 py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150" do %>
+          <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "btn btn-outline bg-white text-gray-700" do %>
             <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="google logo" class="w-6 h-6" loading="lazy">
-            <span>Login with Google</span>
+            <span>Google でログイン</span>
           <% end %>
-        </div>
       <% end %>
+      </div>
     </header>
-    <main>
+    <% if notice %>
       <p class="notice p-4 mb-4 text-md text-blue-700 text-center font-bold"><%= notice %></p>
+    <% end %>
+    <% if alert %>
       <p class="alert p-4 mb-4 text-md text-red-700 text-center font-bold"><%= alert %></p>
+    <% end %>
+    <main>
+      <%= yield %>
     </main>
-    <%= yield %>
+    <footer class="bg-base-100">
+      <p>© 2025 Flowque</p>
+    </footer>
   </body>
 </html>
