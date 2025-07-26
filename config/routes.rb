@@ -14,9 +14,15 @@ Rails.application.routes.draw do
   root "pages#top"
 
   namespace :mypage do
-    get "/", to: "dashboard#show"
-    get "actions", to: "actions#index"
+    root to: "menu#show"
+    resource :quick_memo, only: %i[show edit update destroy]
+    resources :techniques
+    resources :charts, only: %i[show edit update] do
+      resources :nodes, shallow: true
+    end
+    resource :setting, only: %i[show edit update]
   end
+
 
   namespace :api do
     namespace :v1 do
