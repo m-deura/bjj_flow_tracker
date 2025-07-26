@@ -1,8 +1,8 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  template_technique_id: one
-  user_id: one
+  template_technique: one
+  user: one
   name: MyString
   note: MyText
   is_submission: false
@@ -10,8 +10,8 @@ one:
   is_bookmarked: false
 
 two:
-  template_technique_id: two
-  user_id: two
+  template_technique: two
+  user: two
   name: MyString
   note: MyText
   is_submission: false
