@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  template_technique_id: one
+  user_id: one
+  name: MyString
+  note: MyText
+  is_submission: false
+  mastery_level: 1
+  is_bookmarked: false
+
+two:
+  template_technique_id: two
+  user_id: two
+  name: MyString
+  note: MyText
+  is_submission: false
+  mastery_level: 1
+  is_bookmarked: false
