@@ -110,7 +110,6 @@ erDiagram
 
   techniques {
     int id PK "(NOT NULL)"
-    int technique_preset_id FK "プリセットID"
     int user_id FK "ユーザーID"
     string name "テクニック名 (NOT NULL)"
     string english_name "テクニック英語名"
