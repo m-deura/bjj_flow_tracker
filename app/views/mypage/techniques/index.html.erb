@@ -1,0 +1,67 @@
+<div class="min-h-screen px-4 py-6 bg-base-100 space-y-6">
+
+  <!-- ヘッダー -->
+  <div class="flex items-center gap-2 text-2xl font-bold text-primary">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M3 6h18M3 12h18M3 18h18" />
+    </svg>
+    Techniques
+  </div>
+
+  <!-- 検索・フィルター -->
+  <div class="flex flex-col gap-4 md:flex-row md:items-center">
+    <input
+      type="text"
+      placeholder="Search techniques"
+      class="input input-bordered w-full max-w-xs"
+    />
+
+    <div class="flex gap-2">
+      <!-- ブックマーク切り替えボタン -->
+      <button class="btn btn-outline btn-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M5 3a2 2 0 0 0-2 2v16l7-4 7 4V5a2 2 0 0 0-2-2H5z" />
+        </svg>
+        表示 ✔
+      </button>
+
+      <!-- 並び替えドロップダウン -->
+      <div class="dropdown">
+        <label tabindex="0" class="btn btn-sm btn-outline flex items-center gap-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8h18M3 16h18" />
+          </svg>
+          新しい順
+          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </label>
+        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40 z-[1]">
+          <li><a>新しい順</a></li>
+          <li><a>古い順</a></li>
+          <li><a>名前順</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- テクニック一覧 -->
+  <div class="space-y-3">
+    <% @techniques.each do |technique| %>
+      <div class="card bg-base-100 shadow-md">
+        <div class="card-body flex flex-row items-center gap-3 p-4">
+          <% if technique.is_bookmarked? %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M5 3a2 2 0 0 0-2 2v16l7-4 7 4V5a2 2 0 0 0-2-2H5z" />
+            </svg>
+          <% else %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5v14l7-7 7 7V5H5z" />
+            </svg>
+          <% end %>
+          <span class="text-lg font-medium"><%= technique.name %></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
