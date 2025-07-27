@@ -30,22 +30,22 @@ Flowque（Flow + Technique）は、ブラジリアン柔術の練習メモを”
 ## ユーザーの獲得について
 
 - 同じ道場に所属している会員に対して周知
-- Xを利用した拡散（場合によっては道場のSNSで周知してもらうなど？）
+- X を利用した拡散（場合によっては道場の SNS で周知してもらうなど？）
 
 ## サービスの差別化ポイント・推しポイント
 
 - ブラジリアン柔術のテクニックに特化した入力フィールド（練度タグやアクションタイプタグ）
 - 試合開始のポジション(TOP/BOTTOM)からだけでなく、サイドポジションやバックなど特定のポジションから始まる技のつながりを再利用可能な「部品」として定義し、フロー図化可能
 - 練習中、咄嗟に記録したいときに役立つクイックメモページ
-- 気軽に練習記録が見返せるスマホ操作を意識したUI
+- 気軽に練習記録が見返せるスマホ操作を意識した UI
 
 ## 機能候補
 
-### 【 MVPリリースまで 】
+### 【 MVP リリースまで 】
 
 - ユーザー登録機能
 - ログイン機能
-- メインフロー表示機能  ※メインフロー：試合開始のポジション(TOP/BOTTOM)をルートノードとするフロー。
+- メインフロー表示機能 ※メインフロー：試合開始のポジション(TOP/BOTTOM)をルートノードとするフロー。
 - フローパーツ表示機能 ※フローパーツ：特定の状況から展開される一連のテクニックを独立させたフロー。メインフロー上で再利用できる。
 - テクニックノート編集機能
 - メインフロー編集機能
@@ -66,30 +66,32 @@ Flowque（Flow + Technique）は、ブラジリアン柔術の練習メモを”
 - テクニックノート検索機能（マルチ検索・オートコンプリート）
 - テクニック名オートコンプリート機能
 - 多言語(英語)対応
-- PWA対応
+- PWA 対応
 - テクニックノート・フローパーツ共有機能（要検討）
 - テクニックノートサンプル準備
 - チャートサンプル準備
 
 ## 機能の実装方針
-| 機能 / カテゴリ | 技術 |
-| --- | --- |
-| バックエンド | Ruby on Rails 7.2.2.1 / Ruby 3.3.8 |
-| フロントエンド | JavaScript / Stimulus | 
-| CSSフレームワーク | Tailwind CSS / daisyUI |
-| 環境構築 | Docker |
-| インフラ | Render / Cloudflare|
-| データベース | PostgreSQL |
-| 検索機能 | Stimulus Autocomplete |
-| チャート可視化 | cytoscape.js |
-| ノードレイアウト | dagre.js |
-| ノードのツリー構造管理 | Ancestry |
-| 認証機能 | Devise / OmniAuth-Google-OAuth2 |
+
+| 機能 / カテゴリ        | 技術                               |
+| ---------------------- | ---------------------------------- |
+| バックエンド           | Ruby on Rails 7.2.2.1 / Ruby 3.3.8 |
+| フロントエンド         | JavaScript / Stimulus              |
+| CSS フレームワーク     | Tailwind CSS / daisyUI             |
+| 環境構築               | Docker                             |
+| インフラ               | Render / Cloudflare                |
+| データベース           | PostgreSQL                         |
+| 検索機能               | Stimulus Autocomplete              |
+| チャート可視化         | cytoscape.js                       |
+| ノードレイアウト       | dagre.js                           |
+| ノードのツリー構造管理 | Ancestry                           |
+| 認証機能               | Devise / OmniAuth-Google-OAuth2    |
 
 ## 画面遷移図
-[Figma - Flowque画面遷移図](https://www.figma.com/design/50XTJ2AdMyuF8x4kjTbcvT/Flowque)
 
-## ER図
+[Figma - Flowque 画面遷移図](https://www.figma.com/design/50XTJ2AdMyuF8x4kjTbcvT/Flowque)
+
+## ER 図
 ```mermaid
 erDiagram
   users {
@@ -108,29 +110,29 @@ erDiagram
 
   techniques {
     int id PK "(NOT NULL)"
-    int template_technique_id FK "テンプレートID (NOT NULL)"
-    int user_id FK "ユーザーID (NOT NULL)"
+    int technique_preset_id FK "プリセットID"
+    int user_id FK "ユーザーID"
     string name "テクニック名 (NOT NULL)"
-    text note "練習ノート"
+    string english_name "テクニック英語名"
     bool is_submission "極め技？ (NOT NULL)"
-    int mastery_level "enumを使い、技の習熟度を5段階で表現 (NOT NULL)"
-    bool is_bookmarked "ブックマーク対象？ (NOT NULL)"
     datetime created_at "作成日時 (NOT NULL)"
     datetime updated_at "更新日時 (NOT NULL)"
   }
 
   transitions {
     int id PK "ID (NOT NULL)"
+    int user_id FK "ユーザーID"
     int from_technique_id FK "展開元テクニックID (NOT NULL)"
     int to_technique_id FK "展開先テクニックID (NOT NULL)"
+    text note "練習ノート"
     datetime created_at "作成日時 (NOT NULL)"
     datetime updated_at "更新日時 (NOT NULL)"
   }
 
   charts {
     int id PK "ID (NOT NULL)"
-    int template_chart_id FK "テンプレートID"
-    int user_id FK "ユーザーID (NOT NULL)"
+    int user_id FK "ユーザーID"
+    string name "チャート名"
     datetime created_at "作成日時 (NOT NULL)"
     datetime updated_at "更新日時 (NOT NULL)"
   }
@@ -144,52 +146,12 @@ erDiagram
     datetime updated_at "更新日時 (NOT NULL)"
   }
 
-
-  template_techniques {
-    int id PK "ID (NOT NULL)"
-    string name "テンプレート名 (NOT NULL)"
-    text note "サンプル練習ノート"
-    bool is_submission "極め技？ (NOT NULL)"
-    datetime created_at "作成日時 (NOT NULL)"
-    datetime updated_at "更新日時 (NOT NULL)"
-  }
-
-  template_transitions {
-    int id PK "ID (NOT NULL)"
-    int from_technique_id FK "展開元テクニックID (NOT NULL)"
-    int to_technique_id FK "展開先テクニックID (NOT NULL)"
-    datetime created_at "作成日時 (NOT NULL)"
-    datetime updated_at "更新日時 (NOT NULL)"
-  }
-
-  template_charts {
-    int id PK "ID (NOT NULL)"
-    datetime created_at "作成日時 (NOT NULL)"
-    datetime updated_at "更新日時 (NOT NULL)"
-  }
-
-  template_nodes {
-    int id PK "ID (NOT NULL)"
-    int template_chart_id FK "テンプレートチャートID (NOT NULL)"
-    int template_technique_id FK "テンプレートテクニックID (NOT NULL)"
-    string ancestry "ツリー構造上で本ノードに至るまでのパス"
-    datetime created_at "作成日時 (NOT NULL)"
-    datetime updated_at "更新日時 (NOT NULL)"
-  }
-
   users ||--o{ techniques : "1:多"
   users ||--o{ charts : "1:多"
+  users ||--o{ transitions : "1:多"
 
   techniques ||--o{ nodes : "1:多"
   techniques ||--o{ transitions : "1:多 (from + to)"
 
   charts ||--o{ nodes : "1:多"
-  
-  template_techniques ||--o{ techniques     : "1:多"
-  template_techniques ||--o{ template_nodes : "1:多"
-  template_techniques ||--o{ template_transitions : "1:多 (from + to)"
-
-  template_charts ||--o{ charts : "1:多"
-  template_charts ||--o{ template_nodes : "1:多"
-
 ```
