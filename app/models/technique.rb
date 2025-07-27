@@ -1,6 +1,7 @@
 class Technique < ApplicationRecord
-  #  belongs_to :template_technique
-  belongs_to :user
+  belongs_to :user, optional: true
+  has_many :outgoing_transitions, class_name: "Transition", foreign_key: "from_technique_id", dependent: :destroy
+  has_many :incoming_transitions, class_name: "Transition", foreign_key: "to_technique_id", dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
   # validates :mastery_level, presence: true

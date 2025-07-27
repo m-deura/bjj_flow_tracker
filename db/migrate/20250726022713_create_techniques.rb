@@ -12,6 +12,6 @@ class CreateTechniques < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_index :techniques, :name, unique: true
+    add_index :techniques, [ :user_id, :name ], unique: true
   end
 end
