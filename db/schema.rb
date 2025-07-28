@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_27_135039) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_28_044114) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_27_135039) do
     t.boolean "is_submission", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "category"
     t.index ["user_id", "name"], name: "index_techniques_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_techniques_on_user_id"
   end

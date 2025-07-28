@@ -5,8 +5,8 @@ class Technique < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   # validates :mastery_level, presence: true
-  validates :is_submission, inclusion: { in: [ true, false ] }
   # validates :is_bookmarked, inclusion: { in: [ true, false ] }
 
+  enum :category, { submission: 0, sweep: 1, pass: 2, guard: 3, back_take: 4, pin: 5, takedown: 6, control: 7 }
   # enum :mastery_level, { not_learned: 0, familiar: 1, practicing: 2, almost_there: 3, perfect: 4 }
 end

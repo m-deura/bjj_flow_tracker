@@ -113,7 +113,7 @@ erDiagram
     int user_id FK "ユーザーID"
     string name "テクニック名 (NOT NULL)"
     string english_name "テクニック英語名"
-    bool is_submission "極め技？ (NOT NULL)"
+    int category "enumを使い、テクニックのカテゴリーを表現"
     datetime created_at "作成日時 (NOT NULL)"
     datetime updated_at "更新日時 (NOT NULL)"
   }
