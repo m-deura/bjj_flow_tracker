@@ -3,7 +3,7 @@ class Technique < ApplicationRecord
   has_many :outgoing_transitions, class_name: "Transition", foreign_key: "from_technique_id", dependent: :destroy
   has_many :incoming_transitions, class_name: "Transition", foreign_key: "to_technique_id", dependent: :destroy
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { scope: :user_id }
   # validates :mastery_level, presence: true
   # validates :is_bookmarked, inclusion: { in: [ true, false ] }
 
