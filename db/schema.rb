@@ -53,6 +53,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_27_135039) do
     t.string "trigger"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["from_technique_id", "to_technique_id"], name: "index_transitions_on_from_technique_id_and_to_technique_id", unique: true
     t.index ["from_technique_id"], name: "index_transitions_on_from_technique_id"
     t.index ["to_technique_id"], name: "index_transitions_on_to_technique_id"
     t.index ["user_id"], name: "index_transitions_on_user_id"
