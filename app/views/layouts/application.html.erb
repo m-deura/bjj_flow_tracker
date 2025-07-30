@@ -19,10 +19,10 @@
 
   <body>
     <header class="navbar bg-base-100 shadow">
-      <div class="flex navbar-start">
-        <%= image_tag "flowque-logo.svg", alto: "flowque-logo", class: "w-10 h-auto mr-1" %>
+      <%= link_to current_user ? mypage_root_path : root_path, class: "flex items-center navbar-start" do %>
+        <%= image_tag "flowque-logo.svg", alt: "flowque-logo", class: "w-10 mr-1" %>
         <h1 class="text-xl font-semibold">Flowque</h1>
-      </div>
+      <% end %>
       <div class="flex navbar-end">
         <% if user_signed_in? %>
         <p class="inline-block mr-5 font-medium">ユーザー名：<%= current_user.name %></p>
