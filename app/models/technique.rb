@@ -2,6 +2,7 @@ class Technique < ApplicationRecord
   belongs_to :user, optional: true
   has_many :outgoing_transitions, class_name: "Transition", foreign_key: "from_technique_id", dependent: :destroy
   has_many :incoming_transitions, class_name: "Transition", foreign_key: "to_technique_id", dependent: :destroy
+  accepts_nested_attributes_for :outgoing_transitions, allow_destroy: true, reject_if: ->(attrs) { attrs['to_technique_id'].blank? && attrs['trigger'].blank? }
 
   validates :name, presence: true, uniqueness: { scope: :user_id }
   # validates :mastery_level, presence: true
