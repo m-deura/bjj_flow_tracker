@@ -8,6 +8,6 @@ class CreateTransitions < ActiveRecord::Migration[7.2]
 
       t.timestamps
     end
-    add_index :transitions, [ :from_technique, :to_technique ], unique: true
+    add_index :transitions, [ :from_technique_id, :to_technique_id ], unique: true
   end
 end
