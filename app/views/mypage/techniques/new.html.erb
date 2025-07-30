@@ -1,2 +1,17 @@
-<h1>Mypage::Techniques#new</h1>
-<p>Find me in app/views/mypage/techniques/new.html.erb</p>
+<h2 class="text-lg font-bold mb-4">新しいテクニックを作成</h2>
+<%= form_with model: @technique, url: @technique.persisted? ? mypage_technique_path(@technique) : mypage_techniques_path, method: @technique.persisted? ? :patch : :post do |f| %>
+  <div class="space-y-4 mx-auto w-72">
+
+    <%= f.label :name, "テクニック名" %>
+    <%= f.text_field :name, class: "input input-bordered w-full" %>
+
+    <%= f.label :note, "メモ" %>
+    <%= f.text_area :note, class: "textarea textarea-bordered w-full" %>
+
+    <%= f.label :category, "カテゴリ" %>
+    <%= f.select :category, Technique.categories.keys.map { |c| [c.humanize, c] }, {}, class: "select select-bordered w-full" %>
+    <%= f.submit "保存", class: "btn btn-primary w-full" %>
+  </div>
+<% end %>
+
+

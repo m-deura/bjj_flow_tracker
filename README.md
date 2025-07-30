@@ -101,7 +101,7 @@ erDiagram
     string name "ユーザー名 (NOT NULL)"
     string email "メールアドレス(NOT NULL)"
     string encrypted_password "暗号化済みパスワード (NOT NULL)"
-    datetime remember_created_at "作成日時"
+    datetime remember_created_at "“ログイン状態を保持”が有効になった日時"
     string image "ユーザーアイコン"
     text quick_memo "Quick Memo"
     datetime created_at "作成日時 (NOT NULL)"
@@ -113,7 +113,8 @@ erDiagram
     int user_id FK "ユーザーID"
     string name "テクニック名 (NOT NULL)"
     string english_name "テクニック英語名"
-    bool is_submission "極め技？ (NOT NULL)"
+    int category "enumを使い、テクニックのカテゴリーを表現"
+    text note "練習ノート"
     datetime created_at "作成日時 (NOT NULL)"
     datetime updated_at "更新日時 (NOT NULL)"
   }
@@ -123,7 +124,7 @@ erDiagram
     int user_id FK "ユーザーID"
     int from_technique_id FK "展開元テクニックID (NOT NULL)"
     int to_technique_id FK "展開先テクニックID (NOT NULL)"
-    text note "練習ノート"
+    string trigger "展開先テクニックに繋がる場面・条件"
     datetime created_at "作成日時 (NOT NULL)"
     datetime updated_at "更新日時 (NOT NULL)"
   }
@@ -131,7 +132,7 @@ erDiagram
   charts {
     int id PK "ID (NOT NULL)"
     int user_id FK "ユーザーID"
-    string name "チャート名"
+    string name "チャート名 (NOT NULL)"
     datetime created_at "作成日時 (NOT NULL)"
     datetime updated_at "更新日時 (NOT NULL)"
   }

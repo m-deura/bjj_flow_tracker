@@ -1,2 +1,34 @@
-<h1>Mypage::Techniques#edit</h1>
-<p>Find me in app/views/mypage/techniques/edit.html.erb</p>
+<%= form_with model: @technique, url: mypage_technique_path(@technique), method: :patch, local: true do |f| %>
+  <div class="space-y-4 w-72 mx-auto">
+    <div class="border-b pb-8">
+      <%= f.label :name, "テクニック名" %>
+      <%= f.text_field :name, class: "input input-bordered w-full" %>
+  
+      <%= f.label :note, "メモ" %>
+      <%= f.text_area :note, class: "textarea textarea-bordered w-full" %>
+  
+      <%= f.label :category, "カテゴリ" %>
+      <%= f.select :category, Technique.categories.keys.map { |c| [c.humanize, c] }, {}, class: "select select-bordered w-full" %>
+    </div>
+  
+    <div data-controller="transitions">
+      <div data-transitions-target="list">
+        <%= f.fields_for :outgoing_transitions do |tf| %>
+          <%= render "transition_fields", f: tf, techniques: @techniques %>
+        <% end %>
+      </div>
+
+      <template data-transitions-target="template">
+        <%= f.fields_for(:outgoing_transitions, Transition.new, child_index: "NEW_RECORD") do |tf| %>
+          <%= render "transition_fields", f: tf, techniques: @techniques %>
+        <% end %>
+      </template>
+
+      <div class="mt-4 text-center">
+        <button type="button" data-action="click->transitions#add" class="btn btn-outline">＋展開先を追加</button>
+      </div>
+    </div>
+
+    <%= f.submit "保存", class: "btn btn-primary btn-wide" %>
+  </div>
+<% end %>

@@ -5,7 +5,8 @@ class CreateTechniques < ActiveRecord::Migration[7.2]
       t.references :user, foreign_key: true
       t.string :name, null: false
       t.string :english_name
-      t.boolean :is_submission, null: false, default: false
+      t.integer :category
+      t.text :note
       # t.integer :mastery_level, null: false, default: 1
       # t.boolean :is_bookmarked, null: false, default: false
 
