@@ -30,7 +30,6 @@ class Mypage::TechniquesController < Mypage::BaseController
   end
 
   def update
-    binding.pry
     @technique = current_user.techniques.find(params[:id])
     @techniques = current_user.techniques.where.not(id: @technique.id)
 
