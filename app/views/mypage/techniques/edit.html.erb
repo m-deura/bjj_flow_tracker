@@ -1,6 +1,8 @@
 <%= form_with model: @technique, url: mypage_technique_path(@technique), method: :patch, local: true do |f| %>
+  <%= render 'shared/error_messages', object: @technique %>
+
   <div class="space-y-4 w-72 mx-auto">
-    <div class="border-b pb-8">
+    <div class="space-y-2 border-b pb-8">
       <%= f.label :name, "テクニック名" %>
       <%= f.text_field :name, class: "input input-bordered w-full" %>
   
@@ -29,6 +31,9 @@
       </div>
     </div>
 
-    <%= f.submit "保存", class: "btn btn-primary btn-wide" %>
+    <div class="space-y-4 mt-10">
+      <%= f.submit "保存", class: "btn btn-primary btn-wide" %>
+      <%= link_to '一覧へ戻る', mypage_techniques_path, class: "btn btn-outline btn-wide"  %>
+    </div>
   </div>
 <% end %>
