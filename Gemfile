@@ -52,13 +52,13 @@ group :development do
   gem "web-console"
 
   # Debugger
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'byebug'
-  gem 'pry'
-  gem 'pry-byebug'
-  gem 'pry-doc'
-  gem 'pry-rails'
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem "byebug"
+  gem "pry"
+  gem "pry-byebug"
+  gem "pry-doc"
+  gem "pry-rails"
 end
 
 group :test do

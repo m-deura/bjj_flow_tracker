@@ -7,7 +7,6 @@ class Mypage::TechniquesController < Mypage::BaseController
     @technique = current_user.techniques.build
     @technique.outgoing_transitions.build if @technique.outgoing_transitions.blank?
     @existing_techniques = current_user.techniques.select(:id, :name)
-    
   end
 
   def create
@@ -38,7 +37,7 @@ class Mypage::TechniquesController < Mypage::BaseController
     if @technique.update(technique_params)
       redirect_to mypage_techniques_path, success: "保存しました"
     else
-      flash.now[:danger] = '保存できませんでした'
+      flash.now[:danger] = "保存できませんでした"
       render :edit, status: :unprocessable_entity
     end
   end
@@ -52,6 +51,6 @@ class Mypage::TechniquesController < Mypage::BaseController
   private
 
   def technique_params
-    params.require(:technique).permit(:id, :name, :note, :category, outgoing_transitions_attributes: [:id, :to_technique_id, :trigger, :_destroy] )
+    params.require(:technique).permit(:id, :name, :note, :category, outgoing_transitions_attributes: [ :id, :to_technique_id, :trigger, :_destroy ])
   end
 end
