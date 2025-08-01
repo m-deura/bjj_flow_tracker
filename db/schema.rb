@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_27_135039) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_01_184210) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,6 +32,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_27_135039) do
     t.index ["ancestry"], name: "index_nodes_on_ancestry"
     t.index ["chart_id"], name: "index_nodes_on_chart_id"
     t.index ["technique_id"], name: "index_nodes_on_technique_id"
+  end
+
+  create_table "technique_presets", force: :cascade do |t|
+    t.string "name_ja", null: false
+    t.string "name_en", null: false
+    t.integer "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name_en"], name: "index_technique_presets_on_name_en", unique: true
+    t.index ["name_ja"], name: "index_technique_presets_on_name_ja", unique: true
   end
 
   create_table "techniques", force: :cascade do |t|
