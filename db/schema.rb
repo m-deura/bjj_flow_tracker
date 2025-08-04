@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_01_184210) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_27_135039) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,12 +46,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_01_184210) do
 
   create_table "techniques", force: :cascade do |t|
     t.bigint "user_id"
+    t.bigint "technique_preset_id"
     t.string "name", null: false
-    t.string "english_name"
     t.integer "category"
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["technique_preset_id"], name: "index_techniques_on_technique_preset_id"
     t.index ["user_id", "name"], name: "index_techniques_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_techniques_on_user_id"
   end
@@ -87,6 +88,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_01_184210) do
   add_foreign_key "charts", "users"
   add_foreign_key "nodes", "charts"
   add_foreign_key "nodes", "techniques"
+  add_foreign_key "techniques", "technique_presets"
   add_foreign_key "techniques", "users"
   add_foreign_key "transitions", "techniques", column: "from_technique_id"
   add_foreign_key "transitions", "techniques", column: "to_technique_id"
