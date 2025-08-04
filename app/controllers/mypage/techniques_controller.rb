@@ -12,9 +12,9 @@ class Mypage::TechniquesController < Mypage::BaseController
   def create
     @technique = current_user.techniques.build(technique_params)
     if @technique.save
-      redirect_to edit_mypage_technique_path(@technique), success: "保存しました"
+      redirect_to edit_mypage_technique_path(@technique), notice: "保存しました"
     else
-      flash.now[:danger] = "保存できませんでした"
+      flash.now[:alert] = "保存できませんでした"
       render :new, status: :unprocessable_entity
     end
   end
@@ -34,9 +34,9 @@ class Mypage::TechniquesController < Mypage::BaseController
     @techniques = current_user.techniques.where.not(id: @technique.id)
 
     if @technique.update(technique_params)
-      redirect_to mypage_techniques_path, success: "保存しました"
+      redirect_to mypage_techniques_path, notice: "保存しました"
     else
-      flash.now[:danger] = "保存できませんでした"
+      flash.now[:alert] = "保存できませんでした"
       render :edit, status: :unprocessable_entity
     end
   end
@@ -44,7 +44,7 @@ class Mypage::TechniquesController < Mypage::BaseController
   def destroy
     technique = Technique.find(params[:id])
     technique.destroy
-    redirect_to mypage_techniques_path, success: "削除しました"
+    redirect_to mypage_techniques_path, notice: "削除しました"
   end
 
   private
