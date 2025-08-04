@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  after_create :copy_technique_presets
+
   has_many :techniques, dependent: :destroy
   has_many :charts, dependent: :destroy
 
@@ -21,6 +23,18 @@ class User < ApplicationRecord
       # if you are using confirmable and the provider(s) you use validate emails,
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
+    end
+  end
+
+  private
+
+  def copy_technique_presets
+    TechniquePreset.find_each do |tp|
+      self.techniques.create!(
+        technique_preset: tp,
+        name: tp.name_ja,
+        category: tp.category
+      )
     end
   end
 end
