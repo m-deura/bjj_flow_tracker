@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  after_create :copy_technique_presets
+  after_create :copy_presets
 
   has_many :techniques, dependent: :destroy
   has_many :charts, dependent: :destroy
@@ -28,12 +28,33 @@ class User < ApplicationRecord
 
   private
 
-  def copy_technique_presets
+  def copy_presets
     TechniquePreset.find_each do |tp|
       self.techniques.create!(
         technique_preset: tp,
         name: tp.name_ja,
         category: tp.category
+      )
+    end
+
+    # TODO: i18n対応、keyカラム追加する？
+    top = self.techniques.find_or_create_by!(
+      name: "トップポジション"
+    )
+
+    bottom = self.techniques.find_or_create_by!(
+      name: "ボトムポジション"
+    )
+
+    chart = self.charts.create!(
+      name: "preset_#{Time.current}"
+    )
+
+    [ top, bottom ].each do |technique|
+      chart.nodes.create!(
+        chart: chart,
+        technique: technique,
+        ancestry: "/"
       )
     end
   end
