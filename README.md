@@ -110,11 +110,20 @@ erDiagram
 
   techniques {
     int id PK "(NOT NULL)"
-    int user_id FK "ユーザーID"
-    string name "テクニック名 (NOT NULL)"
-    string english_name "テクニック英語名"
-    int category "enumを使い、テクニックのカテゴリーを表現"
+    int user_id FK "ユーザーID (NOT NULL)name"
+    int technique_preset_id FK "プリセットID(NULLならユーザー定義)"
+    string name "テクニック名 (プリセット非参照時のみ使用)"
+    int category "enumを使い、テクニックのカテゴリーを表現 (プリセット非参照時のみ使用)"
     text note "練習ノート"
+    datetime created_at "作成日時 (NOT NULL)"
+    datetime updated_at "更新日時 (NOT NULL)"
+  }
+
+  technique_presets {
+    int id PK "(NOT NULL)"
+    string name_ja "テクニック名(日本語) (NOT NULL)"
+    string name_en "テクニック名(英語) (NOT NULL)"
+    int category "enumを使い、テクニックのカテゴリーを表現"
     datetime created_at "作成日時 (NOT NULL)"
     datetime updated_at "更新日時 (NOT NULL)"
   }
@@ -152,6 +161,8 @@ erDiagram
 
   techniques ||--o{ nodes : "1:多"
   techniques ||--o{ transitions : "1:多 (from + to)"
+
+  technique_presets ||--o{ techniques : "1:多"
 
   charts ||--o{ nodes : "1:多"
 ```
