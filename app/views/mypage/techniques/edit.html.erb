@@ -33,6 +33,7 @@
 
     <div class="space-y-4 mt-10">
       <%= f.submit "保存", class: "btn btn-primary btn-wide" %>
+      <%= link_to '削除', mypage_technique_path(@technique.id), class: "btn btn-error btn-wide", data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
       <%= link_to '一覧へ戻る', mypage_techniques_path, class: "btn btn-outline btn-wide"  %>
     </div>
   </div>
