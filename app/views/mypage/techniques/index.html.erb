@@ -8,24 +8,16 @@
     Techniques
   </div>
 
-  <!-- 検索・フィルター -->
-  <div class="flex flex-col gap-4 md:flex-row md:items-center">
+  <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-center ">
+  <!-- 検索・フィルター
     <input
       type="text"
       placeholder="Search techniques"
       class="input input-bordered w-full max-w-xs"
-    />
+      /> -->
 
     <div class="flex gap-2">
-      <!-- ブックマーク切り替えボタン -->
-      <button class="btn btn-outline btn-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M5 3a2 2 0 0 0-2 2v16l7-4 7 4V5a2 2 0 0 0-2-2H5z" />
-        </svg>
-        表示
-      </button>
-
-      <!-- 並び替えドロップダウン -->
+      <!-- 並び替えドロップダウン 
       <div class="dropdown">
         <label tabindex="0" class="btn btn-sm btn-outline flex items-center gap-1">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -41,25 +33,32 @@
           <li><a>古い順</a></li>
           <li><a>名前順</a></li>
         </ul>
-      </div>
+      </div> -->
     </div>
-    <%= link_to '新規作成', new_mypage_technique_path, class: "btn btn-primary items-center" %>
+    <%= link_to '新規作成', new_mypage_technique_path, class: "btn btn-primary" %>
   </div>
 
-  <div class="space-y-3 items-center w-72 mx-auto">
-    <% @techniques.each do |technique| %>
-      <div class="flex flex-row card bg-base-100 shadow-md">
-        <div class="card-body items-start p-4">
-          <% if technique.category%>
-            <span class="badge badge-soft"><%= technique.category.humanize %></span>
-          <% else%>
-            <span class="badge badge-ghost">未分類</span>
-          <% end %>
-          <span class="text-lg font-medium"><%= technique.name %></span>
+  <div class="space-y-3 items-center w-80 mx-auto">
+    <% if @techniques.present? %>
+      <% @techniques.each do |technique| %>
+        <div class="flex flex-row card bg-base-200 shadow-md">
+          <div class="card-body items-start p-4">
+            <% if technique.category%>
+              <span class="badge badge-soft"><%= technique.category.humanize %></span>
+            <% else%>
+              <span class="badge badge-ghost">未分類</span>
+            <% end %>
+            <span class="text-lg font-medium"><%= technique.name %></span>
+          </div>
+          <div class="flex flex-col space-y-1 p-1">
+            <%= link_to '編集', edit_mypage_technique_path(technique.id), class: "btn btn-primary" %>
+            <%= link_to "削除", mypage_technique_path(technique.id), class: "btn btn-error", data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+          </div>
         </div>
-        <div>
-          <%= link_to '編集', edit_mypage_technique_path(technique.id), class: "btn" %>
-        </div>
+      <% end %>
+    <% else%>
+      <div class="mt-10">
+        <p class="text-gray-500">表示するテクニックがありません。<br>「新規作成」ボタンから追加してみましょう！</p>
       </div>
     <% end %>
   </div>

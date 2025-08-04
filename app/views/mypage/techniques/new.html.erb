@@ -1,5 +1,7 @@
 <h2 class="text-lg font-bold mb-4">新しいテクニックを作成</h2>
 <%= form_with model: @technique, url: @technique.persisted? ? mypage_technique_path(@technique) : mypage_techniques_path, method: @technique.persisted? ? :patch : :post do |f| %>
+  <%= render "shared/error_messages", object: @technique %>
+
   <div class="space-y-4 mx-auto w-72">
 
     <%= f.label :name, "テクニック名" %>
