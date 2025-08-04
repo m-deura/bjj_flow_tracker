@@ -3,6 +3,7 @@ class Mypage::ChartsController < ApplicationController
   end
 
   def edit
+    @chart = current_user.charts.first
   end
 
   def update
