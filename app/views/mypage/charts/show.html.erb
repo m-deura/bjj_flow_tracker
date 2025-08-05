@@ -1,5 +1,5 @@
 <h1 class="text-2xl font-bold text-primary m-4">Chart</h1>
 
-<div data-controller="chart" class="relative w-full">
+<div data-controller="chart" data-chart-fetch-url-value="<%= api_v1_chart_path(@chart.id) %>" class="relative w-full">
   <div data-chart-target="cy" class="h-screen border border-gray-300"></div>
 </div>

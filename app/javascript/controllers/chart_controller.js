@@ -7,9 +7,12 @@ cytoscape.use(dagre);
 // Connects to data-controller="chart"
 export default class extends Controller {
 	static targets = ["cy"]
+	static values = {
+		fetchUrl: String
+	}
 
   connect() {
-		const url = "/api/v1/charts/1";
+		const url = this.fetchUrlValue;
     fetch(url)
       .then((response) => response.json())
       .then((elements_data) => {
