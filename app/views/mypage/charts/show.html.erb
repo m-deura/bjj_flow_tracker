@@ -1,5 +1,20 @@
 <h1 class="text-2xl font-bold text-primary m-4">Chart</h1>
 
-<div data-controller="chart" data-chart-fetch-url-value="<%= api_v1_chart_path(@chart.id) %>" class="relative w-full">
-  <div data-chart-target="cy" class="h-screen border border-gray-300"></div>
+<div data-controller="chart" data-chart-fetch-url-value="<%= api_v1_chart_path(@chart.id) %>" class="drawer drawer-end relative w-full">
+  <input type="checkbox" class="drawer-toggle" data-chart-target="toggle" />
+  <div data-chart-target="cy" class="drawer-content h-screen border border-gray-300"></div>
+  <div class="drawer-side">
+    <label aria-label="close sidebar" class="drawer-overlay" data-action="click->chart#closeDrawer" ></label>
+    <div class="menu bg-base-200 text-base-content min-h-full w-1/3 p-4">
+      <h1 class="font-bold text-3xl mb-3" data-chart-target="drawerTitle"></h1>
+      <div class="mb-4">
+        <h2 class="text-lg">練習メモ</h2>
+        <div data-chart-target="drawerNote"></div>
+      </div>
+      <div class="mb-4">
+        <h2 class="text-lg">カテゴリー</h2>
+        <div data-chart-target="drawerCategory"></div>
+      </div>
+    </div>
+  </div>
 </div>

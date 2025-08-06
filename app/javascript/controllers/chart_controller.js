@@ -6,7 +6,7 @@ cytoscape.use(dagre);
 
 // Connects to data-controller="chart"
 export default class extends Controller {
-	static targets = ["cy"]
+	static targets = ["cy", "toggle", "drawerTitle", "drawerNote", "drawerCategory" ]
 	static values = {
 		fetchUrl: String
 	}
@@ -61,6 +61,28 @@ export default class extends Controller {
             ranker: "tight-tree",
           },
         });
+
+        this.cy.on("tap", "node", (evt) => {
+          const node = evt.target;
+          this.openDrawer(node.data());
+        });
+
+				this.cy.on("tap", (evt) => {
+					if (evt.target == this.cy) {
+						this.closeDrawer()
+					}
+				});
       })
   }
+
+  openDrawer(data) {
+		this.drawerTitleTarget.textContent = data.label;
+		this.drawerNoteTarget.textContent = data.note;
+		this.drawerCategoryTarget.textContent = data.category;
+		this.toggleTarget.checked = true;
+  }
+
+	closeDrawer() {
+		this.toggleTarget.checked = false;
+	}
 }

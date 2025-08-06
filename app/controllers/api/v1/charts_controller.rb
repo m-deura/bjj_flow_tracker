@@ -5,7 +5,7 @@ class Api::V1::ChartsController < ApplicationController
     nodes = current_user.charts.first.nodes
 
     nodes_data = nodes.map do |node|
-      { data: { id: node.id.to_s, label: node.technique.name } }
+      { data: { id: node.id.to_s, label: node.technique.name, note: node.technique.note, category: node.technique.category } }
     end
 
     edges_data = nodes.map do |node|
