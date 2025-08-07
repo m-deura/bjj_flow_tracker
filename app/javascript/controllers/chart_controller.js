@@ -6,13 +6,15 @@ cytoscape.use(dagre);
 
 // Connects to data-controller="chart"
 export default class extends Controller {
-	static targets = ["cy", "toggle", "drawerTitle", "drawerNote", "drawerCategory" ]
+	static targets = ["cy", "toggle", "drawer" ]
 	static values = {
-		fetchUrl: String
+		fetchUrl: String,
+		editUrl: String
 	}
 
   connect() {
 		const url = this.fetchUrlValue;
+		// console.log(this.element.dataset)
     fetch(url)
       .then((response) => response.json())
       .then((elements_data) => {
@@ -76,9 +78,8 @@ export default class extends Controller {
   }
 
   openDrawer(data) {
-		this.drawerTitleTarget.textContent = data.label;
-		this.drawerNoteTarget.textContent = data.note;
-		this.drawerCategoryTarget.textContent = data.category;
+		const technique_edit_url = this.editUrlValue.replace(":id", data.technique_id)
+		this.drawerTarget.src = technique_edit_url
 		this.toggleTarget.checked = true;
   }
 
