@@ -1,4 +1,4 @@
-class Mypage::NodesController < ApplicationController
+class Mypage::NodesController < Mypage::BaseController
   def new
   end
 
