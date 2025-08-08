@@ -14,7 +14,7 @@ export default class extends Controller {
 
   connect() {
 		const url = this.fetchUrlValue;
-		// console.log(this.element.dataset)
+		console.log(this.element.dataset)
     fetch(url)
       .then((response) => response.json())
       .then((elements_data) => {
@@ -78,7 +78,8 @@ export default class extends Controller {
   }
 
   openDrawer(data) {
-		const technique_edit_url = this.editUrlValue.replace(":id", data.technique_id)
+		const technique_edit_url = this.editUrlValue.replace(":id", data.id)
+		// console.log(data.id)
 		this.drawerTarget.src = technique_edit_url
 		this.toggleTarget.checked = true;
   }
