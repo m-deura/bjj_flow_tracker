@@ -43,7 +43,7 @@ class Mypage::TechniquesController < Mypage::BaseController
 
   def destroy
     technique = Technique.find(params[:id])
-    technique.destroy
+    technique.destroy!
     redirect_to mypage_techniques_path, notice: "削除しました"
   end
 
