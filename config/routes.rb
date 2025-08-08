@@ -18,8 +18,7 @@ Rails.application.routes.draw do
     resource :quick_memo, only: %i[show edit update destroy]
     resources :techniques
     resources :charts, only: %i[show edit update] do
-      resources :nodes, shallow: true, only: %i[new create destroy]
-      resources :node_techniques, shallow: true, only: %i[show]
+      resources :nodes, shallow: true, only: %i[new create edit update destroy]
     end
     resource :setting, only: %i[show edit update]
   end
