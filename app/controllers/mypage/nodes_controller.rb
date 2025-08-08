@@ -5,6 +5,14 @@ class Mypage::NodesController < ApplicationController
   def create
   end
 
+  def edit
+    @node = current_user.nodes.find(params[:id])
+    @technique = @node.technique
+  end
+
+  def update
+  end
+
   def destroy
   end
 end
