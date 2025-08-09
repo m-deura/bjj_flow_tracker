@@ -11,12 +11,12 @@
 
     <div class="flex flex-col justify-center space-y-4 mt-10">
       <!--  子ノード追加 -->
-      <%= form_with url: mypage_chart_nodes_path(@chart), method: :post do |ff| %>
-        <%= hidden_field_tag :parent_node_id, @node.id %>
+      <%= form_with model: @node, url: mypage_node_path(@node), method: :patch do |ff| %>
         <div class="space-y-2">
-          <%= label_tag :technique_id, "子ノードとして追加する技" %>
-          <%= select_tag :technique_id, options_from_collection_for_select(@techniques, :id, :name), prompt: "選択してください", class: "select select-bordered w-full" %>
-          <%= ff.submit "子ノードを追加", class: "btn btn-secondary" %>
+          <%= label_tag :technique_id, "チャート上に描写する展開先テクニック" %>
+          <%= select_tag "node[children_ids][]", options_from_collection_for_select(@candidate_techniques + @children.map(&:technique), :id, :name, @children.pluck(:technique_id)), multiple: true, class: "select2 w-full" %>
+
+          <%= ff.submit "更新", class: "btn btn-secondary", data: { turbo_frame: "_top" } %>
         </div>
       <% end %>
     

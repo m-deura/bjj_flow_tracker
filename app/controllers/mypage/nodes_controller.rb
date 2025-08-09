@@ -27,14 +27,31 @@ class Mypage::NodesController < Mypage::BaseController
     @chart = @node.chart
     @technique = @node.technique
 
-    exsisting_child_tecnique_ids = @technique.nodes.flat_map(&:children).map(&:technique_id)
-    @techniques = current_user.techniques.where.not(id: [ @technique.id ] + exsisting_child_tecnique_ids)
+    @children = @node.children.includes(:technique)
+    exclude_ids = [ @technique.id ] + @children.pluck(:technique_id)
+    @candidate_techniques = current_user.techniques.where.not(id: exclude_ids)
   end
 
   def update
     @node = current_user.nodes.find(params[:id])
-    @chart = @node.chart
-    @technique = @node.technique
+    chart = @node.chart
+
+    selected_ids = Array(update_params[:children_ids]).map(&:to_i)
+    current_ids = @node.children.pluck(:technique_id)
+
+    ids_to_add = selected_ids - current_ids
+    ids_to_remove = current_ids - selected_ids
+
+    ids_to_add.each do |tid|
+      @node.children.create!(
+        chart: chart,
+        technique_id: tid
+      )
+    end
+
+    @node.children.where(technique_id: ids_to_remove).destroy_all
+
+    redirect_to mypage_chart_path(chart), notice: "展開先テクニックを更新しました", status: :see_other
   end
 
   def destroy
@@ -46,7 +63,7 @@ class Mypage::NodesController < Mypage::BaseController
 
   private
 
-  def technique_params
-    params.require(:technique).permit(:id, :name, :note, :category, outgoing_transitions_attributes: [ :id, :to_technique_id, :trigger, :_destroy ])
+  def update_params
+    params.require(:node).permit(children_ids: [])
   end
 end
