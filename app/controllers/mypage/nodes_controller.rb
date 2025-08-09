@@ -26,7 +26,9 @@ class Mypage::NodesController < Mypage::BaseController
     @node = current_user.nodes.find(params[:id])
     @chart = @node.chart
     @technique = @node.technique
-    @techniques = current_user.techniques.where.not(id: @technique.id)
+
+    exsisting_child_tecnique_ids = @technique.nodes.flat_map(&:children).map(&:technique_id)
+    @techniques = current_user.techniques.where.not(id: [ @technique.id ] + exsisting_child_tecnique_ids)
   end
 
   def update
