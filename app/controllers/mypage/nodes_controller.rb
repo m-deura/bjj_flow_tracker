@@ -14,7 +14,7 @@ class Mypage::NodesController < Mypage::BaseController
 
     parent_technique = parent_node.technique
     child_technique = child_node.technique
-    parent_technique.outgoing_transitions.create!(
+    parent_technique.outgoing_transitions.find_or_create_by!(
       to_technique: child_technique,
       user: current_user
     )
