@@ -2,10 +2,11 @@
   <h2 class="text-lg font-bold mb-4">テクニック設定</h2>
 
   <%= form_with model: @technique, url: mypage_technique_path(@technique), method: :patch do |f| %>
+    <%= hidden_field_tag :chart_id, @chart.id %>
     <%= render 'shared/error_messages', object: @technique %>
     <%= render 'mypage/techniques/form_core', f: f %>
     <div class="flex justify-center">
-      <%= f.submit "保存", class: "btn btn-primary btn-wide" %>
+      <%= f.submit "保存", class: "btn btn-primary btn-wide", data: { turbo_frame: "_top" } %>
     </div>
   <% end %>
 

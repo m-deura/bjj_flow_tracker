@@ -34,7 +34,10 @@ class Mypage::TechniquesController < Mypage::BaseController
     @techniques = current_user.techniques.where.not(id: @technique.id)
 
     if @technique.update(technique_params)
-      redirect_to mypage_techniques_path, notice: "保存しました"
+      # チャート画面上からテクニックを更新した場合、chart_idがparamsに含まれる。
+      chart = current_user.charts.find_by(id: params[:chart_id])
+      location = chart ? mypage_chart_path(chart) : mypage_techniques_path
+      redirect_to location, notice: "保存しました"
     else
       flash.now[:alert] = "保存できませんでした"
       render :edit, status: :unprocessable_entity
