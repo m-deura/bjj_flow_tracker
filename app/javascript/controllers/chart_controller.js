@@ -27,14 +27,14 @@ export default class extends Controller {
               selector: "node",
               style: {
                 shape: "ellipse",
-                width: 3,
-                height: 4,
+                width: 1,
+                height: 1,
                 "background-color": "#FFF",
                 label: "data(label)",
                 "text-valign": "top",
                 "text-halign": "center",
-                color: "#000", // #505050 はやわらかめの黒
-                "font-size": "6px",
+                color: "#333333", // #505050 はやわらかめの黒
+                "font-size": "4px",
                 padding: "4px",
                 "border-width": 0.5,
                 "border-color": "#b1b1b6",
