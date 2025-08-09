@@ -41,7 +41,7 @@ class Mypage::NodesController < Mypage::BaseController
     node = current_user.nodes.find(params[:id])
     chart = node.chart
     node.destroy!
-    redirect_to mypage_chart_path(chart), notice: "ノードを削除しました"
+    redirect_to mypage_chart_path(chart), notice: "ノードを削除しました", status: :see_other
   end
 
   private
