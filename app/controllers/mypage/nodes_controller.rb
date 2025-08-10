@@ -3,23 +3,6 @@ class Mypage::NodesController < Mypage::BaseController
   end
 
   def create
-    # p params
-    parent_node = current_user.nodes.find(params[:parent_node_id])
-    chart = parent_node.chart
-
-    child_node = chart.nodes.create!(
-      technique_id: params[:technique_id],
-      parent: parent_node
-    )
-
-    parent_technique = parent_node.technique
-    child_technique = child_node.technique
-    parent_technique.outgoing_transitions.find_or_create_by!(
-      to_technique: child_technique,
-      user: current_user
-    )
-
-    redirect_to edit_mypage_node_path(parent_node), notice: "子ノードを追加しました"
   end
 
   def edit
