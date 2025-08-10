@@ -79,7 +79,8 @@ export default class extends Controller {
   }
 
 	addNode() {
-		console.log("The button clicked!")
+		this.drawerTarget.src = this.addUrlValue
+		this.toggleTarget.checked = true;
 	}
 
   openDrawer(data) {
