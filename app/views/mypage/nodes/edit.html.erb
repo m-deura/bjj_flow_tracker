@@ -14,8 +14,15 @@
       <!--  子ノード追加 -->
       <%= form_with model: @node, url: mypage_node_path(@node), method: :patch do |ff| %>
         <div class="space-y-2">
-          <%= label_tag :technique_id, "チャート上に描写する展開先テクニック" %>
-          <%= select_tag "node[children_ids][]", options_from_collection_for_select(@candidate_techniques + @children.map(&:technique), :id, :name, @children.pluck(:technique_id)), multiple: true, class: "select2 w-full" %>
+          <%= label_tag "node_children_ids", "展開先テクニック" %>
+          <%= select_tag "node[children_ids][]", 
+                options_from_collection_for_select(@candidate_techniques + @children.map(&:technique), :id, :name, @children.pluck(:technique_id)),
+                id: "node_children_ids",
+                multiple: true,
+                placeholder: "テクニックを検索",
+                class: "w-full",
+                data: { controller: "tom-select"}
+          %>
 
           <%= ff.submit "更新", class: "btn btn-secondary", data: { turbo_frame: "_top" } %>
         </div>
