@@ -6,7 +6,6 @@ class Mypage::TechniquesController < Mypage::BaseController
   def new
     @technique = current_user.techniques.build
     @technique.outgoing_transitions.build if @technique.outgoing_transitions.blank?
-    @existing_techniques = current_user.techniques.select(:id, :name)
   end
 
   def create
