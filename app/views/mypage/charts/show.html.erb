@@ -9,7 +9,7 @@
   <div class="drawer-side">
     <label aria-label="close sidebar" class="drawer-overlay" data-action="click->chart#closeDrawer" ></label>
     <div class="menu bg-base-200 text-base-content min-h-full w-2/3 p-4">
-      <%= turbo_frame_tag "technique-drawer", data: { chart_target: "drawer" } do %>
+      <%= turbo_frame_tag "node-drawer", data: { chart_target: "drawer" } do %>
         <!-- empty untill the node clicked -->
       <% end %>
     </div>
