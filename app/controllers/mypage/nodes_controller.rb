@@ -36,7 +36,7 @@ class Mypage::NodesController < Mypage::BaseController
     @node = current_user.nodes.find(params[:id])
     chart = @node.chart
 
-    selected_ids = Array(update_params[:children_ids]).map(&:to_i)
+    selected_ids = Array(update_params[:children_ids]).compact_blank.map(&:to_i)
     current_ids = @node.children.pluck(:technique_id)
 
     ids_to_add = selected_ids - current_ids
@@ -64,6 +64,7 @@ class Mypage::NodesController < Mypage::BaseController
   private
 
   def update_params
-    params.require(:node).permit(children_ids: [])
+    # 展開先テクニックに何も選択されていない状態で更新をかけるとparams[:node]自体が送られないので、空配列も許容する。
+    params.fetch(:node, {}).permit(children_ids: [])
   end
 end
