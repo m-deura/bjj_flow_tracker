@@ -6,13 +6,15 @@ cytoscape.use(dagre);
 
 // Connects to data-controller="chart"
 export default class extends Controller {
-	static targets = ["cy"]
+	static targets = ["cy", "toggle", "drawer" ]
 	static values = {
-		fetchUrl: String
+		fetchUrl: String,
+		editUrl: String
 	}
 
   connect() {
 		const url = this.fetchUrlValue;
+		console.log(this.element.dataset)
     fetch(url)
       .then((response) => response.json())
       .then((elements_data) => {
@@ -25,14 +27,14 @@ export default class extends Controller {
               selector: "node",
               style: {
                 shape: "ellipse",
-                width: 3,
-                height: 4,
+                width: 1,
+                height: 1,
                 "background-color": "#FFF",
                 label: "data(label)",
                 "text-valign": "top",
                 "text-halign": "center",
-                color: "#000", // #505050 はやわらかめの黒
-                "font-size": "6px",
+                color: "#333333", // #505050 はやわらかめの黒
+                "font-size": "4px",
                 padding: "4px",
                 "border-width": 0.5,
                 "border-color": "#b1b1b6",
@@ -61,6 +63,28 @@ export default class extends Controller {
             ranker: "tight-tree",
           },
         });
+
+        this.cy.on("tap", "node", (evt) => {
+          const node = evt.target;
+          this.openDrawer(node.data());
+        });
+
+				this.cy.on("tap", (evt) => {
+					if (evt.target == this.cy) {
+						this.closeDrawer()
+					}
+				});
       })
   }
+
+  openDrawer(data) {
+		const technique_edit_url = this.editUrlValue.replace(":id", data.id)
+		// console.log(data.id)
+		this.drawerTarget.src = technique_edit_url
+		this.toggleTarget.checked = true;
+  }
+
+	closeDrawer() {
+		this.toggleTarget.checked = false;
+	}
 }

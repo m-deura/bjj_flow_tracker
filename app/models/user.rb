@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :techniques, dependent: :destroy
   has_many :charts, dependent: :destroy
+  has_many :nodes, through: :charts
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

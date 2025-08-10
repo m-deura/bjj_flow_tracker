@@ -29,28 +29,24 @@
         </ul>
       </div> -->
     </div>
-    <%= link_to '新規作成', new_mypage_technique_path, class: "btn btn-primary" %>
+    <%= link_to '新規作成', new_mypage_technique_path, class: "btn btn-primary text-lg btn-wide" %>
   </div>
 
-  <div class="space-y-3 items-center w-80 mx-auto">
+  <div class="space-y-10 items-center w-80 mx-auto">
     <% if @techniques.present? %>
       <% @techniques.each do |technique| %>
         <%= link_to edit_mypage_technique_path(technique.id) do %>
-        <div class="flex flex-row card bg-base-200 shadow-md">
-          <div class="card-body items-start p-4">
-            <% if technique.category%>
-              <span class="badge badge-soft"><%= technique.category.humanize %></span>
-            <% else%>
-              <span class="badge badge-ghost">未分類</span>
-            <% end %>
-            <span class="text-lg font-medium" ><%= technique.name %></span>
-          </div>
-          <!-- <div class="flex items-center m-2">
-            <%= link_to "削除", mypage_technique_path(technique.id), class: "btn btn-error", data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+          <div class="flex flex-row card bg-base-200 shadow-md mb-2">
+            <div class="card-body items-start p-4">
+              <% if technique.category%>
+                <span class="badge badge-soft"><%= technique.category.humanize %></span>
+              <% else%>
+                <span class="badge badge-ghost">未分類</span>
+              <% end %>
+              <span class="text-lg font-medium" ><%= technique.name %></span>
             </div>
-          -->
-        </div>
-      <% end %>
+          </div>
+        <% end %>
       <% end %>
     <% else%>
       <div class="mt-10">
