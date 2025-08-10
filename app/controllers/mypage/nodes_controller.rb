@@ -1,5 +1,6 @@
 class Mypage::NodesController < Mypage::BaseController
   def new
+    @chart = current_user.charts.first
   end
 
   def create

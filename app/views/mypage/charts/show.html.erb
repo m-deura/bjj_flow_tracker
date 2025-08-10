@@ -3,6 +3,9 @@
 <div data-controller="chart" data-chart-fetch-url-value="<%= api_v1_chart_path(@chart) %>" data-chart-edit-url-value="<%= edit_mypage_node_path(':id') %>" class="drawer drawer-end relative w-full">
   <input type="checkbox" class="drawer-toggle" data-chart-target="toggle" />
   <div data-chart-target="cy" class="drawer-content h-screen border border-gray-300"></div>
+  <button type="button" class="btn btn-primary btn-wide absolute top-4 left-4 z-10", data-action="click->chart#addNode">
+    新しいフローを作る
+  </button>
   <div class="drawer-side">
     <label aria-label="close sidebar" class="drawer-overlay" data-action="click->chart#closeDrawer" ></label>
     <div class="menu bg-base-200 text-base-content min-h-full w-2/3 p-4">
