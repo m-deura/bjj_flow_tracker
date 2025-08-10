@@ -9,7 +9,8 @@ export default class extends Controller {
 	static targets = ["cy", "toggle", "drawer" ]
 	static values = {
 		fetchUrl: String,
-		editUrl: String
+		editUrl: String,
+		addUrl: String
 	}
 
   connect() {
@@ -76,6 +77,10 @@ export default class extends Controller {
 				});
       })
   }
+
+	addNode() {
+		console.log("The button clicked!")
+	}
 
   openDrawer(data) {
 		const technique_edit_url = this.editUrlValue.replace(":id", data.id)

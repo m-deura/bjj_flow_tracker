@@ -1,9 +1,9 @@
 <h1 class="text-2xl font-bold text-primary m-4">Chart</h1>
 
-<div data-controller="chart" data-chart-fetch-url-value="<%= api_v1_chart_path(@chart) %>" data-chart-edit-url-value="<%= edit_mypage_node_path(':id') %>" class="drawer drawer-end relative w-full">
+<div data-controller="chart" data-chart-fetch-url-value="<%= api_v1_chart_path(@chart) %>" data-chart-edit-url-value="<%= edit_mypage_node_path(':id') %>" data-chart-add-url-value=<%= new_mypage_chart_node_path(@chart) %> class="drawer drawer-end relative w-full">
   <input type="checkbox" class="drawer-toggle" data-chart-target="toggle" />
   <div data-chart-target="cy" class="drawer-content h-screen border border-gray-300"></div>
-  <button type="button" class="btn btn-primary btn-wide absolute top-4 left-4 z-10", data-action="click->chart#addNode">
+  <button type="button" class="btn btn-primary btn-wide absolute top-4 left-4", data-action="click->chart#addNode">
     新しいフローを作る
   </button>
   <div class="drawer-side">
