@@ -10,5 +10,8 @@ application.register("chart", ChartController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import TomSelectController from "./tom_select_controller"
+application.register("tom-select", TomSelectController)
+
 import TransitionsController from "./transitions_controller"
 application.register("transitions", TransitionsController)
