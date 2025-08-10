@@ -26,14 +26,15 @@ class Mypage::NodesController < Mypage::BaseController
     ids_to_add = selected_ids - current_ids
     ids_to_remove = current_ids - selected_ids
 
-    ids_to_add.each do |tid|
-      @node.children.create!(
-        chart: chart,
-        technique_id: tid
-      )
+    Node.transaction  do
+      ids_to_add.each do |tid|
+        @node.children.create!(
+          chart: chart,
+          technique_id: tid
+        )
+      end
+      @node.children.where(technique_id: ids_to_remove).destroy_all
     end
-
-    @node.children.where(technique_id: ids_to_remove).destroy_all
 
     # 子ノード追加時にtransitionを更新する
     # ids_to_add.each do |tid|
