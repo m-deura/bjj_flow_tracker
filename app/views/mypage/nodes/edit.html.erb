@@ -31,6 +31,8 @@
       <!--  ノード削除 -->
       <!-- button_to ではフォームが生成されるので、data-turbo-method ではなく、method で delete を指定する -->
       <!-- link_to はaタグが生成されるので、data-turbo-method: :delete を使うことで擬似的に削除ボタンを作ることができる -->
+      <div class="flex justify-center">
         <%= button_to "このノードをチャートから削除", mypage_node_path(@node), method: :delete, class: "btn btn-error btn-wide mt-10", data: { turbo_confirm: "本当に削除しますか？", turbo_frame: "_top" } %>
+      </div>
     </div>
 <% end %>

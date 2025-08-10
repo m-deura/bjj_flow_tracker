@@ -2,7 +2,9 @@
 
 <%= form_with model: @technique, url: mypage_technique_path(@technique), method: :patch, local: true do |f| %>
   <%= render 'shared/error_messages', object: @technique %>
-  <%= render 'form_core', f: f %>
+  <div class="w-72 mx-auto m-4"
+    <%= render 'form_core', f: f %>
+  </div>
 
   <div class="w-72 mx-auto m-4">
     <div data-controller="transitions">
