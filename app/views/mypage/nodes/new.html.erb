@@ -1,2 +1,17 @@
-<h1>Mypage::Nodes#new</h1>
-<p>Find me in app/views/mypage/nodes/new.html.erb</p>
+<%= turbo_frame_tag "node-drawer" do %>
+  <h2 class="text-lg font-bold mb-4">フロー新規作成</h2>
+
+  <%= form_with model: @node, url: mypage_chart_nodes_path(@chart), method: :post, class: "space-y-2 mt-10 w-4/5 mx-auto" do |f| %>
+    <%= label_tag "technique_id", "テクニックを選択" %>
+    <%= select_tag "node[technique_id]", 
+            options_from_collection_for_select(@candidate_techniques, :id, :name),
+            id: "technique_id",
+            placeholder: "選択してください",
+            class: "select"
+    %>
+
+    <div class="flex justify-center">
+      <%= f.submit "追加", class: "btn btn-secondary btn-wide", data: { turbo_frame: "_top" } %>
+    </div>
+  <% end %>
+<% end %>

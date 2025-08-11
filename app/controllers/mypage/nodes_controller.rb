@@ -1,8 +1,21 @@
 class Mypage::NodesController < Mypage::BaseController
   def new
+    @chart = current_user.charts.find(params[:chart_id])
+    exclude_ids = @chart.nodes.roots.pluck(:technique_id)
+    @candidate_techniques = current_user.techniques.where.not(id: exclude_ids)
+    @node = @chart.nodes.build
   end
 
   def create
+    @chart = current_user.charts.find(params[:chart_id])
+    @node = @chart.nodes.build(create_params)
+
+    if @node.save
+      redirect_to mypage_chart_path(@chart), notice: "フローの開始点を作成しました"
+    else
+      flash.now[:alert] = "保存できませんでした"
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -59,6 +72,10 @@ class Mypage::NodesController < Mypage::BaseController
   end
 
   private
+
+  def create_params
+    params.require(:node).permit(:technique_id)
+  end
 
   def update_params
     # 展開先テクニックに何も選択されていない状態で更新をかけるとparams[:node]自体が送られないので、空配列も許容する。
