@@ -5,16 +5,15 @@
     <!-- リダイレクト先指定のため、techniques_controller へ chart_id を渡す必要がある。-->
     <%= hidden_field_tag :chart_id, @chart.id %>
     <%= render 'shared/error_messages', object: @technique %>
-    <div class="flex flex-col items-center space-y-2">
+    <div class="flex flex-col items-center">
       <%= render 'mypage/techniques/form_core', f: f %>
-      <%= f.submit "保存", class: "btn btn-primary btn-wide", data: { turbo_frame: "_top" } %>
-      <!-- button_to ではフォームが生成されるので、data-turbo-method ではなく、method で delete を指定する -->
-      <!-- link_to はaタグが生成されるので、data-turbo-method: :delete を使うことで擬似的に削除ボタンを作ることができる -->
-      <%= button_to "このノードをチャートから削除", mypage_node_path(@node), method: :delete, class: "btn btn-error btn-wide", data: { turbo_confirm: "本当に削除しますか？", turbo_frame: "_top" } %>
+      <%= f.submit "保存", class: "btn btn-primary w-4/5", data: { turbo_frame: "_top" } %>
     </div>
   <% end %>
 
-  <%= form_with model: @node, url: mypage_node_path(@node), method: :patch, class: "space-y-2 mt-10 w-4/5 mx-auto" do |ff| %>
+  <div class="divider my-8"></div>
+
+  <%= form_with model: @node, url: mypage_node_path(@node), method: :patch, class: "space-y-2 w-4/5 mx-auto" do |ff| %>
     <%= label_tag "node_children_ids", "展開先テクニック" %>
     <%= select_tag "node[children_ids][]", 
             options_from_collection_for_select(@candidate_techniques + @children.map(&:technique), :id, :name, @children.pluck(:technique_id)),
@@ -28,4 +27,12 @@
       <%= ff.submit "更新", class: "btn btn-secondary btn-wide", data: { turbo_frame: "_top" } %>
     </div>
   <% end %>
+
+  <div class="divider my-8"></div>
+
+  <div class="flex justify-center">
+    <!-- button_to ではフォームが生成されるので、data-turbo-method ではなく、method で delete を指定する -->
+    <!-- link_to はaタグが生成されるので、data-turbo-method: :delete を使うことで擬似的に削除ボタンを作ることができる -->
+    <%= button_to "このノードをチャートから削除", mypage_node_path(@node), method: :delete, class: "btn btn-error btn-wide", data: { turbo_confirm: "本当に削除しますか？", turbo_frame: "_top" } %>
+  </div>
 <% end %>
