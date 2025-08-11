@@ -4,7 +4,7 @@
   <%= form_with model: @node, url: mypage_chart_nodes_path(@chart), method: :post, class: "space-y-2 mt-10 w-4/5 mx-auto" do |f| %>
     <%= label_tag "technique_id", "テクニックを選択" %>
     <%= select_tag "node[technique_id]", 
-            options_from_collection_for_select(@techniques, :id, :name),
+            options_from_collection_for_select(@candidate_techniques, :id, :name),
             id: "technique_id",
             placeholder: "選択してください",
             class: "select"

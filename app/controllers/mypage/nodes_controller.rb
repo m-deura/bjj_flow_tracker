@@ -1,7 +1,8 @@
 class Mypage::NodesController < Mypage::BaseController
   def new
     @chart = current_user.charts.find(params[:chart_id])
-    @techniques = current_user.techniques.all
+    exclude_ids = @chart.nodes.roots.pluck(:technique_id)
+    @candidate_techniques = current_user.techniques.where.not(id: exclude_ids)
     @node = @chart.nodes.build
   end
 
