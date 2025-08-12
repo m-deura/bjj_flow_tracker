@@ -2,7 +2,8 @@
   <h2 class="text-lg font-bold mb-4">テクニック設定</h2>
 
   <%= form_with model: @technique, url: mypage_technique_path(@technique), method: :patch do |f| %>
-    <!-- リダイレクト先指定のため、techniques_controller へ chart_id を渡す必要がある。-->
+    <!-- リダイレクト先指定のため、techniques_controller へ chart_id を渡す必要がある -->
+    <!-- TODO: このあたりの処理は Formオブジェクト に移したい-->
     <%= hidden_field_tag :chart_id, @chart.id %>
     <%= render 'shared/error_messages', object: @technique %>
     <div class="flex flex-col items-center">
@@ -14,10 +15,10 @@
   <div class="divider my-8"></div>
 
   <%= form_with model: @node, url: mypage_node_path(@node), method: :patch, class: "space-y-2 w-4/5 mx-auto" do |ff| %>
-    <%= label_tag "node_children_ids", "展開先テクニック" %>
-    <%= select_tag "node[children_ids][]", 
+    <%= label_tag "children_nodes", "展開先テクニック" %>
+    <%= select_tag "node[children][]", 
             options_from_collection_for_select(@candidate_techniques + @children.map(&:technique), :id, :name, @children.pluck(:technique_id)),
-            id: "node_children_ids",
+            id: "children_nodes",
             multiple: true,
             placeholder: "テクニックを検索",
             data: { controller: "tom-select" }

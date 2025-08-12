@@ -110,7 +110,7 @@ erDiagram
 
   techniques {
     int id PK "(NOT NULL)"
-    int user_id FK "ユーザーID (NOT NULL)name"
+    int user_id FK "ユーザーID (NOT NULL)"
     int technique_preset_id FK "プリセットID(NULLならユーザー定義)"
     string name "テクニック名 (プリセット非参照時のみ使用)"
     int category "enumを使い、テクニックのカテゴリーを表現 (プリセット非参照時のみ使用)"
