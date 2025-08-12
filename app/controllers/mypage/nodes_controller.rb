@@ -34,12 +34,12 @@ class Mypage::NodesController < Mypage::BaseController
     chart = @node.chart
     # technique = @node.technique
 
-    children_all = Array(update_params[:children_ids])
+    children = Array(update_params[:children])
 
     new_names = []
     existing_ids = []
 
-    children_all.each do |child|
+    children.each do |child|
       if child.to_s.start_with?("new: ")
         new_names << child.sub(/^new: /, "")
       else
@@ -96,6 +96,6 @@ class Mypage::NodesController < Mypage::BaseController
 
   def update_params
     # 展開先テクニックに何も選択されていない状態で更新をかけるとparams[:node]自体が送られないので、空配列も許容する。
-    params.fetch(:node, {}).permit(children_ids: [])
+    params.fetch(:node, {}).permit(children: [])
   end
 end
