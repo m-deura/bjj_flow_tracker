@@ -34,7 +34,24 @@ class Mypage::NodesController < Mypage::BaseController
     chart = @node.chart
     # technique = @node.technique
 
-    selected_ids = Array(update_params[:children_ids])
+    children_all = Array(update_params[:children_ids])
+
+    new_names = []
+    existing_ids = []
+
+    children_all.each do |child|
+      if child.to_s.start_with?("new: ")
+        new_names << child.sub(/^new: /, "")
+      else
+        existing_ids << child.to_i
+      end
+    end
+
+    new_ids = new_names.map do |name|
+      current_user.techniques.find_or_create_by!(name: name).id
+    end
+
+    selected_ids = existing_ids + new_ids
     current_ids = @node.children.pluck(:technique_id)
 
     ids_to_add = selected_ids - current_ids
