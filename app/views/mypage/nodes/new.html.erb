@@ -1,13 +1,14 @@
 <%= turbo_frame_tag "node-drawer" do %>
-  <h2 class="text-lg font-bold mb-4">フロー新規作成</h2>
+  <h2 class="text-lg font-bold mb-4">フローの開始点を新規作成</h2>
 
-  <%= form_with model: @node, url: mypage_chart_nodes_path(@chart), method: :post, class: "space-y-2 mt-10 w-4/5 mx-auto" do |f| %>
-    <%= label_tag "technique_id", "テクニックを選択" %>
-    <%= select_tag "node[technique_id]", 
+  <%= form_with url: mypage_chart_nodes_path(@chart), method: :post, class: "space-y-2 mt-10 w-4/5 mx-auto" do |f| %>
+    <%= label_tag "root_nodes", "テクニックを選択" %>
+    <%= select_tag "node[roots]", 
             options_from_collection_for_select(@candidate_techniques, :id, :name),
-            id: "technique_id",
+            multiple: true,
+            id: "root_nodes",
             placeholder: "選択してください",
-            class: "select"
+            data: { controller: "tom-select" }
     %>
 
     <div class="flex justify-center">

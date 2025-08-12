@@ -3,19 +3,38 @@ class Mypage::NodesController < Mypage::BaseController
     @chart = current_user.charts.find(params[:chart_id])
     exclude_ids = @chart.nodes.roots.pluck(:technique_id)
     @candidate_techniques = current_user.techniques.where.not(id: exclude_ids)
-    @node = @chart.nodes.build
   end
 
   def create
     @chart = current_user.charts.find(params[:chart_id])
-    @node = @chart.nodes.build(create_params)
 
-    if @node.save
-      redirect_to mypage_chart_path(@chart), notice: "フローの開始点を作成しました"
-    else
-      flash.now[:alert] = "保存できませんでした"
-      render :new, status: :unprocessable_entity
+    roots = Array(create_params[:roots])
+
+    new_names = []
+    existing_ids = []
+
+    roots.each do |root|
+      if root.to_s.start_with?("new: ")
+        new_names << root.sub(/^new: /, "")
+      else
+        existing_ids << root.to_i
+      end
     end
+
+    new_ids = new_names.map do |name|
+      current_user.techniques.create!(name: name).id
+    end
+
+    ids_to_add = existing_ids + new_ids
+
+    ids_to_add.each do |tid|
+      Node.create!(
+        chart: @chart,
+        technique_id: tid
+      )
+    end
+
+    redirect_to mypage_chart_path(@chart), notice: "フローの開始点を作成しました"
   end
 
   def edit
@@ -91,7 +110,7 @@ class Mypage::NodesController < Mypage::BaseController
   private
 
   def create_params
-    params.require(:node).permit(:technique_id)
+    params.require(:node).permit(roots: [])
   end
 
   def update_params
