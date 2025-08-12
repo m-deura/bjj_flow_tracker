@@ -6,7 +6,12 @@ export default class extends Controller {
   connect() {
 		this.select = new TomSelect(this.element, {
 		  plugins: ['remove_button'],
-      create: false,
+      create: input => {
+				return {
+					value: `new: ${input}`, 
+					text: input
+				};
+		},
       persist: false,
       maxItems: null, 
       placeholder: this.element.getAttribute("placeholder") || ""

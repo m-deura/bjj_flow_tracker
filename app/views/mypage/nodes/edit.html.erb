@@ -2,7 +2,8 @@
   <h2 class="text-lg font-bold mb-4">テクニック設定</h2>
 
   <%= form_with model: @technique, url: mypage_technique_path(@technique), method: :patch do |f| %>
-    <!-- リダイレクト先指定のため、techniques_controller へ chart_id を渡す必要がある。-->
+    <!-- リダイレクト先指定のため、techniques_controller へ chart_id を渡す必要がある -->
+    <!-- TODO: このあたりの処理は Formオブジェクト に移したい-->
     <%= hidden_field_tag :chart_id, @chart.id %>
     <%= render 'shared/error_messages', object: @technique %>
     <div class="flex flex-col items-center">
