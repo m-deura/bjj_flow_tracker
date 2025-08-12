@@ -34,7 +34,7 @@ class Mypage::NodesController < Mypage::BaseController
     chart = @node.chart
     # technique = @node.technique
 
-    selected_ids = Array(update_params[:children_ids]).compact_blank.map(&:to_i)
+    selected_ids = Array(update_params[:children_ids])
     current_ids = @node.children.pluck(:technique_id)
 
     ids_to_add = selected_ids - current_ids
