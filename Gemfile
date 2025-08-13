@@ -72,4 +72,9 @@ gem "devise"
 gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
 
+# to keep the tree structure in nodes table
 gem "ancestry"
+
+# for i18n
+gem "rails-i18n"
+gem "devise-i18n"
