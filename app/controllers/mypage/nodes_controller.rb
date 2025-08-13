@@ -1,4 +1,4 @@
-class Mypage::NodesController < Mypage::BaseController
+class Mypage::NodesController < ApplicationController
   def new
     @chart = current_user.charts.find(params[:chart_id])
     exclude_ids = @chart.nodes.roots.pluck(:technique_id)

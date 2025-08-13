@@ -3,20 +3,20 @@ import TomSelect from "tom-select"
 
 // Connects to data-controller="tom-select"
 export default class extends Controller {
-  connect() {
+	connect() {
 		this.select = new TomSelect(this.element, {
-		  plugins: ['remove_button'],
-      create: input => {
+			plugins: ['remove_button'],
+  		create: input => {
 				return {
 					value: `new: ${input}`, 
 					text: input
 				};
 		},
-      persist: false,
-      maxItems: null, 
-      placeholder: this.element.getAttribute("placeholder") || ""
+			persist: false,
+			maxItems: null, 
+			placeholder: this.element.getAttribute("placeholder") || ""
 		})
-  }
+	}
 	disconnect(){
 		this.select?.destroy()
 	}
