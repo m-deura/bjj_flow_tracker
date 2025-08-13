@@ -1,6 +1,4 @@
 class Api::V1::ChartsController < ApplicationController
-  before_action :authenticate_user!
-
   def show
     nodes = current_user.charts.first.nodes
 

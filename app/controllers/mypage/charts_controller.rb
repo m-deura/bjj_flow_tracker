@@ -1,4 +1,4 @@
-class Mypage::ChartsController < Mypage::BaseController
+class Mypage::ChartsController < ApplicationController
   def show
     @chart = current_user.charts.first
   end

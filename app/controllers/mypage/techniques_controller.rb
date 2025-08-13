@@ -1,4 +1,4 @@
-class Mypage::TechniquesController < Mypage::BaseController
+class Mypage::TechniquesController < ApplicationController
   def index
     @techniques = current_user.techniques
   end
