@@ -1,0 +1,19 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      technique_preset: テクニックプリセット
+      technique: テクニック
+      chart: チャート
+      node: ノード
+    attributes:
+      user: 
+        name: ユーザー名
+        email: メールアドレス
+        image: アイコン
+      chart:
+        name: チャート名
+      technique:
+        name: テクニック名
+        category: カテゴリー
+        note: ノート
