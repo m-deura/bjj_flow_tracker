@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AutocompleteController from "./autocomplete_controller"
+application.register("autocomplete", AutocompleteController)
+
 import ChartController from "./chart_controller"
 application.register("chart", ChartController)
 
