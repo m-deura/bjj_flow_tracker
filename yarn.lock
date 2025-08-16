@@ -562,6 +562,11 @@ graphlib@^2.1.8:
   dependencies:
     lodash "^4.17.15"
 
+intro.js@^8.3.2:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/intro.js/-/intro.js-8.3.2.tgz#942129bccf0490a750ab04b1db744e3bb5f000b7"
+  integrity sha512-+QsuU8P7Z/O7stAwZ8Uj6CPyKsY6xVx/7hKTVLjlIEPYHaT43XnEUUYHCln6Ehr7GlDuwczh6I8PD/HGf4EG0A==
+
 is-extglob@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/is-extglob/-/is-extglob-2.1.1.tgz#a88c02535791f02ed37c76a1b9ea9773c833f8c2"
