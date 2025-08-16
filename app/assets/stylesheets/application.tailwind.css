@@ -4,6 +4,9 @@
 	name: "winter";
 	default: true;
 	prefersdark: true;
+	--color-primary: oklch(42.551% 0.161 282.339);
+  --color-secondary: oklch(45% 0.24 277.023);
+	--color-accent-content: oklch(94% 0.028 342.258);
 }
 
 /* @import "tom-select/dist/css/tom-select.css" */

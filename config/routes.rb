@@ -16,7 +16,12 @@ Rails.application.routes.draw do
   namespace :mypage do
     root to: "menu#show"
     resource :quick_memo, only: %i[show edit update destroy]
-    resources :techniques
+    resources :techniques do
+      collection do
+        get :search_text
+        get :search_category
+      end
+    end
     resources :charts, only: %i[show edit update] do
       resources :nodes, shallow: true, only: %i[new create edit update destroy]
     end

@@ -10,6 +10,9 @@ application.register("chart", ChartController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import InstantSearchController from "./instant_search_controller"
+application.register("instant-search", InstantSearchController)
+
 import TomSelectController from "./tom_select_controller"
 application.register("tom-select", TomSelectController)
 
