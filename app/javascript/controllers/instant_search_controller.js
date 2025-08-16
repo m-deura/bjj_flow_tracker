@@ -4,4 +4,12 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   connect() {
   }
+
+	autosubmit(){
+		// フォーム入力から200ms後にリクエストを実行する
+		clearTimeout(this.timeout)
+		this.timeout = setTimeout(() => {
+			this.element.requestSubmit()
+		}, 200)
+	}
 }
