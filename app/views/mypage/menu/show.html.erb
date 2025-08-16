@@ -1,6 +1,8 @@
 <div class="flex flex-col space-y-8 my-8 text-center items-center justify-center">
   <h1 class="text-5xl font-extrabold">Flowque へ<br>ようこそ！</h1>
-  <%= link_to "ステップガイドを始める", "#", class: "btn btn-primary" %>
+  <div data-controller="step-guide">
+    <%= link_to "ステップガイドを始める", "#", class: "btn btn-primary", data: { action: "click->step-guide#startMenuGuide" } %>
+  </div>
   <ul class="menu text-lg">
     <li>
       <%= link_to "#", class: "mx-auto" do %>    
