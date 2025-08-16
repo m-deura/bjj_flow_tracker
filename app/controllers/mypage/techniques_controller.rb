@@ -12,7 +12,7 @@ class Mypage::TechniquesController < ApplicationController
   def create
     @technique = current_user.techniques.build(technique_params)
     if @technique.save
-      redirect_to edit_mypage_technique_path(@technique), notice: "保存しました"
+      redirect_to mypage_techniques_path, notice: "保存しました"
     else
       flash.now[:alert] = "保存できませんでした"
       render :new, status: :unprocessable_entity
@@ -37,10 +37,11 @@ class Mypage::TechniquesController < ApplicationController
       # チャート画面上からテクニックを更新した場合、chart_idがparamsに含まれる。
       chart = current_user.charts.find_by(id: params[:chart_id])
       location = chart ? mypage_chart_path(chart) : mypage_techniques_path
+
       redirect_to location, notice: "保存しました"
     else
       flash.now[:alert] = "保存できませんでした"
-      render :edit, status: :unprocessable_entity
+      redirect_to mypage_techniques_path, status: :unprocessable_entity
     end
   end
 

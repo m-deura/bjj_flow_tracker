@@ -42,14 +42,15 @@
                   <span class="text-lg font-medium" ><%= technique.name %></span>
                 </div>
                 <div class="collapse-content flex flex-col items-center">
-                  <%= form_with model: technique, url: mypage_technique_path(technique), method: :patch, local: true do |f| %>
+                  <%= form_with model: technique, url: mypage_technique_path(technique), method: :patch do |f| %>
                     <%= render 'shared/error_messages', object: technique %>
                     <div class="w-72 mx-auto m-4">
                       <%= render 'form_core', f: f %>
                     </div>
                     <div class="flex flex-col items-center space-y-4 mt-10">
-                      <%= f.submit "保存", class: "btn btn-primary btn-wide" %>
-                      <%= link_to '削除', mypage_technique_path(technique.id), class: "btn btn-error btn-wide", data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
+                      <!-- turbo_frame: "_top" を指定してページ全体をリロードしないと、フラッシュメッセージが表示されない。-->
+                      <%= f.submit "保存", class: "btn btn-primary btn-wide", data: { turbo_frame: "_top" } %>
+                      <%= link_to '削除', mypage_technique_path(technique.id), class: "btn btn-error btn-wide", data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？", turbo_frame: "_top" } %>
                     </div>
                   <% end %>
                 </div>
