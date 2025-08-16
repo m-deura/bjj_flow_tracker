@@ -2,13 +2,14 @@
 
 <h1 class="text-2xl font-bold text-primary m-4">Techniques</h1>
 
-  <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-center ">
+  <div class="flex flex-col gap-2 items-center">
+    <%= link_to '新規作成', new_mypage_technique_path, class: "btn btn-primary btn-wide" %>
     <%= search_form_for @q, url: mypage_techniques_path,
           data: { turbo_frame: "technique-list",
                   controller: "instant-search",
                   action: "input->instant-search#autosubmit"
           } do |f| %>
-      <label class="input">
+      <label class="input w-80">
         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <g
             stroke-linejoin="round"
@@ -24,19 +25,15 @@
         <%= f.search_field :name_or_note_cont, placeholder: "技またはノートを検索", class: "search" %>
       </label>
     <% end %>
-
-    <div class="flex justify-center">
-      <%= link_to '新規作成', new_mypage_technique_path, class: "btn btn-primary text-lg btn-wide" %>
-    </div>
   </div>
 
   <%= turbo_frame_tag "technique-list" do %>
-    <div class="space-y-10 items-center w-80 mx-auto">
+    <div class="space-y-2 w-80 mx-auto">
       <% if @techniques.present? %>
         <% @techniques.each do |technique| %>
-              <div class="collapse collapse-arrow bg-base-200 shadow-md mb-2">
+              <div class="collapse collapse-arrow bg-base-200 shadow-md">
                 <input type="checkbox">
-                <div class="collapse-title items-start p-4">
+                <div class="collapse-title items-start space-y-2 flex flex-col">
                   <% if technique.category%>
                     <span class="badge badge-soft"><%= technique.category.humanize %></span>
                   <% else%>
@@ -44,7 +41,7 @@
                   <% end %>
                   <span class="text-lg font-medium" ><%= technique.name %></span>
                 </div>
-                <div class="collapse-content w-72 mx-auto m-4">
+                <div class="collapse-content flex flex-col items-center">
                   <%= form_with model: technique, url: mypage_technique_path(technique), method: :patch, local: true do |f| %>
                     <%= render 'shared/error_messages', object: technique %>
                     <div class="w-72 mx-auto m-4">
