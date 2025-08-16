@@ -1,6 +1,7 @@
 class Mypage::TechniquesController < ApplicationController
   def index
-    @techniques = current_user.techniques
+    @q = current_user.techniques.ransack(params[:q])
+    @techniques = @q.result(distinct: true)
   end
 
   def new

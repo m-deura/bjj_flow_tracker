@@ -3,6 +3,11 @@
 <h1 class="text-2xl font-bold text-primary m-4">Techniques</h1>
 
   <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-center ">
+    <%= search_form_for @q, url: mypage_techniques_path do |f| %>
+      <%= f.search_field :name_or_note_cont,
+          placeholder: "技またはノートを検索" %>
+      <%= f.submit %>
+    <% end %>
   <!-- 検索・フィルター
     <input
       type="text"
