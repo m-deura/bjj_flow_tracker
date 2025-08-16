@@ -1,7 +1,7 @@
 class Mypage::TechniquesController < ApplicationController
   def index
     @q = current_user.techniques.ransack(params[:q])
-    @techniques = @q.result(distinct: true)
+    @techniques = @q.result(distinct: true).order(category: :asc)
   end
 
   def new
