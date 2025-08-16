@@ -34,20 +34,22 @@
     <div class="space-y-10 items-center w-80 mx-auto">
       <% if @techniques.present? %>
         <% @techniques.each do |technique| %>
-          <%= link_to edit_mypage_technique_path(technique.id) do %>
-            <div class="flex flex-row card bg-base-200 shadow-md mb-2">
-              <div class="card-body items-start p-4">
-                <% if technique.category%>
-                  <span class="badge badge-soft"><%= technique.category.humanize %></span>
-                <% else%>
-                  <span class="badge badge-ghost">未分類</span>
-                <% end %>
-                <span class="text-lg font-medium" ><%= technique.name %></span>
+          <%= turbo_frame_tag dom_id(technique) do %>
+            <%= link_to edit_mypage_technique_path(technique.id) do %>
+              <div class="flex flex-row card bg-base-200 shadow-md mb-2">
+                <div class="card-body items-start p-4">
+                  <% if technique.category%>
+                    <span class="badge badge-soft"><%= technique.category.humanize %></span>
+                  <% else%>
+                    <span class="badge badge-ghost">未分類</span>
+                  <% end %>
+                  <span class="text-lg font-medium" ><%= technique.name %></span>
+                </div>
               </div>
-            </div>
+            <% end %>
           <% end %>
         <% end %>
-      <% else%>
+      <% else %>
         <div class="mt-10">
           <p class="text-gray-500">表示するテクニックがありません。</p>
         </div>
