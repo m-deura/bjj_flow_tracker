@@ -1,34 +1,12 @@
 <h2 class="text-xl font-bold m-4">テクニックを編集</h2>
-
 <%= form_with model: @technique, url: mypage_technique_path(@technique), method: :patch, local: true do |f| %>
   <%= render 'shared/error_messages', object: @technique %>
   <div class="w-72 mx-auto m-4"
     <%= render 'form_core', f: f %>
   </div>
 
-  <div class="w-72 mx-auto m-4">
-    <div data-controller="transitions">
-      <div data-transitions-target="list">
-        <%= f.fields_for :outgoing_transitions do |tf| %>
-          <%= render "transition_fields", f: tf, techniques: @techniques %>
-        <% end %>
-      </div>
-  
-      <template data-transitions-target="template">
-        <%= f.fields_for(:outgoing_transitions, Transition.new, child_index: "NEW_RECORD") do |tf| %>
-          <%= render "transition_fields", f: tf, techniques: @techniques %>
-        <% end %>
-      </template>
-  
-      <div class="mt-4 text-center">
-        <button type="button" data-action="click->transitions#add" class="btn btn-outline">＋展開先を追加</button>
-      </div>
-    </div>
-  
-    <div class="flex flex-col items-center space-y-4 mt-10">
-      <%= f.submit "保存", class: "btn btn-primary btn-wide" %>
-      <%= link_to '削除', mypage_technique_path(@technique.id), class: "btn btn-error btn-wide", data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
-      <%= link_to '一覧へ戻る', mypage_techniques_path, class: "btn btn-outline btn-wide"  %>
-    </div>
+  <div class="flex flex-col items-center space-y-4 mt-10">
+    <%= f.submit "保存", class: "btn btn-primary btn-wide" %>
+    <%= link_to '削除', mypage_technique_path(@technique.id), class: "btn btn-error btn-wide", data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
   </div>
 <% end %>
