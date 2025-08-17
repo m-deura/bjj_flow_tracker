@@ -9,7 +9,7 @@
   </div>
 </div>
 
-<div id="step0" class="hidden" data-intro-text="こちらは、プリセットとして用意されたテクニックが一覧として並んでいる画面です。"></div>
+<div id="step0" class="hidden" data-intro-text="こちらは、柔術のテクニックが一覧として並んでいる画面です。"></div>
 
   <div class="flex flex-col gap-2 items-center">
     <%= link_to "新規作成" , new_mypage_technique_path, class: "btn btn-primary btn-wide", id: "step1", data: { title_text: "新規作成", intro_text: "一覧にないテクニックは、こちらのボタンから新規作成することができます。" } %>
@@ -38,34 +38,37 @@
     <% end %>
   </div>
 
+  <div id="step3" data-title-text="テクニック詳細" data-intro-text="カードをクリックすると、テクニック個々の詳細を確認・編集することができます。" class="hidden"></div>
+  <div id="step4" data-title-text="テクニック詳細" data-intro-text="こちらのノート欄に、日々の練習で気がついたことを記録していきましょう！" class="hidden"></div>
+
   <%= turbo_frame_tag "technique-list" do %>
     <div class="space-y-2 w-80 mx-auto">
       <% if @techniques.present? %>
         <% @techniques.each do |technique| %>
-              <div class="collapse collapse-arrow bg-base-200 shadow-md">
-                <input type="checkbox">
-                <div class="collapse-title items-start space-y-2 flex flex-col">
-                  <% if technique.category%>
-                    <span class="badge badge-soft"><%= technique.category.humanize %></span>
-                  <% else%>
-                    <span class="badge badge-ghost">未分類</span>
-                  <% end %>
-                  <span class="text-lg font-medium" ><%= technique.name %></span>
+          <div class="collapse collapse-arrow bg-base-200 shadow-md">
+            <input type="checkbox">
+            <div class="collapse-title items-start space-y-2 flex flex-col">
+              <% if technique.category%>
+                <span class="badge badge-soft"><%= technique.category.humanize %></span>
+              <% else%>
+                <span class="badge badge-ghost">未分類</span>
+              <% end %>
+              <span class="text-lg font-medium" ><%= technique.name %></span>
+            </div>
+            <div class="collapse-content flex flex-col items-center">
+              <%= form_with model: technique, url: mypage_technique_path(technique), method: :patch do |f| %>
+                <%= render 'shared/error_messages', object: technique %>
+                <div class="w-72 mx-auto m-4">
+                  <%= render 'form_core', f: f %>
                 </div>
-                <div class="collapse-content flex flex-col items-center">
-                  <%= form_with model: technique, url: mypage_technique_path(technique), method: :patch do |f| %>
-                    <%= render 'shared/error_messages', object: technique %>
-                    <div class="w-72 mx-auto m-4">
-                      <%= render 'form_core', f: f %>
-                    </div>
-                    <div class="flex flex-col items-center space-y-4 mt-10">
-                      <!-- turbo_frame: "_top" を指定してページ全体をリロードしないと、フラッシュメッセージが表示されない。-->
-                      <%= f.submit "保存", class: "btn btn-primary btn-wide", data: { turbo_frame: "_top" } %>
-                      <%= link_to '削除', mypage_technique_path(technique.id), class: "btn btn-error btn-wide", data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？", turbo_frame: "_top" } %>
-                    </div>
-                  <% end %>
+                <div class="flex flex-col items-center space-y-4 mt-10">
+                  <!-- turbo_frame: "_top" を指定してページ全体をリロードしないと、フラッシュメッセージが表示されない。-->
+                  <%= f.submit "保存", class: "btn btn-primary btn-wide", data: { turbo_frame: "_top" } %>
+                  <%= link_to '削除', mypage_technique_path(technique.id), class: "btn btn-error btn-wide", data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？", turbo_frame: "_top" } %>
                 </div>
-              </div>
+              <% end %>
+            </div>
+          </div>
         <% end %>
       <% else %>
         <div class="mt-10">
