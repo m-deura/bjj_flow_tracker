@@ -3,7 +3,6 @@ import introJs from "intro.js"
 
 // Connects to data-controller="step-guide"
 export default class extends Controller {
-	static targets = ["step0", "step1", "step2", "step3", "step4"]
   connect() {
 		// introJs.tour().setOption("dontShowAgain", true).start();
   }
@@ -45,16 +44,13 @@ export default class extends Controller {
 
 	startTechniqueGuide() {
 		console.log("Hello!")
-		const step0 = this.step0Target
-		const step1 = this.step1Target
-		const step2 = this.step2Target
-		const step3 = this.step3Target
-		const step4 = this.step4Target
+		const step0 = document.querySelector('#step0')
+		const step1 = document.querySelector('#step1')
+		const step2 = document.querySelector('#step2')
 
 		introJs.tour().setOptions({
 			steps: [
 				{
-					title: step0.dataset.titleText,
 					intro: step0.dataset.introText
 				},
 				{
@@ -66,14 +62,6 @@ export default class extends Controller {
 					element: step2,
 					title: step2.dataset.titleText,
 					intro: step2.dataset.introText
-				},
-				{
-					element: step3,
-					title: step3.dataset.titleText,
-					intro: step3.dataset.introText
-				},
-				{  
-					intro: step4.dataset.introText
 				},
 			]
 		}).start();

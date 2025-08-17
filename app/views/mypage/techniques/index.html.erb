@@ -9,14 +9,16 @@
   </div>
 </div>
 
-<div data-step-guide-tagert="step0" class="hidden" data-intro-text="プリセットとして用意されたテクニックが一覧として並んでいる画面です。"></div>
+<div id="step0" class="hidden" data-intro-text="こちらは、プリセットとして用意されたテクニックが一覧として並んでいる画面です。"></div>
 
   <div class="flex flex-col gap-2 items-center">
-    <%= link_to '新規作成', new_mypage_technique_path, class: "btn btn-primary btn-wide" %>
-    <%= search_form_for @q, url: mypage_techniques_path,
+    <%= link_to "新規作成" , new_mypage_technique_path, class: "btn btn-primary btn-wide", id: "step1", data: { title_text: "新規作成", intro_text: "一覧にないテクニックは、こちらのボタンから新規作成することができます。" } %>
+    <%= search_form_for @q, url: mypage_techniques_path, id: "step2",
           data: { turbo_frame: "technique-list",
                   controller: "instant-search",
-                  action: "input->instant-search#autosubmit"
+                  action: "input->instant-search#autosubmit",
+                  title_text: "検索",
+                  intro_text: "一覧にあるテクニックは、ここから検索して表示を絞り込むことができます。"
           } do |f| %>
       <label class="input w-80">
         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
