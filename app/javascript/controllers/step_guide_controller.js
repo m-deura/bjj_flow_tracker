@@ -8,11 +8,11 @@ export default class extends Controller {
   }
 
 	startMenuGuide() {
-		const step0 = this.step0Target
-		const step1 = this.step1Target
-		const step2 = this.step2Target
-		const step3 = this.step3Target
-		const step4 = this.step4Target
+		const step0 = document.querySelector("#step0")
+		const step1 = document.querySelector("#step1") 
+		const step2 = document.querySelector("#step2") 
+		const step3 = document.querySelector("#step3")
+		const step4 = document.querySelector("#step4")
 
 		introJs.tour().setOptions({
 			steps: [
@@ -44,9 +44,9 @@ export default class extends Controller {
 
 	startTechniqueGuide() {
 		console.log("Hello!")
-		const step0 = document.querySelector('#step0')
-		const step1 = document.querySelector('#step1')
-		const step2 = document.querySelector('#step2')
+		const step0 = document.querySelector("#step0")
+		const step1 = document.querySelector("#step1")
+		const step2 = document.querySelector("#step2")
 
 		introJs.tour().setOptions({
 			steps: [
