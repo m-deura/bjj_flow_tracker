@@ -115,11 +115,11 @@ export default class extends Controller {
 	startChartGuide() {
 		const step0 = document.querySelector("#step0")
 		const step1 = document.querySelector("#step1")
-		// const step2 = document.querySelector("#step2")
+		const step2 = document.querySelector("#step2")
 		// const step3 = document.querySelector("#step3")
 		// const step4 = document.querySelector("#step4")
 
-		introJs.tour().setOptions({
+		const intro = introJs.tour().setOptions({
 			steps: [
 
 				{
@@ -130,12 +130,12 @@ export default class extends Controller {
 					title: step1.dataset.titleText,
 					intro: step1.dataset.introText
 				},
-				/*
 				{
-					element: step2,
+					// element: step2,
 					title: step2.dataset.titleText,
 					intro: step2.dataset.introText
 				},
+				/*
 				{
 					element: step3,
 					title: step3.dataset.titleText,
@@ -146,6 +146,15 @@ export default class extends Controller {
 				},
 				*/
 			]
-		}).start();
+		})
+
+		intro.onBeforeChange(async () => {
+			return new Promise((resolve) => {
+				console.log('Hello!!!!');
+				setTimeout(resolve, 3000);
+			});
+		});
+
+		intro.start();
 	}
 }
