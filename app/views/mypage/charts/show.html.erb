@@ -20,10 +20,11 @@
   
   <div class="drawer drawer-end relative w-full">
     <input type="checkbox" class="drawer-toggle" data-chart-target="toggle" />
-    <div data-chart-target="cy" class="drawer-content h-screen border border-gray-300"></div>
-    <button id="step1" type="button" class="btn btn-primary btn-wide absolute top-4 left-4" data-action="click->chart#addNode" data-title-text="新規作成" data-intro-text="ここからフローチャートの開始点(ルートノード)を新規作成できます。">
+    <div data-chart-target="cy" class="drawer-content h-screen mx-auto w-9/10 border border-gray-300">
+      <button id="step1" type="button" class="btn btn-primary btn-wide absolute top-6 left-6" data-action="click->chart#addNode" data-title-text="新規作成" data-intro-text="ここからフローチャートの開始点(ルートノード)を新規作成できます。">
       新しいフローを作る
-    </button>
+      </button>
+    </div>
 
     <div class="drawer-side" id="step2" data-title-text="チャート上のテクニック" data-intro-text="このエリアにあるノード(丸い図形)をクリックすると、テクニックの詳細を確認・編集することができます。">
       <label aria-label="close sidebar" class="drawer-overlay" data-action="click->chart#closeDrawer" ></label>
