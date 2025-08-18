@@ -1,17 +1,26 @@
-<h1 class="text-2xl font-bold text-primary m-4">Chart</h1>
-
-<div data-controller="chart" data-chart-fetch-url-value="<%= api_v1_chart_path(@chart) %>" data-chart-edit-url-value="<%= edit_mypage_node_path(':id') %>" data-chart-add-url-value=<%= new_mypage_chart_node_path(@chart) %> class="drawer drawer-end relative w-full">
-  <input type="checkbox" class="drawer-toggle" data-chart-target="toggle" />
-  <div data-chart-target="cy" class="drawer-content h-screen border border-gray-300"></div>
-  <button type="button" class="btn btn-primary btn-wide absolute top-4 left-4", data-action="click->chart#addNode">
-    新しいフローを作る
-  </button>
-  <div class="drawer-side">
-    <label aria-label="close sidebar" class="drawer-overlay" data-action="click->chart#closeDrawer" ></label>
-    <div class="menu bg-base-200 text-base-content min-h-full w-2/3 p-4">
-      <%= turbo_frame_tag "node-drawer", data: { chart_target: "drawer" } do %>
-        <!-- empty untill the node clicked -->
-      <% end %>
+<div class="min-h-screen px-4 py-6 bg-base-100 space-y-6" data-controller="step-guide">
+  <div class="flex items-center">
+    <h1 class="text-2xl font-bold text-primary m-2 ml-4">Chart</h1>
+    <div class="tooltip tooltip-right" data-tip="ステップガイドを開始するにはここをクリック" data-action="click->step-guide#startChartGuide">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+      </svg>
+    </div>
+  </div>
+  
+  <div data-controller="chart" data-chart-fetch-url-value="<%= api_v1_chart_path(@chart) %>" data-chart-edit-url-value="<%= edit_mypage_node_path(':id') %>" data-chart-add-url-value=<%= new_mypage_chart_node_path(@chart) %> class="drawer drawer-end relative w-full">
+    <input type="checkbox" class="drawer-toggle" data-chart-target="toggle" />
+    <div data-chart-target="cy" class="drawer-content h-screen border border-gray-300"></div>
+    <button type="button" class="btn btn-primary btn-wide absolute top-4 left-4", data-action="click->chart#addNode">
+      新しいフローを作る
+    </button>
+    <div class="drawer-side">
+      <label aria-label="close sidebar" class="drawer-overlay" data-action="click->chart#closeDrawer" ></label>
+      <div class="menu bg-base-200 text-base-content min-h-full w-2/3 p-4">
+        <%= turbo_frame_tag "node-drawer", data: { chart_target: "drawer" } do %>
+          <!-- empty untill the node clicked -->
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
