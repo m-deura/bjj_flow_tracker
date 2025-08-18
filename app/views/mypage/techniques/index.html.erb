@@ -40,6 +40,7 @@
 
   <div id="step3" data-title-text="テクニック詳細" data-intro-text="カードをクリックすると、テクニック個々の詳細を確認・編集することができます。" class="hidden"></div>
   <div id="step4" data-title-text="テクニック詳細" data-intro-text="こちらのノート欄に、日々の練習で気がついたことを記録していきましょう！" class="hidden"></div>
+  <div id="step5" data-intro-text="こちらの画面の説明は以上です。<br><br>本画面から確認できるテクニック同士を繋げて可視化する操作について知りたい場合は <a class='underline font-bold' href=<%= mypage_chart_path(@chart) %>>Chart</a> メニューの左上にある「?」をクリックしてください！" class="hidden"></div>
 
   <%= turbo_frame_tag "technique-list" do %>
     <div class="space-y-2 w-80 mx-auto">

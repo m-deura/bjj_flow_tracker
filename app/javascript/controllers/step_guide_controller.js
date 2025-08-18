@@ -48,6 +48,7 @@ export default class extends Controller {
 		const step2 = document.querySelector("#step2")
 		const step3 = document.querySelector("#step3")
 		const step4 = document.querySelector("#step4")
+		const step5 = document.querySelector("#step5")
 
 		const intro = introJs.tour().setOptions({
 			steps: [
@@ -73,6 +74,10 @@ export default class extends Controller {
 					title: step4.dataset.titleText,
 					intro: step4.dataset.introText,
 					disableInteraction: true
+				},
+				{
+					title: step5.dataset.titleText,
+					intro: step5.dataset.introText,
 				},
 			]
 		})
