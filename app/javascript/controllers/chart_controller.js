@@ -14,7 +14,7 @@ export default class extends Controller {
 	}
 
 	connect() {
-		const url = this.fetchUrlValue;
+		const url = this.fetchUrlValue; // api_v1_chart_path(@chart)
 		console.log(this.element.dataset)
 		fetch(url)
 			.then((response) => response.json())
@@ -76,20 +76,20 @@ export default class extends Controller {
 					}
 				});
 
-				this.cy.fit(this.cy.elements(), 50);          // 好きな初期表示
-				this.cy.minZoom(this.cy.zoom() * 0.5);             // これ以下にズームアウト不可（迷子防止）
+				this.cy.fit(this.cy.elements(), 50);  // 初期表示
+				this.cy.minZoom(this.cy.zoom() * 0.5);  // これ以下にズームアウト不可（迷子防止）
       })
   }
 
 	addNode() {
-		this.drawerTarget.src = this.addUrlValue
+		this.drawerTarget.src = this.addUrlValue; // new_mypage_chart_node_path(@chart)
 		this.toggleTarget.checked = true;
 	}
 
   openDrawer(data) {
-		const technique_edit_url = this.editUrlValue.replace(":id", data.id)
+		const node_edit_url = this.editUrlValue.replace(":id", data.id);
 		// console.log(data.id)
-		this.drawerTarget.src = technique_edit_url
+		this.drawerTarget.src = node_edit_url; // edit_mypage_node_path(data.id)
 		this.toggleTarget.checked = true;
   }
 
