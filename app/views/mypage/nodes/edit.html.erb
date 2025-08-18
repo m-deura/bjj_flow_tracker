@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "node-drawer" do %>
-  <h2 class="text-lg font-bold mb-4">テクニック設定</h2>
+  <h2 class="text-lg font-bold mb-4">ノード編集</h2>
 
   <%= form_with model: @technique, url: mypage_technique_path(@technique), method: :patch do |f| %>
     <!-- リダイレクト先指定のため、techniques_controller へ chart_id を渡す必要がある -->

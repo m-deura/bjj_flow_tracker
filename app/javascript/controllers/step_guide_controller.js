@@ -115,14 +115,14 @@ export default class extends Controller {
 	startChartGuide() {
 		const step0 = document.querySelector("#step0")
 		const step1 = document.querySelector("#step1")
-		const step2 = document.querySelector("#step2")
-		const step3 = document.querySelector("#step3")
-		const step4 = document.querySelector("#step4")
+		// const step2 = document.querySelector("#step2")
+		// const step3 = document.querySelector("#step3")
+		// const step4 = document.querySelector("#step4")
 
 		introJs.tour().setOptions({
 			steps: [
+
 				{
-					title: step0.dataset.titleText,
 					intro: step0.dataset.introText
 				},
 				{
@@ -130,6 +130,7 @@ export default class extends Controller {
 					title: step1.dataset.titleText,
 					intro: step1.dataset.introText
 				},
+				/*
 				{
 					element: step2,
 					title: step2.dataset.titleText,
@@ -143,6 +144,7 @@ export default class extends Controller {
 				{  
 					intro: step4.dataset.introText
 				},
+				*/
 			]
 		}).start();
 	}
