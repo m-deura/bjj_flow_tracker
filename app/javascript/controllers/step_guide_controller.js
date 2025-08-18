@@ -116,8 +116,8 @@ export default class extends Controller {
 		const step0 = document.querySelector("#step0")
 		const step1 = document.querySelector("#step1")
 		const step2 = document.querySelector("#step2")
-		// const step3 = document.querySelector("#step3")
-		// const step4 = document.querySelector("#step4")
+		const step3Text = document.querySelector("#step3Text")
+		const step4Text = document.querySelector("#step4Text")
 
 		const intro = introJs.tour().setOptions({
 			steps: [
@@ -131,29 +131,36 @@ export default class extends Controller {
 					intro: step1.dataset.introText
 				},
 				{
-					// element: step2,
+					element: step2,
 					title: step2.dataset.titleText,
 					intro: step2.dataset.introText
 				},
-				/*
 				{
-					element: step3,
-					title: step3.dataset.titleText,
-					intro: step3.dataset.introText
+					element: document.querySelector("#step3"),
+					title: step3Text.dataset.titleText,
+					intro: step3Text.dataset.introText
 				},
 				{  
-					intro: step4.dataset.introText
+					element: document.querySelector("#step4"),
+					title: step4Text.dataset.titleText,
+					intro: step4Text.dataset.introText
 				},
-				*/
 			]
 		})
 
 		intro.onAfterChange(() => {
-			if (intro.getCurrentStep() === 2){
+			if (intro.getCurrentStep() === 2) {
+				console.log("[guide] dispatch openNode");
 				this.dispatch("openNode");
 			}
 		});
 
+		this.intro = intro;
 		intro.start();
+	}
+		 
+	onDrawerReady() {
+		console.log("[guide] onDrawerReady called!!");
+		this.intro?.refresh();
 	}
 }

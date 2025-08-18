@@ -87,10 +87,21 @@ export default class extends Controller {
 	}
 
   openDrawer(data) {
+		// this.drawerTarget.src = node_edit_url; // edit_mypage_node_path(data.id)
+		this.toggleTarget.checked = true;
+
+		const drawer = this.drawerTarget
 		const node_edit_url = this.editUrlValue.replace(":id", data.id);
 		// console.log(data.id)
-		this.drawerTarget.src = node_edit_url; // edit_mypage_node_path(data.id)
-		this.toggleTarget.checked = true;
+
+	  drawer.addEventListener("turbo:frame-load", () => {
+	    // chart:drawerReady を自要素に dispatch（= ルート要素で拾われて step-guide#onDrawerReady が呼ばれる）
+			console.log("[chart] turbo:frame-load fired");
+	    this.dispatch("drawerReady", { target: this.element, prefix: "chart" });
+			console.log("[chart] dispatched chart:drawerReady");
+	  }, { once: true });
+
+		drawer.src = node_edit_url  // edit_mypage_node_path(data.id)
   }
 
 	closeDrawer() {
@@ -100,6 +111,7 @@ export default class extends Controller {
 	forStepGuide(){
 		// 任意ノード(最初のノード)を取得
 		const firstNode = this.cy.nodes()[0];
+
 		if (firstNode) {
 			// console.log(firstNode.data());
 			this.openDrawer(firstNode.data());

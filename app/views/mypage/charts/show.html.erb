@@ -1,4 +1,12 @@
-<div class="min-h-screen px-4 py-6 bg-base-100 space-y-6" data-controller="step-guide chart" data-action="step-guide:openNode->chart#forStepGuide" data-chart-fetch-url-value="<%= api_v1_chart_path(@chart) %>" data-chart-edit-url-value="<%= edit_mypage_node_path(':id') %>" data-chart-add-url-value="<%= new_mypage_chart_node_path(@chart) %>">
+<div
+  class="min-h-screen px-4 py-6 bg-base-100 space-y-6"
+  data-controller="step-guide chart"
+  data-action="step-guide:openNode->chart#forStepGuide
+                chart:drawerReady->step-guide#onDrawerReady"
+  data-chart-fetch-url-value="<%= api_v1_chart_path(@chart) %>"
+  data-chart-edit-url-value="<%= edit_mypage_node_path(':id') %>"
+  data-chart-add-url-value="<%= new_mypage_chart_node_path(@chart) %>"
+>
   <div class="flex items-center">
     <h1 class="text-2xl font-bold text-primary m-2 ml-4">Chart</h1>
     <div class="tooltip tooltip-right" data-tip="ステップガイドを開始するにはここをクリック" data-action="click->step-guide#startChartGuide">
@@ -17,9 +25,7 @@
       新しいフローを作る
     </button>
 
-    <div id="step2" data-title-text="Hi" data-intro-text="HiHi"></div>
-
-    <div class="drawer-side">
+    <div class="drawer-side" id="step2" data-title-text="チャート上のテクニック" data-intro-text="このエリアにあるノード(丸い図形)をクリックすると、テクニックの詳細を確認・編集することができます。">
       <label aria-label="close sidebar" class="drawer-overlay" data-action="click->chart#closeDrawer" ></label>
       <div class="menu bg-base-200 text-base-content min-h-full w-2/3 p-4">
         <%= turbo_frame_tag "node-drawer", data: { chart_target: "drawer" } do %>
@@ -28,4 +34,7 @@
       </div>
     </div>
   </div>
+
+    <div id="step3Text" data-title-text="ノード編集" data-intro-text="Techniqueメニューからだけでなく、ここからもテクニックノートを更新することができます。" class="hidden">
+    <div id="step4Text" data-title-text="ノード編集", data-intro-text="クリックしたテクニックから展開される技を編集することができます。<br><br>ここで展開先として選択されたテクニックは、クリックされたテクニックの右側に接続される形でチャート上に描写されます。" class="hidden"></div>
 </div>
