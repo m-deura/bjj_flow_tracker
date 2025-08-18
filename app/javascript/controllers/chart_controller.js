@@ -98,6 +98,11 @@ export default class extends Controller {
 	}
 
 	forStepGuide(){
-		console.log("Hello!");
+		// 任意ノード(最初のノード)を取得
+		const firstNode = this.cy.nodes()[0];
+		if (firstNode) {
+			// console.log(firstNode.data());
+			this.openDrawer(firstNode.data());
+		}
 	}
 }
