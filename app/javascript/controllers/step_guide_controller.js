@@ -71,7 +71,8 @@ export default class extends Controller {
 				{
 					element: document.querySelector(".collapse"),
 					title: step4.dataset.titleText,
-					intro: step4.dataset.introText
+					intro: step4.dataset.introText,
+					disableInteraction: true
 				},
 			]
 		})
