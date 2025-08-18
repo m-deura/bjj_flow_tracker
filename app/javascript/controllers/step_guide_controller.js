@@ -119,9 +119,7 @@ export default class extends Controller {
 		const step3Text = document.querySelector("#step3Text")
 		const step4Text = document.querySelector("#step4Text")
 
-		const intro = introJs.tour().setOptions({
-			steps: [
-
+		const baseSteps = [
 				{
 					intro: step0.dataset.introText
 				},
@@ -135,18 +133,14 @@ export default class extends Controller {
 					title: step2.dataset.titleText,
 					intro: step2.dataset.introText
 				},
-				{
-					element: document.querySelector("#step3"),
-					title: step3Text.dataset.titleText,
-					intro: step3Text.dataset.introText
-				},
-				{  
-					element: document.querySelector("#step4"),
-					title: step4Text.dataset.titleText,
-					intro: step4Text.dataset.introText
-				},
-			]
-		})
+		]
+
+		this._baseSteps = baseSteps;
+	 	this._step3Meta = { title: step3Text.dataset.titleText, intro: step3Text.dataset.introText };
+	 	this._step4Meta = { title: step4Text.dataset.titleText, intro: step4Text.dataset.introText };
+
+
+		const intro = introJs.tour().setOptions({ steps: baseSteps });
 
 		intro.onAfterChange(() => {
 			if (intro.getCurrentStep() === 2) {
@@ -155,12 +149,30 @@ export default class extends Controller {
 			}
 		});
 
+		// onDrawerReady内部でローカル変数intro使えるようStimulusインスタンスの値に代入
 		this.intro = intro;
 		intro.start();
 	}
 		 
 	onDrawerReady() {
 		console.log("[guide] onDrawerReady called!!");
-		this.intro?.refresh();
+
+		// ドロワー展開後、DOM要素の位置を再計算させるつもりで refresh() を使ったが機能せず。
+		// this.intro?.refresh();
+		if (this._stepsAdded) return;
+		
+		const currentIndex0 = this.intro.getCurrentStep(); // 0-based
+  	this.intro.exit(); // いったん終了
+
+		const newSteps = [
+			...this._baseSteps,
+			{ element: "#step3", title: document.querySelector("#step3Text").dataset.titleText, intro: document.querySelector("#step3Text").dataset.introText },
+			{ element: "#step4", title: document.querySelector("#step4Text").dataset.titleText, intro: document.querySelector("#step4Text").dataset.introText },
+		];
+		const intro = introJs.tour().setOptions({ steps: newSteps });
+		this.intro = intro;
+		console.log(intro);
+		intro.start();
+		intro.goToStep(2);
 	}
 }
