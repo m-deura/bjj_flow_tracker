@@ -119,12 +119,13 @@ export default class extends Controller {
 		const step3Text = document.querySelector("#step3Text")
 		const step4Text = document.querySelector("#step4Text")
 
-		const baseSteps = [
+		const intro = introJs.tour().setOptions({
+			steps: [
 				{
 					intro: step0.dataset.introText
 				},
 				{
-					element: step1,
+					element: "#step1",
 					title: step1.dataset.titleText,
 					intro: step1.dataset.introText
 				},
@@ -133,14 +134,10 @@ export default class extends Controller {
 					title: step2.dataset.titleText,
 					intro: step2.dataset.introText
 				},
-		]
-
-		this._baseSteps = baseSteps;
-	 	this._step3Meta = { title: step3Text.dataset.titleText, intro: step3Text.dataset.introText };
-	 	this._step4Meta = { title: step4Text.dataset.titleText, intro: step4Text.dataset.introText };
-
-
-		const intro = introJs.tour().setOptions({ steps: baseSteps });
+				{ element: "#step3", title: document.querySelector("#step3Text").dataset.titleText, intro: document.querySelector("#step3Text").dataset.introText },
+				{ element: "#step4", title: document.querySelector("#step4Text").dataset.titleText, intro: document.querySelector("#step4Text").dataset.introText },
+			]
+		})
 
 		intro.onAfterChange(() => {
 			if (intro.getCurrentStep() === 2) {
@@ -151,28 +148,43 @@ export default class extends Controller {
 
 		// onDrawerReady内部でローカル変数intro使えるようStimulusインスタンスの値に代入
 		this.intro = intro;
-		intro.start();
+		this.intro.start();
 	}
+
+replaceStepElement(stepIndex, selector) {
+  const i = this.intro;
+  if (!i?._options?.steps?.[stepIndex]) return;
+if (typeof selector !== "string") return;
+
+	console.log("[replace i] ")
+	console.log(i);
+	console.log(document.querySelectorAll(selector).length);
+
+  // 既存 steps をクローンして該当だけ差し替え
+  const steps = i._options.steps.map((s, idx) =>
+    idx === stepIndex ? { ...s, element: selector } : s
+  );
+	console.log("[replace steps] ")
+		console.log(steps);
+
+  // もう一度 steps を“同じインスタンス”に設定して UI を再構築させる
+  i.setSteps(steps);
+	i.refresh();
+}
 		 
 	onDrawerReady() {
 		console.log("[guide] onDrawerReady called!!");
 
 		// ドロワー展開後、DOM要素の位置を再計算させるつもりで refresh() を使ったが機能せず。
-		// this.intro?.refresh();
-		if (this._stepsAdded) return;
-		
-		const currentIndex0 = this.intro.getCurrentStep(); // 0-based
-  	this.intro.exit(); // いったん終了
+		this.intro?.refresh();
 
-		const newSteps = [
-			...this._baseSteps,
-			{ element: "#step3", title: document.querySelector("#step3Text").dataset.titleText, intro: document.querySelector("#step3Text").dataset.introText },
-			{ element: "#step4", title: document.querySelector("#step4Text").dataset.titleText, intro: document.querySelector("#step4Text").dataset.introText },
-		];
-		const intro = introJs.tour().setOptions({ steps: newSteps });
-		this.intro = intro;
-		console.log(intro);
-		intro.start();
-		intro.goToStep(2);
+		this.replaceStepElement(3, "#step3");
+    this.replaceStepElement(4, "#step4");
+
+	console.log("[on this.intro] ")
+			console.log(this.intro);
+ 			// レイアウト確定を待ってから再計算（描画1フレーム後）
+			requestAnimationFrame(() => this.intro.refresh());
+			 // すぐ続けたいなら：this.intro.goToStep(3);
 	}
 }
