@@ -86,34 +86,12 @@ export default class extends Controller {
   	// console.log("今ハイライトしてるのは:", el)
 		// console.log(intro.getCurrentStep())
 
-		/* テクニック詳細画面ガイドの直前にカードを開こうと努めた際の名残。
-		function waitUntilVisible(card, { timeout = 500, interval = 50 } = {}){
-				return new Promise((resolve) => {
-					const start = performance.now();
-
-					(function check(){
-						const content = card.querySelector(".collapse-content");
-						if (content && content.offsetHeight > 0){
-							return resolve();	
-						}
-						if (performance.now() - start > timeout){
-							return resolve();
-						}
-						setTimeout(check, interval);
-					})();
-				});
-			}
-			*/
-
 		// 一番上にあるカードを展開し、カード内部(テクニック詳細画面)の説明をする。
 		if (intro.getCurrentStep() === 3) {
 			const card = document.querySelector(".collapse");
 			if (card) card.querySelector("input[type='checkbox']").checked = true;
-
-			// await waitUntilVisible(card);
 			}
 	})
-
 		intro.start();
 		// console.log(intro)
 	}
@@ -147,7 +125,6 @@ export default class extends Controller {
 
 		intro.onAfterChange(() => {
 			if (intro.getCurrentStep() === 2) {
-				console.log("[guide] dispatch openNode");
 				this.dispatch("openNode");
 			}
 		});
@@ -155,42 +132,5 @@ export default class extends Controller {
 		// onDrawerReady内部でローカル変数intro使えるようStimulusインスタンスの値に代入
 		this.intro = intro;
 		this.intro.start();
-	}
-
-replaceStepElement(stepIndex, selector) {
-  const i = this.intro;
-  if (!i?._options?.steps?.[stepIndex]) return;
-if (typeof selector !== "string") return;
-
-	console.log("[replace i] ")
-	console.log(i);
-	console.log(document.querySelectorAll(selector).length);
-
-  // 既存 steps をクローンして該当だけ差し替え
-  const steps = i._options.steps.map((s, idx) =>
-    idx === stepIndex ? { ...s, element: selector } : s
-  );
-	console.log("[replace steps] ")
-		console.log(steps);
-
-  // もう一度 steps を“同じインスタンス”に設定して UI を再構築させる
-  i.setSteps(steps);
-	i.refresh();
-}
-		 
-	onDrawerReady() {
-		console.log("[guide] onDrawerReady called!!");
-
-		// ドロワー展開後、DOM要素の位置を再計算させるつもりで refresh() を使ったが機能せず。
-		this.intro?.refresh();
-
-		this.replaceStepElement(3, "#step3");
-    this.replaceStepElement(4, "#step4");
-
-	console.log("[on this.intro] ")
-			console.log(this.intro);
- 			// レイアウト確定を待ってから再計算（描画1フレーム後）
-			requestAnimationFrame(() => this.intro.refresh());
-			 // すぐ続けたいなら：this.intro.goToStep(3);
 	}
 }

@@ -93,14 +93,6 @@ export default class extends Controller {
 		const drawer = this.drawerTarget
 		const node_edit_url = this.editUrlValue.replace(":id", data.id);
 		// console.log(data.id)
-
-	  drawer.addEventListener("turbo:frame-load", () => {
-	    // chart:drawerReady を自要素に dispatch（= ルート要素で拾われて step-guide#onDrawerReady が呼ばれる）
-			console.log("[chart] turbo:frame-load fired");
-	    this.dispatch("drawerReady", { target: this.element, prefix: "chart" });
-			console.log("[chart] dispatched chart:drawerReady");
-	  }, { once: true });
-
 		drawer.src = node_edit_url  // edit_mypage_node_path(data.id)
   }
 
