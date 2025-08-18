@@ -148,11 +148,10 @@ export default class extends Controller {
 			]
 		})
 
-		intro.onBeforeChange(async () => {
-			return new Promise((resolve) => {
-				console.log('Hello!!!!');
-				setTimeout(resolve, 3000);
-			});
+		intro.onAfterChange(() => {
+			if (intro.getCurrentStep() === 2){
+				this.dispatch("openNode");
+			}
 		});
 
 		intro.start();

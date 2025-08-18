@@ -58,7 +58,7 @@ export default class extends Controller {
 				],
 		layout: {
 			name: "dagre",
-			 rankDir: "LR",
+			rankDir: "LR",
 			nodeSep: 10,
 			edgeSep: 10,
 			ranker: "tight-tree",
@@ -78,7 +78,7 @@ export default class extends Controller {
 
 				this.cy.fit(this.cy.elements(), 50);  // 初期表示
 				this.cy.minZoom(this.cy.zoom() * 0.5);  // これ以下にズームアウト不可（迷子防止）
-      })
+      });
   }
 
 	addNode() {
@@ -95,5 +95,9 @@ export default class extends Controller {
 
 	closeDrawer() {
 		this.toggleTarget.checked = false;
+	}
+
+	forStepGuide(){
+		console.log("Hello!");
 	}
 }
