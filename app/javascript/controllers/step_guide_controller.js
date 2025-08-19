@@ -140,6 +140,46 @@ export default class extends Controller {
 	}
 
 	startNodeGuide(){
-		console.log("Hello!")
+		const step0 = document.querySelector("#step0n")
+		const step1 = document.querySelector("#step1n")
+		const step2 = document.querySelector("#step2n")
+		const step3 = document.querySelector("#step3n")
+		const step4 = document.querySelector("#step4n")
+
+		const intro = introJs.tour().setOptions({
+			steps: [
+				{
+					intro: step0.dataset.introText,
+					disableInteraction: true
+				},
+				{
+					element: step1,
+					title: step1.dataset.titleText,
+					intro: step1.dataset.introText,
+					disableInteraction: true
+				},
+				{
+					element: step2,
+					title: step2.dataset.titleText,
+					intro: step2.dataset.introText,
+					disableInteraction: true
+				},
+				{ 
+					element: step3,
+					title: step3.dataset.titleText,
+					intro: step3.dataset.introText,
+					disableInteraction: true
+				},
+				{
+					title: step4.dataset.titleText,
+					intro: step4.dataset.introText,
+					disableInteraction: true
+				},
+			], 
+			showBullets: false, 
+			showProgress: true
+		})
+
+		intro.start();
 	}
 }

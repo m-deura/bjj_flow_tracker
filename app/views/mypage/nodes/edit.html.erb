@@ -1,7 +1,23 @@
 <%= turbo_frame_tag "node-drawer" do %>
-  <h2 class="text-lg font-bold mb-4">ノード編集</h2>
+  <div class="flex items-center mb-4">
+    <h2 class="text-lg font-bold mr-2">ノード編集</h2>
+    <div class="tooltip tooltip-right" data-tip="ステップガイドを開始するにはここをクリック" data-action="click->step-guide#startNodeGuide">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+      </svg>
+    </div>
+  </div>
 
-  <%= form_with model: @technique, url: mypage_technique_path(@technique), method: :patch, id: "step3" do |f| %>
+  <div id="step0n" data-intro-text="ここでは、ノード編集画面について説明します。" class="hidden"></div>
+
+  <%= form_with model: @technique,
+      url: mypage_technique_path(@technique),
+      method: :patch,
+      id: "step1n",
+      data: { title_text: "テクニック更新", 
+              intro_text: "このフィールドから、テクニックの情報を更新することができます。<br><br>この画面で更新された情報は、<a class='underline font-bold' href='#{mypage_techniques_path}'>Technique</a> メニューの内容にも反映されます。"
+            } do |f|
+  %>
     <!-- リダイレクト先指定のため、techniques_controller へ chart_id を渡す必要がある -->
     <!-- TODO: このあたりの処理は Formオブジェクト に移したい-->
     <%= hidden_field_tag :chart_id, @chart.id %>
@@ -14,7 +30,15 @@
 
   <div class="divider my-8"></div>
 
-  <%= form_with model: @node, url: mypage_node_path(@node), method: :patch, id: "step4", class: "space-y-2 w-4/5 mx-auto" do |ff| %>
+  <%= form_with model: @node,
+      url: mypage_node_path(@node),
+      method: :patch,
+      id: "step2n",
+      class: "space-y-2 w-4/5 mx-auto", 
+      data: { title_text: "展開先テクニック更新",
+              intro_text: "このテクニックから展開される技を編集することができます。<br><br>ここで展開先として選択されたテクニックは、このテクニックの右側に接続される形でチャート上に描写されます。"
+            } do |ff|
+  %>
     <%= label_tag "children_nodes", "展開先テクニック" %>
     <%= select_tag "node[children][]", 
             options_from_collection_for_select(@candidate_techniques + @children.map(&:technique), :id, :name, @children.pluck(:technique_id)),
@@ -31,9 +55,21 @@
 
   <div class="divider my-8"></div>
 
-  <div id="step5" class="flex justify-center">
+  <div class="flex justify-center">
     <!-- button_to ではフォームが生成されるので、data-turbo-method ではなく、method で delete を指定する -->
     <!-- link_to はaタグが生成されるので、data-turbo-method: :delete を使うことで擬似的に削除ボタンを作ることができる -->
-    <%= button_to "このノードをチャートから削除", mypage_node_path(@node), method: :delete, class: "btn btn-error btn-wide", data: { turbo_confirm: "本当に削除しますか？", turbo_frame: "_top" } %>
+    <%= button_to "このノードをチャートから削除", 
+        mypage_node_path(@node),
+        method: :delete, 
+        id: "step3n",
+        class: "btn btn-error btn-wide",
+        data: { turbo_confirm: "本当に削除しますか？",
+                turbo_frame: "_top",
+                title_text: "ノード削除",
+                intro_text: "こちらからノードを削除することができます。<br><br>ノードを削除すると、展開先テクニックとして接続されていたノードもすべて削除されますので、ご注意ください。"
+              }
+    %>
   </div>
+
+  <div id="step4n" data-title-text="ガイドが完了しました！お疲れ様です！" data-intro-text="ここまで来たら、試しにノードを作ったり、展開先テクニックを追加したりして操作に慣れましょう！<br><br>本アプリに関するご不明点や改善点等がございましたら、画面下部にある「問い合わせ」ページよりお気軽にご連絡ください！<br><br>それでは、よりよい柔術ライフを👋" class="hidden"></div>
 <% end %>
