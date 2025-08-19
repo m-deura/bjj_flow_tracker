@@ -25,16 +25,22 @@
       </button>
     </div>
 
-    <div class="drawer-side" id="step2" data-title-text="チャート上のテクニック" data-intro-text="このエリアにあるノード(丸い図形)をクリックすると、テクニックの詳細を確認・編集することができます。">
+    <div class="drawer-side" id="step2" data-title-text="チャート上のテクニック" data-intro-text="エリアにあるノード(丸い図形)をクリックすると、テクニックの詳細を確認・編集することができます。">
       <label aria-label="close sidebar" class="drawer-overlay" data-action="click->chart#closeDrawer" ></label>
-      <div class="menu bg-base-200 text-base-content min-h-full w-2/3 p-4">
+
+      <!-- introjsで作成したガイドの要素は、本ファイルトップにあるdivタグに付与したdata-controller='step-guide' のスコープから外れる。その対策として、改めてdata-controller='step-guide'をintro-text内のbuttonタグに付与。 -->
+      <div id="step3" class="menu bg-base-200 text-base-content min-h-full w-2/3 p-4"
+        data-title-text="ノード編集"
+        data-intro-text="本画面の操作について知りたい方は、このままノード編集画面左上にある
+          <button type='button' class='underline' data-controller='step-guide' data-action='click->step-guide#startNodeGuide'>
+            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 relative top-[3px]'>
+              <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
+            </svg>
+          </button> をクリックしてください！">
         <%= turbo_frame_tag "node-drawer", data: { chart_target: "drawer" } do %>
           <!-- empty until the node clicked -->
         <% end %>
       </div>
     </div>
   </div>
-
-    <div id="step3Text" data-title-text="ノード編集" data-intro-text="Techniqueメニューからだけでなく、ここからもテクニックノートを更新することができます。" class="hidden">
-    <div id="step4Text" data-title-text="ノード編集", data-intro-text="クリックしたテクニックから展開される技を編集することができます。<br><br>ここで展開先として選択されたテクニックは、クリックされたテクニックの右側に接続される形でチャート上に描写されます。" class="hidden"></div>
 </div>

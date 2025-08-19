@@ -38,7 +38,7 @@ export default class extends Controller {
 				{  
 					intro: step4.dataset.introText
 				},
-			]
+			], showBullets: false, showProgress: true
 		}).start();
 	}
 
@@ -48,7 +48,6 @@ export default class extends Controller {
 		const step2 = document.querySelector("#step2")
 		const step3 = document.querySelector("#step3")
 		const step4 = document.querySelector("#step4")
-		const step5 = document.querySelector("#step5")
 
 		const intro = introJs.tour().setOptions({
 			steps: [
@@ -73,13 +72,16 @@ export default class extends Controller {
 					element: document.querySelector(".collapse"),
 					title: step4.dataset.titleText,
 					intro: step4.dataset.introText,
+					// ハイライトが当たった展開済みカードが閉じられないようにする
 					disableInteraction: true
 				},
 				{
 					title: step5.dataset.titleText,
 					intro: step5.dataset.introText,
 				},
-			]
+			], 
+			showBullets: false, // カード展開がある都合上、ガイドステップのスキップ要制御
+			showProgress: true // Bulletsの代替となるガイド進行状況確認用UI
 		})
 
 	intro.onAfterChange((el) => {
@@ -100,8 +102,7 @@ export default class extends Controller {
 		const step0 = document.querySelector("#step0")
 		const step1 = document.querySelector("#step1")
 		const step2 = document.querySelector("#step2")
-		const step3Text = document.querySelector("#step3Text")
-		const step4Text = document.querySelector("#step4Text")
+		const step3 = document.querySelector("#step3")
 
 		const intro = introJs.tour().setOptions({
 			steps: [
@@ -109,7 +110,7 @@ export default class extends Controller {
 					intro: step0.dataset.introText
 				},
 				{
-					element: "#step1",
+					element: step1,
 					title: step1.dataset.titleText,
 					intro: step1.dataset.introText
 				},
@@ -118,19 +119,27 @@ export default class extends Controller {
 					title: step2.dataset.titleText,
 					intro: step2.dataset.introText
 				},
-				{ element: "#step3", title: document.querySelector("#step3Text").dataset.titleText, intro: document.querySelector("#step3Text").dataset.introText },
-				{ element: "#step4", title: document.querySelector("#step4Text").dataset.titleText, intro: document.querySelector("#step4Text").dataset.introText },
-			]
+				{ element: step3,
+					title: step3.dataset.titleText,
+					intro: step3.dataset.introText,
+					disableInteraction: true
+				},
+			], 
+			showBullets: false, 
+			showProgress: true
 		})
 
 		intro.onAfterChange(() => {
+			// step2の時、chart_controllerに頼んでドロワーを開く。
 			if (intro.getCurrentStep() === 2) {
 				this.dispatch("openNode");
 			}
 		});
 
-		// onDrawerReady内部でローカル変数intro使えるようStimulusインスタンスの値に代入
-		this.intro = intro;
-		this.intro.start();
+		intro.start();
+	}
+
+	startNodeGuide(){
+		console.log("Hello!")
 	}
 }
