@@ -13,6 +13,9 @@ application.register("hello", HelloController)
 import InstantSearchController from "./instant_search_controller"
 application.register("instant-search", InstantSearchController)
 
+import StepGuideController from "./step_guide_controller"
+application.register("step-guide", StepGuideController)
+
 import TomSelectController from "./tom_select_controller"
 application.register("tom-select", TomSelectController)
 
