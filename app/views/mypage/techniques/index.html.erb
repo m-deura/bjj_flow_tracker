@@ -2,7 +2,7 @@
 
   <div class="flex items-center space-x-2 m-4">
     <h1 class="text-3xl font-bold ml-8">Technique</h1>
-    <div class="tooltip tooltip-right" data-tip="ステップガイドを開始するにはここをクリック" data-action="click->step-guide#startTechniqueGuide">
+    <div class="tooltip" data-tip="ステップガイドを開始するにはここをクリック" data-action="click->step-guide#startTechniqueGuide">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
       </svg>
@@ -33,7 +33,7 @@
             <path d="m21 21-4.3-4.3"></path>
           </g>
         </svg>
-        <%= f.search_field :name_or_note_cont, placeholder: "技またはノートを検索", class: "search" %>
+        <%= f.search_field :name_ja_or_name_en_or_note_cont, placeholder: "技またはノートを検索", class: "search" %>
       </label>
     <% end %>
   </div>
@@ -63,7 +63,7 @@
               <% else%>
                 <span class="badge badge-ghost">未分類</span>
               <% end %>
-              <span class="text-lg font-medium" ><%= technique.name %></span>
+              <span class="text-lg font-medium" ><%= technique.name_ja %></span>
             </div>
             <div class="collapse-content flex flex-col items-center">
               <%= form_with model: technique, url: mypage_technique_path(technique), method: :patch do |f| %>

@@ -3,6 +3,8 @@ class User < ApplicationRecord
 
   has_many :techniques, dependent: :destroy
   has_many :charts, dependent: :destroy
+  # ロジック記述が楽になるので以下のリレーションを定義するが、nodesテーブルはuser_idカラムをFKとして持っていない。
+  # (chartsテーブルを通じて間接的にusersテーブルと結ばれている)
   has_many :nodes, through: :charts
 
   # Include default devise modules. Others available are:
@@ -30,33 +32,39 @@ class User < ApplicationRecord
   private
 
   def copy_presets
-    TechniquePreset.find_each do |tp|
-      self.techniques.create!(
-        technique_preset: tp,
-        name: tp.name_ja,
-        category: tp.category
+    ApplicationRecord.transaction do
+      TechniquePreset.find_each do |tp|
+        self.techniques.create!(
+          technique_preset: tp,
+          name_ja: tp.name_ja,
+          name_en: tp.name_en,
+          category: tp.category
+        )
+      end
+
+      # TODO: i18n対応、keyカラム追加する？
+      top = self.techniques.find_or_create_by!(
+        name_ja: "トップポジション",
+        name_en: "Top Position"
       )
-    end
 
-    # TODO: i18n対応、keyカラム追加する？
-    top = self.techniques.find_or_create_by!(
-      name: "トップポジション"
-    )
-
-    bottom = self.techniques.find_or_create_by!(
-      name: "ボトムポジション"
-    )
-
-    chart = self.charts.create!(
-      name: "preset_#{Time.current}"
-    )
-
-    [ top, bottom ].each do |technique|
-      chart.nodes.create!(
-        chart: chart,
-        technique: technique,
-        ancestry: "/"
+      bottom = self.techniques.find_or_create_by!(
+        name_ja: "ボトムポジション",
+        name_en: "Bottom Position"
       )
+
+      # 一意制約に抵触しない命名
+      chart = self.charts.create!(
+        name: "preset_#{Time.current}"
+      )
+
+      [ top, bottom ].each do |technique|
+        chart.nodes.create!(
+          chart: chart,
+          technique: technique,
+          ancestry: "/"
+        )
+      end
     end
   end
 end

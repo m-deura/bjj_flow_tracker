@@ -2,11 +2,9 @@ class Technique < ApplicationRecord
   belongs_to :user
   belongs_to :technique_preset, optional: true
   has_many :nodes, dependent: :destroy
-  has_many :outgoing_transitions, class_name: "Transition", foreign_key: "from_technique_id", dependent: :destroy
-  has_many :incoming_transitions, class_name: "Transition", foreign_key: "to_technique_id", dependent: :destroy
-  accepts_nested_attributes_for :outgoing_transitions, allow_destroy: true, reject_if: ->(attrs) { attrs["to_technique_id"].blank? && attrs["trigger"].blank? }
 
-  validates :name, presence: true, uniqueness: { scope: :user_id }
+  validates :name_ja, presence: true, uniqueness: { scope: :user_id }
+  validates :name_en, presence: true, uniqueness: { scope: :user_id }
   # validates :mastery_level, presence: true
   # validates :is_bookmarked, inclusion: { in: [ true, false ] }
 
@@ -18,6 +16,6 @@ class Technique < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    [ "name", "note" ]
+    [ "name_ja", "name_en", "note" ]
   end
 end
