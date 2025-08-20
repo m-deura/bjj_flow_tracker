@@ -32,35 +32,39 @@ class User < ApplicationRecord
   private
 
   def copy_presets
-    TechniquePreset.find_each do |tp|
-      self.techniques.create!(
-        technique_preset: tp,
-        name_ja: tp.name_ja,
-        name_en: tp.name_en,
-        category: tp.category
+    ApplicationRecord.transaction do
+      TechniquePreset.find_each do |tp|
+        self.techniques.create!(
+          technique_preset: tp,
+          name_ja: tp.name_ja,
+          name_en: tp.name_en,
+          category: tp.category
+        )
+      end
+
+      # TODO: i18n対応、keyカラム追加する？
+      top = self.techniques.find_or_create_by!(
+        name_ja: "トップポジション",
+        name_en: "Top Position"
       )
-    end
 
-    # TODO: i18n対応、keyカラム追加する？
-    top = self.techniques.find_or_create_by!(
-      name_ja: "トップポジション"
-    )
-
-    bottom = self.techniques.find_or_create_by!(
-      name_ja: "ボトムポジション"
-    )
-
-    # 一意制約に抵触しない命名
-    chart = self.charts.create!(
-      name: "preset_#{Time.current}"
-    )
-
-    [ top, bottom ].each do |technique|
-      chart.nodes.create!(
-        chart: chart,
-        technique: technique,
-        ancestry: "/"
+      bottom = self.techniques.find_or_create_by!(
+        name_ja: "ボトムポジション",
+        name_en: "Bottom Position"
       )
+
+      # 一意制約に抵触しない命名
+      chart = self.charts.create!(
+        name: "preset_#{Time.current}"
+      )
+
+      [ top, bottom ].each do |technique|
+        chart.nodes.create!(
+          chart: chart,
+          technique: technique,
+          ancestry: "/"
+        )
+      end
     end
   end
 end

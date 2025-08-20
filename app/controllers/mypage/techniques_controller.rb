@@ -13,6 +13,7 @@ class Mypage::TechniquesController < ApplicationController
 
   def create
     @technique = current_user.techniques.build(technique_params)
+    @technique.name_en = technique_params[:name_ja]
     if @technique.save
       redirect_to mypage_techniques_path, notice: "保存しました"
     else
@@ -55,6 +56,6 @@ class Mypage::TechniquesController < ApplicationController
   private
 
   def technique_params
-    params.require(:technique).permit(:id, :name, :note, :category)
+    params.require(:technique).permit(:id, :name_ja, :note, :category)
   end
 end
