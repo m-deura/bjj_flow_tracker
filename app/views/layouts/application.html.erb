@@ -18,110 +18,12 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
-    <header class="bg-base-100 text-base-content shadow"> <!-- navbarクラス -->
-      <nav aria-label="Global" class="mx-auto flex items-center justify-between p-6 lg:px-8">
-        <!-- PC用画面 左端 -->
-        <div class="flex lg:flex-1">
-          <%= link_to current_user ? mypage_root_path : root_path, class: "flex items-center navbar-start" do %>
-            <%= image_tag "flowque-logo.svg", alt: "flowque-logo", class: "w-16 mr-1" %>
-            <span class="text-lg font-semibold">BJJ Flow Tracker</span>
-          <% end %>
-        </div>
-        <div class="flex lg:hidden">
-          <button type="button" command="show-modal" commandfor="mobile-menu" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5">
-            <span class="sr-only">Open main menu</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
-              <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
-        </div>
-
-        <!-- PC用画面 中央 -->
-        <% if user_signed_in? %>
-        <% end %>
-
-        <!-- PC用画面 右端 -->
-        <div class="hidden lg:flex lg:flex-2 items-center lg:justify-end">
-          <% if user_signed_in? %>
-            <div class="hidden lg:flex lg:gap-x-10 items-center lg:mr-16">
-              <%= link_to "Home", root_path, class: "font-semibold hover:underline" %>
-              <%= link_to "Technique", mypage_techniques_path, class: "font-semibold hover:underline" %>
-              <%= link_to "Flow Chart", mypage_chart_path(@chart), class: "font-semibold hover:underline" %>
-              <%= link_to "Mypage", mypage_root_path, class: "font-semibold hover:underline" %>
-            </div>
-            <div class="avatar mr-2">
-              <div class="w-10 rounded-full">
-                <%= image_tag current_user.image %>
-              </div>
-            </div>
-            <div class="hidden md:mr-6 md:block">
-              <p><%= current_user.name %></p>
-            </div>
-            <%= link_to 'サインアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-outline font-semibold py-2 px-4" %>
-          <% else %>
-            <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "btn btn-outline bg-white" do %>
-              <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
-              <span>Google でログイン</span>
-            <% end %>
-          <% end %>
-        </div>
-      </nav>
-
-      <!-- モバイル用画面 -->
-      <el-dialog>
-        <dialog id="mobile-menu" class="backdrop:bg-transparent lg:hidden text-base-content">
-          <div tabindex="0" class="fixed inset-0 focus:outline-none">
-            <el-dialog-panel class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-              <div class="flex items-center justify-between">
-                <%= link_to current_user ? mypage_root_path : root_path, class: "flex items-center navbar-start" do %>
-                  <%= image_tag "flowque-logo.svg", alt: "flowque-logo", class: "w-10 mr-1" %>
-                  <span class="text-lg font-semibold">BJJ Flow Tracker</span>
-                <% end %>
-                <button type="button" command="close" commandfor="mobile-menu" class="-m-2.5 rounded-md p-2.5 text-gray-700">
-                  <span class="sr-only">Close menu</span>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
-                    <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </button>
-              </div>
-              <div class="mt-6 flow-root">
-                <div class="-my-6 divide-y divide-gray-500/10">
-                  <% if user_signed_in? %>
-                    <div class="space-y-2 py-6">
-                      <%= link_to "Home", root_path, class: "-mx-3 block rounded-lg px-3 py-2 font-semibold hover:bg-base-300"  %>
-                      <%= link_to "Technique", mypage_techniques_path, class: "-mx-3 block rounded-lg px-3 py-2 font-semibold hover:bg-base-300" %>
-                      <%= link_to "Flow Chart", mypage_chart_path(@chart), class: "-mx-3 block rounded-lg px-3 py-2 font-semibold hover:bg-base-300" %>
-                      <%= link_to "Mypage", mypage_root_path, class: "-mx-3 block rounded-lg px-3 py-2 font-semibold hover:bg-base-300" %>
-                    </div>
-                  <% end %>
-                  <div class="py-6 flex items-center">
-                    <% if user_signed_in? %>
-                      <div class="avatar mr-2">
-                        <div class="w-10 rounded-full">
-                          <%= image_tag current_user.image %>
-                        </div>
-                      </div>
-                      <div class="hidden md:mr-2 md:block">
-                        <p><%= current_user.name %></p>
-                      </div>
-                      <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-outline font-bold py-2 px-4" %>
-                    <% else %>
-                      <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "btn btn-outline bg-white" do %>
-                        <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
-                        <span>Google でログイン</span>
-                      <% end %>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            </el-dialog-panel>
-          </div>
-        </dialog>
-      </el-dialog>
+  <body class="flex flex-col min-h-screen">
+    <header>
+      <%= render "shared/header" %>
     </header>
 
-
+    <!-- フラッシュメッセージ -->
     <% if flash[:notice] %>
       <div class="alert alert-success mb-4">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
@@ -138,11 +40,13 @@
         <%= flash[:alert] %>
       </div>
     <% end %>
-    <main>
+
+    <!-- コンテンツが少なくても、フッターはスクリーン最下部に張り付く -->
+    <main class="flex-grow">
       <%= yield %>
     </main>
-    <footer class="mt-10 text-sm text-gray-400 text-center">
-      © <%= Time.current.year %> BJJ Flow Tracker
+    <footer>
+      <%= render "shared/footer" %>
     </footer>
   </body>
 </html>
