@@ -1,42 +1,188 @@
-<div class="min-h-screen text-center items-center justify-center px-4 py-6 space-y-8">
-  <div class="mt-4 space-y-2">
-    <%= image_tag "flowque-logo.svg", alt: "flowque-logo", class: "w-100 h-auto mx-auto"%>
-    <h1 class="text-5xl font-bold">Flowque</h2>
-    <h3 class="text-lg font-bold">
-      技は点でなく<br><span>“流れ”で覚える</span>
-    </h3>
-    <p class="text-sm text-gray-500">Flowqueは、あなたの柔術ノートを<br>“流れ”でつなぐツールです。</p>
-  </div>
+<div class="hero bg-base-200 shadow-lg">
+  <div class="hero-content flex-col lg:flex-row">
+    <img
+      <%= image_tag "flowque-logo.svg", alt: "flowque-logo", class: "w-100 h-auto mx-auto"%>
+    <div>
+      <h1 class="text-5xl font-bold ">BJJ Flow Tracker</h1>
+      <h3 class="text-lg font-bold">技は点でなく、“流れ”で覚える</h3>
+      <p class="py-6">
+        BJJ Flow Tracker は、ブラジリアン柔術のテクニックをフローチャート形式で整理・可視化できるツールです。
+      </p>
 
-  <div class="space-y-3">
-    <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "btn btn-outline bg-white w-72" do %>
-      <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
-      <span>Google でログイン</span>
-    <% end %>
-    <%= link_to "デモを触ってみる", "#", class: "btn btn-primary w-72 shwdow-md" %>
-  </div>
-
-  <div class="space-y-8 text-sm">
-    <div class="space-y-2">
-      <h4 class="font-bold">練習内容を手早く記録する</h4>
-      <div class="border border-dashed p-4 w-60 mx-auto">操作の流れを説明する<br>画像 or GIFの挿入</div>
+      <div class="flex space-x-3">
+        <% if user_signed_in? %>
+          <button type="button" class="btn btn-disabled">ログイン済みです</button>
+        <% else %>
+          <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "btn btn-outline bg-white" do %>
+            <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
+            <span>Google でログイン</span>
+          <% end %>
+        <% end %>
+        <%#= link_to "デモを触ってみる", "#", class: "btn btn-primary shwdow-md" %>
+        <button class="btn bg-base-300 shadow" onclick="my_modal_1.showModal()">デモを触ってみる</button>
+        <dialog id="my_modal_1" class="modal">
+          <div class="modal-box">
+            <h3 class="text-lg font-bold">本機能は、現時点で未実装です。</h3>
+            <p class="py-4">利用にあたっては、Googleアカウントでログインしてください。<br></p>
+          </div>
+          <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+          </form>
+        </dialog>
+      </div>
     </div>
-    <div class="space-y-2">
-      <h4 class="font-bold">練習ノートを整理する</h4>
-      <div class="border border-dashed p-4 w-60 mx-auto">操作の流れを説明する<br>画像 or GIFの挿入</div>
-    </div>
-    <div class="space-y-2">
-      <h4 class="font-bold">テクニック同士の繋がりを可視化する</h4>
-      <div class="border border-dashed p-4 w-60 mx-auto">操作の流れを説明する<br>画像 or GIFの挿入</div>
-    </div>
-  </div>
-
-
-  <div class="space-y-3">
-    <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "btn btn-outline bg-white w-72" do %>
-      <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
-      <span>Google でログイン</span>
-    <% end %>
-    <%= link_to "デモを触ってみる", "#", class: "btn btn-primary w-72 shwdow-md" %>
   </div>
 </div>
+
+  <section id="features" class="py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center">主な機能</h2>
+      <p class="text-center opacity-70 mt-2">技の整理からゲームプラン作成まで、これ1つでOK</p>
+
+      <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="card bg-base-100 border border-base-300/60 shadow-sm">
+          <div class="card-body">
+            <div class="text-3xl">📌</div>
+            <h3 class="card-title">テクニックの記録</h3>
+            <p class="opacity-80">習った技を追加。カテゴリ（パス/スイープ/サブミッション等）で整理し、ノートも保存。</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 border border-base-300/60 shadow-sm">
+          <div class="card-body">
+            <div class="text-3xl">🔗</div>
+            <h3 class="card-title">フローで可視化</h3>
+            <p class="opacity-80">技と技を矢印でつなぎ、<span class="font-semibold">流れ</span>を作成。試合・スパーのシナリオ作りに。</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 border border-base-300/60 shadow-sm">
+          <div class="card-body">
+            <div class="text-3xl">🗂️</div>
+            <h3 class="card-title">詳細＆メモ</h3>
+            <p class="opacity-80">ノードをクリックして詳細をチェック。自分用のポイントや注意点をいつでも確認。</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 border border-base-300/60 shadow-sm">
+          <div class="card-body">
+            <div class="text-3xl">🚀</div>
+            <h3 class="card-title">テンプレから成長</h3>
+            <p class="opacity-80">テンプレートをベースに自分専用へ。練習を重ねるほど柔術マップが育ちます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use cases / Benefits -->
+  <section id="usecases" class="py-20 bg-base-200/60">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center">こんな使い方ができます</h2>
+      <div class="mt-12 grid md:grid-cols-3 gap-6">
+        <div class="card bg-base-100 shadow-sm border border-base-300/60">
+          <div class="card-body">
+            <h3 class="card-title">学習ログ</h3>
+            <p class="opacity-80">その日に習った技をすぐ追加。関連する展開をつなげて復習がラクに。</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-sm border border-base-300/60">
+          <div class="card-body">
+            <h3 class="card-title">ゲームプラン作成</h3>
+            <p class="opacity-80">得意技を起点に、<span class="font-semibold">ガード→スイープ→パス→極め</span>のルートを設計。</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-sm border border-base-300/60">
+          <div class="card-body">
+            <h3 class="card-title">大会前の仕上げ</h3>
+            <p class="opacity-80">狙う展開をチャートでシミュレーション。迷いを減らし、当日集中できます。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 grid lg:grid-cols-2 gap-8 items-center">
+        <ul class="steps steps-vertical lg:steps-horizontal w-full">
+          <li class="step step-primary" data-content="1">技を登録</li>
+          <li class="step step-primary" data-content="2">つなげてフロー化</li>
+          <li class="step step-primary" data-content="3">全体像を確認</li>
+          <li class="step step-primary" data-content="4">練習で更新</li>
+        </ul>
+        <div class="stats shadow">
+          <div class="stat">
+            <div class="stat-title">初期の登録技</div>
+            <div class="stat-value">80+</div>
+            <div class="stat-desc">自分のペースで増やせます</div>
+          </div>
+          <div class="stat">
+            <div class="stat-title">フロー分岐</div>
+            <div class="stat-value">無制限</div>
+            <div class="stat-desc">自由に設計</div>
+          </div>
+          <div class="stat">
+            <div class="stat-title">対応端末</div>
+            <div class="stat-value">PC / モバイル</div>
+            <div class="stat-desc">どこでも復習</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to start -->
+  <section id="howto" class="py-20">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center">はじめ方</h2>
+      <div class="mt-12 grid md:grid-cols-2 gap-6">
+        <div class="card bg-base-100 border border-base-300/60 shadow-sm">
+          <div class="card-body">
+            <h3 class="card-title">1. まずはテンプレから</h3>
+            <p class="opacity-80">用意されたテンプレートチャートをベースに、自分の得意技を追加してみましょう。</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 border border-base-300/60 shadow-sm">
+          <div class="card-body">
+            <h3 class="card-title">2. 自分の言葉でメモ</h3>
+            <p class="opacity-80">細かいコツ・注意点をノートに。練習後すぐに更新すると定着が早いです。</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 border border-base-300/60 shadow-sm">
+          <div class="card-body">
+            <h3 class="card-title">3. 展開をつなぐ</h3>
+            <p class="opacity-80">ノード同士を矢印でつなぎ、実際の動きをそのまま可視化しましょう。</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 border border-base-300/60 shadow-sm">
+          <div class="card-body">
+            <h3 class="card-title">4. 定期的に見返す</h3>
+            <p class="opacity-80">スパー前にチャートを確認。作戦を明確にして臨むことができます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="get-started" class="py-20 bg-base-200/60">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold">今すぐ、あなたの柔術マップを作ろう</h2>
+      <p class="mt-3 opacity-80">登録は1分、すぐにチャート作成へ。</p>
+      <div class="mt-6 flex justify-center gap-3">
+        <% if user_signed_in? %>
+          <button type="button" class="btn btn-disabled">ログイン済みです</button>
+        <% else %>
+          <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "btn btn-outline bg-white" do %>
+            <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
+            <span>Google でログイン</span>
+          <% end %>
+        <% end %>
+        <%#= link_to "デモを触ってみる", "#", class: "btn btn-primary w-72 shwdow-md" %>
+          <button class="btn bg-base-300 shadow" onclick="my_modal_2.showModal()">デモを触ってみる</button>
+          <dialog id="my_modal_2" class="modal">
+            <div class="modal-box">
+              <h3 class="text-lg font-bold">本機能については、現段階で未実装です。</h3>
+              <p class="py-4">利用にあたっては、Googleアカウントでログインしてください。<br></p>
+            </div>
+            <form method="dialog" class="modal-backdrop">
+              <button>close</button>
+            </form>
+          </dialog>
+      </div>
+    </div>
+  </section>
