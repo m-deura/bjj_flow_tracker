@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   # TODO: 将来的に、Flow Chartリンク先がチャート一覧になったらこの処理は削除して良い。
   # user_signed_in? はインスタンスメソッドとしてしか利用できない(クラス直下で使用できなかった)。
   def set_chart
+    return unless user_signed_in?
     @chart = current_user.charts.first
   end
 
