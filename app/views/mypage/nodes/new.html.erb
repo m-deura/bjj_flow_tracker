@@ -4,7 +4,7 @@
   <%= form_with url: mypage_chart_nodes_path(@chart), method: :post, class: "space-y-2 mt-10 w-4/5 mx-auto" do |f| %>
     <%= label_tag "root_nodes", "テクニックを選択" %>
     <%= select_tag "node[roots]", 
-            options_from_collection_for_select(@candidate_techniques, :id, :name),
+            options_from_collection_for_select(@candidate_techniques, :id, :name_ja),
             multiple: true,
             id: "root_nodes",
             placeholder: "選択してください",

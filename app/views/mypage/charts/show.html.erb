@@ -1,5 +1,5 @@
 <div
-  class="drawer drawer-end min-h-screen px-4 py-6 bg-base-100 space-y-6"
+  class="drawer drawer-end px-4 py-6 bg-base-100 space-y-6"
   data-controller="step-guide chart"
   data-action="step-guide:openNode->chart#forStepGuide"
   data-chart-fetch-url-value="<%= api_v1_chart_path(@chart) %>"
@@ -7,7 +7,7 @@
   data-chart-add-url-value="<%= new_mypage_chart_node_path(@chart) %>"
 >
   <input type="checkbox" class="drawer-toggle" data-chart-target="toggle" />
-  <div class="drawer-content">
+  <div class="drawer-content flex flex-col min-h-screen">
     <div class="flex items-center space-x-2 m-4">
       <h1 class="text-3xl font-bold ml-8">Flow Chart</h1>
       <div class="tooltip" data-tip="ステップガイドを開始するにはここをクリック" data-action="click->step-guide#startChartGuide">
@@ -18,18 +18,20 @@
     </div>
 
     <div id="step0" class="hidden" data-intro-text="こちらは、テクニック同士の繋がりを可視化するための画面です。<br><br>このエリアにテクニックを配置し、フローチャートを作ることができます。"></div>
-  
-    <div data-chart-target="cy" class="h-screen mx-auto w-9/10 border border-gray-300">
-      <!-- z-1を使ってcyコンテナより手前に出しておかないとボタンが効かなくなる -->
+
+    <div class="mx-auto w-[90%] border border-base-300 relative flex-1 min-h-0">
+    <!-- z-1を使ってcyコンテナより手前に出しておかないとボタンが効かなくなる -->
       <button
         id="step1"
         type="button"
-        class="btn btn-primary btn-wide absolute top-6 left-6 z-1" 
+        class="btn btn-primary btn-wide absolute top-4 left-4 z-1" 
         data-action="click->chart#addNode"
         data-title-text="新規作成"
         data-intro-text="ここからフローチャートの開始点(ルートノード)を新規作成できます。">
         新しいフローを作る
       </button>
+      <!-- チャート描写用コンテナ -->
+      <div data-chart-target="cy" class="h-full"></div>
     </div>
   </div>
 

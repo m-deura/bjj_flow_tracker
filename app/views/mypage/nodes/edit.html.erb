@@ -41,7 +41,7 @@
   %>
     <%= label_tag "children_nodes", "展開先テクニック" %>
     <%= select_tag "node[children][]", 
-            options_from_collection_for_select(@candidate_techniques + @children.map(&:technique), :id, :name, @children.pluck(:technique_id)),
+            options_from_collection_for_select(@candidate_techniques + @children.map(&:technique), :id, :name_ja, @children.pluck(:technique_id)),
             id: "children_nodes",
             multiple: true,
             placeholder: "テクニックを検索",
