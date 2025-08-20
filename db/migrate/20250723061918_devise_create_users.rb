@@ -39,7 +39,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.2]
 
       t.string :name, null: false, default: ""
       t.string :image
-      t.text :quick_memo
 
       t.timestamps null: false
     end
