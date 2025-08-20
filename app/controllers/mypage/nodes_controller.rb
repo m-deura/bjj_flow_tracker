@@ -86,17 +86,6 @@ class Mypage::NodesController < ApplicationController
       @node.children.where(technique_id: ids_to_remove).destroy_all
     end
 
-    # 子ノード追加時にtransitionを更新する
-    # ids_to_add.each do |tid|
-    #  technique.outgoing_transitions.find_or_create_by!(
-    #    user: current_user,
-    #    to_technique_id: tid
-    #  )
-    # end
-    # ids_to_remove.each do |tid|
-    #  technique.outgoing_transitions.where(to_technique_id: tid).destroy_all
-    # end
-
     redirect_to mypage_chart_path(chart), notice: "展開先テクニックを更新しました", status: :see_other
   end
 

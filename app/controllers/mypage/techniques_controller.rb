@@ -9,7 +9,6 @@ class Mypage::TechniquesController < ApplicationController
 
   def new
     @technique = current_user.techniques.build
-    @technique.outgoing_transitions.build if @technique.outgoing_transitions.blank?
   end
 
   def create
@@ -28,7 +27,6 @@ class Mypage::TechniquesController < ApplicationController
 
   def edit
     @technique = current_user.techniques.find(params[:id])
-    @technique.outgoing_transitions.build if @technique.outgoing_transitions.blank?
     @techniques = current_user.techniques.where.not(id: @technique.id)
   end
 
@@ -57,6 +55,6 @@ class Mypage::TechniquesController < ApplicationController
   private
 
   def technique_params
-    params.require(:technique).permit(:id, :name, :note, :category, outgoing_transitions_attributes: [ :id, :to_technique_id, :trigger, :_destroy ])
+    params.require(:technique).permit(:id, :name, :note, :category)
   end
 end

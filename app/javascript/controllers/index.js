@@ -18,6 +18,3 @@ application.register("step-guide", StepGuideController)
 
 import TomSelectController from "./tom_select_controller"
 application.register("tom-select", TomSelectController)
-
-import TransitionsController from "./transitions_controller"
-application.register("transitions", TransitionsController)
