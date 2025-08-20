@@ -5,8 +5,11 @@
 	default: true;
 	prefersdark: true;
 	--color-primary: oklch(42.551% 0.161 282.339);
-  --color-secondary: oklch(45% 0.24 277.023);
-	--color-accent-content: oklch(94% 0.028 342.258);
+  --color-primary-content: oklch(100% 0 0);
+  --color-secondary: oklch(41.886% 0.053 255.824);
+  --color-secondary-content: oklch(97% 0.014 308.299);
+  --color-accent: #0088CC;
+  --color-accent-content: oklch(98% 0.014 180.72);
 }
 
 /* @import "tom-select/dist/css/tom-select.css" */

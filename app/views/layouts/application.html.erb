@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Flowque" %></title>
+    <title><%= content_for(:title) || "BJJ Flow Tracker" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="description" content="BJJ Flow Tracker は、ブラジリアン柔術のテクニックをフローチャート形式で整理・可視化できるツールです。" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -17,31 +18,12 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
-    <header class="navbar bg-base-100 shadow">
-      <%= link_to current_user ? mypage_root_path : root_path, class: "flex items-center navbar-start" do %>
-        <%= image_tag "flowque-logo.svg", alt: "flowque-logo", class: "w-10 mr-1" %>
-        <h1 class="text-xl font-semibold">Flowque</h1>
-      <% end %>
-      <div class="flex navbar-end">
-        <% if user_signed_in? %>
-          <div class="avatar mr-2">
-            <div class="w-10 rounded-full">
-              <%= image_tag current_user.image %>
-            </div>
-          </div>
-          <div class="hidden md:mr-2 md:block">
-            <p><%= current_user.name %></p>
-          </div>
-          <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-outline font-semibold py-2 px-4" %>
-        <% else %>
-          <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "btn btn-outline bg-white" do %>
-            <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
-            <span>Google でログイン</span>
-          <% end %>
-        <% end %>
-      </div>
+  <body class="flex flex-col min-h-screen">
+    <header>
+      <%= render "shared/header" %>
     </header>
+
+    <!-- フラッシュメッセージ -->
     <% if flash[:notice] %>
       <div class="alert alert-success mb-4">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
@@ -58,11 +40,13 @@
         <%= flash[:alert] %>
       </div>
     <% end %>
-    <main>
+
+    <!-- コンテンツが少なくても、フッターはスクリーン最下部に張り付く -->
+    <main class="flex-grow">
       <%= yield %>
     </main>
-    <footer class="mt-10 text-sm text-gray-400 text-center">
-      © <%= Time.current.year %> Flowque
+    <footer>
+      <%= render "shared/footer" %>
     </footer>
   </body>
 </html>
