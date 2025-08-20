@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_27_135039) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_27_133630) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,27 +47,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_27_135039) do
   create_table "techniques", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "technique_preset_id"
-    t.string "name", null: false
+    t.string "name_ja", null: false
+    t.string "name_en", null: false
     t.integer "category"
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["technique_preset_id"], name: "index_techniques_on_technique_preset_id"
-    t.index ["user_id", "name"], name: "index_techniques_on_user_id_and_name", unique: true
+    t.index ["user_id", "name_en"], name: "index_techniques_on_user_id_and_name_en", unique: true
+    t.index ["user_id", "name_ja"], name: "index_techniques_on_user_id_and_name_ja", unique: true
     t.index ["user_id"], name: "index_techniques_on_user_id"
-  end
-
-  create_table "transitions", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "from_technique_id", null: false
-    t.bigint "to_technique_id", null: false
-    t.string "trigger"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["from_technique_id", "to_technique_id"], name: "index_transitions_on_from_technique_id_and_to_technique_id", unique: true
-    t.index ["from_technique_id"], name: "index_transitions_on_from_technique_id"
-    t.index ["to_technique_id"], name: "index_transitions_on_to_technique_id"
-    t.index ["user_id"], name: "index_transitions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -78,7 +67,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_27_135039) do
     t.datetime "remember_created_at"
     t.string "name", default: "", null: false
     t.string "image"
-    t.text "quick_memo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -90,7 +78,4 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_27_135039) do
   add_foreign_key "nodes", "techniques"
   add_foreign_key "techniques", "technique_presets"
   add_foreign_key "techniques", "users"
-  add_foreign_key "transitions", "techniques", column: "from_technique_id"
-  add_foreign_key "transitions", "techniques", column: "to_technique_id"
-  add_foreign_key "transitions", "users"
 end
