@@ -1,6 +1,6 @@
 ## サービス概要
 
-Flowque（Flow + Technique）は、ブラジリアン柔術の練習メモを”試合およびスパーリングの流れ”に沿ったフロー図として記録・可視化できるサービスです。
+BJJ Flow Tracker は、ブラジリアン柔術の練習メモを”試合およびスパーリングの流れ”に沿ったフロー図として記録・可視化できるサービスです。
 
 ブラジリアン柔術のようなポジション遷移や状況判断が鍵となる競技において、個々のテクニックを「記憶した技」ではなく「試合の中で使える技」として身につける手助けをします。
 
@@ -34,9 +34,8 @@ Flowque（Flow + Technique）は、ブラジリアン柔術の練習メモを”
 
 ## サービスの差別化ポイント・推しポイント
 
-- ブラジリアン柔術のテクニックに特化した入力フィールド（練度タグやアクションタイプタグ）
+- ブラジリアン柔術の練習ノートを繋げ、フローチャート形式で整理・可視化ができる機能（定番の試合の流れをまとめたサービスは存在するが、"自分の練習ノートを繋げて可視化する"サービスは恐らく存在しない。）
 - 試合開始のポジション(TOP/BOTTOM)からだけでなく、サイドポジションやバックなど特定のポジションから始まる技のつながりを再利用可能な「部品」として定義し、フロー図化可能
-- 練習中、咄嗟に記録したいときに役立つクイックメモページ
 - 気軽に練習記録が見返せるスマホ操作を意識した UI
 
 ## 機能候補
@@ -76,12 +75,13 @@ Flowque（Flow + Technique）は、ブラジリアン柔術の練習メモを”
 | 機能 / カテゴリ        | 技術                               |
 | ---------------------- | ---------------------------------- |
 | バックエンド           | Ruby on Rails 7.2.2.1 / Ruby 3.3.8 |
-| フロントエンド         | JavaScript / Stimulus              |
+| フロントエンド         | JavaScript / Hotwire               |
 | CSS フレームワーク     | Tailwind CSS / daisyUI             |
 | 環境構築               | Docker                             |
 | インフラ               | Render / Cloudflare                |
 | データベース           | PostgreSQL                         |
-| 検索機能               | Stimulus Autocomplete              |
+| セレクトボックスUI     | tom-select                         |
+| ステップガイド         | intro.js                           |
 | チャート可視化         | cytoscape.js                       |
 | ノードレイアウト       | dagre.js                           |
 | ノードのツリー構造管理 | Ancestry                           |
@@ -89,7 +89,7 @@ Flowque（Flow + Technique）は、ブラジリアン柔術の練習メモを”
 
 ## 画面遷移図
 
-[Figma - Flowque 画面遷移図](https://www.figma.com/design/50XTJ2AdMyuF8x4kjTbcvT/Flowque)
+[Figma - 画面遷移図](https://www.figma.com/design/fOPrHqYodf1k6LMQmGP6ZT/BJJ-Flow-Tracker)
 
 ## ER 図
 ```mermaid
@@ -99,11 +99,10 @@ erDiagram
     string provider "OAuthプロバイダー名 (NOT NULL)"
     string uid "OAuthプロバイダー上のuid (NOT NULL)"
     string name "ユーザー名 (NOT NULL)"
-    string email "メールアドレス(NOT NULL)"
+    string email "メールアドレス (NOT NULL)"
     string encrypted_password "暗号化済みパスワード (NOT NULL)"
     datetime remember_created_at "“ログイン状態を保持”が有効になった日時"
     string image "ユーザーアイコン"
-    text quick_memo "Quick Memo"
     datetime created_at "作成日時 (NOT NULL)"
     datetime updated_at "更新日時 (NOT NULL)"
   }
@@ -111,9 +110,10 @@ erDiagram
   techniques {
     int id PK "(NOT NULL)"
     int user_id FK "ユーザーID (NOT NULL)"
-    int technique_preset_id FK "プリセットID(NULLならユーザー定義)"
-    string name "テクニック名 (プリセット非参照時のみ使用)"
-    int category "enumを使い、テクニックのカテゴリーを表現 (プリセット非参照時のみ使用)"
+    int technique_preset_id FK "プリセットID (NULLならユーザー定義)"
+    string name_ja "テクニック名(日本語) (NOT NULL)"
+    string name_en "テクニック名(英語) (NOT NULL)"
+    int category "enumを使い、テクニックのカテゴリーを表現"
     text note "練習ノート"
     datetime created_at "作成日時 (NOT NULL)"
     datetime updated_at "更新日時 (NOT NULL)"
@@ -124,16 +124,6 @@ erDiagram
     string name_ja "テクニック名(日本語) (NOT NULL)"
     string name_en "テクニック名(英語) (NOT NULL)"
     int category "enumを使い、テクニックのカテゴリーを表現"
-    datetime created_at "作成日時 (NOT NULL)"
-    datetime updated_at "更新日時 (NOT NULL)"
-  }
-
-  transitions {
-    int id PK "ID (NOT NULL)"
-    int user_id FK "ユーザーID"
-    int from_technique_id FK "展開元テクニックID (NOT NULL)"
-    int to_technique_id FK "展開先テクニックID (NOT NULL)"
-    string trigger "展開先テクニックに繋がる場面・条件"
     datetime created_at "作成日時 (NOT NULL)"
     datetime updated_at "更新日時 (NOT NULL)"
   }
@@ -157,10 +147,8 @@ erDiagram
 
   users ||--o{ techniques : "1:多"
   users ||--o{ charts : "1:多"
-  users ||--o{ transitions : "1:多"
 
   techniques ||--o{ nodes : "1:多"
-  techniques ||--o{ transitions : "1:多 (from + to)"
 
   technique_presets ||--o{ techniques : "1:多"
 
