@@ -3,6 +3,8 @@ class User < ApplicationRecord
 
   has_many :techniques, dependent: :destroy
   has_many :charts, dependent: :destroy
+  # ロジック記述が楽になるので以下のリレーションを定義するが、nodesテーブルはuser_idカラムをFKとして持っていない。
+  # (chartsテーブルを通じて間接的にusersテーブルと結ばれている)
   has_many :nodes, through: :charts
 
   # Include default devise modules. Others available are:
@@ -33,20 +35,22 @@ class User < ApplicationRecord
     TechniquePreset.find_each do |tp|
       self.techniques.create!(
         technique_preset: tp,
-        name: tp.name_ja,
+        name_ja: tp.name_ja,
+        name_en: tp.name_en,
         category: tp.category
       )
     end
 
     # TODO: i18n対応、keyカラム追加する？
     top = self.techniques.find_or_create_by!(
-      name: "トップポジション"
+      name_ja: "トップポジション"
     )
 
     bottom = self.techniques.find_or_create_by!(
-      name: "ボトムポジション"
+      name_ja: "ボトムポジション"
     )
 
+    # 一意制約に抵触しない命名
     chart = self.charts.create!(
       name: "preset_#{Time.current}"
     )
