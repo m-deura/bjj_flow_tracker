@@ -20,11 +20,11 @@
   <div class="drawer drawer-end relative w-full">
     <input type="checkbox" class="drawer-toggle" data-chart-target="toggle" />
     <div data-chart-target="cy" class="drawer-content h-screen mx-auto w-9/10 border border-gray-300">
-      <!-- z-10を使ってcyコンテナより手前に出しておかないとボタンが効かなくなる -->
+      <!-- z-1を使ってcyコンテナより手前に出しておかないとボタンが効かなくなる -->
       <button
         id="step1"
         type="button"
-        class="btn btn-primary btn-wide absolute top-6 left-6 z-10" 
+        class="btn btn-primary btn-wide absolute top-6 left-6 z-1" 
         data-action="click->chart#addNode"
         data-title-text="新規作成"
         data-intro-text="ここからフローチャートの開始点(ルートノード)を新規作成できます。">
@@ -41,7 +41,8 @@
       <label aria-label="close sidebar" class="drawer-overlay" data-action="click->chart#closeDrawer" ></label>
 
       <!-- introjsで作成したガイドの要素は、本ファイルトップにあるdivタグに付与したdata-controller='step-guide' のスコープから外れる。その対策として、改めてdata-controller='step-guide'をintro-text内のbuttonタグに付与。 -->
-      <div id="step3" class="menu bg-base-200 text-base-content min-h-full w-2/3 p-4"
+      <!-- z-2を指定しないと、「新しいフローを作る」ボタンの下にドロワーが潜って表示されてしまう -->
+      <div id="step3" class="menu bg-base-200 text-base-content min-h-full w-2/3 p-4 z-2"
         data-title-text="ノード編集"
         data-intro-text="本画面の操作について知りたい方は、ノード編集画面左上にある
           <button type='button' class='underline' data-controller='step-guide' data-action='click->step-guide#startNodeGuide'>
