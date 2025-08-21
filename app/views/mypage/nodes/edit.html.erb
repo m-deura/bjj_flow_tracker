@@ -39,13 +39,14 @@
               intro_text: "このテクニックから展開される技を編集することができます。<br><br>ここで展開先として選択されたテクニックは、このテクニックの右側に接続される形でチャート上に描写されます。"
             } do |ff|
   %>
+
     <%= label_tag "children_nodes", "展開先テクニック" %>
-    <%= select_tag "node[children][]", 
-            options_from_collection_for_select(@candidate_techniques + @children.map(&:technique), :id, :name_ja, @children.pluck(:technique_id)),
-            id: "children_nodes",
-            multiple: true,
-            placeholder: "テクニックを検索",
-            data: { controller: "tom-select" }
+    <%= select_tag "node[children][]",
+          grouped_options_for_select(@grouped, @selected_ids),
+          id: "children_nodes",
+          multiple: true,
+          placeholder: "テクニックを検索",
+          data: { controller: "tom-select" }
     %>
 
     <div class="flex justify-center">
