@@ -14,6 +14,7 @@ export default class extends Controller {
 		},
 			persist: false,
 			maxItems: null, 
+			maxOptions: null,
 			placeholder: this.element.getAttribute("placeholder") || ""
 		})
 	}

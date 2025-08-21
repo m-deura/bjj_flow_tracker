@@ -22,7 +22,7 @@ class Mypage::NodesController < ApplicationController
     end
 
     new_ids = new_names.map do |name|
-      current_user.techniques.create!(name: name).id
+      current_user.techniques.create!(name_ja: name, name_en: name).id
     end
 
     ids_to_add = existing_ids + new_ids
@@ -46,6 +46,12 @@ class Mypage::NodesController < ApplicationController
     siblings = @node.siblings.includes(:technique)
     exclude_ids = [ @technique.id ] + @children.pluck(:technique_id) + siblings.pluck(:technique_id)
     @candidate_techniques = current_user.techniques.where.not(id: exclude_ids)
+
+    @selected_ids = @children.pluck(:technique_id)
+    @grouped =
+      (@candidate_techniques + @children.map(&:technique))
+        .group_by { |t| t.category ? t.category.humanize : "未分類" }
+        .transform_values { |arr| arr.map { |t| [ t.name_ja, t.id ] } }
   end
 
   def update
@@ -67,7 +73,7 @@ class Mypage::NodesController < ApplicationController
     end
 
     new_ids = new_names.map do |name|
-      current_user.techniques.find_or_create_by!(name: name).id
+      current_user.techniques.find_or_create_by!(name_ja: name, name_en: name).id
     end
 
     selected_ids = existing_ids + new_ids
