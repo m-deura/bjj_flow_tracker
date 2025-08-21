@@ -3,6 +3,10 @@ class Mypage::NodesController < ApplicationController
     @chart = current_user.charts.find(params[:chart_id])
     exclude_ids = @chart.nodes.roots.pluck(:technique_id)
     @candidate_techniques = current_user.techniques.where.not(id: exclude_ids)
+
+    @grouped = @candidate_techniques
+        .group_by { |t| t.category ? t.category.humanize : "未分類" }
+        .transform_values { |arr| arr.map { |t| [ t.name_ja, t.id ] } }
   end
 
   def create
