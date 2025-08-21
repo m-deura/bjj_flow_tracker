@@ -41,15 +41,58 @@ export default class extends Controller {
 							"border-color": "#b1b1b6",
 							"border-style": "solid",
 							"border-cap": "square",
+							},
 					},
+					{
+						selector: "node[category = 'submission']",
+						style: {
+							"background-color": "#F28B82",
+							"border-width": 0,
+							},
+					},
+					{
+						selector: "node[category = 'sweep']",
+						style: {
+							"background-color": "#81D4FA",
+							"border-width": 0,
+							},
+					},
+					{
+						selector: "node[category = 'pass']",
+						style: {
+							"background-color": "#A5D6A7",
+							"border-width": 0,
+							},
+					},
+					{
+						selector: "node[category = 'guard']",
+						style: {
+							"background-color": "#90A4AE",
+							"border-width": 0,
+							},
+					},
+					{
+						selector: "node[category = 'control']",
+						style: {
+							"background-color": "#CE93D8",
+							"border-width": 0,
+							},
+					},
+					{
+						selector: "node[category = 'takedown']",
+						style: {
+							"background-color": "#FFB74D",
+							"border-width": 0,
+							},
 					},
 					{
 						selector: "edge",
 						style: {
 							"curve-style": "round-taxi",
-							width: 0.5,
-							"line-color": "#b1b1b6", // #7570B3 は柔らかい紫
-							"target-arrow-shape": "triangle",
+							width: 0.2,
+							"line-color": "#333333", // #7570B3 は柔らかい紫
+							// "target-arrow-shape": "triangle",
+							// "target-arrow-color": "#333333",
 							"arrow-scale": 0.2,
 							"taxi-radius": 3,
 							"taxi-turn": "20px", // 曲がり角の位置として、ソースノードからの絶対距離を指定する（指定しないとソースノードとターゲットノードの相対距離によって位置算出が行われるらしく、同列ノードの曲がり角の位置がズレる）
