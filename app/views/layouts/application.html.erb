@@ -31,14 +31,35 @@
         <%= flash[:notice] %>
       </div>
     <% end %>
+
     <% if flash[:alert] %>
       <div class="alert alert-error mb-4">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
-        <%= flash[:alert] %>
+        <div class="flex flex-col">
+          <%= flash[:alert] %>
+        </div>
       </div>
     <% end %>
+
+    <!-- エラーメッセージ詳細表示 -->
+    <% if flash[:errors] %>
+      <div class="alert alert-error shadow-sm mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M21 12A9 9 0 103 12a9 9 0 0018 0z" />
+        </svg>
+        <div>
+          <h3 class="font-bold">入力に誤りがあります</h3>
+          <ul class="text-sm list-disc list-inside mt-1">
+            <% Array(flash[:errors]).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+    
 
     <!-- コンテンツが少なくても、フッターはスクリーン最下部に張り付く -->
     <main class="flex-grow">

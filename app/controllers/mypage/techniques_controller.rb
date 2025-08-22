@@ -41,8 +41,11 @@ class Mypage::TechniquesController < ApplicationController
 
       redirect_to location, notice: "保存しました"
     else
-      flash.now[:alert] = "保存できませんでした"
-      redirect_to mypage_techniques_path, status: :unprocessable_entity
+      flash[:alert] = "保存できませんでした"
+
+      # turbo_frame内で render 'shared/error_message' しても描写されないので、flash[:errors]経由でエラーメッセージ詳細を描写する。
+      flash[:errors] = @technique.errors.full_messages
+      redirect_to mypage_techniques_path, status: :see_other
     end
   end
 
