@@ -34,18 +34,18 @@ class Mypage::TechniquesController < ApplicationController
     @technique = current_user.techniques.find(params[:id])
     @techniques = current_user.techniques.where.not(id: @technique.id)
 
+    chart = current_user.charts.find_by(id: params[:chart_id])
+    location = chart ? mypage_chart_path(chart) : mypage_techniques_path
+
     if @technique.update(technique_params)
       # チャート画面上からテクニックを更新した場合、chart_idがparamsに含まれる。
-      chart = current_user.charts.find_by(id: params[:chart_id])
-      location = chart ? mypage_chart_path(chart) : mypage_techniques_path
-
       redirect_to location, notice: "保存しました"
     else
       flash[:alert] = "保存できませんでした"
 
       # turbo_frame内で render 'shared/error_message' しても描写されないので、flash[:errors]経由でエラーメッセージ詳細を描写する。
       flash[:errors] = @technique.errors.full_messages
-      redirect_to mypage_techniques_path, status: :see_other
+      redirect_to location, status: :see_other
     end
   end
 
