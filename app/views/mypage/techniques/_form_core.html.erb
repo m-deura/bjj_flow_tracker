@@ -1,6 +1,9 @@
   <div class="space-y-4 w-4/5 mx-auto">
     <div class="space-y-2 mb-4">
-      <%= f.label :name, "テクニック名" %>
+      <div class="flex items-center space-x-2">
+        <%= f.label :name, "テクニック名" %>
+        <div class="badge badge-sm badge-error badge-outline">必須</div>
+      </div>
       <%= f.text_field :name_ja, class: "input input-bordered w-full" %>
   
       <%= f.label :note, "ノート" %>
@@ -9,5 +12,4 @@
       <%= f.label :category, "カテゴリ" %>
       <%= f.select :category, Technique.categories.keys.map { |c| [c.humanize, c] }, { include_blank: "未分類" }, class: "select select-bordered w-full" %>
     </div>
-  
   </div>
