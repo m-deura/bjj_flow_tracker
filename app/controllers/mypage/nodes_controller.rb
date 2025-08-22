@@ -12,33 +12,47 @@ class Mypage::NodesController < ApplicationController
   def create
     @chart = current_user.charts.find(params[:chart_id])
 
-    roots = Array(create_params[:roots])
+    begin
+      ActiveRecord::Base.transaction do
+        roots = Array(create_params[:roots])
+        raise ArgumentError, "フローの開始点を1つ以上選択してください" if roots.empty?
 
-    new_names = []
-    existing_ids = []
+        new_names = []
+        existing_ids = []
 
-    roots.each do |root|
-      if root.to_s.start_with?("new: ")
-        new_names << root.sub(/^new: /, "")
-      else
-        existing_ids << root.to_i
+        roots.each do |root|
+          if root.to_s.start_with?("new: ")
+            new_names << root.sub(/^new: /, "")
+          else
+            existing_ids << root.to_i
+          end
+        end
+
+        new_ids = new_names.map do |name|
+          current_user.techniques.create!(name_ja: name, name_en: name).id
+        end
+
+        ids_to_add = existing_ids + new_ids
+        ids_to_add.each do |tid|
+          Node.create!(
+            chart: @chart,
+            technique_id: tid
+          )
+        end
       end
+
+      redirect_to mypage_chart_path(@chart), notice: "フローの開始点を作成しました"
+
+    rescue ArgumentError => e
+      flash[:alert] = e.message
+      redirect_to mypage_chart_path(@chart)
+    rescue ActiveRecord::RecordInvalid => e
+      flash[:alert] = e.message
+      redirect_to mypage_chart_path(@chart)
+    rescue StandardError => e
+      flash[:alert] = "フローの開始点を作成できませんでした"
+      redirect_to mypage_chart_path(@chart)
     end
-
-    new_ids = new_names.map do |name|
-      current_user.techniques.create!(name_ja: name, name_en: name).id
-    end
-
-    ids_to_add = existing_ids + new_ids
-
-    ids_to_add.each do |tid|
-      Node.create!(
-        chart: @chart,
-        technique_id: tid
-      )
-    end
-
-    redirect_to mypage_chart_path(@chart), notice: "フローの開始点を作成しました"
   end
 
   def edit
@@ -68,32 +82,34 @@ class Mypage::NodesController < ApplicationController
     new_names = []
     existing_ids = []
 
-    children.each do |child|
-      if child.to_s.start_with?("new: ")
-        new_names << child.sub(/^new: /, "")
-      else
-        existing_ids << child.to_i
+    ActiveRecord::Base.transaction do
+      children.each do |child|
+        if child.to_s.start_with?("new: ")
+          new_names << child.sub(/^new: /, "")
+        else
+          existing_ids << child.to_i
+        end
       end
-    end
 
-    new_ids = new_names.map do |name|
-      current_user.techniques.find_or_create_by!(name_ja: name, name_en: name).id
-    end
-
-    selected_ids = existing_ids + new_ids
-    current_ids = @node.children.pluck(:technique_id)
-
-    ids_to_add = selected_ids - current_ids
-    ids_to_remove = current_ids - selected_ids
-
-    Node.transaction  do
-      ids_to_add.each do |tid|
-        @node.children.create!(
-          chart: chart,
-          technique_id: tid
-        )
+      new_ids = new_names.map do |name|
+        current_user.techniques.find_or_create_by!(name_ja: name, name_en: name).id
       end
-      @node.children.where(technique_id: ids_to_remove).destroy_all
+
+      selected_ids = existing_ids + new_ids
+      current_ids = @node.children.pluck(:technique_id)
+
+      ids_to_add = selected_ids - current_ids
+      ids_to_remove = current_ids - selected_ids
+
+      Node.transaction  do
+        ids_to_add.each do |tid|
+          @node.children.create!(
+            chart: chart,
+            technique_id: tid
+          )
+        end
+        @node.children.where(technique_id: ids_to_remove).destroy_all
+      end
     end
 
     redirect_to mypage_chart_path(chart), notice: "展開先テクニックを更新しました", status: :see_other
@@ -109,7 +125,7 @@ class Mypage::NodesController < ApplicationController
   private
 
   def create_params
-    params.require(:node).permit(roots: [])
+    params.fetch(:node, {}).permit(roots: [])
   end
 
   def update_params
