@@ -32,7 +32,7 @@ class User < ApplicationRecord
   private
 
   def copy_presets
-    ApplicationRecord.transaction do
+    ActiveRecord::Base.transaction do
       TechniquePreset.find_each do |tp|
         self.techniques.create!(
           technique_preset: tp,

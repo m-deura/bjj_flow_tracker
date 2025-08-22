@@ -2,7 +2,10 @@
   <h2 class="text-lg font-bold mb-4">フローの開始点を新規作成</h2>
 
   <%= form_with url: mypage_chart_nodes_path(@chart), method: :post, class: "space-y-2 mt-10 w-4/5 mx-auto" do |f| %>
-    <%= label_tag "root_nodes", "開始点テクニック" %>
+    <div class="flex items-center space-x-2">
+      <%= label_tag "root_nodes", "開始点テクニック" %>
+      <div class="badge badge-sm badge-error badge-outline">必須</div>
+    </div>
     <%= select_tag "node[roots]",
           grouped_options_for_select(@grouped),
           id: "root_nodes",
