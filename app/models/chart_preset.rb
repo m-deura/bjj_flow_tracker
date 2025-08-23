@@ -1,0 +1,2 @@
+class ChartPreset < ApplicationRecord
+end
