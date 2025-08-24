@@ -89,6 +89,7 @@ export default class extends Controller {
 						selector: "edge",
 						style: {
 							"curve-style": "round-taxi",
+							"taxi-direction": "rightward",
 							width: 0.2,
 							"line-color": "#333333", // #7570B3 は柔らかい紫
 							// "target-arrow-shape": "triangle",

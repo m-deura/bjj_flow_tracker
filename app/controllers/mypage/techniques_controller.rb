@@ -1,7 +1,7 @@
 class Mypage::TechniquesController < ApplicationController
   def index
     @q = current_user.techniques.ransack(params[:q])
-    @techniques = @q.result(distinct: true).order(category: :asc)
+    @techniques = @q.result(distinct: true).order(updated_at: :desc)
 
     # ステップガイドに含まれるChartメニューへのアクセスリンクのため
     @chart = current_user.charts.first
@@ -13,7 +13,6 @@ class Mypage::TechniquesController < ApplicationController
 
   def create
     @technique = current_user.techniques.build(technique_params)
-    @technique.name_en = technique_params[:name_ja]
     if @technique.save
       redirect_to mypage_techniques_path, notice: "保存しました"
     else
@@ -35,15 +34,18 @@ class Mypage::TechniquesController < ApplicationController
     @technique = current_user.techniques.find(params[:id])
     @techniques = current_user.techniques.where.not(id: @technique.id)
 
+    chart = current_user.charts.find_by(id: params[:chart_id])
+    location = chart ? mypage_chart_path(chart) : mypage_techniques_path
+
     if @technique.update(technique_params)
       # チャート画面上からテクニックを更新した場合、chart_idがparamsに含まれる。
-      chart = current_user.charts.find_by(id: params[:chart_id])
-      location = chart ? mypage_chart_path(chart) : mypage_techniques_path
-
       redirect_to location, notice: "保存しました"
     else
-      flash.now[:alert] = "保存できませんでした"
-      redirect_to mypage_techniques_path, status: :unprocessable_entity
+      flash[:alert] = "保存できませんでした"
+
+      # turbo_frame内で render 'shared/error_message' しても描写されないので、flash[:errors]経由でエラーメッセージ詳細を描写する。
+      flash[:errors] = @technique.errors.full_messages
+      redirect_to location, status: :see_other
     end
   end
 

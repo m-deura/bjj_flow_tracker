@@ -1,9 +1,14 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-    skip_before_action :verify_authenticity_token, only: :google_oauth2
+  include Devise::Controllers::Rememberable
+
+  skip_before_action :verify_authenticity_token, only: :google_oauth2
 
   def google_oauth2
     provider = "google"
     @user = User.from_omniauth(request.env["omniauth.auth"])
+
+    # ブラウザを閉じてもログインを継続させる
+    remember_me(@user)
 
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication

@@ -1,0 +1,5 @@
+class ChartPreset < ApplicationRecord
+  # ユーザー所有のチャートである可能性が高いため、dependent: :destroyは行わない
+  has_many :charts
+  has_many :node_presets, dependent: :destroy
+end

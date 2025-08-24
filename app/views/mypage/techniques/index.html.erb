@@ -58,10 +58,25 @@
           <div class="collapse collapse-arrow bg-base-200 shadow-md">
             <input type="checkbox">
             <div class="collapse-title items-start space-y-2 flex flex-col">
-              <% if technique.category%>
-                <span class="badge badge-soft"><%= technique.category.humanize %></span>
-              <% else%>
-                <span class="badge badge-ghost">未分類</span>
+              <% case technique.category %>
+              <% when "submission" then %>
+                <span class="badge badge-soft bg-red-100"><%= technique.category.humanize %></span>
+              <% when "sweep" then %>
+                <span class="badge badge-soft bg-blue-100"><%= technique.category.humanize %></span>
+                
+              <% when "pass" then %>
+                <span class="badge badge-soft bg-green-100"><%= technique.category.humanize %></span>
+
+              <% when "guard" then %>
+                <span class="badge badge-soft bg-gray-100"><%= technique.category.humanize %></span>
+
+              <% when "control" then %>
+                <span class="badge badge-soft bg-purple-100"><%= technique.category.humanize %></span>
+
+              <% when "takedown" then %>
+                <span class="badge badge-soft bg-orange-100"><%= technique.category.humanize %></span>
+              <% else %>
+                <span class="badge badge-soft"><%= technique.category ? technique.category.humanize : "未分類" %></span>
               <% end %>
               <span class="text-lg font-medium" ><%= technique.name_ja %></span>
             </div>
