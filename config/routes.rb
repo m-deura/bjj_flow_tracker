@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+  devise_for :users,
+    controllers: { omniauth_callbacks: "users/omniauth_callbacks" },
+    skip: [ :sessions ]
+
+  devise_scope :user do
+    # users/sign_in にアクセスされた場合、root_path にリダイレクト
+    match "users/sign_in", to: redirect("/"), via: [ :get, :post ], as: :new_user_session
+    delete "users/sign_out", to: "devise/sessions#destroy", as: :destroy_user_session
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
