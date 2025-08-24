@@ -9,9 +9,11 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-          :omniauthable, omniauth_providers: [ :google_oauth2 ]
+  #
+  # :database_authenticatable, :registerable,
+  # :recoverable, :rememberable, :validatable,
+
+  devise :database_authenticatable, :rememberable, :omniauthable, omniauth_providers: [ :google_oauth2 ]
 
   validates :provider, :uid, :name, :email, presence: true
   validates :email, uniqueness: true
@@ -42,28 +44,16 @@ class User < ApplicationRecord
         )
       end
 
-      # TODO: i18n対応、keyカラム追加する？
-      top = self.techniques.find_or_create_by!(
-        name_ja: "トップポジション",
-        name_en: "Top Position"
-      )
-
-      bottom = self.techniques.find_or_create_by!(
-        name_ja: "ボトムポジション",
-        name_en: "Bottom Position"
-      )
-
-      # 一意制約に抵触しない命名
-      chart = self.charts.create!(
-        name: "preset_#{Time.current}"
-      )
-
-      [ top, bottom ].each do |technique|
-        chart.nodes.create!(
-          chart: chart,
-          technique: technique,
-          ancestry: "/"
-        )
+      # 初回チャートをプリセットから作る（プリセットが無い場合はスキップ）
+      if (cp = ChartPreset.first)
+        ApplyChartPreset.call(
+          user: self,
+          chart_preset: cp,
+          chart_name: "preset_#{Time.current.strftime('%Y%m%d-%H%M%S')}"
+       )
+      else
+      # フォールバック：プリセットが無ければ空チャートだけ作る
+      charts.find_or_create_by!(name: "empty_#{Time.current.strftime('%Y%m%d-%H%M%S')}")
       end
     end
   end
