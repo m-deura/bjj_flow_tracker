@@ -9,7 +9,7 @@
       <%= f.label :note, "ノート" %>
       <%= f.text_area :note, class: "textarea textarea-bordered w-full" %>
   
-      <%= f.label :category, "カテゴリ" %>
+      <%= f.label :category, "カテゴリー" %>
       <%= f.select :category, Technique.categories.keys.map { |c| [c.humanize, c] }, { include_blank: "未分類" }, class: "select select-bordered w-full" %>
     </div>
   </div>
