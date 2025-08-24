@@ -14,13 +14,33 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_27_133630) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "charts", force: :cascade do |t|
-    t.bigint "user_id"
+  create_table "chart_presets", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_chart_presets_on_name", unique: true
+  end
+
+  create_table "charts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "chart_preset_id"
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chart_preset_id"], name: "index_charts_on_chart_preset_id"
     t.index ["user_id", "name"], name: "index_charts_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_charts_on_user_id"
+  end
+
+  create_table "node_presets", force: :cascade do |t|
+    t.bigint "chart_preset_id", null: false
+    t.bigint "technique_preset_id", null: false
+    t.string "ancestry", null: false, collation: "C"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ancestry"], name: "index_node_presets_on_ancestry"
+    t.index ["chart_preset_id"], name: "index_node_presets_on_chart_preset_id"
+    t.index ["technique_preset_id"], name: "index_node_presets_on_technique_preset_id"
   end
 
   create_table "nodes", force: :cascade do |t|
@@ -45,7 +65,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_27_133630) do
   end
 
   create_table "techniques", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.bigint "technique_preset_id"
     t.string "name_ja", null: false
     t.string "name_en", null: false
@@ -73,7 +93,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_27_133630) do
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
   end
 
+  add_foreign_key "charts", "chart_presets"
   add_foreign_key "charts", "users"
+  add_foreign_key "node_presets", "chart_presets"
+  add_foreign_key "node_presets", "technique_presets"
   add_foreign_key "nodes", "charts"
   add_foreign_key "nodes", "techniques"
   add_foreign_key "techniques", "technique_presets"
