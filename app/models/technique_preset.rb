@@ -1,5 +1,6 @@
 class TechniquePreset < ApplicationRecord
   has_many :techniques
+  has_many :node_presets
 
   validates :name_ja, presence: true, uniqueness: true
   validates :name_en, presence: true, uniqueness: true

@@ -1,7 +1,7 @@
 class CreateTechniques < ActiveRecord::Migration[7.2]
   def change
     create_table :techniques do |t|
-      t.references :user, foreign_key: true
+      t.references :user, foreign_key: true, null: false
       t.references :technique_preset, foreign_key: true
       t.string :name_ja, null: false
       t.string :name_en, null: false
