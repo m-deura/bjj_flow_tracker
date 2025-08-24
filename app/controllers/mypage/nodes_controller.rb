@@ -61,8 +61,7 @@ class Mypage::NodesController < ApplicationController
     @technique = @node.technique
 
     @children = @node.children.includes(:technique)
-    siblings = @node.siblings.includes(:technique)
-    exclude_ids = [ @technique.id ] + @children.pluck(:technique_id) + siblings.pluck(:technique_id)
+    exclude_ids = [ @technique.id ] + @children.pluck(:technique_id)
     @candidate_techniques = current_user.techniques.where.not(id: exclude_ids)
 
     @selected_ids = @children.pluck(:technique_id)
