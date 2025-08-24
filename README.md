@@ -72,7 +72,7 @@ BJJ Flow Tracker は、ブラジリアン柔術の練習メモを”試合およ
 
 ## 機能の実装方針
 
-| 機能 / カテゴリ        | 技術                               |
+| 機能 / カテゴリー      | 技術                               |
 | ---------------------- | ---------------------------------- |
 | バックエンド           | Ruby on Rails 7.2.2.1 / Ruby 3.3.8 |
 | フロントエンド         | JavaScript / Hotwire               |
@@ -89,7 +89,7 @@ BJJ Flow Tracker は、ブラジリアン柔術の練習メモを”試合およ
 
 ## 画面遷移図
 
-[Figma - 画面遷移図](https://www.figma.com/design/fOPrHqYodf1k6LMQmGP6ZT/BJJ-Flow-Tracker)
+[Figma - 画面遷移図](https://www.figma.com/design/50XTJ2AdMyuF8x4kjTbcvT/BJJ-Flow-Tracker)
 
 ## ER 図
 ```mermaid
