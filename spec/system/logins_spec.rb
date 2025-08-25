@@ -6,13 +6,18 @@ RSpec.describe "Logins", type: :system do
   end
 
   describe "テスト" do
-    it "ログイン" do
-      Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
-      Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+    it "ログインできる" do
+      omniauth_login
+    end
 
-      visit root_path
-      click_on "Google でログイン", match: :first
-      expect(page).to have_current_path(mypage_root_path)
+    it "ログアウトできる" do
+      omniauth_login
+      visit mypage_root_path
+      # save_and_open_page
+      click_on "ログアウト"
+
+      expect(page).to have_current_path(root_path)
+      expect(page).to have_content("ログアウトしました。")
     end
   end
 
