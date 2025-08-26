@@ -1,6 +1,6 @@
 class Api::V1::ChartsController < ApplicationController
   def show
-    nodes = current_user.charts.first.nodes
+    nodes = current_user.charts.first.nodes.order(:created_at)
 
     nodes_data = nodes.map do |node|
       { data: { id: node.id.to_s, label: node.technique.name_ja, category: node.technique.category } }
