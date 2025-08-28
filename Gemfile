@@ -59,6 +59,16 @@ group :development do
   gem "pry-byebug"
   gem "pry-doc"
   gem "pry-rails"
+
+  # RSpec(Rails 7.2 に合わせてバージョン範囲指定)
+  gem "rspec-rails", "~> 8.0"
+
+  # The data for the test
+  gem "factory_bot_rails"
+  gem "faker"
+
+  # Simple Coverage
+  gem "simplecov"
 end
 
 group :test do
