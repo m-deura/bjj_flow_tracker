@@ -1,10 +1,8 @@
 <footer class="footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-6">
   <nav class="md:grid md:grid-flow-col gap-4">
       <%= link_to "お問い合わせ", "https://forms.gle/VGdTkDDsJkVQY7e79", class: "link link-hover" %>
-    <div class="tooltip" data-tip="このページは現在準備中です！">
-      <a class="link link-hover">プライバシーポリシー</a>
-    </div>
-    <div class="tooltip" data-tip="このページも準備中です！">
+      <%= link_to "プライバシーポリシー", privacy_path, class: "link link-hover" %>
+    <div class="tooltip" data-tip="このページは準備中です！">
       <a class="link link-hover">利用規約</a>
     </div>
   </nav>
