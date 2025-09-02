@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   # Static pages
   get "privacy", to: "pages#privacy"
-  get "terms", to: "pages#terms"
+  # get "terms", to: "pages#terms"
 
   # My Pages
   namespace :mypage do
