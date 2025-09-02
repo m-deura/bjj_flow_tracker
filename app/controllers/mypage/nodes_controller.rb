@@ -59,8 +59,10 @@ class Mypage::NodesController < ApplicationController
     @node = current_user.nodes.find(params[:id])
     @chart = @node.chart
     @technique = @node.technique
-
     @children = @node.children.includes(:technique)
+
+    # 自身のテクニックIDと、展開先テクニックとして選択済みのテクニックIDは候補から除外
+    # TODO: @children.pluckが2回登場しているので、処理をまとめることができそう
     exclude_ids = [ @technique.id ] + @children.pluck(:technique_id)
     @candidate_techniques = current_user.techniques.where.not(id: exclude_ids)
 
