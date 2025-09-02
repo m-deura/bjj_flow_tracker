@@ -21,6 +21,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "pages#top"
 
+  # Static pages
+  get "privacy", to: "pages#privacy"
+  # get "terms", to: "pages#terms"
+
+  # My Pages
   namespace :mypage do
     root to: "menu#show"
     resources :techniques
@@ -30,7 +35,7 @@ Rails.application.routes.draw do
     resource :setting, only: %i[show edit update]
   end
 
-
+  # API
   namespace :api do
     namespace :v1 do
       resources :charts, only: %i[index show]
