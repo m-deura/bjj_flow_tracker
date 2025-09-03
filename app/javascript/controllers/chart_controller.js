@@ -34,6 +34,8 @@ export default class extends Controller {
 							label: "data(label)",
 							"text-valign": "top",
 							"text-halign": "center",
+							"text-wrap": "ellipsis",
+							"text-max-width": "80px",
 							color: "#333333", // #505050 はやわらかめの黒
 							"font-size": "4px",
 							padding: "4px",
