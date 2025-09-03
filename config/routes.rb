@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   # My Pages
   namespace :mypage do
-    root to: "menu#show"
+    root to: "dashboard#show"
     resources :techniques
     resources :charts, only: %i[show edit update] do
       resources :nodes, shallow: true, only: %i[new create edit update destroy]
