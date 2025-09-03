@@ -1,0 +1,22 @@
+# app/helpers/mypage/dashboard_helper.rb にバッジデザインを定義。
+
+#BADGE_CLASS = {
+#  added: "badge badge-success",
+#  fixed: "badge badge-info",
+#  changed: "badge badge-warning",
+#  maintenance: "badge badge-error",
+#  other: "badge"
+#  }.freeze
+
+- date: "2025-09-03"
+  kind: fixed
+  title: パフォーマンス改善
+  body: チャート画面のノード描写を高速化しました。
+- date: "2025-09-03"
+  kind: added
+  title: 機能追加
+  body: フッター部分に、お問い合わせページとプライバシーポリシーのリンクを追加しました。
+- date: "2025-09-03"
+  kind: added
+  title: 機能追加
+  body: ダッシュボードにアプリの更新情報を閲覧できるパネルを追加しました。

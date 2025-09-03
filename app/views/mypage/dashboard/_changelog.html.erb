@@ -1,0 +1,13 @@
+<ol class="space-y-3 list-none" reversed>
+  <% read_changelog.each do |e| %>
+    <li class="p-3 rounded-lg bg-base-100 border border-base-200">
+      <div class="flex items-center gap-2 mb-1">
+        <span class="<%= badge_class_for(e["kind"]) %>"><%= e["kind"]&.capitalize || "Update" %></span>
+        <time class="text-xs opacity-70"><%= e["date"] %></time>
+      </div>
+      <h4 class="font-medium"><%= e["title"] %></h4>
+      <div class="prose prose-sm max-w-none mt-1"><%= simple_format(h(e["body"])) %></div>
+    </li>
+  <% end %>
+</ol>
+
