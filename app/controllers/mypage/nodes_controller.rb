@@ -59,16 +59,18 @@ class Mypage::NodesController < ApplicationController
     @node = current_user.nodes.find(params[:id])
     @chart = @node.chart
     @technique = @node.technique
-    @children = @node.children.includes(:technique)
+
+    @form = NodeEditForm.new(node: @node, current_user: current_user)
 
     # 自身のテクニックIDと、展開先テクニックとして選択済みのテクニックIDは候補から除外
-    # TODO: @children.pluckが2回登場しているので、処理をまとめることができそう
-    exclude_ids = [ @technique.id ] + @children.pluck(:technique_id)
+    children_ids = @node.children.pluck(:technique_id)
+    exclude_ids = [ @technique.id ] + children_ids
     @candidate_techniques = current_user.techniques.where.not(id: exclude_ids)
 
-    @selected_ids = @children.pluck(:technique_id)
+    # grouped_options_for_select 用
+    @selected_ids = children_ids.map!(&:to_s)
     @grouped =
-      (@candidate_techniques + @children.map(&:technique))
+      (@candidate_techniques + @node.children.includes(:technique).map(&:technique))
         .group_by { |t| t.category ? t.category.humanize : "未分類" }
         .transform_values { |arr| arr.map { |t| [ t.name_ja, t.id ] } }
   end
@@ -76,44 +78,23 @@ class Mypage::NodesController < ApplicationController
   def update
     @node = current_user.nodes.find(params[:id])
     chart = @node.chart
-    # technique = @node.technique
+    @form = NodeEditForm.new(
+      node: @node,
+      current_user: current_user,
+      **node_edit_form_params.to_h.symbolize_keys
+      # Strong Parameterをハッシュに変換後、シンボルに変換(キーワード引数はシンボルである必要がある)。その後、** を使ってキーワード引数として展開。
+    )
 
-    children = Array(update_params[:children])
+    chart = @node.chart
 
-    new_names = []
-    existing_ids = []
-
-    ActiveRecord::Base.transaction do
-      children.each do |child|
-        if child.to_s.start_with?("new: ")
-          new_names << child.sub(/^new: /, "")
-        else
-          existing_ids << child.to_i
-        end
-      end
-
-      new_ids = new_names.map do |name|
-        current_user.techniques.find_or_create_by!(name_ja: name, name_en: name).id
-      end
-
-      selected_ids = existing_ids + new_ids
-      current_ids = @node.children.pluck(:technique_id)
-
-      ids_to_add = selected_ids - current_ids
-      ids_to_remove = current_ids - selected_ids
-
-      Node.transaction  do
-        ids_to_add.each do |tid|
-          @node.children.create!(
-            chart: chart,
-            technique_id: tid
-          )
-        end
-        @node.children.where(technique_id: ids_to_remove).destroy_all
-      end
+    if @form.save
+      redirect_to mypage_chart_path(chart), notice: "展開先テクニックを更新しました", status: :see_other
+    else
+      flash[:alert] = "保存できませんでした"
+      flash[:errors] = @form.errors.full_messages
+      # status: :unprocessable_entity(422) だと フルページ更新できない
+      redirect_to mypage_chart_path(chart), status: :see_other
     end
-
-    redirect_to mypage_chart_path(chart), notice: "展開先テクニックを更新しました", status: :see_other
   end
 
   def destroy
@@ -126,11 +107,12 @@ class Mypage::NodesController < ApplicationController
   private
 
   def create_params
+    # 展開先テクニックに何も選択されていない状態で更新をかけるとparams[:node]自体が送られないので、空配列も許容する。
     params.fetch(:node, {}).permit(roots: [])
   end
 
-  def update_params
-    # 展開先テクニックに何も選択されていない状態で更新をかけるとparams[:node]自体が送られないので、空配列も許容する。
-    params.fetch(:node, {}).permit(children: [])
+  def node_edit_form_params
+    # children が空でも配列を許容
+    params.require(:node_edit_form).permit(:name_ja, :note, :category, children: [])
   end
 end
