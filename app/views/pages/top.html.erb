@@ -2,10 +2,10 @@
   <div class="hero-content flex-col lg:flex-row">
     <%= image_tag "icon.svg", alt: "icon", class: "w-100 h-auto mx-auto"%>
     <div>
-      <h1 class="text-5xl font-bold ">BJJ Flow Tracker</h1>
+      <h1 class="font-bebas text-5xl font-bold"><%= base_title %></h1>
       <h3 class="text-lg font-bold">技は点でなく、“流れ”で覚える</h3>
       <p class="py-6">
-        BJJ Flow Tracker は、ブラジリアン柔術のテクニックをフローチャート形式で整理・可視化できるツールです。
+        <%= base_title %> は、ブラジリアン柔術のテクニックをフローチャート形式で整理・可視化できるツールです。
       </p>
 
       <div class="flex space-x-3">
@@ -43,14 +43,14 @@
           <div class="card-body">
             <div class="text-3xl">📌</div>
             <h3 class="card-title">テクニックの記録</h3>
-            <p class="opacity-80">習った技を追加。カテゴリー（パス/スイープ/サブミッション等）で整理し、ノートも保存。</p>
+            <p class="opacity-80">習った技を追加。カテゴリー（パス/スイープ/サブミッション等）で整理し、学んだ内容をノートに保存。</p>
           </div>
         </div>
         <div class="card bg-base-100 border border-base-300/60 shadow-sm">
           <div class="card-body">
             <div class="text-3xl">🔗</div>
             <h3 class="card-title">フローで可視化</h3>
-            <p class="opacity-80">技と技を矢印でつなぎ、<span class="font-semibold">流れ</span>を作成。試合・スパーのシナリオ作りに。</p>
+            <p class="opacity-80">技と技を線でつなぎ、<span class="font-semibold">フローチャート</span>を作成。試合・スパーのシナリオ作りに。</p>
           </div>
         </div>
         <div class="card bg-base-100 border border-base-300/60 shadow-sm">
@@ -137,7 +137,7 @@
         <div class="card bg-base-100 border border-base-300/60 shadow-sm">
           <div class="card-body">
             <h3 class="card-title">3. 展開をつなぐ</h3>
-            <p class="opacity-80">ノード同士を矢印でつなぎ、実際の動きをそのまま可視化しましょう。</p>
+            <p class="opacity-80">ノード同士を線でつなぎ、試合やスパーの展開をそのまま可視化しましょう。</p>
           </div>
         </div>
         <div class="card bg-base-100 border border-base-300/60 shadow-sm">
