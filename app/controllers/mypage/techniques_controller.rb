@@ -41,7 +41,7 @@ class Mypage::TechniquesController < ApplicationController
 
       # turbo_frame内で render 'shared/error_message' しても描写されないので、flash[:errors]経由でエラーメッセージ詳細を描写する。
       flash[:errors] = @technique.errors.full_messages
-      redirect_to location, status: :see_other
+      redirect_to mypage_techniques_path, status: :see_other
     end
   end
 
