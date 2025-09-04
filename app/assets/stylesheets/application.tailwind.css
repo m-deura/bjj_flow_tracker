@@ -1,5 +1,15 @@
 @import "tailwindcss";
+
+:root {
+  --font-bebas: "Bebas Neue", sans-serif;
+}
+
+@theme {
+  --font-bebas: var(--font-bebas);
+}
+
 @plugin "@tailwindcss/typography";
+
 @plugin "daisyui";
 @plugin "daisyui/theme" {
 	name: "winter";
@@ -17,3 +27,10 @@
 /* @import "tom-select/dist/css/tom-select.bootstrap5.css" */
 @import "tom-select/dist/css/tom-select.bootstrap4.css";
 @import "intro.js/introjs.css";
+
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('/assets/BebasNeue-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

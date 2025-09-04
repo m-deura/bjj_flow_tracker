@@ -91,3 +91,6 @@ gem "devise-i18n"
 
 # to search the techniques
 gem "ransack"
+
+# OGP
+gem "meta-tags"
