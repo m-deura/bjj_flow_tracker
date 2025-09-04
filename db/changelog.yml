@@ -8,6 +8,10 @@
 #  other: "badge"
 #  }.freeze
 
+- date: "2025-09-04"
+  kind: changed
+  title: UI改善
+  body: ノード編集画面にて、「テクニックの情報」と「展開先テクニック」を同時に更新できるようにしました。
 - date: "2025-09-03"
   kind: fixed
   title: パフォーマンス改善
