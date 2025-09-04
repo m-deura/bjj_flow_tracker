@@ -1,103 +1,130 @@
-<div class="min-h-screen px-4 py-6 bg-base-100 space-y-6" data-controller="step-guide">
+<div
+  class="drawer drawer-end min-h-screen px-4 py-6 bg-base-100 space-y-6"
+  data-controller="step-guide drawer"
+>
+  <input type="checkbox" class="drawer-toggle" data-drawer-target="toggle">
 
-  <div class="flex items-center space-x-2 m-4">
-    <h1 class="text-3xl font-bold ml-8">Technique</h1>
-    <div class="tooltip" data-tip="ステップガイドを開始するにはここをクリック" data-action="click->step-guide#startTechniqueGuide">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
-      </svg>
-    </div>
-  </div>
-  
-  <div id="step0" class="hidden" data-intro-text="こちらは、柔術のテクニックが一覧として並んでいる画面です。"></div>
-
-  <div class="flex flex-col items-center justify-center gap-3">
-    <%= link_to "新規作成" , new_mypage_technique_path, class: "btn btn-primary btn-wide", id: "step1", data: { title_text: "新規作成", intro_text: "一覧にないテクニックは、こちらのボタンから新規作成することができます。" } %>
-    <%= search_form_for @q, url: mypage_techniques_path, id: "step2", class: "w-80",
-          data: { turbo_frame: "technique-list",
-                  controller: "instant-search",
-                  action: "input->instant-search#autosubmit",
-                  title_text: "検索",
-                  intro_text: "一覧にあるテクニックは、ここから検索して表示を絞り込むことができます。"
-          } do |f| %>
-      <label class="input">
-        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <g
-            stroke-linejoin="round"
-            stroke-linecap="round"
-            stroke-width="2.5"
-            fill="none"
-            stroke="currentColor"
-          >
-            <circle cx="11" cy="11" r="8"></circle>
-            <path d="m21 21-4.3-4.3"></path>
-          </g>
+  <div class="drawer-content">
+    <div class="flex items-center space-x-2 m-4">
+      <h1 class="text-3xl font-bold ml-8">Technique</h1>
+      <div class="tooltip" data-tip="ステップガイドを開始するにはここをクリック" data-action="click->step-guide#startTechniqueGuide">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
         </svg>
-        <%= f.search_field :name_ja_or_name_en_or_note_cont, placeholder: "技またはノートを検索", class: "search" %>
-      </label>
+      </div>
+    </div>
+
+    <div id="step0" class="hidden" data-intro-text="こちらは、柔術のテクニックが一覧として並んでいる画面です。"></div>
+
+    <div class="flex flex-col items-center justify-center gap-3">
+      <%= link_to "新規作成" , new_mypage_technique_path, class: "btn btn-primary btn-wide", id: "step1", data: { title_text: "新規作成", intro_text: "一覧にないテクニックは、こちらのボタンから新規作成することができます。" } %>
+      <%= search_form_for @q, url: mypage_techniques_path, id: "step2", class: "w-80",
+            data: { turbo_frame: "technique-list",
+                    controller: "instant-search",
+                    action: "input->instant-search#autosubmit",
+                    title_text: "検索",
+                    intro_text: "一覧にあるテクニックは、ここから検索して表示を絞り込むことができます。"
+            } do |f| %>
+        <label class="input">
+          <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <g
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              stroke-width="2.5"
+              fill="none"
+              stroke="currentColor"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </g>
+          </svg>
+          <%= f.search_field :name_ja_or_name_en_or_note_cont, placeholder: "技またはノートを検索", class: "search" %>
+        </label>
+      <% end %>
+    </div>
+
+    <div id="step3" data-title-text="テクニック詳細" data-intro-text="カードをクリックすると、テクニック個々の詳細を確認・編集することができます。" class="hidden"></div>
+    <div id="step4" data-title-text="テクニック詳細" data-intro-text="こちらのノート欄に、日々の練習で気がついたことを記録していきましょう！" class="hidden"></div>
+    <div
+      id="step5"
+      data-intro-text="こちらの画面の説明は以上です。<br><br>本画面から確認できるテクニック同士を繋げて可視化する操作について知りたい場合は <a class='underline font-bold' href=<%= mypage_chart_path(@chart) %>>Flow Chart</a> メニューの左上にある
+        <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
+          <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
+        </svg>
+      をクリックしてください！"
+      class="hidden"
+    >
+    </div>
+
+    <%= turbo_frame_tag "technique-list" do %>
+      <div class="space-y-2 max-w-screen-2xl mx-auto mt-10">
+        <% if @techniques.present? %>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 max-w-screen-2xl mx-auto">
+          <% @techniques.each do |technique| %>
+            <article class="relative bg-base-200 shadow-md rounded-box p-4 space-y-3">
+              <div class="items-start space-y-2 flex flex-col">
+                <% case technique.category %>
+                <% when "submission" then %>
+                  <span class="badge badge-soft bg-red-100"><%= technique.category.humanize %></span>
+                <% when "sweep" then %>
+                  <span class="badge badge-soft bg-blue-100"><%= technique.category.humanize %></span>
+
+                <% when "pass" then %>
+                  <span class="badge badge-soft bg-green-100"><%= technique.category.humanize %></span>
+
+                <% when "guard" then %>
+                  <span class="badge badge-soft bg-gray-100"><%= technique.category.humanize %></span>
+
+                <% when "control" then %>
+                  <span class="badge badge-soft bg-purple-100"><%= technique.category.humanize %></span>
+
+                <% when "takedown" then %>
+                  <span class="badge badge-soft bg-orange-100"><%= technique.category.humanize %></span>
+                <% else %>
+                  <span class="badge badge-soft"><%= technique.category ? technique.category.humanize : "未分類" %></span>
+                <% end %>
+                <span class="text-lg font-medium" ><%= technique.name_ja %></span>
+              </div>
+
+              <!-- noteを表示に含めると、カードの厚みが変わってしまう 
+              <% if technique.note.present? %>
+                <p class="text-sm text-base-content/70 line-clamp-3 break-words"><%= technique.note %></p>
+              <% end %>
+              -->
+
+              <!-- カード全面クリックでdrawerを開く & 中身を読み込む（stretched-link的アンカー） -->
+              <%= link_to edit_mypage_technique_path(technique),
+                    class: "absolute inset-0 z-10",
+                    data: { turbo_frame: "technique-drawer", action: "click->drawer#open" } do %>
+                <span class="sr-only">編集を開く</span>
+              <% end %>
+            </article>
+          <% end %>
+          </div>
+        <% else %>
+          <div class="mt-10">
+            <p>表示するテクニックがありません。</p>
+          </div>
+        <% end %>
+      </div>
     <% end %>
   </div>
 
-  <div id="step3" data-title-text="テクニック詳細" data-intro-text="カードをクリックすると、テクニック個々の詳細を確認・編集することができます。" class="hidden"></div>
-  <div id="step4" data-title-text="テクニック詳細" data-intro-text="こちらのノート欄に、日々の練習で気がついたことを記録していきましょう！" class="hidden"></div>
-  <div
-    id="step5"
-    data-intro-text="こちらの画面の説明は以上です。<br><br>本画面から確認できるテクニック同士を繋げて可視化する操作について知りたい場合は <a class='underline font-bold' href=<%= mypage_chart_path(@chart) %>>Chart</a> メニューの左上にある
-      <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
-        <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
-      </svg>
-    をクリックしてください！"
-    class="hidden"
-  >
-  </div>
-
-  <%= turbo_frame_tag "technique-list" do %>
-    <div class="space-y-2 max-w-screen-2xl mx-auto">
-      <% if @techniques.present? %>
-        <% @techniques.each do |technique| %>
-          <div class="collapse collapse-arrow bg-base-200 shadow-md">
-            <input type="checkbox">
-            <div class="collapse-title items-start space-y-2 flex flex-col">
-              <% case technique.category %>
-              <% when "submission" then %>
-                <span class="badge badge-soft bg-red-100"><%= technique.category.humanize %></span>
-              <% when "sweep" then %>
-                <span class="badge badge-soft bg-blue-100"><%= technique.category.humanize %></span>
-                
-              <% when "pass" then %>
-                <span class="badge badge-soft bg-green-100"><%= technique.category.humanize %></span>
-
-              <% when "guard" then %>
-                <span class="badge badge-soft bg-gray-100"><%= technique.category.humanize %></span>
-
-              <% when "control" then %>
-                <span class="badge badge-soft bg-purple-100"><%= technique.category.humanize %></span>
-
-              <% when "takedown" then %>
-                <span class="badge badge-soft bg-orange-100"><%= technique.category.humanize %></span>
-              <% else %>
-                <span class="badge badge-soft"><%= technique.category ? technique.category.humanize : "未分類" %></span>
-              <% end %>
-              <span class="text-lg font-medium" ><%= technique.name_ja %></span>
-            </div>
-            <div class="collapse-content flex flex-col items-center">
-              <%= form_with model: technique, url: mypage_technique_path(technique), method: :patch, class: "w-full" do |f| %>
-                <%= render 'shared/error_messages', object: technique %>
-                <%= render 'form_core', f: f %>
-                <div class="flex flex-col items-center space-y-4 mt-10">
-                  <!-- turbo_frame: "_top" を指定してページ全体をリロードしないと、フラッシュメッセージが表示されない。-->
-                  <%= f.submit "保存", class: "btn btn-primary btn-wide", data: { turbo_frame: "_top" } %>
-                  <%= link_to '削除', mypage_technique_path(technique.id), class: "btn btn-error btn-wide", data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？", turbo_frame: "_top" } %>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      <% else %>
-        <div class="mt-10">
-          <p>表示するテクニックがありません。</p>
-        </div>
+  <!-- ドロワー右側 -->
+  <div class="drawer-side z-50">
+    <!-- 背景クリックで閉じる -->
+    <label class="drawer-overlay" data-action="click->drawer#close"></label>
+    <!-- パネル本体（SP=全幅, PC=28rem） -->
+    <aside class="bg-base-200 w-full sm:w-[28rem] max-w-[90vw] h-full overflow-y-auto" role="dialog" aria-modal="true">
+      <div class="flex flex-end justify-between p-3">
+        <h2 class="text-lg font-bold mr-2">テクニック編集</h2>
+        <!-- ✕ボタン（クリックで閉じる） -->
+        <label class="btn btn-sm btn-circle btn-ghost " data-action="click->drawer#close">✕</label>
+      </div>
+      <!-- Turbo Frame: ここに edit 部分を差し替え表示 -->
+      <%= turbo_frame_tag "technique-drawer" do %>
+        <!-- empty here until a card is clicked -->
       <% end %>
-    </div>
-  <% end %>
+    </aside>
+  </div>
 </div>

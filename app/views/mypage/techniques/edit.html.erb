@@ -1,12 +1,12 @@
-<%= turbo_frame_tag dom_id(@technique) do %>
-  <%= form_with model: @technique, url: mypage_technique_path(@technique), method: :patch, local: true do |f| %>
-    <div class="w-72 mx-auto m-4">
+<%= turbo_frame_tag "technique-drawer" do %>
+  <%= form_with model: @technique, url: mypage_technique_path(@technique), method: :patch do |f| %>
+    <div class="w-full mx-auto m-4">
       <%= render 'form_core', f: f %>
     </div>
   
-    <div class="flex flex-col items-center space-y-4 mt-10">
-      <%= f.submit "保存", class: "btn btn-primary btn-wide" %>
-      <%= link_to '削除', mypage_technique_path(@technique.id), class: "btn btn-error btn-wide", data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
+    <div class="flex flex-col items-center space-y-2 my-10">
+      <%= f.submit "保存", class: "btn btn-primary btn-wide", data: { turbo_frame: "_top" } %>
+      <%= link_to '削除', mypage_technique_path(@technique.id), class: "btn btn-error btn-wide", data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？", turbo_frame: "_top" } %>
     </div>
   <% end %>
 <% end %>

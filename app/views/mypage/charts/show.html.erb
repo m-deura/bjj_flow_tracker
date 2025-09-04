@@ -7,7 +7,7 @@
   data-chart-add-url-value="<%= new_mypage_chart_node_path(@chart) %>"
 >
   <input type="checkbox" class="drawer-toggle" data-chart-target="toggle" />
-  <div class="drawer-content flex flex-col min-h-screen">
+  <div class="drawer-content">
     <div class="flex items-center space-x-2 m-4">
       <h1 class="text-3xl font-bold ml-8">Flow Chart</h1>
       <div class="tooltip" data-tip="ステップガイドを開始するにはここをクリック" data-action="click->step-guide#startChartGuide">
@@ -19,7 +19,7 @@
 
     <div id="step0" class="hidden" data-intro-text="こちらは、テクニック同士の繋がりを可視化するための画面です。<br><br>このエリアにテクニックを配置し、フローチャートを作ることができます。"></div>
 
-    <div class="mx-auto w-[90%] border border-base-300 relative flex-1 min-h-0">
+    <div class="mx-auto w-[90%] h-[60dvh] border border-base-300 relative min-h-0">
     <!-- z-1を使ってcyコンテナより手前に出しておかないとボタンが効かなくなる -->
       <button
         id="step1"
@@ -45,7 +45,11 @@
 
     <!-- introjsで作成したガイドの要素は、本ファイルトップにあるdivタグに付与したdata-controller='step-guide' のスコープから外れる。その対策として、改めてdata-controller='step-guide'をintro-text内のbuttonタグに付与。 -->
     <!-- z-2を指定しないと、「新しいフローを作る」ボタンの下にドロワーが潜って表示されてしまう -->
-    <div id="step3" class="menu bg-base-200 text-base-content min-h-full w-2/3 p-4 z-2"
+    <aside
+      id="step3"
+      class="flex flex-col bg-base-200 w-full sm:w-[32rem] max-w-[90vw] h-full p-4 z-2"
+      role="dialog"
+      aria-modal="true"
       data-title-text="ノード編集"
       data-intro-text="本画面の操作について知りたい方は、ノード編集画面左上にある
         <button type='button' class='underline' data-controller='step-guide' data-action='click->step-guide#startNodeGuide'>
@@ -54,9 +58,23 @@
           </svg>
         </button> をクリックしてください！"
     >
-      <%= turbo_frame_tag "node-drawer", data: { chart_target: "drawer" } do %>
+
+      <div class="flex flex-end justify-between p-3">
+        <div class="flex items-center mb-4">
+          <h2 class="text-lg font-bold mr-2">ノード編集</h2>
+          <div class="tooltip tooltip-bottom" data-tip="ステップガイドを開始するにはここをクリック" data-action="click->step-guide#startNodeGuide">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+            </svg>
+          </div>
+        </div>
+        <!-- ✕ボタン（クリックで閉じる） -->
+        <label class="btn btn-sm btn-circle btn-ghost " data-action="click->chart#closeDrawer">✕</label>
+      </div>
+
+      <%= turbo_frame_tag "node-drawer", class: "overflow-y-auto", data: { chart_target: "drawer" } do %>
         <!-- empty until the node clicked -->
       <% end %>
-    </div>
+    </aside>
   </div>
 </div>
