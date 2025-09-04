@@ -11,7 +11,6 @@
       gtag('config', 'G-1EMLRGHCMZ');
     </script>
 
-    <title><%= content_for(:title) || "BJJ Flow Tracker" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="description" content="BJJ Flow Tracker は、ブラジリアン柔術のテクニックをフローチャート形式で整理・可視化できるツールです。" />
@@ -25,6 +24,9 @@
     <%= favicon_link_tag 'icon.svg' %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+
+    <!-- ここで default_meta_tags.title を指定(meta-tags は title タグも生成する) -->
+    <%= display_meta_tags(default_meta_tags.merge(title: content_for?(:title) ? content_for(:title) : nil)) %>
   </head>
 
   <body class="flex flex-col min-h-screen">
