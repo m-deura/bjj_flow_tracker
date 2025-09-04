@@ -73,7 +73,7 @@ export default class extends Controller {
 					intro: step3.dataset.introText
 				},
 				{
-					element: document.querySelector(".collapse"),
+					element: document.querySelector(".drawer-side"),
 					title: step4.dataset.titleText,
 					intro: step4.dataset.introText,
 					// ハイライトが当たった展開済みカードが閉じられないようにする
@@ -94,8 +94,8 @@ export default class extends Controller {
 
 		// 一番上にあるカードを展開し、カード内部(テクニック詳細画面)の説明をする。
 		if (intro.getCurrentStep() === 3) {
-			const card = document.querySelector(".collapse");
-			if (card) card.querySelector("input[type='checkbox']").checked = true;
+			const firstCard = document.querySelector("a[data-turbo-frame='technique-drawer']");
+			if (firstCard) firstCard.click();
 			}
 	})
 		intro.start();
