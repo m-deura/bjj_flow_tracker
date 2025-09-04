@@ -7,7 +7,8 @@
       <%= f.text_field :name_ja, class: "input input-bordered w-full" %>
   
       <%= f.label :note, "ノート" %>
-      <%= f.text_area :note, class: "textarea textarea-bordered w-full" %>
+      <%= f.text_area :note, class: "textarea textarea-bordered w-full field-sizing-content
+" %>
   
       <%= f.label :category, "カテゴリー" %>
       <%= f.select :category, Technique.categories.keys.map { |c| [c.humanize, c] }, { include_blank: "未分類" }, class: "select select-bordered w-full" %>
