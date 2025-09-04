@@ -184,6 +184,14 @@ export default class extends Controller {
 			showProgress: true
 		})
 
+		intro.onBeforeChange(() => {
+			intro.refresh();
+			// 小さい画面だと最終ステップガイドが見切れるため、画面上部へ自動スクロール。
+			if (intro.getCurrentStep() === 4) {
+				window.scrollTo({ top: 0, behavior: "smooth" })
+			}
+		});
+
 		intro.start();
 	}
 }
