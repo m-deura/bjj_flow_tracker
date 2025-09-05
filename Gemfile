@@ -69,6 +69,9 @@ group :development do
 
   # Simple Coverage
   gem "simplecov"
+
+  # to detect unused i18n key
+  gem "i18n-tasks"
 end
 
 group :test do
