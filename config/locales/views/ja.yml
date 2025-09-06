@@ -1,0 +1,20 @@
+ja:
+  terms:
+    root_nodes: フローの開始点
+    children_nodes: 展開先テクニック
+  helpers:
+    submit:
+      create: 登録
+      submit: 保存
+      update: 更新
+  defaults:
+    flash_messages:
+      created: "%{item}を作成しました"
+      not_created: "%{item}を作成できませんでした"
+      updated: "%{item}を更新しました"
+      not_updated: "%{item}を更新できませんでした"
+      deleted: "%{item}を削除しました"
+      multiple_select: "%{item}を1つ以上選択してください"
+  header:
+    login: ログイン
+    logout: ログアウト

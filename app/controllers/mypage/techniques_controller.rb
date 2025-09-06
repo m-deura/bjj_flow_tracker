@@ -15,9 +15,9 @@ class Mypage::TechniquesController < ApplicationController
   def create
     @technique = current_user.techniques.build(technique_params)
     if @technique.save
-      redirect_to mypage_techniques_path, notice: "保存しました"
+      redirect_to mypage_techniques_path, notice: t("defaults.flash_messages.created", item: Technique.model_name.human)
     else
-      flash.now[:alert] = "保存できませんでした"
+      flash.now[:alert] = t("defaults.flash_messages.not_created", item: Technique.model_name.human)
       render :new, status: :unprocessable_entity
     end
   end
@@ -35,9 +35,9 @@ class Mypage::TechniquesController < ApplicationController
 
     if @technique.update(technique_params)
       # チャート画面上からテクニックを更新した場合、chart_idがparamsに含まれる。
-      redirect_to mypage_techniques_path, notice: "保存しました", status: :see_other
+      redirect_to mypage_techniques_path, notice: t("defaults.flash_messages.updated", item: Technique.model_name.human), status: :see_other
     else
-      flash[:alert] = "保存できませんでした"
+      flash[:alert] = t("defaults.flash_messages.not_updated", item: Technique.model_name.human)
 
       # turbo_frame内で render 'shared/error_message' しても描写されないので、flash[:errors]経由でエラーメッセージ詳細を描写する。
       flash[:errors] = @technique.errors.full_messages
@@ -48,7 +48,7 @@ class Mypage::TechniquesController < ApplicationController
   def destroy
     technique = Technique.find(params[:id])
     technique.destroy!
-    redirect_to mypage_techniques_path, notice: "削除しました"
+    redirect_to mypage_techniques_path, notice: t("defaults.flash_messages.deleted", item: Technique.model_name.human)
   end
 
   private
