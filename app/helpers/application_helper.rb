@@ -19,14 +19,14 @@ module ApplicationHelper
         description: :description,
         type: "website",
         url: :canonical,
-        image: "/ogp.png",
+        image: image_url("ogp.png"),
         locale: "ja_JP",
         locale_alternate: "en_US"
       },
       twitter: {
         card: "summary_large_image",
         site: "@yakiRUNTEQ67a",
-        image: "/ogp.png"
+        image: image_url("ogp.png")
       }
     }
   end
