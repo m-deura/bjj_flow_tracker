@@ -2,6 +2,10 @@ ja:
   terms:
     root_nodes: フローの開始点
     children_nodes: 展開先テクニック
+  shared:
+    sign_in_with: "%{provider} でログイン"
+    providers:
+      google: "Google"
   helpers:
     submit:
       create: 登録
