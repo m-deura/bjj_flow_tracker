@@ -8,6 +8,10 @@
 #  other: "badge"
 #  }.freeze
 
+- date: "2025-09-08"
+  kind: fixed
+  title: バグ修正
+  body: 新しいフロー作成画面にて、開始点テクニック選択肢の描写範囲が狭い問題を解消しました。
 - date: "2025-09-04"
   kind: changed
   title: UI改善
