@@ -7,6 +7,8 @@ class Mypage::NodesController < ApplicationController
     @grouped = @candidate_techniques
         .group_by { |t| t.category ? t.category.humanize : "未分類" }
         .transform_values { |arr| arr.map { |t| [ t.name_ja, t.id ] } }
+
+    render :new, formats: :turbo_stream
   end
 
   def create
@@ -74,6 +76,8 @@ class Mypage::NodesController < ApplicationController
       (@candidate_techniques + @node.children.includes(:technique).map(&:technique))
         .group_by { |t| t.category ? t.category.humanize : "未分類" }
         .transform_values { |arr| arr.map { |t| [ t.name_ja, t.id ] } }
+
+    render :edit, formats: :turbo_stream
   end
 
   def update
