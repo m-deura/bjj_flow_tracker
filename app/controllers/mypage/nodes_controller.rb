@@ -7,6 +7,8 @@ class Mypage::NodesController < ApplicationController
     @grouped = @candidate_techniques
         .group_by { |t| t.category ? t.category.humanize : "未分類" }
         .transform_values { |arr| arr.map { |t| [ t.name_ja, t.id ] } }
+
+    render :new, formats: :turbo_stream
   end
 
   def create
@@ -15,7 +17,7 @@ class Mypage::NodesController < ApplicationController
     begin
       ActiveRecord::Base.transaction do
         roots = Array(create_params[:roots])
-        raise ArgumentError, "フローの開始点を1つ以上選択してください" if roots.empty?
+        raise ArgumentError, t("defaults.flash_messages.multiple_select", item: t("terms.root_nodes")) if roots.empty?
 
         new_names = []
         existing_ids = []
@@ -41,7 +43,7 @@ class Mypage::NodesController < ApplicationController
         end
       end
 
-      redirect_to mypage_chart_path(@chart), notice: "フローの開始点を作成しました"
+      redirect_to mypage_chart_path(@chart), notice: t("defaults.flash_messages.created", item: t("terms.root_nodes"))
 
     rescue ArgumentError => e
       flash[:alert] = e.message
@@ -50,7 +52,8 @@ class Mypage::NodesController < ApplicationController
       flash[:alert] = e.message
       redirect_to mypage_chart_path(@chart)
     rescue StandardError => e
-      flash[:alert] = "フローの開始点を作成できませんでした"
+      flash[:alert] = redirect_to mypage_chart_path(@chart), notice: t("defaults.flash_messages.note_created", item: t("terms.root_nodes"))
+
       redirect_to mypage_chart_path(@chart)
     end
   end
@@ -73,6 +76,8 @@ class Mypage::NodesController < ApplicationController
       (@candidate_techniques + @node.children.includes(:technique).map(&:technique))
         .group_by { |t| t.category ? t.category.humanize : "未分類" }
         .transform_values { |arr| arr.map { |t| [ t.name_ja, t.id ] } }
+
+    render :edit, formats: :turbo_stream
   end
 
   def update
@@ -88,9 +93,9 @@ class Mypage::NodesController < ApplicationController
     chart = @node.chart
 
     if @form.save
-      redirect_to mypage_chart_path(chart), notice: "展開先テクニックを更新しました", status: :see_other
+      redirect_to mypage_chart_path(chart), notice: t("defaults.flash_messages.updated", item: Node.model_name.human), status: :see_other
     else
-      flash[:alert] = "保存できませんでした"
+      flash[:alert] = t("defaults.flash_messages.not_updated", item: Node.model_name.human)
       flash[:errors] = @form.errors.full_messages
       # status: :unprocessable_entity(422) だと フルページ更新できない
       redirect_to mypage_chart_path(chart), status: :see_other
@@ -101,7 +106,7 @@ class Mypage::NodesController < ApplicationController
     node = current_user.nodes.find(params[:id])
     chart = node.chart
     node.destroy!
-    redirect_to mypage_chart_path(chart), notice: "ノードを削除しました", status: :see_other
+    redirect_to mypage_chart_path(chart), notice: t("defaults.flash_messages.deleted", item: Node.model_name.human), status: :see_other
   end
 
   private

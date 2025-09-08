@@ -1,6 +1,8 @@
-<%= turbo_frame_tag "node-drawer" do %>
-  <h2 class="text-lg font-bold mb-4">フローの開始点を新規作成</h2>
+<%= turbo_stream.update "node-drawer-header" do %>
+  <%= render "drawer_header", editing: false %>
+<% end %>
 
+<%= turbo_stream.update "node-drawer" do %>
   <%= form_with url: mypage_chart_nodes_path(@chart), method: :post, class: "space-y-2 mt-10 w-4/5 mx-auto" do |f| %>
     <div class="flex items-center space-x-2">
       <%= label_tag "root_nodes", "開始点テクニック" %>
