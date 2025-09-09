@@ -6,12 +6,27 @@ ja:
     sign_in_with: "%{provider} でログイン"
     providers:
       google: "Google"
+  form:
+    required: 必須
   helpers:
     submit:
       create: 登録
       submit: 保存
       update: 更新
+    label:
+      technique_name: テクニック名
+      note: ノート
+      category: カテゴリー
+      children_nodes: 展開先テクニック
+      root_nodes: 開始点テクニック
   defaults:
+    create: 作成
+    search: テクニックを検索
+    edit: 編集
+    show: 詳細
+    delete: 削除
+    delete_item: "%{item}を削除"
+    delete_confirm: 削除しますか？
     flash_messages:
       created: "%{item}を作成しました"
       not_created: "%{item}を作成できませんでした"
@@ -19,6 +34,14 @@ ja:
       not_updated: "%{item}を更新できませんでした"
       deleted: "%{item}を削除しました"
       multiple_select: "%{item}を1つ以上選択してください"
+      require_login: ログインしてください
   header:
-    login: ログイン
+    home: Home
+    technique: Technique
+    flow_chart: "Flow Chart"
+    dashboard: Dashboard
     logout: ログアウト
+  footer:
+    inquiry: お問い合わせ
+    privacy: プライバシーポリシー
+    terms: 利用規約
