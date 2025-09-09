@@ -20,13 +20,14 @@ ja:
       children_nodes: 展開先テクニック
       root_nodes: 開始点テクニック
   defaults:
-    create: 作成
+    create: 新規作成
     search: テクニックを検索
     edit: 編集
     show: 詳細
     delete: 削除
     delete_item: "%{item}を削除"
     delete_confirm: 削除しますか？
+    back: 一覧へ戻る
     flash_messages:
       created: "%{item}を作成しました"
       not_created: "%{item}を作成できませんでした"
@@ -45,3 +46,11 @@ ja:
     inquiry: お問い合わせ
     privacy: プライバシーポリシー
     terms: 利用規約
+  mypage:
+    techniques:
+      index:
+        title: Technique 
+        nothing_here: 表示するテクニックがありません
+        editing_panel_title: テクニック編集
+      new: 
+        title: 新規テクニック作成
