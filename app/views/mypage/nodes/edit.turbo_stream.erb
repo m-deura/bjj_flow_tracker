@@ -24,13 +24,13 @@
         data-title-text="展開先テクニック更新"
         data-intro-text="このテクニックから展開される技を編集することができます。<br><br>ここで展開先として選択されたテクニックは、このテクニックの右側に接続される形でチャート上に描写されます。"
       >
-        <%= f.label "children", "展開先テクニック" %>
+        <%= f.label "children", t("helpers.label.children_nodes") %>
         <%= f.select "children",
             grouped_options_for_select(@grouped, @selected_ids),
             {},
             id: "children_nodes",
             multiple: true,
-            placeholder: "テクニックを検索",
+            placeholder: t("defaults.search"),
             data: { controller: "tom-select" }
         %>
       </div>
@@ -39,14 +39,14 @@
     <div class="divider my-8"></div>
 
     <div class="flex flex-col items-center space-y-2 my-10">
-      <%= f.submit "保存", class: "btn btn-primary btn-wide", data: { turbo_frame: "_top" } %>
-      <%= link_to "ノードを削除", 
+      <%= f.submit t("helpers.submit.submit"), class: "btn btn-primary btn-wide", data: { turbo_frame: "_top" } %>
+      <%= link_to t("defaults.delete_item", item: Node.model_name.human), 
         mypage_node_path(@node),
         id: "step3n",
         class: "btn btn-error btn-wide",
         data: { 
                 turbo_method: :delete,
-                turbo_confirm: "本当に削除しますか？",
+                turbo_confirm: t("defaults.delete_confirm"),
                 turbo_frame: "_top",
                 title_text: "ノード削除",
                 intro_text: "こちらからノードを削除することができます。<br><br>ノードを削除すると、展開先テクニックとして接続されていたノードもすべて削除されますので、ご注意ください。"
