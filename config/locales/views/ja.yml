@@ -28,6 +28,7 @@ ja:
     delete_item: "%{item}を削除"
     delete_confirm: 削除しますか？
     back: 一覧へ戻る
+    start_guide: ステップガイドを開始
     flash_messages:
       created: "%{item}を作成しました"
       not_created: "%{item}を作成できませんでした"
@@ -63,4 +64,16 @@ ja:
       drawer_header:
         editing_panel_title: ノードを編集
         creating_panel_title: フローの開始点を作成
+    dashboard:
+      show:
+        title: Dashboard
+        start_guide: ステップガイドを始める
+        updates: 更新情報
+        technique_details: "技の一覧と練習メモを管理します。"
+        chart_details: "試合またはスパーの流れを可視化します。" 
+        metrics:
+          techniques: 
+            other: "%{count} テクニック"
+          nodes:
+            other: "%{count} ノード"
 

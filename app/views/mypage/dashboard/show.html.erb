@@ -1,3 +1,4 @@
+<% content_for(:title, t(".title")) %>
 <div class="container mx-auto px-4 my-8" data-controller="step-guide">
   <!-- Hero -->
   <div class="hero shadow-lg mb-8">
@@ -8,7 +9,7 @@
         <p>本日も練習で学んだことを記録しましょう。</p>
         <p>本アプリの使い方については、以下のステップガイドをご参照ください。</p>
         <div class="flex justify-center">
-        <button data-action="click->step-guide#startMenuGuide" class="btn btn-primary btn-wide btn-lg my-10">ステップガイドを始める</button>
+          <button data-action="click->step-guide#startMenuGuide" class="btn btn-primary btn-wide btn-lg my-10"><%= t(".start_guide") %></button>
         </div>
       </div>
     </div>
@@ -38,15 +39,15 @@
               </svg>
             </div>
             <div>
-              <h3 class="font-semibold text-lg">Technique</h3>
-              <p class="text-sm opacity-70">技の一覧と練習メモを管理します。</p>
+              <h3 class="font-semibold text-lg"><%= t("headers.technique") %></h3>
+              <p class="text-sm opacity-70"><%= t(".technique_details") %></p>
             </div>
           </div>
   
           <!-- 右：メトリクス / 矢印 -->
           <div class="flex items-center gap-2">
             <!-- sm以下だとバッジ内で文字列が折り返してしまうので非表示 -->
-            <span class="sm:inline hidden badge badge-outline"><%= @technique_count %> テクニック</span>
+            <span class="sm:inline hidden badge badge-outline"><%= t(".metrics.techniques", count: @technique_count) %></span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                  fill="none" class="size-5 opacity-60 group-hover:opacity-100 transition">
               <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8"
@@ -80,13 +81,13 @@
             </div>
 
             <div>
-              <h3 class="font-semibold text-lg">Flow Chart</h3>
-              <p class="text-sm opacity-70">試合の流れを可視化します。</p>
+              <h3 class="font-semibold text-lg"><%= t("headers.flow_chart") %></h3>
+              <p class="text-sm opacity-70"><%= t(".chart_details") %></p>
             </div>
           </div>
 
           <div class="flex items-center gap-2">
-            <span class="sm:inline hidden badge badge-outline"><%= @node_count %> ノード</span>
+            <span class="sm:inline hidden badge badge-outline"><%= t(".metrics.nodes", count: @node_count) %></span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                  fill="none" class="size-5 opacity-60 group-hover:opacity-100 transition">
               <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8"
@@ -101,7 +102,7 @@
   <!-- 更新情報 -->
   <div class="card bg-base-200 shadow rounded-2xl">
     <div class="card-body p-4">
-      <h3 class="text-base font-semibold mb-2">更新情報</h3>
+      <h3 class="text-base font-semibold mb-2"><%= t(".updates") %></h3>
       <div class="h-80 overflow-y-auto pr-1 overscroll-contain">
         <%= render "changelog" %>
       </div>
