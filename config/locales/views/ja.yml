@@ -51,6 +51,15 @@ ja:
       index:
         title: Technique 
         nothing_here: 表示するテクニックがありません
-        editing_panel_title: テクニック編集
+        editing_panel_title: テクニックを編集
       new: 
-        title: 新規テクニック作成
+        title: 新規テクニックを作成
+    charts:
+      show:
+        title: "Flow Chart"
+        create_nodes: 新しいフローを作る
+    nodes:
+      drawer_header:
+        editing_panel_title: ノードを編集
+        creating_panel_title: フローの開始点を作成
+
