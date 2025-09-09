@@ -5,19 +5,19 @@
 <%= turbo_stream.update "node-drawer" do %>
   <%= form_with url: mypage_chart_nodes_path(@chart), method: :post, class: "space-y-2 mt-10 w-4/5 mx-auto" do |f| %>
     <div class="flex items-center space-x-2">
-      <%= label_tag "root_nodes", "開始点テクニック" %>
-      <div class="badge badge-sm badge-error badge-outline">必須</div>
+      <%= label_tag "root_nodes", t("helpers.label.root_nodes") %>
+      <div class="badge badge-sm badge-error badge-outline"><%= t("form.required") %></div>
     </div>
     <%= select_tag "node[roots]",
           grouped_options_for_select(@grouped),
           id: "root_nodes",
           multiple: true,
-          placeholder: "テクニックを検索",
+          placeholder: t("defaults.search"),
           data: { controller: "tom-select" }
     %>
 
     <div class="flex justify-center">
-      <%= f.submit "追加", class: "btn btn-secondary btn-wide", data: { turbo_frame: "_top" } %>
+      <%= f.submit t("helpers.submit.create"), class: "btn btn-secondary btn-wide", data: { turbo_frame: "_top" } %>
     </div>
   <% end %>
 <% end %>
