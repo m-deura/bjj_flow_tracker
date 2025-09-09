@@ -36,6 +36,7 @@ ja:
       deleted: "%{item}を削除しました"
       multiple_select: "%{item}を1つ以上選択してください"
       require_login: ログインしてください
+      wrong_input: 入力に誤りがあります
   header:
     home: Home
     technique: Technique
