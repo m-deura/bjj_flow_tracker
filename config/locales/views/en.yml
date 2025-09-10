@@ -1,0 +1,81 @@
+en:
+  terms:
+    root_nodes: "Flow Starting Point"
+    children_nodes: "Transitions"
+  shared:
+    sign_in_with: "Sign in with %{provider}"
+    providers:
+      google: "Google"
+  form:
+    required: Required
+  helpers:
+    submit:
+      create: Create
+      submit: Save
+      update: Update
+    label:
+      technique_name: "Technique Name"
+      note: Note
+      category: Category
+      children_nodes: "Transitions"
+      root_nodes: "Root Technique"
+  defaults:
+    create: New
+    search: "Search Techniques"
+    edit: Edit
+    show: Details
+    delete: Delete
+    delete_item: "Delete %{item}"
+    delete_confirm: "Are you sure you want to delete?"
+    back: "Back to List"
+    start_guide: "Start Step Guide"
+    flash_messages:
+      created: "%{item} was successfully created"
+      not_created: "Failed to create %{item}"
+      updated: "%{item} was successfully updated"
+      not_updated: "Failed to update %{item}"
+      deleted: "%{item} was successfully deleted"
+      multiple_select: "Please select one or more %{item}"
+      require_login: "Please sign in"
+      wrong_input: "There are errors in your input"
+  header:
+    home: Home
+    technique: Technique
+    flow_chart: "Flow Chart"
+    dashboard: Dashboard
+    logout: Logout
+  footer:
+    inquiry: Contact
+    privacy: "Privacy Policy"
+    terms: "Terms of Service"
+  mypage:
+    techniques:
+      index:
+        title: "Techniques"
+        nothing_here: "No techniques to display"
+        editing_panel_title: "Edit Technique"
+      new:
+        title: "Create a New Technique"
+    charts:
+      show:
+        title: "Flow Chart"
+        create_nodes: "Create a New Flow"
+    nodes:
+      drawer_header:
+        editing_panel_title: "Edit Node"
+        creating_panel_title: "Create Starting Point"
+    dashboard:
+      show:
+        title: Dashboard
+        start_guide: "Start Step Guide"
+        updates: Updates
+        technique_details: "Manage your techniques and training notes."
+        chart_details: "Visualize match or sparring flows."
+        metrics:
+          techniques:
+            one: "%{count} technique"
+            other: "%{count} techniques"
+          nodes:
+            one: "%{count} node"
+            other: "%{count} nodes"
+
