@@ -3,26 +3,26 @@
     <%= image_tag "icon.svg", alt: "icon", class: "w-100 h-auto mx-auto"%>
     <div>
       <h1 class="font-bebas text-5xl font-bold"><%= base_title %></h1>
-      <h3 class="text-lg font-bold">技は点でなく、“流れ”で覚える</h3>
+      <h3 class="text-lg font-bold"><%= t(".hero.catchphrase") %></h3>
       <p class="py-6">
-        <%= base_title %> は、ブラジリアン柔術のテクニックをフローチャート形式で整理・可視化できるツールです。
+        <%= t(".hero.description", app_name: base_title) %>
       </p>
 
       <div class="flex space-x-3">
         <% if user_signed_in? %>
-          <button type="button" class="btn btn-disabled">ログイン済みです</button>
+          <button type="button" class="btn btn-disabled"><%= t(".hero.already_signed_in") %></button>
         <% else %>
           <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "btn btn-outline bg-white" do %>
             <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
             <span><%= t("shared.sign_in_with", provider: t("shared.providers.google")) %></span>
           <% end %>
         <% end %>
-        <%#= link_to "デモを触ってみる", "#", class: "btn btn-primary shwdow-md" %>
-        <button class="btn bg-base-300 shadow" onclick="my_modal_1.showModal()">デモを触ってみる</button>
+        <%#= link_to t(".hero.cta_demo"), "#", class: "btn btn-primary shadow-md" %>
+        <button class="btn bg-base-300 shadow" onclick="my_modal_1.showModal()"><%= t(".hero.cta_demo") %></button>
         <dialog id="my_modal_1" class="modal">
           <div class="modal-box">
-            <h3 class="text-lg font-bold">本機能は、現時点で未実装です。</h3>
-            <p class="py-4">利用にあたっては、Googleアカウントでログインしてください。<br></p>
+            <h3 class="text-lg font-bold"><%= t(".hero.demo_modal.title") %></h3>
+            <p class="py-4"><%= t(".hero.demo_modal.body") %></p>
           </div>
           <form method="dialog" class="modal-backdrop">
             <button>close</button>
@@ -35,29 +35,29 @@
 
   <section id="features" class="py-20">
     <div class="max-w-7xl mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-bold text-center">主な機能</h2>
-      <p class="text-center opacity-70 mt-2">技の整理からゲームプラン作成まで、これ1つでOK</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-center"><%= t(".features.heading") %></h2>
+      <p class="text-center opacity-70 mt-2"><%= t(".features.subheading") %></p>
 
       <div class="mt-12 grid sm:grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="card bg-base-100 border border-base-300/60 shadow-sm">
           <div class="card-body">
             <div class="text-3xl">📌</div>
-            <h3 class="card-title">テクニックの記録</h3>
-            <p class="opacity-80">習った技を追加。カテゴリー（パス/スイープ/サブミッション等）で整理し、学んだ内容をノートに保存。</p>
+            <h3 class="card-title"><%= t(".features.cards.record.title") %></h3>
+            <p class="opacity-80"><%= t(".features.cards.record.body") %></p>
           </div>
         </div>
         <div class="card bg-base-100 border border-base-300/60 shadow-sm">
           <div class="card-body">
             <div class="text-3xl">🔗</div>
-            <h3 class="card-title">フローで可視化</h3>
-            <p class="opacity-80">技と技を線でつなぎ、<span class="font-semibold">フローチャート</span>を作成。試合・スパーのシナリオ作りに。</p>
+            <h3 class="card-title"><%= t(".features.cards.flow.title") %></h3>
+            <p class="opacity-80"><%= t(".features.cards.flow.body") %></p>
           </div>
         </div>
         <div class="card bg-base-100 border border-base-300/60 shadow-sm">
           <div class="card-body">
             <div class="text-3xl">🚀</div>
-            <h3 class="card-title">テンプレから成長</h3>
-            <p class="opacity-80">テンプレートをベースに自分専用へ。練習を重ねるほど柔術マップが育ちます。</p>
+            <h3 class="card-title"><%= t(".features.cards.grow_from_templates.title") %></h3>
+            <p class="opacity-80"><%= t(".features.cards.grow_from_templates.body") %></p>
           </div>
         </div>
       </div>
@@ -67,50 +67,50 @@
   <!-- Use cases / Benefits -->
   <section id="usecases" class="py-20 bg-base-200/60">
     <div class="max-w-7xl mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-bold text-center">こんな使い方ができます</h2>
+      <h2 class="text-3xl md:text-4xl font-bold text-center"><%= t(".usecases.heading") %></h2>
       <div class="mt-12 grid md:grid-cols-3 gap-6">
         <div class="card bg-base-100 shadow-sm border border-base-300/60">
           <div class="card-body">
-            <h3 class="card-title">学習ログ</h3>
-            <p class="opacity-80">その日に習った技をすぐ追加。関連する展開をつなげて復習がラクに。</p>
+            <h3 class="card-title"><%= t(".usecases.cards.study_log.title") %></h3>
+            <p class="opacity-80"><%= t(".usecases.cards.study_log.body") %></p>
           </div>
         </div>
         <div class="card bg-base-100 shadow-sm border border-base-300/60">
           <div class="card-body">
-            <h3 class="card-title">ゲームプラン作成</h3>
-            <p class="opacity-80">得意技を起点に、<span class="font-semibold">ガード→スイープ→パス→極め</span>のルートを設計。</p>
+            <h3 class="card-title"><%= t(".usecases.cards.game_plan.title") %></h3>
+            <p class="opacity-80"><%= t(".usecases.cards.game_plan.body") %></p>
           </div>
         </div>
         <div class="card bg-base-100 shadow-sm border border-base-300/60">
           <div class="card-body">
-            <h3 class="card-title">大会前の仕上げ</h3>
-            <p class="opacity-80">狙う展開をチャートでシミュレーション。迷いを減らし、当日集中できます。</p>
+            <h3 class="card-title"><%= t(".usecases.cards.pre_comp.title") %></h3>
+            <p class="opacity-80"><%= t(".usecases.cards.pre_comp.body") %></p>
           </div>
         </div>
       </div>
 
       <div class="mt-12 grid lg:grid-cols-2 gap-8 items-center">
         <ul class="steps steps-vertical lg:steps-horizontal w-full">
-          <li class="step step-primary" data-content="1">技を登録</li>
-          <li class="step step-primary" data-content="2">つなげてフロー化</li>
-          <li class="step step-primary" data-content="3">全体像を確認</li>
-          <li class="step step-primary" data-content="4">練習で更新</li>
+          <li class="step step-primary" data-content="1"><%= t(".usecases.steps.register") %></li>
+          <li class="step step-primary" data-content="2"><%= t(".usecases.steps.connect") %></li>
+          <li class="step step-primary" data-content="3"><%= t(".usecases.steps.overview") %></li>
+          <li class="step step-primary" data-content="4"><%= t(".usecases.steps.update") %></li>
         </ul>
         <div class="stats shadow">
           <div class="stat">
-            <div class="stat-title">初期の登録技</div>
-            <div class="stat-value">80+</div>
-            <div class="stat-desc">自分のペースで増やせます</div>
+            <div class="stat-title"><%= t(".usecases.stats.initial_techniques.title") %></div>
+            <div class="stat-value"><%= t(".usecases.stats.initial_techniques.value") %></div>
+            <div class="stat-desc"><%= t(".usecases.stats.initial_techniques.desc") %></div>
           </div>
           <div class="stat">
-            <div class="stat-title">フロー分岐</div>
-            <div class="stat-value">無制限</div>
-            <div class="stat-desc">自由に設計</div>
+            <div class="stat-title"><%= t(".usecases.stats.flow_branches.title") %></div>
+            <div class="stat-value"><%= t(".usecases.stats.flow_branches.value") %></div>
+            <div class="stat-desc"><%= t(".usecases.stats.flow_branches.desc") %></div>
           </div>
           <div class="stat">
-            <div class="stat-title">対応端末</div>
-            <div class="stat-value">PC / モバイル</div>
-            <div class="stat-desc">どこでも復習</div>
+            <div class="stat-title"><%= t(".usecases.stats.devices.title") %></div>
+            <div class="stat-value"><%= t(".usecases.stats.devices.value") %></div>
+            <div class="stat-desc"><%= t(".usecases.stats.devices.desc") %></div>
           </div>
         </div>
       </div>
@@ -120,30 +120,30 @@
   <!-- How to start -->
   <section id="howto" class="py-20">
     <div class="max-w-5xl mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-bold text-center">はじめ方</h2>
+      <h2 class="text-3xl md:text-4xl font-bold text-center"><%= t(".howto.heading") %></h2>
       <div class="mt-12 grid md:grid-cols-2 gap-6">
         <div class="card bg-base-100 border border-base-300/60 shadow-sm">
           <div class="card-body">
-            <h3 class="card-title">1. まずはテンプレから</h3>
-            <p class="opacity-80">用意されたテンプレートチャートをベースに、自分の得意技を追加してみましょう。</p>
+            <h3 class="card-title"><%= t(".howto.cards.step1.title") %></h3>
+            <p class="opacity-80"><%= t(".howto.cards.step1.body") %></p>
           </div>
         </div>
         <div class="card bg-base-100 border border-base-300/60 shadow-sm">
           <div class="card-body">
-            <h3 class="card-title">2. 自分の言葉でメモ</h3>
-            <p class="opacity-80">細かいコツ・注意点をノートに。練習後すぐに更新すると定着が早いです。</p>
+            <h3 class="card-title"><%= t(".howto.cards.step2.title") %></h3>
+            <p class="opacity-80"><%= t(".howto.cards.step2.body") %></p>
           </div>
         </div>
         <div class="card bg-base-100 border border-base-300/60 shadow-sm">
           <div class="card-body">
-            <h3 class="card-title">3. 展開をつなぐ</h3>
-            <p class="opacity-80">ノード同士を線でつなぎ、試合やスパーの展開をそのまま可視化しましょう。</p>
+            <h3 class="card-title"><%= t(".howto.cards.step3.title") %></h3>
+            <p class="opacity-80"><%= t(".howto.cards.step3.body") %></p>
           </div>
         </div>
         <div class="card bg-base-100 border border-base-300/60 shadow-sm">
           <div class="card-body">
-            <h3 class="card-title">4. 定期的に見返す</h3>
-            <p class="opacity-80">スパー前にチャートを確認。作戦を明確にして臨むことができます。</p>
+            <h3 class="card-title"><%= t(".howto.cards.step4.title") %></h3>
+            <p class="opacity-80"><%= t(".howto.cards.step4.body") %></p>
           </div>
         </div>
       </div>
@@ -153,23 +153,23 @@
   <!-- CTA -->
   <section id="get-started" class="py-20 bg-base-200/60">
     <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold">今すぐ、あなたの柔術マップを作ろう</h2>
-      <p class="mt-3 opacity-80">登録は1分、すぐにチャート作成へ。</p>
+      <h2 class="text-3xl md:text-4xl font-bold"><%= t(".cta.heading") %></h2>
+      <p class="mt-3 opacity-80"><%= t(".cta.subheading") %></p>
       <div class="mt-6 flex justify-center gap-3">
         <% if user_signed_in? %>
-          <button type="button" class="btn btn-disabled">ログイン済みです</button>
+          <button type="button" class="btn btn-disabled"><%= t(".hero.already_signed_in") %></button>
         <% else %>
           <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "btn btn-outline bg-white" do %>
             <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
             <span><%= t("shared.sign_in_with", provider: t("shared.providers.google")) %></span>
           <% end %>
         <% end %>
-        <%#= link_to "デモを触ってみる", "#", class: "btn btn-primary w-72 shwdow-md" %>
-          <button class="btn bg-base-300 shadow" onclick="my_modal_2.showModal()">デモを触ってみる</button>
+        <%#= link_to t(".hero.cta_demo"), "#", class: "btn btn-primary w-72 shadow-md" %>
+          <button class="btn bg-base-300 shadow" onclick="my_modal_2.showModal()"><%= t(".hero.cta_demo") %></button>
           <dialog id="my_modal_2" class="modal">
             <div class="modal-box">
-              <h3 class="text-lg font-bold">本機能については、現段階で未実装です。</h3>
-              <p class="py-4">利用にあたっては、Googleアカウントでログインしてください。<br></p>
+              <h3 class="text-lg font-bold"><%= t(".hero.demo_modal.title") %></h3>
+              <p class="py-4"><%= t(".hero.demo_modal.body") %></p>
             </div>
             <form method="dialog" class="modal-backdrop">
               <button>close</button>

@@ -76,4 +76,75 @@ ja:
             other: "%{count} テクニック"
           nodes:
             other: "%{count} ノード"
+  pages:
+    top:
+      hero:
+        catchphrase: "技は点でなく、“流れ”で覚える"
+        description: "%{app_name} は、ブラジリアン柔術のテクニックをフローチャート形式で整理・可視化できるツールです。"
+        cta_demo: "デモを触ってみる"
+        already_signed_in: "ログイン済みです"
+        demo_modal:
+          title: "本機能は、現時点で未実装です。"
+          body: "利用にあたっては、Googleアカウントでログインしてください。"
+      features:
+        heading: "主な機能"
+        subheading: "技の整理からゲームプラン作成まで、これ1つでOK"
+        cards:
+          record:
+            title: "テクニックの記録"
+            body: "習った技を追加。カテゴリー（パス/スイープ/サブミッション等）で整理し、学んだ内容をノートに保存。"
+          flow:
+            title: "フローで可視化"
+            body: "技と技を線でつなぎ、フローチャートを作成。試合・スパーのシナリオ作りに。"
+          grow_from_templates:
+            title: "テンプレから成長"
+            body: "テンプレートをベースに自分専用へ。練習を重ねるほど柔術マップが育ちます。"
+      usecases:
+        heading: "こんな使い方ができます"
+        cards:
+          study_log:
+            title: "学習ログ"
+            body: "その日に習った技をすぐ追加。関連する展開をつなげて復習がラクに。"
+          game_plan:
+            title: "ゲームプラン作成"
+            body: "得意技を起点に、ガード→スイープ→パス→極めの動線を設計。"
+          pre_comp:
+            title: "大会前の仕上げ"
+            body: "狙う展開をチャートでシミュレーション。迷いを減らし、当日集中できます。"
+        steps:
+          register: "技を登録"
+          connect: "つなげてフロー化"
+          overview: "全体像を確認"
+          update: "練習で更新"
+        stats:
+          initial_techniques:
+            title: "初期の登録技"
+            value: "90+"
+            desc: "自分のペースで増やせます"
+          flow_branches:
+            title: "フロー分岐"
+            value: "無制限"
+            desc: "自由に設計"
+          devices:
+            title: "対応端末"
+            value: "PC / モバイル"
+            desc: "どこでも復習"
+      howto:
+        heading: "はじめ方"
+        cards:
+          step1:
+            title: "1. まずはテンプレから"
+            body: "用意されたテンプレートチャートをベースに、自分の得意技を追加してみましょう。"
+          step2:
+            title: "2. 自分の言葉でメモ"
+            body: "細かいコツ・注意点をノートに。練習後すぐに更新すると定着が早いです。"
+          step3:
+            title: "3. 展開をつなぐ"
+            body: "ノード同士を線でつなぎ、試合やスパーの展開をそのまま可視化しましょう。"
+          step4:
+            title: "4. 定期的に見返す"
+            body: "試合やスパー前にチャートを確認。作戦を明確にして臨むことができます。"
+      cta:
+        heading: "今すぐ、あなたの柔術マップを作ろう"
+        subheading: "登録は1分、すぐにチャート作成へ。"
 

@@ -78,4 +78,74 @@ en:
           nodes:
             one: "%{count} node"
             other: "%{count} nodes"
-
+  pages:
+    top:
+      hero:
+        catchphrase: "Learn techniques as flows, not isolated moves"
+        description: "%{app_name} lets you organize and visualize Brazilian Jiu-Jitsu techniques as flowcharts."
+        cta_demo: "Try the demo"
+        already_signed_in: "You're already signed in"
+        demo_modal:
+          title: "This feature is not implemented yet."
+          body: "To use the service, please sign in with your Google account."
+      features:
+        heading: "Key Features"
+        subheading: "From organizing techniques to building your game plan—all in one place."
+        cards:
+          record:
+            title: "Record Techniques"
+            body: "Add techniques you learn. Organize them by category (pass/sweep/submission, etc.) and save notes."
+          flow:
+            title: "Visualize as Flows"
+            body: "Connect techniques to create a flowchart—ideal for planning matches and sparring."
+          grow_from_templates:
+            title: "Grow from Templates"
+            body: "Start from a template and make it your own. Your Jiu-Jitsu map grows as you train."
+      usecases:
+        heading: "How You Can Use It"
+        cards:
+          study_log:
+            title: "Study Log"
+            body: "Quickly add techniques learned that day. Link related transitions for easier review."
+          game_plan:
+            title: "Build a Game Plan"
+            body: "Design paths from your strengths — guard → sweep → pass → finish."
+          pre_comp:
+            title: "Pre-competition Prep"
+            body: "Simulate target sequences as a chart to reduce hesitation and stay focused on the day."
+        steps:
+          register: "Register techniques"
+          connect: "Connect and create flows"
+          overview: "See the big picture"
+          update: "Update after training"
+        stats:
+          initial_techniques:
+            title: "Initial techniques"
+            value: "90+"
+            desc: "Add more at your own pace"
+          flow_branches:
+            title: "Flow branches"
+            value: "Unlimited"
+            desc: "Design freely"
+          devices:
+            title: "Supported devices"
+            value: "Desktop / Mobile"
+            desc: "Review anywhere"
+      howto:
+        heading: "Getting Started"
+        cards:
+          step1:
+            title: "1. Start from a template"
+            body: "Use a template chart as a base and add your favorite techniques."
+          step2:
+            title: "2. Take notes in your own words"
+            body: "Capture tips and cautions. Updating right after practice improves retention."
+          step3:
+            title: "3. Link transitions"
+            body: "Connect nodes to visualize match or sparring sequences as they are."
+          step4:
+            title: "4. Review regularly"
+            body: "Before a match or roll, check your chart so you can go in with a clear plan."
+      cta:
+        heading: "Build your Jiu-Jitsu map now"
+        subheading: "Sign-up takes a minute—start charting right away."
