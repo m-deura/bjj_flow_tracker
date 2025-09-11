@@ -97,3 +97,6 @@ gem "ransack"
 
 # OGP
 gem "meta-tags"
+
+# i18n for the step guide
+gem "i18n-js"
