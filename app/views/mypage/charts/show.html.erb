@@ -6,6 +6,7 @@
   data-chart-fetch-url-value="<%= api_v1_chart_path(@chart) %>"
   data-chart-edit-url-value="<%= edit_mypage_node_path(':id') %>"
   data-chart-add-url-value="<%= new_mypage_chart_node_path(@chart) %>"
+  data-step-guide-scope-value="guides.chart"
 >
   <input type="checkbox" class="drawer-toggle" data-chart-target="toggle" />
   <div class="drawer-content">
@@ -18,17 +19,14 @@
       </div>
     </div>
 
-    <div id="step0" class="hidden" data-intro-text="こちらは、テクニック同士の繋がりを可視化するための画面です。<br><br>このエリアにテクニックを配置し、フローチャートを作ることができます。"></div>
-
     <div class="mx-auto w-[90%] h-[60dvh] border border-base-300 relative min-h-0">
     <!-- z-1を使ってcyコンテナより手前に出しておかないとボタンが効かなくなる -->
       <button
-        id="step1"
+        id="guide-creating-button"
         type="button"
         class="btn btn-primary btn-wide absolute top-4 left-4 z-1" 
         data-action="click->chart#addNode"
-        data-title-text="新規作成"
-        data-intro-text="ここからフローチャートの開始点(ルートノード)を新規作成できます。">
+      >
         <%= t(".create_nodes") %>
       </button>
       <!-- チャート描写用コンテナ -->
@@ -38,26 +36,18 @@
 
   <div
     class="drawer-side"
-    id="step2"
-    data-title-text="チャート上のテクニック"
-    data-intro-text="エリアにあるノード(丸い図形)をクリックすると、テクニックの詳細を確認・編集することができます。"
   >
     <label aria-label="close sidebar" class="drawer-overlay" data-action="click->chart#closeDrawer" ></label>
 
     <!-- introjsで作成したガイドの要素は、本ファイルトップにあるdivタグに付与したdata-controller='step-guide' のスコープから外れる。その対策として、改めてdata-controller='step-guide'をintro-text内のbuttonタグに付与。 -->
     <!-- z-2を指定しないと、「新しいフローを作る」ボタンの下にドロワーが潜って表示されてしまう -->
     <aside
-      id="step3"
       class="flex flex-col bg-base-200 w-full sm:w-[32rem] max-w-[90vw] h-full overflow-y-auto p-4 z-2"
       role="dialog"
       aria-modal="true"
-      data-title-text="ノード編集"
-      data-intro-text="本画面の操作について知りたい方は、ノード編集画面左上にある
-        <button type='button' class='underline' data-controller='step-guide' data-action='click->step-guide#startNodeGuide'>
-          <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 relative top-[3px]'>
-            <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
-          </svg>
-        </button> をクリックしてください！"
+      data-controller="step-guide"
+      data-step-guide-scope-value="guides.node"
+      data-step-guide-techniques-path-value="<%= mypage_techniques_path %>"
     >
 
       <div class="flex p-3 justify-between items-center">

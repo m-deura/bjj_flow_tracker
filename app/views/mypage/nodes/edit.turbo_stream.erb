@@ -3,15 +3,11 @@
 <% end %>
 
 <%= turbo_stream.update "node-drawer" do %>
-  <div id="step0n" data-intro-text="ここでは、ノード編集画面について説明します。" class="hidden"></div>
-
   <%= form_with model: @form, url: mypage_node_path(@node), method: :patch do |f| %>
     <div class="flex flex-col items-center">
       <div 
-        id="step1n"
+        id="guide-technique"
         class="w-full"
-        data-title-text="テクニック更新"
-        data-intro-text="このフィールドから、テクニックの情報を更新することができます。<br><br>この画面で更新された情報は、<a class='underline font-bold' href='#{mypage_techniques_path}'>Technique</a> メニューの内容にも反映されます。"
       >
         <%= render 'mypage/techniques/form_core', f: f %>
       </div>
@@ -19,10 +15,8 @@
       <div class="divider my-8"></div>
 
       <div
-        id="step2n" 
+        id="guide-children"
         class="space-y-2 w-4/5 mx-auto"
-        data-title-text="展開先テクニック更新"
-        data-intro-text="このテクニックから展開される技を編集することができます。<br><br>ここで展開先として選択されたテクニックは、このテクニックの右側に接続される形でチャート上に描写されます。"
       >
         <%= f.label "children", t("helpers.label.children_nodes") %>
         <%= f.select "children",
@@ -42,23 +36,14 @@
       <%= f.submit t("helpers.submit.submit"), class: "btn btn-primary btn-wide", data: { turbo_frame: "_top" } %>
       <%= link_to t("defaults.delete_item", item: Node.model_name.human), 
         mypage_node_path(@node),
-        id: "step3n",
+        id: "guide-deleting-button",
         class: "btn btn-error btn-wide",
         data: { 
                 turbo_method: :delete,
                 turbo_confirm: t("defaults.delete_confirm"),
                 turbo_frame: "_top",
-                title_text: "ノード削除",
-                intro_text: "こちらからノードを削除することができます。<br><br>ノードを削除すると、展開先テクニックとして接続されていたノードもすべて削除されますので、ご注意ください。"
               }
       %>
     </div>
   <% end %>
-
-  <div
-  id="step4n"
-  data-title-text="ガイドが完了しました！お疲れ様です！"
-  data-intro-text="ここまで来たら、試しにノードを作ったり、展開先テクニックを追加したりして操作に慣れましょう！<br><br>本アプリに関するご不明点や改善点等がございましたら、画面下部にある <a class='underline font-bold' href='https://forms.gle/VGdTkDDsJkVQY7e79' target='_blank' rel='noopener noreferrer'>お問い合わせ</a> ページよりお気軽にご連絡ください！<br><br>それでは、よりよい柔術ライフを👋" class="hidden"
-  >
-  </div>
 <% end %>

@@ -2,6 +2,8 @@
 <div
   class="drawer drawer-end min-h-screen px-4 py-6 bg-base-100 space-y-6"
   data-controller="step-guide drawer"
+  data-step-guide-scope-value="guides.technique"
+  data-step-guide-charts-path-value="<%= mypage_chart_path(current_user.charts.first) %>"
 >
   <input type="checkbox" class="drawer-toggle" data-drawer-target="toggle">
 
@@ -15,16 +17,12 @@
       </div>
     </div>
 
-    <div id="step0" class="hidden" data-intro-text="こちらは、柔術のテクニックが一覧として並んでいる画面です。"></div>
-
     <div class="flex flex-col items-center justify-center gap-3">
-      <%= link_to t("defaults.create") , new_mypage_technique_path, class: "btn btn-primary btn-wide", id: "step1", data: { title_text: "新規作成", intro_text: "一覧にないテクニックは、こちらのボタンから新規作成することができます。" } %>
-      <%= search_form_for @q, url: mypage_techniques_path, id: "step2", class: "w-80",
+      <%= link_to t("defaults.create") , new_mypage_technique_path, class: "btn btn-primary btn-wide", id: "guide-creating-button" %>
+      <%= search_form_for @q, url: mypage_techniques_path, id: "guide-search-box", class: "w-80",
             data: { turbo_frame: "technique-list",
                     controller: "instant-search",
-                    action: "input->instant-search#autosubmit",
-                    title_text: "検索",
-                    intro_text: "一覧にあるテクニックは、ここから検索して表示を絞り込むことができます。"
+                    action: "input->instant-search#autosubmit"
             } do |f| %>
         <label class="input">
           <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -42,19 +40,6 @@
           <%= f.search_field :name_ja_or_name_en_or_note_cont, placeholder: t("defaults.search"), class: "search" %>
         </label>
       <% end %>
-    </div>
-
-    <div id="step3" data-title-text="テクニック詳細" data-intro-text="カードをクリックすると、テクニック個々の詳細を確認・編集することができます。" class="hidden"></div>
-    <div id="step4" data-title-text="テクニック詳細" data-intro-text="こちらのノート欄に、日々の練習で気がついたことを記録していきましょう！" class="hidden"></div>
-    <div
-      id="step5"
-      data-intro-text="こちらの画面の説明は以上です。<br><br>本画面から確認できるテクニック同士を繋げて可視化する操作について知りたい場合は <a class='underline font-bold' href=<%= mypage_chart_path(@chart) %>>Flow Chart</a> メニューの左上にある
-        <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
-          <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
-        </svg>
-      をクリックしてください！"
-      class="hidden"
-    >
     </div>
 
     <%= turbo_frame_tag "technique-list" do %>
