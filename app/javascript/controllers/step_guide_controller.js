@@ -14,8 +14,68 @@ export default class extends Controller {
 		// introJs.tour().setOption("dontShowAgain", true).start();
 		this.i18n = await ensureI18n();
 		this.scopeKey = this.scopeValue;
-		this.techniques_path = this.techniquesPathValue || "";
-		this.charts_path = this.chartsPathValue || "";
+		this.vars = {
+      techniques_path: this.techniquesPathValue || "",
+      charts_path: this.chartsPathValue || ""
+    }
+  }
+
+	// YAMLの scope オブジェクトを取得
+  scopeDict() {
+    const parts = this.scopeKey.split(".")
+    let current = this.i18n.translations?.[this.i18n.locale]
+    for (const p of parts) current = current?.[p]
+    return current || null
+  }
+
+	  // 未翻訳かどうかの判定ヘルパ
+  tOrNull(key, vars = {}) {
+    const s = this.i18n.t(key, vars)
+    return (typeof s === "string" && /^\[missing /.test(s)) ? null : s
+  }
+
+  // YAMLから step* を自動収集→並べ替え→steps配列へ
+  buildSteps() {
+    const dict = this.scopeDict()
+    if (!dict) return []
+
+    // stepキーを抽出して数値順に
+    const stepKeys = Object.keys(dict)
+      .filter(k => /^step\d+$/i.test(k))
+      .sort((a, b) => parseInt(a.replace(/\D/g, ""), 10) - parseInt(b.replace(/\D/g, ""), 10))
+
+    const steps = []
+    for (const step of stepKeys) {
+      const base = `${this.scopeKey}.${step}`
+      const title = this.tOrNull(`${base}.title`)
+      const intro = this.tOrNull(`${base}.intro_html`, this.vars)
+      if (!title && !intro) continue  // どちらも無ければスキップ
+
+      // selector は“文言”ではないが i18n から取る（無ければ null）
+      const selector = this.tOrNull(`${base}.selector`) || null
+      const part = {}
+      if (title) part.title = title
+      if (intro) part.intro = intro
+
+      if (selector) {
+        // セレクタ要素が存在しない場合は“全体ステップ”として落とす（スキップしたければ continue）
+        if (document.querySelector(selector)) {
+          steps.push({ element: selector, ...part })
+        } else {
+          steps.push(part)
+        }
+      } else {
+        steps.push(part)
+      }
+    }
+    return steps
+  }
+
+  // どのガイドでも共通起動
+  start() {
+    const steps = this.buildSteps()
+    if (!steps.length) return
+    introJs().setOptions({ steps, showBullets: false, showProgress: true }).start()
   }
 
 	stepPart(stepId) {
@@ -37,26 +97,7 @@ export default class extends Controller {
 	}
 
 	startDashboardGuide() {
-		const plan = [
-			{ id: "step0" },
-			{ id: "step1", element: "#step1" },
-			{ id: "step2", element: "#step2" },
-			{ id: "step3" },
-		]
-
-		const steps = plan
-			// 分割代入
-			.map(({ id, element }) => {
-				const part = this.stepPart(id);
-				return element ? { element, ...part } : { ...part }; // オブジェクトのスプレッド構文
-			})
-			.filter(Boolean);
-
-		introJs.tour().setOptions({
-			steps,
-			showBullets: false,
-			showProgress: true
-		}).start();
+		this.start()
 	}
 
 	startTechniqueGuide() {

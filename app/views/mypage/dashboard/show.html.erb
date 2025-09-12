@@ -3,6 +3,7 @@
   data-controller="step-guide"
   data-step-guide-scope-value="guides.dashboard"
   data-step-guide-techniques-path-value="<%= mypage_techniques_path %>"
+  data-step-guide-charts-path-value="<%= mypage_chart_path(current_user.charts.first) %>"
 >
   <!-- Hero -->
   <div class="hero shadow-lg mb-8">
@@ -25,7 +26,7 @@
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
     <!-- Technique -->
     <%= link_to mypage_techniques_path,
-        id: "step1",
+        id: "guide-technique",
         class: "card bg-base-100 hover:shadow-xl transition-shadow rounded-2xl" do %>
       <div class="card-body">
         <div class="flex items-start justify-between gap-4">
@@ -62,7 +63,7 @@
 
     <!-- Flow Chart -->
     <%= link_to mypage_chart_path(@chart.id),
-        id: "step2",
+        id: "guide-chart",
         class: "card bg-base-100 hover:shadow-xl transition-shadow rounded-2xl" do %>
       <div class="card-body">
         <div class="flex items-start justify-between gap-4">
