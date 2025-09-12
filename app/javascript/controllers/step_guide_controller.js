@@ -1,48 +1,61 @@
 import { Controller } from "@hotwired/stimulus"
 import introJs from "intro.js"
+import { ensureI18n } from "../i18n/loader"
 
 // Connects to data-controller="step-guide"
 export default class extends Controller {
-  connect() {
+	static values = {
+		scope: String,
+		techniquesPath: String,
+		chartsPath: String
+	}
+
+  async connect() {
 		// introJs.tour().setOption("dontShowAgain", true).start();
+		this.i18n = await ensureI18n();
+		this.scopeKey = this.scopeValue;
+		this.techniques_path = this.techniquesPathValue || "";
+		this.charts_path = this.chartsPathValue || "";
   }
 
-	startMenuGuide() {
-		const step0 = document.querySelector("#step0")
-		const step1 = document.querySelector("#step1") 
-		const step2 = document.querySelector("#step2") 	
-		// Settingsメニュー用
-		// const step3 = document.querySelector("#step3")
-		const step4 = document.querySelector("#step4")
+	stepPart(stepId) {
+		const k = `${this.scopeKey}.${stepId}`;
+		const vars = { techniques_path: this.techniques_path, charts_path: this.charts_path };
+
+		const titleStr = this.i18n.t(`${k}.title`);
+		const introStr = this.i18n.t(`${k}.intro_html`, vars);
+
+		// i18n-js は未定義キーだと "[missing ...]" を返す → それで判定
+		const isMissing = (s) => typeof s === "string" && /^\[missing /.test(s);
+
+		const part = {};
+		if (!isMissing(titleStr)) part.title = titleStr;
+		if (!isMissing(introStr)) part.intro = introStr;
+
+  	// どちらも無ければ null を返す。後に個々のstepguideにて　filter(Boolean)でnull削除。
+  	return Object.keys(part).length ? part : null;
+	}
+
+	startDashboardGuide() {
+		const plan = [
+			{ id: "step0" },
+			{ id: "step1", element: "#step1" },
+			{ id: "step2", element: "#step2" },
+			{ id: "step3" },
+		]
+
+		const steps = plan
+			// 分割代入
+			.map(({ id, element }) => {
+				const part = this.stepPart(id);
+				return element ? { element, ...part } : { ...part }; // オブジェクトのスプレッド構文
+			})
+			.filter(Boolean);
 
 		introJs.tour().setOptions({
-			steps: [
-				{
-					title: step0.dataset.titleText,
-					intro: step0.dataset.introText
-				},
-				{
-					element: step1,
-					title: step1.dataset.titleText,
-					intro: step1.dataset.introText
-				},
-				{
-					element: step2,
-					title: step2.dataset.titleText,
-					intro: step2.dataset.introText
-				},
-				// Settingsメニュー用
-				/*
-				{
-					element: step3,
-					title: step3.dataset.titleText,
-					intro: step3.dataset.introText
-				},
-				*/
-				{  
-					intro: step4.dataset.introText
-				},
-			], showBullets: false, showProgress: true
+			steps,
+			showBullets: false,
+			showProgress: true
 		}).start();
 	}
 

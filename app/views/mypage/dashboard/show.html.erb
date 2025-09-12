@@ -1,5 +1,9 @@
 <% content_for(:title, t(".title")) %>
-<div class="container mx-auto px-4 my-8" data-controller="step-guide">
+<div class="container mx-auto px-4 my-8"
+  data-controller="step-guide"
+  data-step-guide-scope-value="guides.dashboard"
+  data-step-guide-techniques-path-value="<%= mypage_techniques_path %>"
+>
   <!-- Hero -->
   <div class="hero shadow-lg mb-8">
     <div class="hero-content flex-col lg:flex-row">
@@ -9,7 +13,7 @@
         <p>本日も練習で学んだことを記録しましょう。</p>
         <p>本アプリの使い方については、以下のステップガイドをご参照ください。</p>
         <div class="flex justify-center">
-          <button data-action="click->step-guide#startMenuGuide" class="btn btn-primary btn-wide btn-lg my-10"><%= t(".start_guide") %></button>
+          <button data-action="click->step-guide#startDashboardGuide" class="btn btn-primary btn-wide btn-lg my-10"><%= t(".start_guide") %></button>
         </div>
       </div>
     </div>
@@ -22,8 +26,6 @@
     <!-- Technique -->
     <%= link_to mypage_techniques_path,
         id: "step1",
-        data: { title_text: "STEP 1",
-                intro_text: "このメニューから、テクニック一覧を確認することができます。<br>練習中に気がついたことをテクニックごとに記録しておきましょう。" },
         class: "card bg-base-100 hover:shadow-xl transition-shadow rounded-2xl" do %>
       <div class="card-body">
         <div class="flex items-start justify-between gap-4">
@@ -61,8 +63,6 @@
     <!-- Flow Chart -->
     <%= link_to mypage_chart_path(@chart.id),
         id: "step2",
-        data: { title_text: "STEP 2",
-                intro_text: "このメニューから、テクニックの展開を流れ図で可視化することができます。<br>試合の流れを整理するのに役立ちます。" },
         class: "card bg-base-100 hover:shadow-xl transition-shadow rounded-2xl" do %>
       <div class="card-body">
         <div class="flex items-start justify-between gap-4">
@@ -107,16 +107,5 @@
         <%= render "changelog" %>
       </div>
     </div>
-  </div>
-
-  <!-- step-guide用の非表示要素 -->
-  <div id="step0" data-title-text="ようこそ！" data-intro-text="このガイドでは、画面に表示されている各メニューについて説明します。" class="hidden"></div>
-  <div
-    id="step4"
-    data-intro-text="メニューの説明は以上です。<br><br>まず何をすればよいか分からない方は <a class='underline font-bold' href=<%= mypage_techniques_path %>>Technique</a> メニューを開き、左上にある
-      <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
-        <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
-      </svg>
-      をクリックしてみましょう！" class="hidden">
   </div>
 </div>

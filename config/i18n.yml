@@ -1,9 +1,5 @@
 ---
 translations:
-  - file: app/javascript/locales.json
+  - file: "app/javascript/locales/:locale.json"
     patterns:
-      - "*"
-      - "!*.activerecord"
-      - "!*.errors"
-      - "!*.number.nth"
-
+      - "*.guides.*"
