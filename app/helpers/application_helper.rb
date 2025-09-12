@@ -10,7 +10,6 @@ module ApplicationHelper
       reverse: true, # 「site | title」ではなく「title | site」の表記になる。
       charset: "utf-8",
       description: "#{base_title} では、ブラジリアン柔術の練習記録を整理し、試合やスパーの展開を可視化することができます。",
-      keywords: "柔術,ブラジリアン柔術,練習記録,運動,習慣化",
       canonical: request.base_url + request.path,
       separator: "|",
       og: {
