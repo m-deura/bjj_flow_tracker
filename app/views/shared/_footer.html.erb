@@ -1,8 +1,8 @@
 <footer class="footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-6">
   <nav class="md:grid md:grid-flow-col gap-4">
-      <%= link_to t("footer.inquiry"), "https://forms.gle/VGdTkDDsJkVQY7e79", class: "link link-hover" %>
-      <%= link_to t("footer.privacy"), privacy_path, class: "link link-hover" %>
-    <div class="tooltip" data-tip="このページは準備中です！">
+    <%= link_to t("footer.inquiry"), "https://forms.gle/VGdTkDDsJkVQY7e79", class: "link link-hover" %>
+    <%= link_to t("footer.privacy"), privacy_path, class: "link link-hover" %>
+    <div class="tooltip" data-tip=<%= t("defaults.preparing") %>>
       <a class="link link-hover"><%= t("footer.terms") %></a>
     </div>
   </nav>

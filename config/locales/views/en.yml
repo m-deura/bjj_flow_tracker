@@ -29,6 +29,7 @@ en:
     delete_confirm: "Are you sure you want to delete?"
     back: "Back to List"
     start_guide: "Start Step Guide"
+    preparing: "It is currently under construction!"
     flash_messages:
       created: "%{item} was successfully created"
       not_created: "Failed to create %{item}"
@@ -67,6 +68,10 @@ en:
     dashboard:
       show:
         title: Dashboard
+        welcome: "Welcome,"
+        username: "%{name}!"
+        take_note: "Let's record what you learned in practice today.”"
+        check_howtouse: "For instructions on how to use this app, please refer to the Step-By-Step Guide below."
         start_guide: "Start Step Guide"
         updates: Updates
         technique_details: "Manage your techniques and training notes."

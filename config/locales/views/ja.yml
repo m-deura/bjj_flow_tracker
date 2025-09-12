@@ -29,6 +29,7 @@ ja:
     delete_confirm: 削除しますか？
     back: 一覧へ戻る
     start_guide: ステップガイドを開始
+    preparing: "現在準備中です！"
     flash_messages:
       created: "%{item}を作成しました"
       not_created: "%{item}を作成できませんでした"
@@ -67,6 +68,10 @@ ja:
     dashboard:
       show:
         title: Dashboard
+        welcome: "ようこそ、"
+        username: "%{name}さん！"
+        take_note: "本日も練習で学んだことを記録しましょう。"
+        check_howtouse: "本アプリの使い方については、以下のステップガイドをご参照ください。"
         start_guide: ステップガイドを始める
         updates: 更新情報
         technique_details: "技の一覧と練習メモを管理します。"

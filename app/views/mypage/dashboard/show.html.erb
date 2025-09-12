@@ -10,9 +10,9 @@
     <div class="hero-content flex-col lg:flex-row">
         <%= image_tag "icon.svg", alt: "icon", class: "w-85 h-auto"%>
       <div>
-        <h1 class="text-4xl font-bold mb-4">ようこそ、<br><%= current_user.name %>さん！</h1>
-        <p>本日も練習で学んだことを記録しましょう。</p>
-        <p>本アプリの使い方については、以下のステップガイドをご参照ください。</p>
+        <h1 class="text-4xl font-bold mb-4"><%= t(".welcome") %><br><%= t(".username", name: current_user.name) %></h1>
+        <p><%= t(".take_note") %></p>
+        <p><%= t(".check_howtouse") %></p>
         <div class="flex justify-center">
           <button data-action="click->step-guide#startDashboardGuide" class="btn btn-primary btn-wide btn-lg my-10"><%= t(".start_guide") %></button>
         </div>
