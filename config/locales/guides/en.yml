@@ -2,23 +2,108 @@ en:
   guides:
     dashboard:
       step0:
-        title: "Welcome!"
-        intro_html: "This guide explains each menu shown on this page."
+        title: "About this guide"
+        intro_html: |-
+          This guide will explain how to use the app.<br><br>
+          The basic flow of usage is as follows:<br><br>
+          <ol class="list-decimal list-inside">
+            <li>Register techniques in <strong>Technique</strong></li>
+            <li>Connect techniques in <strong>Flow Chart</strong> to visualize match developments (your preferred patterns)</li>
+          </ol>
       step1:
-        title: "STEP 1"
+        title: "Technique: Register techniques"
+        selector: "#guide-technique"
         intro_html: |-
-          From this menu, you can view the list of techniques.
-          During practice, record anything you notice for each technique.
-      step2:
-        title: "STEP 2"
-        intro_html: |-
-          From this menu, you can visualize technique progressions as a flow chart.<br>It helps you organize the flow of a match.
-      step3:
-        intro_html: |-
-          That’s it for the menu overview.<br><br>
-          If you’re not sure where to start, open the
-          <a class='underline font-bold' href="%{techniques_path}">Technique</a> menu and click the icon at the top left:
+          In <strong>Technique</strong>, you can register and organize your techniques.<br><br>
+          Adding your insights from sparring to each technique’s note section will help reinforce learning.<br><br>
+          Over 90 techniques are preloaded as presets, but feel free to add new ones if needed.<br><br>
+          The usage guide for the Technique screen can be opened by clicking the
           <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
             <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
           </svg>
-          !
+          icon at the top left of the Technique screen.<br><br>
+      step2:
+        title: "Flow Chart: Connect techniques"
+        selector: "#guide-chart"
+        intro_html: |-
+          In <strong>Flow Chart</strong>, you can connect the techniques registered in Technique and visualize match developments.<br><br>
+          By organizing “which technique can follow this one,” you can make reviews and strategy planning more effective.<br><br>
+          The usage guide for the Flow Chart screen can be opened by clicking the
+          <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
+            <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
+          </svg>
+          icon at the top left of the Flow Chart screen.<br><br>
+      step3:
+        title: "First goal"
+        intro_html: |-
+          To start, try drawing the pathways of your preferred match developments in the <strong>Flow Chart</strong>.<br><br>If a technique you use is missing, go back to <strong>Technique</strong> and add it.
+      step4:
+        title: "All set!"
+        intro_html: |-
+          Let’s get started!<br><br>
+          If you ever feel lost, you can always reopen this guide!
+    technique:
+      step0:
+        intro_html: "This is the screen where techniques are listed."
+      step1:
+        title: "New technique"
+        selector: "#guide-creating-button"
+        intro_html: "If the technique you need isn’t listed, you can create a new one with this button."
+      step2:
+        title: "Search"
+        selector: "#guide-search-box"
+        intro_html: "You can search for techniques here to filter the list."
+      step3:
+        title: "Technique details"
+        intro_html: "Click a card to view or edit details of an individual technique."
+      step4:
+        title: "Technique details"
+        selector: ".drawer-side"
+        intro_html: "Use the note field here to record your daily training insights!"
+      step5:
+        intro_html: |-
+          That’s all for this screen.<br><br>If you’d like to learn how to connect techniques and visualize them, go to the <a class='underline font-bold' href="%{charts_path}">Flow Chart</a> menu and click the
+            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
+              <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
+            </svg>
+          icon at the top left.<br><br>
+    chart:
+      step0:
+        intro_html: "This is the screen for visualizing connections between techniques.<br><br>You can place techniques here and create flowcharts."
+      step1:
+        title: "New root node"
+        selector: "#guide-creating-button"
+        intro_html: "You can create a new starting point (root node) for your flowchart here."
+      step2:
+        title: "Techniques on the chart"
+        selector: ".drawer-side"
+        intro_html: "Click a node (circle) on the chart to view or edit the technique’s details."
+      step3:
+        title: "Node editing"
+        selector: ".drawer-side"
+        intro_html: |-
+          To learn more about operating this screen, click the
+          <button type='button' class='underline' data-controller='step-guide' data-action='click->step-guide#startNodeGuide'>
+            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 relative top-[3px]'>
+              <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
+            </svg>
+          </button> at the top left of the node editing screen.
+    node:
+      step0:
+        intro_html: "This section explains the node editing screen."
+      step1:
+        title: "Update technique"
+        selector: "#guide-technique"
+        intro_html: |-
+          Use this field to update the technique’s information.<br><br>Changes made here will also be reflected in the <a class='underline font-bold' href="%{techniques_path}">Technique</a> list.
+      step2:
+        title: "Update subsequent techniques"
+        selector: "#guide-children"
+        intro_html: "Here you can edit which techniques branch out from this one.<br><br>The techniques you select will appear connected to the right of this technique on the chart."
+      step3:
+        title: "Delete node"
+        selector: "#guide-deleting-button"
+        intro_html: "You can delete the node here.<br><br>Deleting a node will also remove all nodes that were connected as subsequent techniques, so please be careful."
+      step4:
+        intro_html: |-
+          Now try creating nodes and adding subsequent techniques to get familiar with the operations!<br><br>If you have any questions or suggestions about this app, feel free to contact us from the <a class='underline font-bold' href='https://forms.gle/VGdTkDDsJkVQY7e79' target='_blank' rel='noopener noreferrer'>contact page</a> at the bottom of the screen.<br><br>Enjoy your Jiu-Jitsu life! 👋

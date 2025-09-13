@@ -16,29 +16,27 @@ ja:
         intro_html: |-
           <strong>Technique</strong>では、技を登録・整理することができます。<br><br>
           スパー後の気づきを各テクニックのノート部分に追記すると、技が定着しやすくなります。<br><br>
-          プリセットとして90個以上のテクニックが初期登録されていますが、自分がよく使うテクニックがない場合は新規登録を行ってください。<br><br>
+          プリセットとして90個以上のテクニックが初期登録されていますが、足りない場合は新規登録を行ってください。<br><br>
           Techniue画面の操作方法ガイドは、Technique画面左上の
           <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
             <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
           </svg>
           をクリックすると表示されます。<br><br>
-          <a class='underline font-bold' href="%{techniques_path}">Technique を開く</a>
       step2:
         title: "Flow Chart：技をつなぐ"
         selector: "#guide-chart"
         intro_html: |-
-          <strong>Flow Chart</strong>では、Techniqueで登録した技を「次に何をするか」でつなげます。<br><br>
-          分岐や得意ルートが可視化され、復習・戦略立案に役立ちます。<br><br>
+          <strong>Flow Chart</strong>では、Techniqueに登録された技同士を繋げて、試合の展開を可視化することができます。<br><br>
+          「この技の次にどの技が使えるか」を整理することで、復習・戦略立案に役立てることができます。<br><br>
           Flow Chart画面の操作方法ガイドは、Flow Chart画面左上の
           <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
             <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
           </svg>
           をクリックすると表示されます。<br><br>
-          <a class='underline font-bold' href="%{charts_path}">Flow Chart を開く</a>
       step3:
         title: "最初のゴール"
         intro_html: |-
-          まずは、<strong>Flow Chart</strong>で、自分が得意としている試合の動線を描いてみてください。<br><br>自分が使うテクニックがプリセットに用意されていない場合は、<strong>Technique</strong>に戻って、テクニックを新規追加してみてください。
+          まずは、<strong>Flow Chart</strong>で、自分が得意としている試合の動線を描いてみてください。<br><br>自分が使うテクニックが用意されていない場合は、<strong>Technique</strong>に戻って、テクニックを新規追加してみてください。
       step4:
         title: "準備OK！"
         intro_html: |-
@@ -107,6 +105,5 @@ ja:
         selector: "#guide-deleting-button"
         intro_html: "こちらからノードを削除することができます。<br><br>ノードを削除すると、展開先テクニックとして接続されていたノードもすべて削除されますので、ご注意ください。"
       step4:
-        title: "ガイドが完了しました！お疲れ様です！"
         intro_html: |-
           ここまで来たら、試しにノードを作ったり、展開先テクニックを追加したりして操作に慣れましょう！<br><br>本アプリに関するご不明点や改善点等がございましたら、画面下部にある <a class='underline font-bold' href='https://forms.gle/VGdTkDDsJkVQY7e79' target='_blank' rel='noopener noreferrer'>お問い合わせ</a> ページよりお気軽にご連絡ください！<br><br>それでは、よりよい柔術ライフを👋"
