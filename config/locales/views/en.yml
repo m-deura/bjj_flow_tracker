@@ -3,7 +3,7 @@ en:
     root_nodes: "Flow Starting Point"
     children_nodes: "Transitions"
   shared:
-    sign_in_with: "Sign in with %{provider}"
+    login_with: "Log in with %{provider}"
     providers:
       google: "Google"
   form:
@@ -44,7 +44,7 @@ en:
     technique: Technique
     flow_chart: "Flow Chart"
     dashboard: Dashboard
-    logout: Logout
+    logout: "Log out"
   footer:
     inquiry: Contact
     privacy: "Privacy Policy"
@@ -70,7 +70,7 @@ en:
         title: Dashboard
         welcome: "Welcome,"
         username: "%{name}!"
-        take_note: "Let's record what you learned in practice today.”"
+        take_note: "Let's record what you learned in practice today."
         check_howtouse: "For instructions on how to use this app, please refer to the Step-By-Step Guide below."
         start_guide: "Start Step Guide"
         updates: Updates
