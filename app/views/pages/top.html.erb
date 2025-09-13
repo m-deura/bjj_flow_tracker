@@ -2,13 +2,13 @@
   <div class="hero-content flex-col lg:flex-row">
     <%= image_tag "icon.svg", alt: "icon", class: "w-100 h-auto mx-auto"%>
     <div>
-      <h1 class="font-bebas text-5xl font-bold"><%= base_title %></h1>
+      <h1 class="font-bebas text-7xl font-bold"><%= base_title %></h1>
       <h3 class="text-lg font-bold"><%= t(".hero.catchphrase") %></h3>
       <p class="py-6">
         <%= t(".hero.description", app_name: base_title) %>
       </p>
 
-      <div class="flex space-x-3">
+      <div class="flex space-x-3 justify-center md:justify-start">
         <% if user_signed_in? %>
           <button type="button" class="btn btn-disabled"><%= t(".hero.already_signed_in") %></button>
         <% else %>

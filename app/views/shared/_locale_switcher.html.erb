@@ -1,0 +1,15 @@
+<div class="dropdown dropdown-end">
+  <div tabindex="0" role="button" class="btn btn-ghost bg-base-100">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+      <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+    </svg>
+    <%= I18n.locale.upcase %>
+  </div>
+  <ul tabindex="0" class="menu dropdown-content bg-base-200 rounded-box p-2 shadow">
+    <% I18n.available_locales.each do |loc| %>
+      <li class="<%= 'font-bold' if loc == I18n.locale %>">
+        <%= link_to loc.upcase, switch_locale_path(loc) %>
+      </li>
+    <% end %>
+  </ul>
+</div>

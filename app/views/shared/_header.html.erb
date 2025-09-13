@@ -1,65 +1,41 @@
 <nav aria-label="Global" class="bg-base-200 mx-auto flex items-center justify-between p-6 lg:px-8 shadow">
-  <!-- PC用画面 左端 -->
+  <!-- 左：ブランド -->
   <div class="flex lg:flex-1">
     <%= link_to current_user ? mypage_root_path : root_path, class: "flex items-center navbar-start" do %>
       <%= image_tag "icon.svg", alt: "icon", class: "w-16 mr-1" %>
       <span class="font-bebas text-lg font-semibold"><%= base_title %></span>
     <% end %>
   </div>
+
+  <!-- モバイル：メニューボタン -->
   <div class="flex lg:hidden">
     <button type="button" command="show-modal" commandfor="mobile-menu" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5">
       <span class="sr-only">Open main menu</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" class="size-6">
         <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
     </button>
   </div>
 
-  <!-- PC用画面 右端 -->
+  <!-- 右：PCナビ -->
   <div class="hidden lg:flex lg:flex-2 items-center lg:justify-end">
     <% if user_signed_in? %>
       <div class="hidden lg:flex lg:gap-x-10 items-center lg:mr-16">
-        <%= link_to t("header.home"), root_path, class: "font-semibold hover:underline" %>
-        <%= link_to t("header.technique"), mypage_techniques_path, class: "font-semibold hover:underline" %>
-        <%= link_to t("header.flow_chart"), mypage_chart_path(@chart), class: "font-semibold hover:underline" %>
-        <%= link_to t("header.dashboard"), mypage_root_path, class: "font-semibold hover:underline" %>
+        <%= render "shared/nav_links",
+              items: nav_items(chart: @chart),
+              item_classes: "font-semibold hover:underline" %>
       </div>
     <% end %>
 
-    <div class="dropdown dropdown-end mx-6">
-      <div tabindex="0" role="button" class="btn btn-ghost bg-base-100">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
-        <%= I18n.locale.upcase %>
-      </div>
-      <ul tabindex="0" class="menu dropdown-content bg-base-200 rounded-box p-2 shadow">
-        <% I18n.available_locales.each do |loc| %>
-          <li class="<%= 'font-bold' if loc == I18n.locale %>">
-            <%= link_to loc.upcase, switch_locale_path(loc) %>
-          </li>
-        <% end %>
-      </ul>
+    <div class="mx-6">
+      <%= render "shared/locale_switcher" %>
     </div>
 
-    <% if user_signed_in? %>
-      <div class="avatar mr-2">
-        <div class="w-10 rounded-full">
-          <%= image_tag current_user.image %>
-        </div>
-      </div>
-      <div class="hidden md:mr-6 md:block">
-        <p><%= current_user.name %></p>
-      </div>
-      <%= link_to t("header.logout"), destroy_user_session_path, data: { turbo_method: :delete }, class: "btn bg-active bg-base-300 font-semibold py-2 px-4" %>
-    <% else %>
-      <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "btn btn-outline bg-white" do %>
-        <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
-        <span><%= t("shared.login_with", provider: t("shared.providers.google")) %></span>
-      <% end %>
-    <% end %>
+    <%= render "shared/auth_area" %>
   </div>
 </nav>
 
-<!-- モバイル用画面 -->
+<!-- モバイルドロワー -->
 <el-dialog>
   <dialog id="mobile-menu" class="backdrop:bg-transparent lg:hidden text-base-content">
     <div tabindex="0" class="fixed inset-0 focus:outline-none">
@@ -71,53 +47,28 @@
           <% end %>
           <button type="button" command="close" commandfor="mobile-menu" class="-m-2.5 rounded-md p-2.5 text-gray-700">
             <span class="sr-only">Close menu</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" class="size-6">
               <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </button>
         </div>
+
         <div class="mt-6 flow-root">
           <div class="-my-6 divide-y divide-gray-500/10">
             <% if user_signed_in? %>
               <div class="space-y-2 py-6">
-                <%= link_to t("header.home"), root_path, class: "-mx-3 block rounded-lg px-3 py-2 font-semibold hover:bg-base-300"  %>
-                <%= link_to t("header.technique"), mypage_techniques_path, class: "-mx-3 block rounded-lg px-3 py-2 font-semibold hover:bg-base-300" %>
-                <%= link_to t("header.flow_chart"), mypage_chart_path(@chart), class: "-mx-3 block rounded-lg px-3 py-2 font-semibold hover:bg-base-300" %>
-                <%= link_to t("header.dashboard"), mypage_root_path, class: "-mx-3 block rounded-lg px-3 py-2 font-semibold hover:bg-base-300" %>
+                <%= render "shared/nav_links",
+                      items: nav_items(chart: @chart),
+                      item_classes: "-mx-3 block rounded-lg px-3 py-2 font-semibold hover:bg-base-300" %>
               </div>
             <% end %>
 
-            <div class="dropdown dropdown-end mt-6">
-              <div tabindex="0" role="button" class="btn btn-ghost bg-base-100">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
-                <%= I18n.locale.upcase %>
-              </div>
-              <ul tabindex="0" class="menu dropdown-content bg-base-200 rounded-box p-2 shadow">
-                <% I18n.available_locales.each do |loc| %>
-                  <li class="<%= 'font-bold' if loc == I18n.locale %>">
-                    <%= link_to loc.upcase, switch_locale_path(loc) %>
-                  </li>
-                <% end %>
-              </ul>
+            <div class="py-6">
+              <%= render "shared/locale_switcher" %>
             </div>
 
             <div class="py-6 flex items-center">
-              <% if user_signed_in? %>
-                <div class="avatar mr-2">
-                  <div class="w-10 rounded-full">
-                    <%= image_tag current_user.image %>
-                  </div>
-                </div>
-                <div class="hidden md:mr-2 md:block">
-                  <p><%= current_user.name %></p>
-                </div>
-                <%= link_to t("header.logout"), destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-outline font-bold py-2 px-4" %>
-              <% else %>
-                <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "btn btn-outline bg-white" do %>
-                  <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
-                  <span><%= t("shared.login_with", provider: t("shared.providers.google")) %></span>
-                <% end %>
-              <% end %>
+              <%= render "shared/auth_area" %>
             </div>
           </div>
         </div>
