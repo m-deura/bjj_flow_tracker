@@ -1,0 +1,30 @@
+en:
+  activerecord:
+    models:
+      user: User
+      technique_preset: Technique Preset
+      technique: Technique
+      chart: Chart
+      node: Node
+    attributes:
+      user: 
+        name: Username
+        email: Email Address
+        image: Avatar
+      chart:
+        name: Chart Name
+      technique:
+        name_ja: Technique Name (Japanese)
+        name_en: Technique Name (English)
+        category: Category
+        note: Note
+  enums:
+    category:
+      submission: Submission
+      sweep: Sweep
+      pass: Pass
+      guard: Guard
+      control: Control
+      takedown: Takedown
+      nil: Uncategorized
+

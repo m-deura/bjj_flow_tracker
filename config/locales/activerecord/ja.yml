@@ -18,3 +18,12 @@ ja:
         name_en: テクニック名(英語)
         category: カテゴリー
         note: ノート
+  enums:
+    category:
+      submission: 極め技
+      sweep: スイープ
+      pass: パス
+      guard: ガード
+      control: コントロール
+      takedown: テイクダウン
+      nil: 未分類

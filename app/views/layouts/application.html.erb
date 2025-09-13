@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale %>">
   <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1EMLRGHCMZ"></script>
@@ -62,7 +62,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M21 12A9 9 0 103 12a9 9 0 0018 0z" />
         </svg>
         <div>
-          <h3 class="font-bold">入力に誤りがあります</h3>
+          <h3 class="font-bold"><%= t("defaults.flash_messages.wrong_input") %></h3>
           <ul class="text-sm list-disc list-inside mt-1">
             <% Array(flash[:errors]).each do |msg| %>
               <li><%= msg %></li>

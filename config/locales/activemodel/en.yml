@@ -1,0 +1,9 @@
+en:
+  activemodel:
+    attributes:
+      node_edit_form:
+        name_ja: Technique Name (Japanese)
+        name_en: Technique Name (English)
+        category: Category
+        note: Note
+        children: Subsequent Techniques
