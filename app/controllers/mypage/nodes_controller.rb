@@ -5,8 +5,8 @@ class Mypage::NodesController < ApplicationController
     @candidate_techniques = current_user.techniques.where.not(id: exclude_ids)
 
     @grouped = @candidate_techniques
-        .group_by { |t| t.category ? t.category.humanize : "未分類" }
-        .transform_values { |arr| arr.map { |t| [ t.name_ja, t.id ] } }
+        .group_by { |tech| tech.category ? tech.category.humanize : t("enums.category.nil") }
+        .transform_values { |arr| arr.map { |tech| [ tech.name_for, tech.id ] } }
 
     render :new, formats: :turbo_stream
   end
@@ -74,8 +74,8 @@ class Mypage::NodesController < ApplicationController
     @selected_ids = children_ids.map!(&:to_s)
     @grouped =
       (@candidate_techniques + @node.children.includes(:technique).map(&:technique))
-        .group_by { |t| t.category ? t.category.humanize : "未分類" }
-        .transform_values { |arr| arr.map { |t| [ t.name_ja, t.id ] } }
+        .group_by { |tech| tech.category ? tech.category.humanize : t("enums.category.nil") }
+        .transform_values { |arr| arr.map { |tech| [ tech.name_for, tech.id ] } }
 
     render :edit, formats: :turbo_stream
   end
