@@ -5,8 +5,8 @@ class Mypage::NodesController < ApplicationController
     @candidate_techniques = current_user.techniques.where.not(id: exclude_ids)
 
     @grouped = @candidate_techniques
-        .group_by { |t| t.category ? t.category.humanize : "未分類" }
-        .transform_values { |arr| arr.map { |t| [ t.name_ja, t.id ] } }
+        .group_by { |tech| tech.category ? tech.category.humanize : t("enums.category.nil") }
+        .transform_values { |arr| arr.map { |tech| [ tech.name_for, tech.id ] } }
 
     render :new, formats: :turbo_stream
   end
@@ -30,14 +30,20 @@ class Mypage::NodesController < ApplicationController
           end
         end
 
-        new_ids = new_names.map do |name|
-          current_user.techniques.create!(name_ja: name, name_en: name).id
+        # 現ロケールのカラムのみに値を入れる（もう片方はモデルの作成時補完に委ねる）
+        field = Technique.name_field_for(I18n.locale) # :name_ja or :name_en
+
+        new_ids = new_names.map do |n|
+          # キーがリテラルでないので、シンボル記法(:)ではなくロケット記法(=>)
+          current_user.techniques.find_or_create_by!(field => n).id
         end
 
+        # TODO: chart/ancestry/techniqueでユニーク制約を切っておきたいが、ancestryを入れ替える可能性があるので一旦保留
         ids_to_add = existing_ids + new_ids
         ids_to_add.each do |tid|
-          Node.create!(
+          Node.find_or_create_by!(
             chart: @chart,
+            ancestry: "/",
             technique_id: tid
           )
         end
@@ -52,8 +58,7 @@ class Mypage::NodesController < ApplicationController
       flash[:alert] = e.message
       redirect_to mypage_chart_path(@chart)
     rescue StandardError => e
-      flash[:alert] = redirect_to mypage_chart_path(@chart), notice: t("defaults.flash_messages.note_created", item: t("terms.root_nodes"))
-
+      flash[:alert] = t("defaults.flash_messages.not_created", item: t("terms.root_nodes"))
       redirect_to mypage_chart_path(@chart)
     end
   end
@@ -74,8 +79,8 @@ class Mypage::NodesController < ApplicationController
     @selected_ids = children_ids.map!(&:to_s)
     @grouped =
       (@candidate_techniques + @node.children.includes(:technique).map(&:technique))
-        .group_by { |t| t.category ? t.category.humanize : "未分類" }
-        .transform_values { |arr| arr.map { |t| [ t.name_ja, t.id ] } }
+        .group_by { |tech| tech.category ? tech.category.humanize : t("enums.category.nil") }
+        .transform_values { |arr| arr.map { |tech| [ tech.name_for, tech.id ] } }
 
     render :edit, formats: :turbo_stream
   end
@@ -118,6 +123,6 @@ class Mypage::NodesController < ApplicationController
 
   def node_edit_form_params
     # children が空でも配列を許容
-    params.require(:node_edit_form).permit(:name_ja, :note, :category, children: [])
+    params.require(:node_edit_form).permit(:name, :note, :category, children: [])
   end
 end

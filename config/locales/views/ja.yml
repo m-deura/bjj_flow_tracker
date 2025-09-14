@@ -3,7 +3,7 @@ ja:
     root_nodes: フローの開始点
     children_nodes: 展開先テクニック
   shared:
-    sign_in_with: "%{provider} でログイン"
+    login_with: "%{provider} でログイン"
     providers:
       google: "Google"
   form:
@@ -52,10 +52,10 @@ ja:
   mypage:
     techniques:
       index:
-        title: Technique 
+        title: Technique
         nothing_here: 表示するテクニックがありません
         editing_panel_title: テクニックを編集
-      new: 
+      new:
         title: 新規テクニックを作成
     charts:
       show:
@@ -75,9 +75,9 @@ ja:
         start_guide: ステップガイドを始める
         updates: 更新情報
         technique_details: "技の一覧と練習メモを管理します。"
-        chart_details: "試合またはスパーの流れを可視化します。" 
+        chart_details: "試合またはスパーの流れを可視化します。"
         metrics:
-          techniques: 
+          techniques:
             other: "%{count} テクニック"
           nodes:
             other: "%{count} ノード"
@@ -152,4 +152,3 @@ ja:
       cta:
         heading: "今すぐ、あなたの柔術マップを作ろう"
         subheading: "登録は1分、すぐにチャート作成へ。"
-

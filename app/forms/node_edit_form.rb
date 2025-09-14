@@ -7,15 +7,14 @@ class NodeEditForm
   attr_reader :node, :current_user
 
   # Techniqueの編集項目
-  attribute :name_ja, :string
+  attribute :name, :string
   attribute :note, :string
   attribute :category, :string
 
   # UIから受け取る情報
   attribute :children, default: [] # ["1", "2", "new: XX"] のような配列
-  attribute :chart_id, :integer    # リダイレクト先の判定に使う
 
-  validates :name_ja, presence: true
+  validates :name, presence: true
 
   # ====== 初期化 ======
   def initialize(node:, current_user:, **attrs)
@@ -24,11 +23,10 @@ class NodeEditForm
     super(attrs)
 
     # 初期表示用にTechniqueから値を埋めておく（attrs があれば優先）
-    self.name_ja ||= technique.name_ja
+    self.name ||= technique.name_for
     self.note    ||= technique.note
     self.category ||= technique.category
-    self.children = normalize_children(self.children.presence || node.children.pluck(:technique_id).map!(&:to_s))
-    self.chart_id ||= node.chart_id
+    self.children = normalize_children(self.children.presence || node.children.pluck(:technique_id).map(&:to_s))
   end
 
   # 画面→保存 本体
@@ -36,10 +34,11 @@ class NodeEditForm
     ActiveRecord::Base.transaction do
       # 1) Techniqueの更新
       technique.assign_attributes(
-        name_ja: name_ja,
         note: note,
         category: category
       )
+      technique.set_name_for(name, I18n.locale)
+
       unless technique.save
         propagate_errors_from(technique)
         raise ActiveRecord::Rollback
@@ -54,7 +53,10 @@ class NodeEditForm
 
       # 追加
       ids_to_add.each do |tid|
-        node.children.create!(chart: node.chart, technique_id: tid)
+        node.children.find_or_create_by!(
+          chart: node.chart,
+          technique_id: tid
+        )
       end
       # 削除
       node.children.where(technique_id: ids_to_remove).destroy_all
@@ -94,10 +96,14 @@ class NodeEditForm
         existing_ids << val.to_i
       end
     end
-    new_ids = new_names.map do |name|
-      current_user.techniques.find_or_create_by!(name_ja: name, name_en: name).id
+
+    # 現ロケールのカラムのみに値を入れる（もう片方はモデルの作成時補完に委ねる）
+    field = Technique.name_field_for(I18n.locale) # :name_ja or :name_en
+    new_ids = new_names.map do |n|
+      # キーがリテラルでないので、シンボル記法(:)ではなくロケット記法(=>)
+      current_user.techniques.find_or_create_by!(field => n).id
     end
-    (existing_ids.compact + new_ids).uniq
+      (existing_ids.compact + new_ids).uniq
   end
 
   def propagate_errors_from(record)

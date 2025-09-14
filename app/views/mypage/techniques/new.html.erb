@@ -4,7 +4,7 @@
   <%= render "shared/error_messages", object: @technique %>
   <%= render "form_core", f: f %>
 
-  <div class="flex flex-col items-center space-y-4 w-72 mx-auto">
+  <div class="flex flex-col items-center space-y-2 my-4 w-72 mx-auto">
     <%= f.submit t("helpers.submit.create"), class: "btn btn-primary btn-wide" %>
     <%= link_to t("defaults.back"), mypage_techniques_path, class: "btn btn-outline btn-wide" %>
   </div>
