@@ -1,8 +1,29 @@
+---
 ja:
   guides:
+    chart:
+      step0:
+        intro_html: こちらは、テクニック同士の繋がりを可視化するための画面です。<br><br>このエリアにテクニックを配置し、フローチャートを作ることができます。
+      step1:
+        intro_html: ここからフローチャートの開始点(ルートノード)を新規作成できます。
+        selector: "#guide-creating-button"
+        title: 新規作成
+      step2:
+        intro_html: エリアにあるノード(丸い図形)をクリックすると、テクニックの詳細を確認・編集することができます。
+        selector: ".drawer-side"
+        title: チャート上のテクニック
+      step3:
+        intro_html: |-
+          本画面の操作について知りたい方は、ノード編集画面左上にある
+          <button type='button' class='underline' data-controller='step-guide' data-action='click->step-guide#startNodeGuide'>
+            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 relative top-[3px]'>
+              <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
+            </svg>
+          </button> をクリックしてください！
+        selector: ".drawer-side"
+        title: ノード編集
     dashboard:
       step0:
-        title: "このガイドについて"
         intro_html: |-
           ここでは、アプリの使い方を説明します。<br><br>
           基本的な使い方の流れは以下の通りです。<br><br>
@@ -10,9 +31,8 @@ ja:
             <li><strong>Technique</strong> で技を登録</li>
             <li><strong>Flow Chart</strong> で技同士をつないで、試合の展開（得意パターン）を可視化</li>
           </ol>
+        title: このガイドについて
       step1:
-        title: "Technique：技を登録"
-        selector: "#guide-technique"
         intro_html: |-
           <strong>Technique</strong>では、技を登録・整理することができます。<br><br>
           スパー後の気づきを各テクニックのノート部分に追記すると、技が定着しやすくなります。<br><br>
@@ -22,9 +42,9 @@ ja:
             <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
           </svg>
           をクリックすると表示されます。<br><br>
+        selector: "#guide-technique"
+        title: Technique：技を登録
       step2:
-        title: "Flow Chart：技をつなぐ"
-        selector: "#guide-chart"
         intro_html: |-
           <strong>Flow Chart</strong>では、Techniqueに登録された技同士を繋げて、試合の展開を可視化することができます。<br><br>
           「この技の次にどの技が使えるか」を整理することで、復習・戦略立案に役立てることができます。<br><br>
@@ -33,33 +53,51 @@ ja:
             <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
           </svg>
           をクリックすると表示されます。<br><br>
+        selector: "#guide-chart"
+        title: Flow Chart：技をつなぐ
       step3:
-        title: "最初のゴール"
-        intro_html: |-
-          まずは、<strong>Flow Chart</strong>で、自分が得意としている試合の動線を描いてみてください。<br><br>自分が使うテクニックが用意されていない場合は、<strong>Technique</strong>に戻って、テクニックを新規追加してみてください。
+        intro_html: まずは、<strong>Flow Chart</strong>で、自分が得意としている試合の動線を描いてみてください。<br><br>自分が使うテクニックが用意されていない場合は、<strong>Technique</strong>に戻って、テクニックを新規追加してみてください。
+        title: 最初のゴール
       step4:
-        title: "準備OK！"
         intro_html: |-
           それでは始めましょう！<br><br>
           分からなくなったら、もう一度このガイドを開けば大丈夫です！
+        title: 準備OK！
+    node:
+      step0:
+        intro_html: ここでは、ノード編集画面について説明します。
+      step1:
+        intro_html: このフィールドから、テクニックの情報を更新することができます。<br><br>この画面で更新された情報は、<a class='underline font-bold' href="%{techniques_path}">Technique</a> 上の内容にも反映されます。
+        selector: "#guide-technique"
+        title: テクニック更新
+      step2:
+        intro_html: このテクニックから展開される技を編集することができます。<br><br>ここで展開先として選択されたテクニックは、このテクニックの右側に接続される形でチャート上に描写されます。
+        selector: "#guide-children"
+        title: 展開先テクニック更新
+      step3:
+        intro_html: こちらからノードを削除することができます。<br><br>ノードを削除すると、展開先テクニックとして接続されていたノードもすべて削除されますので、ご注意ください。
+        selector: "#guide-deleting-button"
+        title: ノード削除
+      step4:
+        intro_html: "ここまで来たら、試しにノードを作ったり、展開先テクニックを追加したりして操作に慣れましょう！<br><br>本アプリに関するご不明点や改善点等がございましたら、画面下部にある <a class='underline font-bold' href='https://forms.gle/VGdTkDDsJkVQY7e79' target='_blank' rel='noopener noreferrer'>お問い合わせ</a> ページよりお気軽にご連絡ください！<br><br>それでは、よりよい柔術ライフを👋\""
     technique:
       step0:
-        intro_html: "こちらは、柔術のテクニックが一覧として並んでいる画面です。"
+        intro_html: こちらは、柔術のテクニックが一覧として並んでいる画面です。
       step1:
-        title: "新規作成"
+        intro_html: 一覧にないテクニックは、こちらのボタンから新規作成することができます。
         selector: "#guide-creating-button"
-        intro_html: "一覧にないテクニックは、こちらのボタンから新規作成することができます。"
+        title: 新規作成
       step2:
-        title: "検索"
+        intro_html: 一覧にあるテクニックは、ここから検索して表示を絞り込むことができます。
         selector: "#guide-search-box"
-        intro_html: "一覧にあるテクニックは、ここから検索して表示を絞り込むことができます。"
+        title: 検索
       step3:
-        title: "テクニック詳細"
-        intro_html: "カードをクリックすると、テクニック個々の詳細を確認・編集することができます。" 
+        intro_html: カードをクリックすると、テクニック個々の詳細を確認・編集することができます。
+        title: テクニック詳細
       step4:
-        title: "テクニック詳細"
+        intro_html: こちらのノート欄に、日々の練習で気がついたことを記録していきましょう！
         selector: ".drawer-side"
-        intro_html: "こちらのノート欄に、日々の練習で気がついたことを記録していきましょう！" 
+        title: テクニック詳細
       step5:
         intro_html: |-
           こちらの画面の説明は以上です。<br><br>本画面から確認できるテクニック同士を繋げて可視化する操作について知りたい場合は <a class='underline font-bold' href="%{charts_path}"> Flow Chart</a> メニューの左上にある
@@ -67,43 +105,3 @@ ja:
               <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
             </svg>
           をクリックしてください！
-    chart:
-      step0:
-        intro_html: "こちらは、テクニック同士の繋がりを可視化するための画面です。<br><br>このエリアにテクニックを配置し、フローチャートを作ることができます。"
-      step1:
-        title: "新規作成"
-        selector: "#guide-creating-button"
-        intro_html: "ここからフローチャートの開始点(ルートノード)を新規作成できます。"
-      step2:
-        title: "チャート上のテクニック"
-        selector: ".drawer-side"
-        intro_html: "エリアにあるノード(丸い図形)をクリックすると、テクニックの詳細を確認・編集することができます。"
-      step3:
-        title: "ノード編集"
-        selector: ".drawer-side"
-        intro_html: |-
-          本画面の操作について知りたい方は、ノード編集画面左上にある
-          <button type='button' class='underline' data-controller='step-guide' data-action='click->step-guide#startNodeGuide'>
-            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 relative top-[3px]'>
-              <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
-            </svg>
-          </button> をクリックしてください！
-    node:
-      step0:
-        intro_html: "ここでは、ノード編集画面について説明します。"
-      step1:
-        title: "テクニック更新"
-        selector: "#guide-technique"
-        intro_html: |-
-          このフィールドから、テクニックの情報を更新することができます。<br><br>この画面で更新された情報は、<a class='underline font-bold' href="%{techniques_path}">Technique</a> 上の内容にも反映されます。
-      step2:
-        title: "展開先テクニック更新"
-        selector: "#guide-children"
-        intro_html: "このテクニックから展開される技を編集することができます。<br><br>ここで展開先として選択されたテクニックは、このテクニックの右側に接続される形でチャート上に描写されます。"
-      step3:
-        title: "ノード削除"
-        selector: "#guide-deleting-button"
-        intro_html: "こちらからノードを削除することができます。<br><br>ノードを削除すると、展開先テクニックとして接続されていたノードもすべて削除されますので、ご注意ください。"
-      step4:
-        intro_html: |-
-          ここまで来たら、試しにノードを作ったり、展開先テクニックを追加したりして操作に慣れましょう！<br><br>本アプリに関するご不明点や改善点等がございましたら、画面下部にある <a class='underline font-bold' href='https://forms.gle/VGdTkDDsJkVQY7e79' target='_blank' rel='noopener noreferrer'>お問い合わせ</a> ページよりお気軽にご連絡ください！<br><br>それでは、よりよい柔術ライフを👋"

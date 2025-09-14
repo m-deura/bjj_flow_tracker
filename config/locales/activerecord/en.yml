@@ -1,30 +1,30 @@
+---
 en:
   activerecord:
-    models:
-      user: User
-      technique_preset: Technique Preset
-      technique: Technique
-      chart: Chart
-      node: Node
     attributes:
-      user: 
-        name: Username
-        email: Email Address
-        image: Avatar
       chart:
         name: Chart Name
       technique:
-        name_ja: Technique Name
-        name_en: Technique Name
         category: Category
+        name_en: Technique Name
+        name_ja: Technique Name
         note: Note
+      user:
+        email: Email Address
+        image: Avatar
+        name: Username
+    models:
+      chart: Chart
+      node: Node
+      technique: Technique
+      technique_preset: Technique Preset
+      user: User
   enums:
     category:
+      control: Control
+      guard: Guard
+      nil: Uncategorized
+      pass: Pass
       submission: Submission
       sweep: Sweep
-      pass: Pass
-      guard: Guard
-      control: Control
       takedown: Takedown
-      nil: Uncategorized
-
