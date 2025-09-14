@@ -3,7 +3,7 @@ ja:
     attributes:
       node_edit_form:
         name_ja: テクニック名
-        name_en: テクニック名(英語)
+        name_en: テクニック名
         category: カテゴリー
         note: ノート
         children: 展開先テクニック

@@ -14,8 +14,8 @@ en:
       chart:
         name: Chart Name
       technique:
-        name_ja: Technique Name (Japanese)
-        name_en: Technique Name (English)
+        name_ja: Technique Name
+        name_en: Technique Name
         category: Category
         note: Note
   enums:
