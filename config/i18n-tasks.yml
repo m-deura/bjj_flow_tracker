@@ -20,7 +20,8 @@ data:
     ## Default:
     - config/locales/%{locale}.yml
     ## More files:
-    - config/locales/**/*.%{locale}.yml
+    # - config/locales/**/*.%{locale}.yml
+    - config/locales/**/%{locale}.yml
 
   # Locale files to write new keys to, based on a list of key pattern => file rules. Matched from top to bottom:
   # `i18n-tasks normalize -p` will force move the keys according to these rules
@@ -144,8 +145,12 @@ search:
 # - '{devise,simple_form}.*'
 
 ## Consider these keys used:
-# ignore_unused:
-# - 'activerecord.attributes.*'
+ignore_unused:
+  - 'guides.*'
+  - 'active{model,record}.attributes.*'
+  - 'activerecord.models.*'
+  # 動的に翻訳キーを生成しておりunused判定されてしまうので、判定から除外
+  - 'header.*'
 # - '{devise,kaminari,will_paginate}.*'
 # - 'simple_form.{yes,no}'
 # - 'simple_form.{placeholders,hints,labels}.*'
