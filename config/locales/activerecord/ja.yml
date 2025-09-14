@@ -15,7 +15,7 @@ ja:
         name: チャート名
       technique:
         name_ja: テクニック名
-        name_en: テクニック名
+        name_en: テクニック名(英語)
         category: カテゴリー
         note: ノート
   enums:

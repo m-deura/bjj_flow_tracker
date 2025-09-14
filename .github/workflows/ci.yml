@@ -83,17 +83,3 @@ jobs:
           name: screenshots
           path: ${{ github.workspace }}/tmp/screenshots
           if-no-files-found: ignore
-
-  i18n-tasks: 
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
-
-      - name: i18n-tasks health
-        run: |
-          bundle exec i18n-tasks health
-          bundle exec i18n-tasks check-normalized

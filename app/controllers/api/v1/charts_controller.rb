@@ -3,7 +3,7 @@ class Api::V1::ChartsController < ApplicationController
     nodes = current_user.charts.first.nodes.includes(:technique).order(:created_at)
 
     nodes_data = nodes.map do |node|
-      { data: { id: node.id.to_s, label: node.technique.name_for, category: node.technique.category } }
+      { data: { id: node.id.to_s, label: node.technique.name_ja, category: node.technique.category } }
     end
 
     edges_data = nodes.map do |node|

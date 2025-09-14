@@ -13,14 +13,7 @@ class Mypage::TechniquesController < ApplicationController
   end
 
   def create
-    @technique = current_user.techniques.build
-
-    # まず name 以外を通常更新）
-    @technique.assign_attributes(technique_params.except(:name))
-
-    # ロケールに応じた列だけを set_name_for で更新
-    @technique.set_name_for(technique_params[:name], I18n.locale)
-
+    @technique = current_user.techniques.build(technique_params)
     if @technique.save
       redirect_to mypage_techniques_path, notice: t("defaults.flash_messages.created", item: Technique.model_name.human)
     else
@@ -40,13 +33,8 @@ class Mypage::TechniquesController < ApplicationController
   def update
     @technique = current_user.techniques.find(params[:id])
 
-    # まず name 以外を通常更新）
-    @technique.assign_attributes(technique_params.except(:name))
-
-    # ロケールに応じた列だけを set_name_for で更新
-    @technique.set_name_for(technique_params[:name], I18n.locale)
-
-    if @technique.save
+    if @technique.update(technique_params)
+      # チャート画面上からテクニックを更新した場合、chart_idがparamsに含まれる。
       redirect_to mypage_techniques_path, notice: t("defaults.flash_messages.updated", item: Technique.model_name.human), status: :see_other
     else
       flash[:alert] = t("defaults.flash_messages.not_updated", item: Technique.model_name.human)
@@ -66,6 +54,6 @@ class Mypage::TechniquesController < ApplicationController
   private
 
   def technique_params
-    params.require(:technique).permit(:id, :name, :note, :category)
+    params.require(:technique).permit(:id, :name_ja, :note, :category)
   end
 end

@@ -18,30 +18,27 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  LOCALES = Regexp.union(I18n.available_locales.map(&:to_s))
-  scope "(:locale)", locale: LOCALES do
-    # Defines the root path route ("/")
-    root "pages#top"
+  # Defines the root path route ("/")
+  root "pages#top"
 
-    # Static pages
-    get "privacy", to: "pages#privacy"
-    # get "terms", to: "pages#terms"
+  # Static pages
+  get "privacy", to: "pages#privacy"
+  # get "terms", to: "pages#terms"
 
-    # My Pages
-    namespace :mypage do
-      root to: "dashboard#show"
-      resources :techniques
-      resources :charts, only: %i[show edit update] do
-        resources :nodes, shallow: true, only: %i[new create edit update destroy]
-      end
-      resource :setting, only: %i[show edit update]
+  # My Pages
+  namespace :mypage do
+    root to: "dashboard#show"
+    resources :techniques
+    resources :charts, only: %i[show edit update] do
+      resources :nodes, shallow: true, only: %i[new create edit update destroy]
     end
+    resource :setting, only: %i[show edit update]
+  end
 
-    # API
-    namespace :api do
-      namespace :v1 do
-        resources :charts, only: %i[index show]
-      end
+  # API
+  namespace :api do
+    namespace :v1 do
+      resources :charts, only: %i[index show]
     end
   end
 end

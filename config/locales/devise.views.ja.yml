@@ -1,4 +1,3 @@
----
 ja:
   activerecord:
     attributes:
@@ -50,12 +49,12 @@ ja:
       confirmation_instructions:
         action: メールアドレスの確認
         greeting: "%{recipient}様"
-        instruction: 以下のリンクをクリックし、メールアドレスの確認手続を完了させてください。
+        instruction: '以下のリンクをクリックし、メールアドレスの確認手続を完了させてください。'
         subject: メールアドレス確認メール
       email_changed:
-        greeting: こんにちは、%{recipient}様。
-        message: メールアドレスの（%{email}）変更が完了したため、メールを送信しています。
-        message_unconfirmed: メールアドレスが（%{email}）変更されたため、メールを送信しています。
+        greeting: "こんにちは、%{recipient}様。"
+        message: "メールアドレスの（%{email}）変更が完了したため、メールを送信しています。"
+        message_unconfirmed: "メールアドレスが（%{email}）変更されたため、メールを送信しています。"
         subject: メール変更完了
       password_change:
         greeting: "%{recipient}様"
@@ -71,7 +70,7 @@ ja:
       unlock_instructions:
         action: アカウントのロック解除
         greeting: "%{recipient}様"
-        instruction: アカウントのロックを解除するには下のリンクをクリックしてください。
+        instruction: 'アカウントのロックを解除するには下のリンクをクリックしてください。'
         message: ログイン失敗が繰り返されたため、アカウントはロックされています。
         subject: アカウントのロック解除について
     omniauth_callbacks:
@@ -96,7 +95,7 @@ ja:
       edit:
         are_you_sure: 本当によろしいですか？
         cancel_my_account: アカウント削除
-        currently_waiting_confirmation_for_email: "%{email} の確認待ち"
+        currently_waiting_confirmation_for_email: '%{email} の確認待ち'
         leave_blank_if_you_don_t_want_to_change_it: 空欄のままなら変更しません
         title: "%{resource}編集"
         unhappy: 気に入りません
@@ -137,7 +136,7 @@ ja:
   errors:
     messages:
       already_confirmed: は既に登録済みです。ログインしてください。
-      confirmation_period_expired: の期限が切れました。%{period} までに確認する必要があります。 新しくリクエストしてください。
+      confirmation_period_expired: "の期限が切れました。%{period} までに確認する必要があります。 新しくリクエストしてください。"
       expired: の有効期限が切れました。新しくリクエストしてください。
       not_found: は見つかりませんでした。
       not_locked: はロックされていません。
