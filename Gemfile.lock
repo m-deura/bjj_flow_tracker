@@ -427,6 +427,8 @@ GEM
     turbo-rails (2.0.16)
       actionpack (>= 7.1.0)
       railties (>= 7.1.0)
+    typed_dag (2.0.2)
+      rails (>= 5.0.4)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (3.1.4)
@@ -501,6 +503,7 @@ DEPENDENCIES
   sprockets-rails
   stimulus-rails
   turbo-rails
+  typed_dag
   tzinfo-data
   web-console
 
