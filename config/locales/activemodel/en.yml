@@ -1,9 +1,10 @@
+---
 en:
   activemodel:
     attributes:
       node_edit_form:
-        name_ja: Technique Name
-        name_en: Technique Name
         category: Category
-        note: Note
         children: Subsequent Techniques
+        name_en: Technique Name
+        name_ja: Technique Name
+        note: Note

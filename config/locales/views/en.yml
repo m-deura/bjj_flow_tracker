@@ -1,152 +1,153 @@
+---
 en:
-  terms:
-    root_nodes: "Flow Starting Point"
-  shared:
-    login_with: "Log in with %{provider}"
-    providers:
-      google: "Google"
+  defaults:
+    back: Back to List
+    create: New
+    delete: Delete
+    delete_confirm: Are you sure you want to delete?
+    delete_item: Delete %{item}
+    flash_messages:
+      created: "%{item} was successfully created"
+      deleted: "%{item} was successfully deleted"
+      multiple_select: Please select one or more %{item}
+      not_created: Failed to create %{item}
+      not_updated: Failed to update %{item}
+      updated: "%{item} was successfully updated"
+      wrong_input: There are errors in your input
+    preparing: It is currently under construction!
+    search: Search Techniques
+    start_guide: Start Step Guide
+  footer:
+    inquiry: Contact
+    privacy: Privacy Policy
+    terms: Terms of Service
   form:
     required: Required
+  header:
+    dashboard: Dashboard
+    flow_chart: Flow Chart
+    home: Home
+    logout: Log out
+    technique: Technique
   helpers:
+    label:
+      category: Category
+      children_nodes: Transitions
+      note: Note
+      root_nodes: Root Technique
+      technique_name: Technique Name
     submit:
       create: Create
       submit: Save
       update: Update
-    label:
-      technique_name: "Technique Name"
-      note: Note
-      category: Category
-      children_nodes: "Transitions"
-      root_nodes: "Root Technique"
-  defaults:
-    create: New
-    search: "Search Techniques"
-    delete: Delete
-    delete_item: "Delete %{item}"
-    delete_confirm: "Are you sure you want to delete?"
-    back: "Back to List"
-    start_guide: "Start Step Guide"
-    preparing: "It is currently under construction!"
-    flash_messages:
-      created: "%{item} was successfully created"
-      not_created: "Failed to create %{item}"
-      updated: "%{item} was successfully updated"
-      not_updated: "Failed to update %{item}"
-      deleted: "%{item} was successfully deleted"
-      multiple_select: "Please select one or more %{item}"
-      wrong_input: "There are errors in your input"
-  header:
-    home: Home
-    technique: Technique
-    flow_chart: "Flow Chart"
-    dashboard: Dashboard
-    logout: "Log out"
-  footer:
-    inquiry: Contact
-    privacy: "Privacy Policy"
-    terms: "Terms of Service"
   mypage:
-    techniques:
-      index:
-        title: "Techniques"
-        nothing_here: "No techniques to display"
-        editing_panel_title: "Edit Technique"
-      new:
-        title: "Create a New Technique"
     charts:
       show:
-        title: "Flow Chart"
-        create_nodes: "Create a New Flow"
-    nodes:
-      drawer_header:
-        editing_panel_title: "Edit Node"
-        creating_panel_title: "Create Starting Point"
+        create_nodes: Create a New Flow
+        title: Flow Chart
     dashboard:
       show:
-        title: Dashboard
-        welcome: "Welcome,"
-        username: "%{name}!"
-        take_note: "Let's record what you learned in practice today."
-        check_howtouse: "For instructions on how to use this app, please refer to the Step-By-Step Guide below."
-        start_guide: "Start Step Guide"
-        updates: Updates
-        technique_details: "Manage your techniques and training notes."
-        chart_details: "Visualize match or sparring flows."
+        chart_details: Visualize match or sparring flows.
+        check_howtouse: For instructions on how to use this app, please refer to the Step-By-Step Guide below.
         metrics:
-          techniques:
-            one: "%{count} technique"
-            other: "%{count} techniques"
           nodes:
             one: "%{count} node"
             other: "%{count} nodes"
+          techniques:
+            one: "%{count} technique"
+            other: "%{count} techniques"
+        start_guide: Start Step Guide
+        take_note: Let's record what you learned in practice today.
+        technique_details: Manage your techniques and training notes.
+        title: Dashboard
+        updates: Updates
+        username: "%{name}!"
+        welcome: Welcome,
+    nodes:
+      drawer_header:
+        creating_panel_title: Create Starting Point
+        editing_panel_title: Edit Node
+    techniques:
+      index:
+        editing_panel_title: Edit Technique
+        nothing_here: No techniques to display
+        title: Techniques
+      new:
+        title: Create a New Technique
   pages:
     top:
-      hero:
-        catchphrase: "Learn techniques as flows, not isolated moves"
-        description: "%{app_name} lets you organize and visualize Brazilian Jiu-Jitsu techniques as flowcharts."
-        cta_demo: "Try the demo"
-        already_signed_in: "You're already signed in"
-        demo_modal:
-          title: "This feature is not implemented yet."
-          body: "To use the service, please sign in with your Google account."
+      cta:
+        heading: Build your Jiu-Jitsu map now
+        subheading: Sign-up takes a minute—start charting right away.
       features:
-        heading: "Key Features"
-        subheading: "From organizing techniques to building your game plan—all in one place."
         cards:
-          record:
-            title: "Record Techniques"
-            body: "Add techniques you learn. Organize them by category (pass/sweep/submission, etc.) and save notes."
           flow:
-            title: "Visualize as Flows"
-            body: "Connect techniques to create a flowchart—ideal for planning matches and sparring."
+            body: Connect techniques to create a flowchart—ideal for planning matches and sparring.
+            title: Visualize as Flows
           grow_from_templates:
-            title: "Grow from Templates"
-            body: "Start from a template and make it your own. Your Jiu-Jitsu map grows as you train."
-      usecases:
-        heading: "How You Can Use It"
-        cards:
-          study_log:
-            title: "Study Log"
-            body: "Quickly add techniques learned that day. Link related transitions for easier review."
-          game_plan:
-            title: "Build a Game Plan"
-            body: "Design paths from your strengths — guard → sweep → pass → finish."
-          pre_comp:
-            title: "Pre-competition Prep"
-            body: "Simulate target sequences as a chart to reduce hesitation and stay focused on the day."
-        steps:
-          register: "Register techniques"
-          connect: "Connect and create flows"
-          overview: "See the big picture"
-          update: "Update after training"
-        stats:
-          initial_techniques:
-            title: "Initial techniques"
-            value: "90+"
-            desc: "Add more at your own pace"
-          flow_branches:
-            title: "Flow branches"
-            value: "Unlimited"
-            desc: "Design freely"
-          devices:
-            title: "Supported devices"
-            value: "Desktop / Mobile"
-            desc: "Review anywhere"
+            body: Start from a template and make it your own. Your Jiu-Jitsu map grows as you train.
+            title: Grow from Templates
+          record:
+            body: Add techniques you learn. Organize them by category (pass/sweep/submission, etc.) and save notes.
+            title: Record Techniques
+        heading: Key Features
+        subheading: From organizing techniques to building your game plan—all in one place.
+      hero:
+        already_signed_in: You're already signed in
+        catchphrase: Learn techniques as flows, not isolated moves
+        cta_demo: Try the demo
+        demo_modal:
+          body: To use the service, please sign in with your Google account.
+          title: This feature is not implemented yet.
+        description: "%{app_name} lets you organize and visualize Brazilian Jiu-Jitsu techniques as flowcharts."
       howto:
-        heading: "Getting Started"
         cards:
           step1:
-            title: "1. Start from a template"
-            body: "Use a template chart as a base and add your favorite techniques."
+            body: Use a template chart as a base and add your favorite techniques.
+            title: 1. Start from a template
           step2:
-            title: "2. Take notes in your own words"
-            body: "Capture tips and cautions. Updating right after practice improves retention."
+            body: Capture tips and cautions. Updating right after practice improves retention.
+            title: 2. Take notes in your own words
           step3:
-            title: "3. Link transitions"
-            body: "Connect nodes to visualize match or sparring sequences as they are."
+            body: Connect nodes to visualize match or sparring sequences as they are.
+            title: 3. Link transitions
           step4:
-            title: "4. Review regularly"
-            body: "Before a match or roll, check your chart so you can go in with a clear plan."
-      cta:
-        heading: "Build your Jiu-Jitsu map now"
-        subheading: "Sign-up takes a minute—start charting right away."
+            body: Before a match or roll, check your chart so you can go in with a clear plan.
+            title: 4. Review regularly
+        heading: Getting Started
+      usecases:
+        cards:
+          game_plan:
+            body: Design paths from your strengths — guard → sweep → pass → finish.
+            title: Build a Game Plan
+          pre_comp:
+            body: Simulate target sequences as a chart to reduce hesitation and stay focused on the day.
+            title: Pre-competition Prep
+          study_log:
+            body: Quickly add techniques learned that day. Link related transitions for easier review.
+            title: Study Log
+        heading: How You Can Use It
+        stats:
+          devices:
+            desc: Review anywhere
+            title: Supported devices
+            value: Desktop / Mobile
+          flow_branches:
+            desc: Design freely
+            title: Flow branches
+            value: Unlimited
+          initial_techniques:
+            desc: Add more at your own pace
+            title: Initial techniques
+            value: 90+
+        steps:
+          connect: Connect and create flows
+          overview: See the big picture
+          register: Register techniques
+          update: Update after training
+  shared:
+    login_with: Log in with %{provider}
+    providers:
+      google: Google
+  terms:
+    root_nodes: Flow Starting Point

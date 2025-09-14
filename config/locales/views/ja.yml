@@ -1,150 +1,151 @@
+---
 ja:
-  terms:
-    root_nodes: フローの開始点
-  shared:
-    login_with: "%{provider} でログイン"
-    providers:
-      google: "Google"
-  form:
-    required: 必須
-  helpers:
-    submit:
-      create: 登録
-      submit: 保存
-      update: 更新
-    label:
-      technique_name: テクニック名
-      note: ノート
-      category: カテゴリー
-      children_nodes: 展開先テクニック
-      root_nodes: 開始点テクニック
   defaults:
-    create: 新規作成
-    search: テクニックを検索
-    delete: 削除
-    delete_item: "%{item}を削除"
-    delete_confirm: 削除しますか？
     back: 一覧へ戻る
-    start_guide: ステップガイドを開始
-    preparing: "現在準備中です！"
+    create: 新規作成
+    delete: 削除
+    delete_confirm: 削除しますか？
+    delete_item: "%{item}を削除"
     flash_messages:
       created: "%{item}を作成しました"
-      not_created: "%{item}を作成できませんでした"
-      updated: "%{item}を更新しました"
-      not_updated: "%{item}を更新できませんでした"
       deleted: "%{item}を削除しました"
       multiple_select: "%{item}を1つ以上選択してください"
+      not_created: "%{item}を作成できませんでした"
+      not_updated: "%{item}を更新できませんでした"
+      updated: "%{item}を更新しました"
       wrong_input: 入力に誤りがあります
-  header:
-    home: Home
-    technique: Technique
-    flow_chart: "Flow Chart"
-    dashboard: Dashboard
-    logout: ログアウト
+    preparing: 現在準備中です！
+    search: テクニックを検索
+    start_guide: ステップガイドを開始
   footer:
     inquiry: お問い合わせ
     privacy: プライバシーポリシー
     terms: 利用規約
+  form:
+    required: 必須
+  header:
+    dashboard: Dashboard
+    flow_chart: Flow Chart
+    home: Home
+    logout: ログアウト
+    technique: Technique
+  helpers:
+    label:
+      category: カテゴリー
+      children_nodes: 展開先テクニック
+      note: ノート
+      root_nodes: 開始点テクニック
+      technique_name: テクニック名
+    submit:
+      create: 登録
+      submit: 保存
+      update: 更新
   mypage:
-    techniques:
-      index:
-        title: Technique
-        nothing_here: 表示するテクニックがありません
-        editing_panel_title: テクニックを編集
-      new:
-        title: 新規テクニックを作成
     charts:
       show:
-        title: "Flow Chart"
         create_nodes: 新しいフローを作る
-    nodes:
-      drawer_header:
-        editing_panel_title: ノードを編集
-        creating_panel_title: フローの開始点を作成
+        title: Flow Chart
     dashboard:
       show:
-        title: Dashboard
-        welcome: "ようこそ、"
-        username: "%{name}さん！"
-        take_note: "本日も練習で学んだことを記録しましょう。"
-        check_howtouse: "本アプリの使い方については、以下のステップガイドをご参照ください。"
-        start_guide: ステップガイドを始める
-        updates: 更新情報
-        technique_details: "技の一覧と練習メモを管理します。"
-        chart_details: "試合またはスパーの流れを可視化します。"
+        chart_details: 試合またはスパーの流れを可視化します。
+        check_howtouse: 本アプリの使い方については、以下のステップガイドをご参照ください。
         metrics:
-          techniques:
-            other: "%{count} テクニック"
           nodes:
             other: "%{count} ノード"
+          techniques:
+            other: "%{count} テクニック"
+        start_guide: ステップガイドを始める
+        take_note: 本日も練習で学んだことを記録しましょう。
+        technique_details: 技の一覧と練習メモを管理します。
+        title: Dashboard
+        updates: 更新情報
+        username: "%{name}さん！"
+        welcome: ようこそ、
+    nodes:
+      drawer_header:
+        creating_panel_title: フローの開始点を作成
+        editing_panel_title: ノードを編集
+    techniques:
+      index:
+        editing_panel_title: テクニックを編集
+        nothing_here: 表示するテクニックがありません
+        title: Technique
+      new:
+        title: 新規テクニックを作成
   pages:
     top:
-      hero:
-        catchphrase: "技は点でなく、“流れ”で覚える"
-        description: "%{app_name} は、ブラジリアン柔術のテクニックをフローチャート形式で整理・可視化できるツールです。"
-        cta_demo: "デモを触ってみる"
-        already_signed_in: "ログイン済みです"
-        demo_modal:
-          title: "本機能は、現時点で未実装です。"
-          body: "利用にあたっては、Googleアカウントでログインしてください。"
+      cta:
+        heading: 今すぐ、あなたの柔術マップを作ろう
+        subheading: 登録は1分、すぐにチャート作成へ。
       features:
-        heading: "主な機能"
-        subheading: "技の整理からゲームプラン作成まで、これ1つでOK"
         cards:
-          record:
-            title: "テクニックの記録"
-            body: "習った技を追加。カテゴリー（パス/スイープ/サブミッション等）で整理し、学んだ内容をノートに保存。"
           flow:
-            title: "フローで可視化"
-            body: "技と技を線でつなぎ、フローチャートを作成。試合・スパーのシナリオ作りに。"
+            body: 技と技を線でつなぎ、フローチャートを作成。試合・スパーのシナリオ作りに。
+            title: フローで可視化
           grow_from_templates:
-            title: "テンプレから成長"
-            body: "テンプレートをベースに自分専用へ。練習を重ねるほど柔術マップが育ちます。"
-      usecases:
-        heading: "こんな使い方ができます"
-        cards:
-          study_log:
-            title: "学習ログ"
-            body: "その日に習った技をすぐ追加。関連する展開をつなげて復習がラクに。"
-          game_plan:
-            title: "ゲームプラン作成"
-            body: "得意技を起点に、ガード→スイープ→パス→極めの動線を設計。"
-          pre_comp:
-            title: "大会前の仕上げ"
-            body: "狙う展開をチャートでシミュレーション。迷いを減らし、当日集中できます。"
-        steps:
-          register: "技を登録"
-          connect: "つなげてフロー化"
-          overview: "全体像を確認"
-          update: "練習で更新"
-        stats:
-          initial_techniques:
-            title: "初期の登録技"
-            value: "90+"
-            desc: "自分のペースで増やせます"
-          flow_branches:
-            title: "フロー分岐"
-            value: "無制限"
-            desc: "自由に設計"
-          devices:
-            title: "対応端末"
-            value: "PC / モバイル"
-            desc: "どこでも復習"
+            body: テンプレートをベースに自分専用へ。練習を重ねるほど柔術マップが育ちます。
+            title: テンプレから成長
+          record:
+            body: 習った技を追加。カテゴリー（パス/スイープ/サブミッション等）で整理し、学んだ内容をノートに保存。
+            title: テクニックの記録
+        heading: 主な機能
+        subheading: 技の整理からゲームプラン作成まで、これ1つでOK
+      hero:
+        already_signed_in: ログイン済みです
+        catchphrase: 技は点でなく、“流れ”で覚える
+        cta_demo: デモを触ってみる
+        demo_modal:
+          body: 利用にあたっては、Googleアカウントでログインしてください。
+          title: 本機能は、現時点で未実装です。
+        description: "%{app_name} は、ブラジリアン柔術のテクニックをフローチャート形式で整理・可視化できるツールです。"
       howto:
-        heading: "はじめ方"
         cards:
           step1:
-            title: "1. まずはテンプレから"
-            body: "用意されたテンプレートチャートをベースに、自分の得意技を追加してみましょう。"
+            body: 用意されたテンプレートチャートをベースに、自分の得意技を追加してみましょう。
+            title: 1. まずはテンプレから
           step2:
-            title: "2. 自分の言葉でメモ"
-            body: "細かいコツ・注意点をノートに。練習後すぐに更新すると定着が早いです。"
+            body: 細かいコツ・注意点をノートに。練習後すぐに更新すると定着が早いです。
+            title: 2. 自分の言葉でメモ
           step3:
-            title: "3. 展開をつなぐ"
-            body: "ノード同士を線でつなぎ、試合やスパーの展開をそのまま可視化しましょう。"
+            body: ノード同士を線でつなぎ、試合やスパーの展開をそのまま可視化しましょう。
+            title: 3. 展開をつなぐ
           step4:
-            title: "4. 定期的に見返す"
-            body: "試合やスパー前にチャートを確認。作戦を明確にして臨むことができます。"
-      cta:
-        heading: "今すぐ、あなたの柔術マップを作ろう"
-        subheading: "登録は1分、すぐにチャート作成へ。"
+            body: 試合やスパー前にチャートを確認。作戦を明確にして臨むことができます。
+            title: 4. 定期的に見返す
+        heading: はじめ方
+      usecases:
+        cards:
+          game_plan:
+            body: 得意技を起点に、ガード→スイープ→パス→極めの動線を設計。
+            title: ゲームプラン作成
+          pre_comp:
+            body: 狙う展開をチャートでシミュレーション。迷いを減らし、当日集中できます。
+            title: 大会前の仕上げ
+          study_log:
+            body: その日に習った技をすぐ追加。関連する展開をつなげて復習がラクに。
+            title: 学習ログ
+        heading: こんな使い方ができます
+        stats:
+          devices:
+            desc: どこでも復習
+            title: 対応端末
+            value: PC / モバイル
+          flow_branches:
+            desc: 自由に設計
+            title: フロー分岐
+            value: 無制限
+          initial_techniques:
+            desc: 自分のペースで増やせます
+            title: 初期の登録技
+            value: 90+
+        steps:
+          connect: つなげてフロー化
+          overview: 全体像を確認
+          register: 技を登録
+          update: 練習で更新
+  shared:
+    login_with: "%{provider} でログイン"
+    providers:
+      google: Google
+  terms:
+    root_nodes: フローの開始点

@@ -1,29 +1,30 @@
+---
 ja:
   activerecord:
-    models:
-      user: ユーザー
-      technique_preset: テクニックプリセット
-      technique: テクニック
-      chart: チャート
-      node: ノード
     attributes:
-      user: 
-        name: ユーザー名
-        email: メールアドレス
-        image: アイコン
       chart:
         name: チャート名
       technique:
-        name_ja: テクニック名
-        name_en: テクニック名
         category: カテゴリー
+        name_en: テクニック名
+        name_ja: テクニック名
         note: ノート
+      user:
+        email: メールアドレス
+        image: アイコン
+        name: ユーザー名
+    models:
+      chart: チャート
+      node: ノード
+      technique: テクニック
+      technique_preset: テクニックプリセット
+      user: ユーザー
   enums:
     category:
+      control: コントロール
+      guard: ガード
+      nil: 未分類
+      pass: パス
       submission: 極め技
       sweep: スイープ
-      pass: パス
-      guard: ガード
-      control: コントロール
       takedown: テイクダウン
-      nil: 未分類
