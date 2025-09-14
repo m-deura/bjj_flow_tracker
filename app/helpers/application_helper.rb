@@ -44,4 +44,17 @@ module ApplicationHelper
       }
     }
   end
+
+  # 多言語対応のため、hreflang の <link> を出力（<head> 内で呼ぶ）
+  def hreflang_links
+    links = I18n.available_locales.map do |loc|
+      tag.link(rel: "alternate",
+               hreflang: loc,
+               href: url_for(locale: loc, only_path: false))
+    end
+    links << tag.link(rel: "alternate",
+                      hreflang: "x-default",
+                      href: url_for(locale: "en", only_path: false))
+    safe_join(links, "\n")
+  end
 end
