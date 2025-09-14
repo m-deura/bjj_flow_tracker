@@ -30,8 +30,12 @@ class Mypage::NodesController < ApplicationController
           end
         end
 
-        new_ids = new_names.map do |name|
-          current_user.techniques.create!(name_ja: name, name_en: name).id
+        # 現ロケールのカラムのみに値を入れる（もう片方はモデルの作成時補完に委ねる）
+        field = Technique.name_field_for(I18n.locale) # :name_ja or :name_en
+
+        new_ids = new_names.map do |n|
+          # キーがリテラルでないので、シンボル記法(:)ではなくロケット記法(=>)
+          current_user.techniques.find_or_create_by!(field => n).id
         end
 
         # TODO: chart/ancestry/techniqueでユニーク制約を切っておきたいが、ancestryを入れ替える可能性があるので一旦保留
@@ -119,6 +123,6 @@ class Mypage::NodesController < ApplicationController
 
   def node_edit_form_params
     # children が空でも配列を許容
-    params.require(:node_edit_form).permit(:name_ja, :note, :category, children: [])
+    params.require(:node_edit_form).permit(:name, :note, :category, children: [])
   end
 end
