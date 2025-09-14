@@ -1,7 +1,6 @@
 en:
   terms:
     root_nodes: "Flow Starting Point"
-    children_nodes: "Transitions"
   shared:
     login_with: "Log in with %{provider}"
     providers:
@@ -22,8 +21,6 @@ en:
   defaults:
     create: New
     search: "Search Techniques"
-    edit: Edit
-    show: Details
     delete: Delete
     delete_item: "Delete %{item}"
     delete_confirm: "Are you sure you want to delete?"
@@ -37,7 +34,6 @@ en:
       not_updated: "Failed to update %{item}"
       deleted: "%{item} was successfully deleted"
       multiple_select: "Please select one or more %{item}"
-      require_login: "Please sign in"
       wrong_input: "There are errors in your input"
   header:
     home: Home

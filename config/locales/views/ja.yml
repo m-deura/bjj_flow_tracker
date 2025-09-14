@@ -1,7 +1,6 @@
 ja:
   terms:
     root_nodes: フローの開始点
-    children_nodes: 展開先テクニック
   shared:
     login_with: "%{provider} でログイン"
     providers:
@@ -22,8 +21,6 @@ ja:
   defaults:
     create: 新規作成
     search: テクニックを検索
-    edit: 編集
-    show: 詳細
     delete: 削除
     delete_item: "%{item}を削除"
     delete_confirm: 削除しますか？
@@ -37,7 +34,6 @@ ja:
       not_updated: "%{item}を更新できませんでした"
       deleted: "%{item}を削除しました"
       multiple_select: "%{item}を1つ以上選択してください"
-      require_login: ログインしてください
       wrong_input: 入力に誤りがあります
   header:
     home: Home
