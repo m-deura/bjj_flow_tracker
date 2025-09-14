@@ -52,8 +52,7 @@ class Mypage::NodesController < ApplicationController
       flash[:alert] = e.message
       redirect_to mypage_chart_path(@chart)
     rescue StandardError => e
-      flash[:alert] = redirect_to mypage_chart_path(@chart), notice: t("defaults.flash_messages.note_created", item: t("terms.root_nodes"))
-
+      flash[:alert] = t("defaults.flash_messages.not_created", item: t("terms.root_nodes"))
       redirect_to mypage_chart_path(@chart)
     end
   end
