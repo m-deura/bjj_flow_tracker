@@ -54,7 +54,10 @@ class NodeEditForm
 
       # 追加
       ids_to_add.each do |tid|
-        node.children.create!(chart: node.chart, technique_id: tid)
+        node.children.find_or_create_by!(
+          chart: node.chart,
+          technique_id: tid
+        )
       end
       # 削除
       node.children.where(technique_id: ids_to_remove).destroy_all
