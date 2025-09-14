@@ -22,7 +22,6 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: LOCALES do
     # Defines the root path route ("/")
     root "pages#top"
-    get "/:locale", to: "page#top"
 
     # Static pages
     get "privacy", to: "pages#privacy"
