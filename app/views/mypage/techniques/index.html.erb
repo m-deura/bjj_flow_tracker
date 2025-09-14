@@ -69,7 +69,7 @@
                 <% else %>
                   <span class="badge badge-soft"><%= t.category ? t("enums.category.#{t.category}") : t("enums.category.nil") %></span>
                 <% end %>
-                <span class="text-lg font-medium" ><%= t.name_ja %></span>
+                <span class="text-lg font-medium" ><%= t.name_for %></span>
               </div>
 
               <% if t.note.present? %>
