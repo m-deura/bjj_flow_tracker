@@ -36,7 +36,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_15_033620) do
     t.bigint "from_id", null: false
     t.bigint "to_id", null: false
     t.integer "count", default: 0, null: false
-    t.integer "flow", default: 0, null: false
+    t.integer "flow", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["from_id", "to_id", "flow"], name: "index_edges_on_from_id_and_to_id_and_flow", unique: true
