@@ -5,11 +5,7 @@ RSpec.describe "Logins", type: :system do
     driven_by(:rack_test)
   end
 
-<<<<<<< Updated upstream
-  describe "テスト" do
-=======
   describe "ログイン・ログアウト" do
->>>>>>> Stashed changes
     it "ログインできる" do
       omniauth_login
     end
@@ -23,11 +19,7 @@ RSpec.describe "Logins", type: :system do
       expect(page).to have_current_path(root_path)
       expect(page).to have_content("ログアウトしました。")
     end
-<<<<<<< Updated upstream
   end
-
-  pending "add some scenarios (or delete) #{__FILE__}"
-=======
 
     context "未ログインの場合" do
       it "マイページにアクセスできない" do
@@ -39,6 +31,4 @@ RSpec.describe "Logins", type: :system do
     end
   end
 
-  # pending "add some scenarios (or delete) #{__FILE__}"
->>>>>>> Stashed changes
-end
+# pending "add some scenarios (or delete) #{__FILE__}"
