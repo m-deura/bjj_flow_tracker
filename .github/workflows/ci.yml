@@ -93,7 +93,7 @@ jobs:
       - name: Prepare DB
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/app_test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/myapp_test
         run: |
           bin/rails db:prepare
 
