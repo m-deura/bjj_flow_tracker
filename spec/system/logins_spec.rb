@@ -14,9 +14,9 @@ RSpec.describe "Logins", type: :system do
       omniauth_login
       visit mypage_root_path
       # save_and_open_page
-      click_on "ログアウト"
+      click_on "ログアウト", match: :first
 
-      expect(page).to have_current_path(root_path)
+      expect(page).to have_current_path(root_path(I18n.locale))
       expect(page).to have_content("ログアウトしました。")
     end
   end
@@ -25,7 +25,7 @@ RSpec.describe "Logins", type: :system do
       it "マイページにアクセスできない" do
         visit mypage_root_path
 
-        expect(page).to have_current_path(root_path)
+        expect(page).to have_current_path(root_path(locale: I18n.locale))
         expect(page).to have_content("ログインしてください。")
       end
     end

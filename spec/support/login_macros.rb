@@ -5,6 +5,6 @@ module LoginMacros
 
     visit root_path
     click_on "Google でログイン", match: :first
-    expect(page).to have_current_path(mypage_root_path)
+    expect(page).to have_current_path(mypage_root_path(locale: I18n.locale))
   end
 end
