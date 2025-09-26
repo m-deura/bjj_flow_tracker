@@ -1,10 +1,14 @@
 require "capybara/rspec"
 require "selenium/webdriver"
 
-Capybara.server_host = "0.0.0.0" # すべてのインターフェイスにバインド
-Capybara.server_port = 5001 # 任意の空きポート（Seleniumの4444と被らせない）
-Capybara.app_host = "http://web:#{Capybara.server_port}" # composeのservice名 'web'
 Capybara.ignore_hidden_elements = false # 非表示要素もCapybaraで取得する
+
+# リモートSelenium(ローカルDocker)向けのホスト設定
+if ENV['SELENIUM_DRIVER_URL'].present?
+  Capybara.server_host = "0.0.0.0" # すべてのインターフェイスにバインド
+  Capybara.server_port = 5001 # 任意の空きポート（Seleniumの4444と被らせない）
+  Capybara.app_host = "http://web:#{Capybara.server_port}" # composeのservice名 'web'
+end
 
 Capybara.register_driver :remote_chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new
@@ -24,8 +28,14 @@ end
 RSpec.configure do |config|
   # デフォルトは速いrack_test（JSなし）
   config.before(:each, type: :system) { driven_by :rack_test }
-  # JS が必要なテストだけ実ブラウザ（ヘッドレスChrome）
-  config.before(:each, type: :system, js: true) { driven_by :remote_chrome }
+  # JS が必要なテストだけ実ブラウザ（Chrome）を使用
+  config.before(:each, type: :system, js: true) do
+    if ENV['SELENIUM_DRIVER_URL'].present?
+      driven_by :remote_chrome            # ローカル: docker compose のリモートChromeを使用
+    else
+      driven_by :selenium_chrome_headless # CI: ランナーに入れたローカルChromeを使用
+    end
+  end
   # テスト前にseeds.rb(presets群)を読み込む
   config.before(:suite) { Rails.application.load_seed }
 end
