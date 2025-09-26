@@ -75,35 +75,3 @@ RSpec.configure do |config|
 
   config.include LoginMacros
 end
-
-require "capybara/rspec"
-RSpec.configure do |config|
-  # デフォルトは速いrack_test（JSなし）
-  config.before(:each, type: :system) { driven_by :rack_test }
-
-  # JS が必要なテストだけ実ブラウザ（ヘッドレスChrome）
-  config.before(:each, type: :system, js: true) do
-    driven_by :selenium_chrome_headless
-  end
-end
-
-require 'capybara-screenshot/rspec'
-# どこに保存するか（CI の artifact パスと合わせる）
-Capybara.save_path = Rails.root.join("tmp", "screenshots")
-# 失敗時に自動保存（require だけで有効だが明示しておく）
-Capybara::Screenshot.autosave_on_failure = true
-# 直近テスト分だけ残す（溜まりすぎ防止）
-Capybara::Screenshot.prune_strategy = :keep_last_run
-
-OmniAuth.configure do |c|
-  c.test_mode = true
-  c.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
-    "provider" => "google_oauth2",
-    "uid" => "100000000000000000000",
-    "info" => {
-      "name" => "test employee",
-      "email" => "tester1@example.com",
-      "image" => "https://example.com"
-    }
-  })
-end

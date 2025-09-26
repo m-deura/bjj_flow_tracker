@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Logins", type: :system do
-  before do
-    driven_by(:rack_test)
-  end
-
   describe "ログイン・ログアウト" do
     it "ログインできる" do
       omniauth_login
