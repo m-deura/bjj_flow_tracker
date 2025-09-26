@@ -15,28 +15,29 @@ RSpec.describe "Techniques", type: :system do
       expect(page).to have_current_path(mypage_techniques_path(locale: I18n.locale))
     end
 
-    context "登録されたテクニックがない場合" do
+    it "プリセットのテクニックが確認できる" do
+      visit mypage_techniques_path(locale: I18n.locale)
+      expect(page).to have_content("マウント")
+    end
+
+    context "登録されたテクニックがない(プリセットを含めテクニックを全削除した)場合" do
+      before do
+        Edge.destroy_all
+        user.charts.find_each do |chart|
+          # chart.edges.delete_all #まだリレーションを作成していないためコメントアウト
+          chart.nodes.delete_all
+        end
+        user.techniques.delete_all
+      end
+
       it "表示するテクニックがない旨が表示される" do
-        visit mypage_techniques_path
+        visit mypage_techniques_path(locale: I18n.locale)
         expect(page).to have_content(I18n.t("mypage.techniques.index.nothing_here"))
       end
     end
 
-    context "登録されているテクニックがある場合" do
-      let!(:technique) do
-        user.techniques.create! do |t|
-          t.set_name_for("test1")
-        end
-      end
-
-      it "プリセットのテクニックが確認できる" do
-        visit mypage_techniques_path(locale: I18n.locale)
-        expect(page).to have_content("test1")
-      end
-    end
-
     it "新規作成ページへのリンクが機能する" do
-      visit mypage_techniques_path
+      visit mypage_techniques_path(locale: I18n.locale)
       click_link(I18n.t("defaults.create"))
       expect(page).to have_current_path(new_mypage_technique_path(locale: I18n.locale))
     end
