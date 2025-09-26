@@ -66,7 +66,7 @@ RSpec.describe "Techniques", type: :system do
       end
     end
 
-    it "編集フォームが表示される", :js do
+    it "編集フォームが表示される" do
       visit mypage_techniques_path(locale: I18n.locale)
       expect(page).to have_css('a[data-turbo-frame="technique-drawer"]')
       find('a[data-turbo-frame="technique-drawer"]', match: :first).click
@@ -117,7 +117,7 @@ RSpec.describe "Techniques", type: :system do
           end
         end
 
-      it "テクニックの作成の失敗する" do
+      it "テクニックの作成に失敗する" do
         visit new_mypage_technique_path(locale: I18n.locale)
         fill_in I18n.t("helpers.label.technique_name"), with: "test1"
         fill_in I18n.t("helpers.label.note"), with: "test note!"
@@ -133,6 +133,72 @@ RSpec.describe "Techniques", type: :system do
   end
 
   describe "updateアクション" do
+    before do
+      user.techniques.create! do |t|
+        t.set_name_for("test2")
+      end
+
+      # 後に作ったテクニックが find('a[data-turbo-frame="technique-drawer"]', match: :first).click にマッチする
+      user.techniques.create! do |t|
+        t.set_name_for("test1")
+      end
+    end
+
+    context "有効なデータの場合" do
+      it "テクニックが更新できる" do
+        visit mypage_techniques_path(locale: I18n.locale)
+        expect(page).to have_css('a[data-turbo-frame="technique-drawer"]')
+        find('a[data-turbo-frame="technique-drawer"]', match: :first).click
+
+        fill_in I18n.t("helpers.label.technique_name"), with: "retest3"
+        fill_in I18n.t("helpers.label.note"), with: "retest note!3"
+        select I18n.t("enums.category.submission"), from: I18n.t("helpers.label.category")
+        click_button(I18n.t("helpers.submit.update"))
+
+        expect(page).to have_current_path(mypage_techniques_path(locale: I18n.locale))
+        expect(page).to have_content("retest3")
+        expect(page).to have_content("retest note!3")
+        expect(page).to have_content(I18n.t("defaults.flash_messages.updated", item: Technique.model_name.human))
+      end
+    end
+
+    context "テクニック名が空の場合" do
+      it "テクニックの更新に失敗する" do
+        visit mypage_techniques_path(locale: I18n.locale)
+        expect(page).to have_css('a[data-turbo-frame="technique-drawer"]')
+        find('a[data-turbo-frame="technique-drawer"]', match: :first).click
+
+        fill_in I18n.t("helpers.label.technique_name"), with: ""
+        fill_in I18n.t("helpers.label.note"), with: "retest note!"
+        select I18n.t("enums.category.submission"), from: I18n.t("helpers.label.category")
+        click_button(I18n.t("helpers.submit.update"))
+
+        expect(page).to have_current_path(mypage_techniques_path(locale: I18n.locale))
+        expect(page).to have_content("test1")
+        expect(page).to have_content("test2")
+        expect(page).to have_content(I18n.t("defaults.flash_messages.not_updated", item: Technique.model_name.human))
+        expect(page).to have_content("#{Technique.human_attribute_name(:name_ja)}#{I18n.t('errors.messages.blank')}")
+      end
+    end
+
+    context "テクニック名が既存データと重複する場合" do
+      it "テクニックの更新に失敗する" do
+        visit mypage_techniques_path(locale: I18n.locale)
+        expect(page).to have_css('a[data-turbo-frame="technique-drawer"]')
+        find('a[data-turbo-frame="technique-drawer"]', match: :first).click
+
+        fill_in I18n.t("helpers.label.technique_name"), with: "test2"
+        fill_in I18n.t("helpers.label.note"), with: "retest note!"
+        select I18n.t("enums.category.submission"), from: I18n.t("helpers.label.category")
+        click_button(I18n.t("helpers.submit.update"))
+
+        expect(page).to have_current_path(mypage_techniques_path(locale: I18n.locale))
+        expect(page).to have_content("test1")
+        expect(page).to have_content("test2")
+        expect(page).to have_content(I18n.t("defaults.flash_messages.not_updated", item: Technique.model_name.human))
+        expect(page).to have_content("#{Technique.human_attribute_name(:name_ja)}#{I18n.t('errors.messages.taken')}")
+      end
+    end
   end
 
   describe "destroyアクション" do
