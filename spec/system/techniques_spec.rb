@@ -202,5 +202,28 @@ RSpec.describe "Techniques", type: :system do
   end
 
   describe "destroyアクション" do
+    before do
+      user.techniques.create! do |t|
+        t.set_name_for("test1")
+      end
+    end
+
+    # モーダルが出てくるので要js
+    it "テクニックを削除できる", :js do
+      visit mypage_techniques_path(locale: I18n.locale)
+      expect(page).to have_css('a[data-turbo-frame="technique-drawer"]')
+      find('a[data-turbo-frame="technique-drawer"]', match: :first).click
+
+      expect {
+        accept_confirm(I18n.t("defaults.delete_confirm")) do
+          click_link(I18n.t("defaults.delete"))
+        end
+
+        expect(page).to have_content(I18n.t("defaults.flash_messages.deleted", item: Technique.model_name.human))
+      }.to change(user.techniques, :count).by(-1)
+
+      expect(page).to have_current_path(mypage_techniques_path(locale: I18n.locale))
+      expect(page).not_to have_content("test1")
+    end
   end
 end
