@@ -79,6 +79,57 @@ RSpec.describe "Techniques", type: :system do
   end
 
   describe "createアクション" do
+    context "有効なデータの場合" do
+      it "テクニックが作成できる" do
+        visit new_mypage_technique_path(locale: I18n.locale)
+        fill_in I18n.t("helpers.label.technique_name"), with: "test1"
+        fill_in I18n.t("helpers.label.note"), with: "test note!"
+        select I18n.t("enums.category.submission"), from: I18n.t("helpers.label.category")
+        expect {
+          click_button(I18n.t("helpers.submit.create"))
+        }.to change(user.techniques, :count).by(1)
+        expect(page).to have_current_path(mypage_techniques_path(locale: I18n.locale))
+        expect(page).to have_content("test1")
+        expect(page).to have_content("test note!")
+        expect(page).to have_content(I18n.t("defaults.flash_messages.created", item: Technique.model_name.human))
+      end
+    end
+
+    context "テクニック名が空の場合" do
+      it "テクニックの作成に失敗する" do
+        visit new_mypage_technique_path(locale: I18n.locale)
+        fill_in I18n.t("helpers.label.note"), with: "test note!"
+        select I18n.t("enums.category.submission"), from: I18n.t("helpers.label.category")
+        expect {
+          click_button(I18n.t("helpers.submit.create"))
+        }.to change(user.techniques, :count).by(0)
+        expect(page).to have_current_path(mypage_techniques_path(locale: I18n.locale))
+        expect(page).to have_content(I18n.t("defaults.flash_messages.not_created", item: Technique.model_name.human))
+        # #{Technique.human_attribute_name(:name_ja)} = I18n.t("activerecord.attributes.technique.name_ja")
+        expect(page).to have_content("#{Technique.human_attribute_name(:name_ja)}#{I18n.t('errors.messages.blank')}")
+      end
+    end
+
+    context "テクニック名が既存データと重複する場合" do
+        let!(:technique) do
+          user.techniques.create! do |t|
+            t.set_name_for("test1")
+          end
+        end
+
+      it "テクニックの作成の失敗する" do
+        visit new_mypage_technique_path(locale: I18n.locale)
+        fill_in I18n.t("helpers.label.technique_name"), with: "test1"
+        fill_in I18n.t("helpers.label.note"), with: "test note!"
+        select I18n.t("enums.category.submission"), from: I18n.t("helpers.label.category")
+        expect {
+          click_button(I18n.t("helpers.submit.create"))
+        }.to change(user.techniques, :count).by(0)
+        expect(page).to have_current_path(mypage_techniques_path(locale: I18n.locale))
+        expect(page).to have_content(I18n.t("defaults.flash_messages.not_created", item: Technique.model_name.human))
+        expect(page).to have_content("#{Technique.human_attribute_name(:name_ja)}#{I18n.t('errors.messages.taken')}")
+      end
+    end
   end
 
   describe "updateアクション" do
