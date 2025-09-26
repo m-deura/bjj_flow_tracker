@@ -41,6 +41,50 @@ RSpec.describe "Techniques", type: :system do
       click_link(I18n.t("defaults.create"))
       expect(page).to have_current_path(new_mypage_technique_path(locale: I18n.locale))
     end
+
+    context "検索した文字列がヒットする場合" do
+      before do
+        user.techniques.create! do |t|
+          t.set_name_for("test1")
+          t.note = "test note!1"
+        end
+
+        user.techniques.create! do |t|
+          t.set_name_for("test2")
+          t.note = "test note!2"
+        end
+      end
+
+      it "該当するテクニック名のみが一覧に表示される", :js do # inputイベント発火(send_keys利用)のために要js
+        visit mypage_techniques_path(locale: I18n.locale)
+        field = find('input[name="q[name_ja_or_name_en_or_note_cont]"]')
+        field.send_keys("test1")
+        expect(page).to have_content("test1")
+        expect(page).not_to have_content("test2")
+      end
+
+      it "該当するノートを持つテクニックのみが一覧に表示される", :js do
+        visit mypage_techniques_path(locale: I18n.locale)
+        field = find('input[name="q[name_ja_or_name_en_or_note_cont]"]')
+        field.send_keys("test note!1")
+        expect(page).to have_content("test1")
+        expect(page).not_to have_content("test2")
+      end
+    end
+
+    context "どのテクニック名・ノートにも該当しないランダム文字列で検索した場合" do
+      it "表示するテクニックがない旨が表示される", :js do
+        visit mypage_techniques_path(locale: I18n.locale)
+        field = find('input[name="q[name_ja_or_name_en_or_note_cont]"]')
+        field.send_keys("Hello, world!!")
+        expect(page).to have_content(I18n.t("mypage.techniques.index.nothing_here"))
+      end
+    end
+
+    context "カテゴリーフィルタをかけた場合" do
+      xit "選択したカテゴリのテクニックのみが表示される" do
+      end
+    end
   end
 
   describe "newアクション" do
@@ -60,7 +104,7 @@ RSpec.describe "Techniques", type: :system do
   end
 
   describe "editアクション" do
-    let!(:technique) do
+    before do
       user.techniques.create! do |t|
         t.set_name_for("test1")
       end
