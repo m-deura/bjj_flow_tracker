@@ -60,6 +60,22 @@ RSpec.describe "Techniques", type: :system do
   end
 
   describe "editアクション" do
+    let!(:technique) do
+      user.techniques.create! do |t|
+        t.set_name_for("test1")
+      end
+    end
+
+    it "編集フォームが表示される", :js do
+      visit mypage_techniques_path(locale: I18n.locale)
+      expect(page).to have_css('a[data-turbo-frame="technique-drawer"]')
+      find('a[data-turbo-frame="technique-drawer"]', match: :first).click
+      expect(page).to have_field(I18n.t("helpers.label.technique_name"), with: "test1")
+      expect(page).to have_field(I18n.t("helpers.label.note"))
+      expect(page).to have_field(I18n.t("helpers.label.category"))
+      expect(page).to have_button(I18n.t("helpers.submit.update"))
+      expect(page).to have_link(I18n.t("defaults.delete"))
+    end
   end
 
   describe "createアクション" do
