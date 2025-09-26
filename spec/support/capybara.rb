@@ -1,8 +1,6 @@
 require "capybara/rspec"
 require "selenium/webdriver"
 
-Capybara.ignore_hidden_elements = false # 非表示要素もCapybaraで取得する
-
 # リモートSelenium(ローカルDocker)向けのホスト設定
 if ENV['SELENIUM_DRIVER_URL'].present?
   Capybara.server_host = "0.0.0.0" # すべてのインターフェイスにバインド
