@@ -10,7 +10,7 @@ RSpec.describe "Techniques", type: :system do
   # pending "add some scenarios (or delete) #{__FILE__}"
 
   describe "indexアクション" do
-    it "ダッシュボードからテクニック画面に遷移できる" do
+    it "ダッシュボードにあるテクニック画面へのリンクが機能する" do
       click_on "Technique", match: :first
       expect(page).to have_current_path(mypage_techniques_path(locale: I18n.locale))
     end
@@ -30,16 +30,32 @@ RSpec.describe "Techniques", type: :system do
       end
 
       it "プリセットのテクニックが確認できる" do
-        visit mypage_techniques_path
+        visit mypage_techniques_path(locale: I18n.locale)
         expect(page).to have_content("test1")
       end
     end
-  end
 
-  describe "showアクション" do
+    it "新規作成ページへのリンクが機能する" do
+      visit mypage_techniques_path
+      click_link(I18n.t("defaults.create"))
+      expect(page).to have_current_path(new_mypage_technique_path(locale: I18n.locale))
+    end
   end
 
   describe "newアクション" do
+    it "新規作成フォームが表示される" do
+      visit new_mypage_technique_path(locale: I18n.locale)
+      expect(page).to have_field(I18n.t("helpers.label.technique_name"))
+      expect(page).to have_field(I18n.t("helpers.label.note"))
+      expect(page).to have_field(I18n.t("helpers.label.category"))
+      expect(page).to have_button(I18n.t("helpers.submit.create"))
+    end
+
+    it "一覧ページへ戻るリンクが機能する" do
+      visit new_mypage_technique_path(locale: I18n.locale)
+      click_link(I18n.t("defaults.back"))
+      expect(page).to have_current_path(mypage_techniques_path(locale: I18n.locale))
+    end
   end
 
   describe "editアクション" do
