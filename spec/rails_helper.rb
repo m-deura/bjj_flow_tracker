@@ -75,15 +75,3 @@ RSpec.configure do |config|
 
   config.include LoginMacros
 end
-
-require "capybara/rspec"
-RSpec.configure do |config|
-  # デフォルトは速いrack_test（JSなし）
-  config.before(:each, type: :system) { driven_by :rack_test }
-
-  # JS が必要なテストだけ実ブラウザ（ヘッドレスChrome）
-  config.before(:each, type: :system, js: true) do
-    driven_by :selenium_chrome_headless
-  end
-end
-
