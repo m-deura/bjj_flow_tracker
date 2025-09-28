@@ -10,7 +10,8 @@ export default class extends Controller {
 	static values = {
 		fetchUrl: String,
 		editUrl: String,
-		addUrl: String
+		addUrl: String,
+		testEnabled: Boolean
 	}
 
 	connect() {
@@ -124,6 +125,23 @@ export default class extends Controller {
 
 				this.cy.fit(this.cy.elements(), 50);  // 初期表示
 				this.cy.minZoom(this.cy.zoom() * 0.5);  // これ以下にズームアウト不可（迷子防止）
+
+				// RSpecテストのノードクリック操作に利用
+				if (this.testEnabledValue) {
+		      this._onTestClickNode = (e) => {
+		        // e は CustomEvent で { detail: { id: ... } }
+		        const id = String(e.detail.id)
+						if (!id || !this.cy) return
+						const ele = this.cy.getElementById(id)
+
+						// 取得したノードをタップする
+		        if (ele) {
+		          ele.emit('tap')
+		        }
+		      }
+					// RSpec内で発生させた「test:click-node」イベントを拾ったら、「_onTestClickNode」を実行
+		      window.addEventListener('test:click-node', this._onTestClickNode)
+		    }
       });
   }
 
