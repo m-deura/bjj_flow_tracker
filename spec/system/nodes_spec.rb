@@ -12,10 +12,28 @@ RSpec.describe "Nodes", type: :system do
     @node = @chart.nodes.create!(technique: @technique)
   end
 
-  describe "indexアクション" do
-  end
-
   describe "newアクション" do
+    it "新規作成ボタンをクリックすると、ルートノード作成フォームが表示される", :js do
+      visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
+      click_button(I18n.t("mypage.charts.show.create_nodes"))
+
+      within('#node-drawer') do
+        expect(page).to have_select('node[roots][]')
+      end
+    end
+
+    it "背景をクリックすると、ドロワーが閉じる", :js do
+      visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
+
+      # ノードをクリックしてドロワーを開く
+      click_button(I18n.t("mypage.charts.show.create_nodes"))
+      # 背景をクリックする
+      find(".drawer-overlay").click
+
+      within('#node-drawer') do
+        expect(page).not_to have_select('node[roots][]')
+      end
+    end
   end
 
   describe "editアクション" do
