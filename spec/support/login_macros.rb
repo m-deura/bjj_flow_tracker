@@ -7,7 +7,9 @@ module LoginMacros
 
     # ログイン後、ユーザー数が1増加することを確認
     expect {
-      click_on "Google でログイン", match: :first
+      click_on I18n.t("shared.login_with", provider: I18n.t("shared.providers.google")), match: :first
+      flash_message = I18n.t("devise.omniauth_callbacks.success", kind: I18n.t("shared.providers.google"))
+      expect(page).to have_content(/#{Regexp.escape(flash_message)}/i)
     }.to change(User, :count).by(1)
 
     # ログイン後、ダッシュボード画面に遷移することを確認
