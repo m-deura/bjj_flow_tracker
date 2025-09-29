@@ -25,6 +25,34 @@ RSpec.describe "Nodes", type: :system do
     end
   end
 
+  describe "indexアクション(チャート描写用JSON)" do
+    it "期待するJSONスキーマで nodes/edges を返す" do
+      visit api_v1_chart_path(id: @chart.id)
+
+      expect(page.status_code).to eq 200
+      json = JSON.parse(page.text)
+
+      # nodes の検査
+      np_count = NodePreset.count
+      nodes = json.select { |e| e["data"] && e["data"]["id"] && e["data"]["label"] }
+      expect(nodes.size).to eq np_count + 1
+      expect(nodes.map { |n| n.dig("data", "id") }).to all(be_a(String).and(be_present))
+      expect(nodes.map { |n| n.dig("data", "label") }).to all(be_a(String).and(be_present))
+
+      # edges の検査
+      edges = json.select { |e| e["data"] && e["data"]["source"] && e["data"]["target"] }
+      # ep_count = NodePreset.count
+      # expect(edges.size).to eq ep_count
+      expect(edges.map { |e| e.dig("data", "source") }).to all(be_a(String).and(be_present))
+      expect(edges.map { |e| e.dig("data", "target") }).to all(be_a(String).and(be_present))
+
+      # 許可外のカテゴリーが混じっていないこと
+      allowed = Technique.categories.keys
+      cats = nodes.map { |n| n.dig("data", "category") }
+      expect(cats.compact).to all(be_in(allowed))
+    end
+  end
+
   describe "newアクション" do
     it "新規作成ボタンをクリックすると、ルートノード作成フォームが表示される", :js do
       visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
