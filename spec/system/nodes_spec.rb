@@ -219,27 +219,27 @@ RSpec.describe "Nodes", type: :system do
         select @technique2.name_for, from: "children_nodes"
         click_button(I18n.t("helpers.submit.submit"))
 
-        # 待機しないと、ノードをクリックできない
-        sleep 1
+        expect(page).to have_current_path(mypage_chart_path(id: @chart.id, locale: I18n.locale))
+        expect(page).to have_content(I18n.t("defaults.flash_messages.updated", item: Node.model_name.human))
 
         # 再びノードをクリックしてドロワーを開く
-        click_node(@node.id)
+        open_drawer(@node.id)
 
         # technique2を削除して、techniaue3を追加
-        within('#node-drawer') do
+        within('turbo-frame#node-drawer') do
           find('#children_nodes-ts-control').send_keys(:backspace)
         end
         select @technique3.name_for, from: "children_nodes"
         click_button(I18n.t("helpers.submit.submit"))
 
-        # 待機しないと、ノードをクリックできない
-        sleep 1
+        expect(page).to have_current_path(mypage_chart_path(id: @chart.id, locale: I18n.locale))
+        expect(page).to have_content(I18n.t("defaults.flash_messages.updated", item: Node.model_name.human))
 
         # 再びノードをクリックしてドロワーを開く
-        click_node(@node.id)
+        open_drawer(@node.id)
 
         # technique3のみが表示されていること
-        within('#node-drawer') do
+        within('turbo-frame#node-drawer') do
           expect(page).to have_select("children_nodes",
                                       selected: [ @technique3.name_for ]
                                      )

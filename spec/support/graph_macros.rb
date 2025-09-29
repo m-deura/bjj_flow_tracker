@@ -7,5 +7,14 @@ module GraphMacros
         new CustomEvent('test:click-node', { detail: { id: arguments[0] } })
       );
     JS
+    page.has_css?('turbo-frame#node-drawer', visible: :all) &&
+      page.has_css?('input.drawer-toggle:checked', visible: :all)
+  end
+
+  def open_drawer(node_id, tries: 3)
+    tries.times do
+    return true if click_node(node_id)
+    end
+    raise "drawer did not open for node #{node_id}"
   end
 end
