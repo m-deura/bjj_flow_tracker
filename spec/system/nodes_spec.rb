@@ -233,6 +233,8 @@ RSpec.describe "Nodes", type: :system do
 
         expect(page).to have_current_path(mypage_chart_path(id: @chart.id, locale: I18n.locale))
         expect(page).to have_content(I18n.t("defaults.flash_messages.updated", item: Node.model_name.human))
+        # どうしてもテスト挙動が安定しないのでsleepして`Unable to find visible css "turbo-frame#node-drawer"`エラーに対応
+        sleep 3
 
         # 再びノードをクリックしてドロワーを開く
         open_drawer(@node.id)
