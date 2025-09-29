@@ -19,7 +19,7 @@ RSpec.describe "Locales", type: :system do
 
   describe "Technqueメニュー" do
     context "プリセットからコピーされたテクニックの場合" do
-      it "ロケールに伴ってテクニック名が変わる" do
+      it "ロケール切り替えに伴ってテクニック名が変わる" do
         # jaの場合
         visit mypage_techniques_path(locale: I18n.locale)
         switch_locale(to: :ja)
@@ -34,7 +34,7 @@ RSpec.describe "Locales", type: :system do
     end
 
     context "ユーザー作成のテクニックの場合" do
-      it "ロケールを変えてもテクニック名は変わらない" do
+      it "ロケールを切り替えてもテクニック名は変わらない" do
         visit mypage_techniques_path(locale: I18n.locale)
         switch_locale(to: :ja)
         expect(page).to have_content("テスト1")
@@ -47,7 +47,7 @@ RSpec.describe "Locales", type: :system do
 
   describe "Flow Chartメニュー" do
     context "プリセットからコピーされたテクニックの場合" do
-      it "ロケールに伴ってテクニック名が変わる" do
+      it "ロケール切り替えに伴ってテクニック名が変わる" do
         # api_v1_chart_pathにはロケール切り替えプルダウンがないため、一旦チャート画面でロケール切り替え
         visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
         switch_locale(to: :ja)
@@ -65,7 +65,7 @@ RSpec.describe "Locales", type: :system do
     end
 
     context "ユーザー作成のテクニックの場合" do
-      it "ロケールを変えてもテクニック名は変わらない" do
+      it "ロケールを切り替えてもテクニック名は変わらない" do
         visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
         switch_locale(to: :ja)
         visit api_v1_chart_path(id: @chart.id)
