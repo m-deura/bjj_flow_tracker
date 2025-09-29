@@ -167,10 +167,9 @@ RSpec.describe "Nodes", type: :system do
       # technique2のみがノードとして増える。ルートノードとして既存のtechnique1は増えない。
       expect {
         click_button(I18n.t("helpers.submit.create"))
+        expect(page).to have_current_path(mypage_chart_path(id: @chart.id, locale: I18n.locale))
+        expect(page).to have_content(I18n.t("defaults.flash_messages.created", item: I18n.t("terms.root_nodes")))
       }.to change(@chart.nodes, :count).by(1)
-
-      expect(page).to have_current_path(mypage_chart_path(id: @chart.id, locale: I18n.locale))
-      expect(page).to have_content(I18n.t("defaults.flash_messages.created", item: I18n.t("terms.root_nodes")))
 
       # チャート描写用のJSONファイルを確認
       visit api_v1_chart_path(id: @chart.id, locale: I18n.locale)
@@ -237,8 +236,6 @@ RSpec.describe "Nodes", type: :system do
 
         # 再びノードをクリックしてドロワーを開く
         open_drawer(@node.id)
-        # どうしてもテスト挙動が安定しないのでsleepして`Unable to find visible css "turbo-frame#node-drawer"`エラーに対応
-        sleep 3
 
         # technique3のみが表示されていること
         within('turbo-frame#node-drawer') do
