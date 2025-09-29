@@ -117,9 +117,9 @@ RSpec.describe "Nodes", type: :system do
         select @technique2.name_for, from: "root_nodes"
         expect {
           click_button(I18n.t("helpers.submit.create"))
+          expect(page).to have_current_path(mypage_chart_path(id: @chart.id, locale: I18n.locale))
+          expect(page).to have_content(I18n.t("defaults.flash_messages.created", item: I18n.t("terms.root_nodes")))
         }.to change(@chart.nodes, :count).by(1)
-        expect(page).to have_current_path(mypage_chart_path(id: @chart.id, locale: I18n.locale))
-        expect(page).to have_content(I18n.t("defaults.flash_messages.created", item: I18n.t("terms.root_nodes")))
 
         # チャート描写用のJSONファイルを確認
         visit api_v1_chart_path(id: @chart.id, locale: I18n.locale)
