@@ -237,6 +237,8 @@ RSpec.describe "Nodes", type: :system do
 
         # 再びノードをクリックしてドロワーを開く
         open_drawer(@node.id)
+        # どうしてもテスト挙動が安定しないのでsleepして`Unable to find visible css "turbo-frame#node-drawer"`エラーに対応
+        sleep 3
 
         # technique3のみが表示されていること
         within('turbo-frame#node-drawer') do
