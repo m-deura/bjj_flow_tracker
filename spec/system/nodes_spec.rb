@@ -26,7 +26,7 @@ RSpec.describe "Nodes", type: :system do
       click_button(I18n.t("mypage.charts.show.create_nodes"))
 
       within('#node-drawer') do
-        expect(page).to have_select('node[roots][]')
+        expect(page).to have_select('root_nodes')
         expect(page).to have_button(I18n.t("helpers.submit.create"))
       end
     end
@@ -40,7 +40,7 @@ RSpec.describe "Nodes", type: :system do
       find(".drawer-overlay").click
 
       within('#node-drawer') do
-        expect(page).not_to have_select('node[roots][]')
+        expect(page).not_to have_select('root_nodes')
         expect(page).not_to have_button(I18n.t("helpers.submit.create"))
       end
     end
@@ -81,7 +81,7 @@ RSpec.describe "Nodes", type: :system do
         visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
         click_button(I18n.t("mypage.charts.show.create_nodes"))
 
-        select @technique2.name_for, from: "node[roots][]"
+        select @technique2.name_for, from: "root_nodes"
         expect {
           click_button(I18n.t("helpers.submit.create"))
         }.to change(@chart.nodes, :count).by(1)
@@ -122,7 +122,7 @@ RSpec.describe "Nodes", type: :system do
 
       expect(page).to have_css('.ts-dropdown .create', text: /Add .*test1/i)
       find('.ts-dropdown .create', text: /Add .*test1/i).click
-      select @technique2.name_for, from: "node[roots][]"
+      select @technique2.name_for, from: "root_nodes"
 
       # ↓Tom Selectのcreateで、technique1のみ登録試行する場合は、プルダウンを閉じる必要あり。
       # 空白をクリックして、登録ボタンを覆ってしまっているプルダウンを閉じる
