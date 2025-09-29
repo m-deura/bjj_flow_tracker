@@ -303,5 +303,57 @@ RSpec.describe "Nodes", type: :system do
   end
 
   describe "destroyアクション" do
+    before do
+      @node2 = @node.children.create!(chart_id: @chart.id, technique_id: @technique2.id)
+      @node2.children.create!(chart_id: @chart.id, technique_id: @technique3.id)
+    end
+
+    context "削除ボタンをクリックした場合" do
+      it "当該ノードとその子ノードが削除されること。", :js do
+        visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
+        # ノードをクリックしてドロワーを開く
+        click_node(@node.id)
+
+        within('#node-drawer') do
+          expect(page).to have_field(I18n.t("helpers.label.technique_name"), with: "test1")
+          expect(page).to have_field(I18n.t("helpers.label.note"), with: "test note!1")
+          expect(page).to have_select(I18n.t("helpers.label.category"), selected: I18n.t("enums.category.nil"))
+          expect(page).to have_select("children_nodes",
+                                      selected: [ @technique2.name_for ]
+                                     )
+        end
+
+        # ノードをクリックしてドロワーを開く
+        click_node(@node2.id)
+
+        within('#node-drawer') do
+          expect(page).to have_field(I18n.t("helpers.label.technique_name"), with: "test2")
+          expect(page).to have_field(I18n.t("helpers.label.note"), with: "test note!2")
+          expect(page).to have_select(I18n.t("helpers.label.category"), selected: I18n.t("enums.category.nil"))
+          expect(page).to have_select("children_nodes",
+                                      selected: [ @technique3.name_for ]
+                                     )
+        end
+
+        expect {
+          accept_confirm(I18n.t("defaults.delete_confirm")) do
+            click_link(I18n.t("defaults.delete_item", item: Node.model_name.human))
+          end
+          expect(page).to have_content(I18n.t("defaults.flash_messages.deleted", item: Node.model_name.human))
+        }.to change(@chart.nodes, :count).by(-2)
+
+        # ノードをクリックしてドロワーを開く
+        click_node(@node.id)
+
+        within('#node-drawer') do
+          expect(page).to have_field(I18n.t("helpers.label.technique_name"), with: "test1")
+          expect(page).to have_field(I18n.t("helpers.label.note"), with: "test note!1")
+          expect(page).to have_select(I18n.t("helpers.label.category"), selected: I18n.t("enums.category.nil"))
+          expect(page).to have_select("children_nodes",
+                                      selected: []
+                                     )
+        end
+      end
+    end
   end
 end
