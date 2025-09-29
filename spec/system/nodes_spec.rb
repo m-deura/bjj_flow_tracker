@@ -18,6 +18,11 @@ RSpec.describe "Nodes", type: :system do
       t.set_name_for("test2")
       t.note = "test note!2"
     end
+
+    @technique3 = user.techniques.create! do |t|
+      t.set_name_for("test3")
+      t.note = "test note!3"
+    end
   end
 
   describe "newアクション" do
@@ -147,6 +152,154 @@ RSpec.describe "Nodes", type: :system do
   end
 
   describe "updateアクション" do
+    context "有効なデータの場合" do
+      it "テクニックと展開先テクニックの同時更新ができる", :js do
+        visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
+
+        # ノードをクリックしてドロワーを開く
+        click_node(@node.id)
+
+        fill_in I18n.t("helpers.label.technique_name"), with: "retest4"
+        fill_in I18n.t("helpers.label.note"), with: "retest note!4"
+        select I18n.t("enums.category.submission"), from: I18n.t("helpers.label.category")
+        select @technique2.name_for, from: "children_nodes"
+        select @technique3.name_for, from: "children_nodes"
+        click_button(I18n.t("helpers.submit.submit"))
+
+        expect(page).to have_current_path(mypage_chart_path(id: @chart.id, locale: I18n.locale))
+        expect(page).to have_content(I18n.t("defaults.flash_messages.updated", item: Node.model_name.human))
+
+        # 再びノードをクリックしてドロワーを開く
+        click_node(@node.id)
+
+        within('#node-drawer') do
+          expect(page).to have_field(I18n.t("helpers.label.technique_name"), with: "retest4")
+          expect(page).to have_field(I18n.t("helpers.label.note"), with: "retest note!4")
+          expect(page).to have_select(I18n.t("helpers.label.category"), selected: I18n.t("enums.category.submission"))
+          expect(page).to have_select("children_nodes",
+                                      selected: [ @technique2.name_for, @technique3.name_for ]
+                                     )
+        end
+      end
+
+      it "展開先テクニックの差分更新ができる", :js do
+        visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
+
+        # ノードをクリックしてドロワーを開く
+        click_node(@node.id)
+
+        select @technique2.name_for, from: "children_nodes"
+        click_button(I18n.t("helpers.submit.submit"))
+
+        # 待機しないと、ノードをクリックできない
+        sleep 1
+
+        # 再びノードをクリックしてドロワーを開く
+        click_node(@node.id)
+
+        # technique2を削除して、techniaue3を追加
+        within('#node-drawer') do
+          find('#children_nodes-ts-control').send_keys(:backspace)
+        end
+        select @technique3.name_for, from: "children_nodes"
+        click_button(I18n.t("helpers.submit.submit"))
+
+        # 待機しないと、ノードをクリックできない
+        sleep 1
+
+        # 再びノードをクリックしてドロワーを開く
+        click_node(@node.id)
+
+        # technique3のみが表示されていること
+        within('#node-drawer') do
+          expect(page).to have_select("children_nodes",
+                                      selected: [ @technique3.name_for ]
+                                     )
+        end
+      end
+
+      it "展開先テクニックが空でも更新できる", :js do
+        visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
+
+        # ノードをクリックしてドロワーを開く
+        click_node(@node.id)
+
+        fill_in I18n.t("helpers.label.technique_name"), with: "retest4"
+        fill_in I18n.t("helpers.label.note"), with: "retest note!4"
+        select I18n.t("enums.category.submission"), from: I18n.t("helpers.label.category")
+        click_button(I18n.t("helpers.submit.submit"))
+
+        expect(page).to have_current_path(mypage_chart_path(id: @chart.id, locale: I18n.locale))
+        expect(page).to have_content(I18n.t("defaults.flash_messages.updated", item: Node.model_name.human))
+
+        # 再びノードをクリックしてドロワーを開く
+        click_node(@node.id)
+
+        within('#node-drawer') do
+          expect(page).to have_field(I18n.t("helpers.label.technique_name"), with: "retest4")
+          expect(page).to have_field(I18n.t("helpers.label.note"), with: "retest note!4")
+          expect(page).to have_select(I18n.t("helpers.label.category"), selected: I18n.t("enums.category.submission"))
+        end
+      end
+    end
+
+    context "テクニック名が空の場合" do
+      it "更新に失敗する", :js  do
+        visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
+
+        # ノードをクリックしてドロワーを開く
+        click_node(@node.id)
+
+        fill_in I18n.t("helpers.label.technique_name"), with: ""
+        fill_in I18n.t("helpers.label.note"), with: "retest note!4"
+        select I18n.t("enums.category.submission"), from: I18n.t("helpers.label.category")
+        click_button(I18n.t("helpers.submit.submit"))
+
+        expect(page).to have_current_path(mypage_chart_path(id: @chart.id, locale: I18n.locale))
+        expect(page).to have_content(I18n.t("defaults.flash_messages.not_updated", item: Node.model_name.human))
+        expect(page).to have_content("#{Technique.human_attribute_name(:name_ja)}#{I18n.t('errors.messages.blank')}")
+
+        # 再びノードをクリックしてドロワーを開く
+        click_node(@node.id)
+
+        within('#node-drawer') do
+          expect(page).to have_field(I18n.t("helpers.label.technique_name"), with: "test1")
+          expect(page).to have_field(I18n.t("helpers.label.note"), with: "test note!1")
+          expect(page).to have_select(I18n.t("helpers.label.category"), selected: I18n.t("enums.category.nil"))
+        end
+      end
+    end
+
+    context "テクニック名が既存のものと重複していた場合" do
+      before do
+        @chart.nodes.create!(technique: @technique2)
+      end
+
+      it "更新に失敗する", :js do
+        visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
+
+        # ノードをクリックしてドロワーを開く
+        click_node(@node.id)
+
+        fill_in I18n.t("helpers.label.technique_name"), with: "test2"
+        fill_in I18n.t("helpers.label.note"), with: "retest note!2"
+        select I18n.t("enums.category.submission"), from: I18n.t("helpers.label.category")
+        click_button(I18n.t("helpers.submit.submit"))
+
+        expect(page).to have_current_path(mypage_chart_path(id: @chart.id, locale: I18n.locale))
+        expect(page).to have_content(I18n.t("defaults.flash_messages.not_updated", item: Node.model_name.human))
+        expect(page).to have_content("#{Technique.human_attribute_name(:name_ja)}#{I18n.t('errors.messages.taken')}")
+
+        # 再びノードをクリックしてドロワーを開く
+        click_node(@node.id)
+
+        within('#node-drawer') do
+          expect(page).to have_field(I18n.t("helpers.label.technique_name"), with: "test1")
+          expect(page).to have_field(I18n.t("helpers.label.note"), with: "test note!1")
+          expect(page).to have_select(I18n.t("helpers.label.category"), selected: I18n.t("enums.category.nil"))
+        end
+      end
+    end
   end
 
   describe "destroyアクション" do
