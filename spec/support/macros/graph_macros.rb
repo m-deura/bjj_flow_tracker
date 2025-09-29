@@ -7,7 +7,7 @@ module GraphMacros
         new CustomEvent('test:click-node', { detail: { id: arguments[0] } })
       );
     JS
-    page.has_css?('turbo-frame#node-drawer') &&
+    page.has_css?('turbo-frame#node-drawer', wait: 10) &&
       page.has_css?('input.drawer-toggle:checked', visible: :all) &&
         page.has_css?("select#children_nodes")
   end
