@@ -70,7 +70,8 @@ RSpec.describe "Nodes", type: :system do
       # ノードをクリックしてドロワーを開く
       click_button(I18n.t("mypage.charts.show.create_nodes"))
       # 背景をクリックする
-      find(".drawer-overlay").click
+      # 指定なしなどドロワー内をクリックする可能性があるので、クリック位置要指定。
+      find('.drawer-overlay', visible: :all).click(x: 5, y: 5)
 
       within('#node-drawer') do
         expect(page).not_to have_select('root_nodes')
@@ -97,8 +98,9 @@ RSpec.describe "Nodes", type: :system do
 
       click_node(@node.id)
 
-      # 背景をクリックする
-      find(".drawer-overlay").click
+      # 背景をクリックする。
+      # 指定なしなどドロワー内をクリックする可能性があるので、クリック位置要指定。
+      find('.drawer-overlay', visible: :all).click(x: 5, y: 5)
 
       within('#node-drawer') do
         expect(page).not_to have_field(I18n.t("helpers.label.technique_name"), with: @technique1.name_for)
