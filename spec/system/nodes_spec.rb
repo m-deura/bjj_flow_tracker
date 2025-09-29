@@ -50,11 +50,7 @@ RSpec.describe "Nodes", type: :system do
     it "ノードをクリックすると、ドロワーが開かれて編集フォームが表示される", :js do
       visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
 
-      # クリック発火（node.id はテストデータに合わせる）
-      # カスタムイベント生成＋発火を同時実行
-      page.execute_script(<<~JS, @node.id)
-        window.dispatchEvent(new CustomEvent('test:click-node', { detail: { id: arguments[0] } }));
-      JS
+      click_node(@node.id)
 
       within('#node-drawer') do
         expect(page).to have_field(I18n.t("helpers.label.technique_name"), with: @technique1.name_for)
@@ -66,10 +62,7 @@ RSpec.describe "Nodes", type: :system do
     it "背景をクリックすると、ドロワーが閉じる", :js do
       visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
 
-      # ノードをクリックしてドロワーを開く
-      page.execute_script(<<~JS, @node.id)
-        window.dispatchEvent(new CustomEvent('test:click-node', { detail: { id: arguments[0] } }));
-      JS
+      click_node(@node.id)
 
       # 背景をクリックする
       find(".drawer-overlay").click
