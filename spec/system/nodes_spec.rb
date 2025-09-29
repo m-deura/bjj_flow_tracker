@@ -64,14 +64,13 @@ RSpec.describe "Nodes", type: :system do
       end
     end
 
-    it "背景をクリックすると、ドロワーが閉じる", :js do
+    it "バツボタンをクリックすると、ドロワーが閉じる", :js do
       visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
 
       # ノードをクリックしてドロワーを開く
       click_button(I18n.t("mypage.charts.show.create_nodes"))
-      # 背景をクリックする
-      # 指定なしなどドロワー内をクリックする可能性があるので、クリック位置要指定。
-      find('.drawer-overlay', visible: :all).click(x: 5, y: 5)
+      # 背景クリックだと他要素と被ってクリックに失敗することがあるので、バツボタンをクリック
+      find('aside label[data-action*="chart#closeDrawer"]').click
 
       within('#node-drawer') do
         expect(page).not_to have_select('root_nodes')
@@ -93,14 +92,13 @@ RSpec.describe "Nodes", type: :system do
       end
     end
 
-    it "背景をクリックすると、ドロワーが閉じる", :js do
+    it "バツボタンをクリックすると、ドロワーが閉じる", :js do
       visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
 
       click_node(@node.id)
+      # バツボタンをクリック
+      find('aside label[data-action*="chart#closeDrawer"]').click
 
-      # 背景をクリックする。
-      # 指定なしなどドロワー内をクリックする可能性があるので、クリック位置要指定。
-      find('.drawer-overlay', visible: :all).click(x: 5, y: 5)
 
       within('#node-drawer') do
         expect(page).not_to have_field(I18n.t("helpers.label.technique_name"), with: @technique1.name_for)
