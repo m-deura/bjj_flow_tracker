@@ -1,9 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe "Locales", type: :system do
-  before do
-    driven_by(:rack_test)
+  describe "Technqueメニュー" do
+    context "プリセットからコピーされたテクニックの場合" do
+      it "ロケールに伴ってるテクニック名が変わる" do
+      end
+    end
+
+    context "ユーザー作成のテクニックの場合" do
+      it "ロケールを変えてもテクニック名は変わらない" do
+      end
+    end
   end
 
-  pending "add some scenarios (or delete) #{__FILE__}"
+  describe "Flow Chartメニュー" do
+    context "プリセットからコピーされたテクニックの場合" do
+      it "ロケールに伴ってるテクニック名が変わる" do
+      end
+    end
+
+    context "ユーザー作成のテクニックの場合" do
+      it "ロケールを変えてもテクニック名は変わらない" do
+      end
+    end
+  end
 end
