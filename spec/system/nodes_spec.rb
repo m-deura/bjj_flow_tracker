@@ -112,7 +112,7 @@ RSpec.describe "Nodes", type: :system do
       end
     end
 
-    it "既存のルートノードを指定しても重複作成されない", :js do
+    it "既存のルートノードを指定しても重複作成されない(差分更新ができる)", :js do
       visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
       click_button(I18n.t("mypage.charts.show.create_nodes"))
 
