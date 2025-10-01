@@ -55,7 +55,7 @@ jobs:
           TZ: Asia/Tokyo
         ports: 
           - "4444:4444"
-        options: --add-host=host.docker.internal:host-gateway
+        options: --shm-size=2g --add-host=host.docker.internal:host-gateway
 
       # redis:
       #   image: redis
