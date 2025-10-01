@@ -49,6 +49,13 @@ jobs:
         ports:
           - 5432:5432
         options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
+      chrome:
+        image: selenium/standalone-chrome:latest
+        env:
+          TZ: Asia/Tokyo
+        ports: 
+          - "4444:4444"
+        options: --shm-size=2g --add-host=host.docker.internal:host-gateway
 
       # redis:
       #   image: redis
@@ -68,13 +75,6 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
-
-      - name: Setup Chrome (for Selenium/Capybara)
-        uses: browser-actions/setup-chrome@v2
-        with:
-          chrome-version: stable
-          install-dependencies: true
-          install-chromedriver: true
 
       # jsbundling-rails / cssbundling-rails を使うなら Node とビルドが必要
       - uses: actions/setup-node@v4
@@ -101,6 +101,8 @@ jobs:
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
+          SELENIUM_DRIVER_URL: http://localhost:4444/wd/hub
+          CAPYBARA_APP_HOST: http://host.docker.internal:5001
           # REDIS_URL: redis://localhost:6379/0
         run: bundle exec rspec
 
