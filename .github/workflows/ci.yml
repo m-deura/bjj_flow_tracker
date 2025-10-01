@@ -52,7 +52,7 @@ jobs:
       chrome:
         image: selenium/standalone-chrome:latest
         env:
-          - TZ: Asia/Tokyo
+          TZ: Asia/Tokyo
         ports: 
           - "4444:4444"
 
