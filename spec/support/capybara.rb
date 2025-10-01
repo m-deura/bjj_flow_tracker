@@ -3,26 +3,38 @@ require "selenium/webdriver"
 
 Capybara.default_max_wait_time = 5
 
-# リモートSelenium(ローカルDocker)向けのホスト設定
+# リモートSelenium(ローカルDocker環境)向けのホスト設定
 if ENV['SELENIUM_DRIVER_URL'].present?
   Capybara.server_host = "0.0.0.0" # すべてのインターフェイスにバインド
   Capybara.server_port = 5001 # 任意の空きポート（Seleniumの4444と被らせない）
   Capybara.app_host = "http://web:#{Capybara.server_port}" # composeのservice名 'web'
-end
 
-Capybara.register_driver :remote_chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new
-  options.add_argument('--no-sandbox')
-  options.add_argument('--headless')
-  options.add_argument('--disable-gpu')
-  options.add_argument('--window-size=1680,1050')
+  Capybara.register_driver :remote_chrome do |app|
+    opts = Selenium::WebDriver::Chrome::Options.new
+    opts.add_argument('--no-sandbox')
+    opts.add_argument('--headless')
+    opts.add_argument('--disable-gpu')
+    opts.add_argument('--window-size=1680,1050')
 
-  Capybara::Selenium::Driver.new(
-    app,
-    browser: :remote,
-    url: ENV['SELENIUM_DRIVER_URL'],
-    capabilities: options
-  )
+    Capybara::Selenium::Driver.new(
+      app,
+      browser: :remote,
+      url: ENV['SELENIUM_DRIVER_URL'],
+      options: opts
+    )
+  end
+else
+  # ローカルChrome向け(CI環境)
+  Capybara.register_driver :selenium_chrome_headless do |app|
+    opts = Selenium::WebDriver::Chrome::Options.new
+    opts.add_argument('--window-size=1680,1050')
+
+    Capybara::Selenium::Driver.new(
+      app,
+      browser: :chrome,
+      options: opts
+    )
+  end
 end
 
 RSpec.configure do |config|

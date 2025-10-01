@@ -74,7 +74,7 @@ jobs:
         with:
           chrome-version: stable
           install-dependencies: true
-          install-chromedriver: true
+          install-chromedriver: false
 
       # jsbundling-rails / cssbundling-rails を使うなら Node とビルドが必要
       - uses: actions/setup-node@v4
