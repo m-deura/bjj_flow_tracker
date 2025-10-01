@@ -45,12 +45,6 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
-
-  # RSpec(Rails 7.2 に合わせてバージョン範囲指定)
-  gem "rspec-rails", "~> 8.0"
-
-  # to detect unused i18n key
-  gem "i18n-tasks"
 end
 
 group :development do
@@ -65,6 +59,19 @@ group :development do
   gem "pry-byebug"
   gem "pry-doc"
   gem "pry-rails"
+
+  # RSpec(Rails 7.2 に合わせてバージョン範囲指定)
+  gem "rspec-rails", "~> 8.0"
+
+  # The data for the test
+  gem "factory_bot_rails"
+  gem "faker"
+
+  # Simple Coverage
+  gem "simplecov"
+
+  # to detect unused i18n key
+  gem "i18n-tasks"
 end
 
 group :test do
@@ -72,13 +79,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "capybara-screenshot"
-
-  # For the testing data
-  gem "factory_bot_rails"
-  gem "faker"
-
-  # Simple Coverage
-  gem "simplecov", require: false
 end
 
 # for user login
