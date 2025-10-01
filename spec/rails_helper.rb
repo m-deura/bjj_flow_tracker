@@ -73,6 +73,9 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+  # テスト前にseeds.rb(presets群)を読み込む
+  config.before(:suite) { Rails.application.load_seed }
+
   config.include FactoryBot::Syntax::Methods
   config.include LoginMacros
   config.include GraphMacros

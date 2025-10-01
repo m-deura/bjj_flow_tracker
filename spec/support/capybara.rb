@@ -36,6 +36,4 @@ RSpec.configure do |config|
       driven_by :selenium_chrome_headless # CI: ランナーに入れたローカルChromeを使用
     end
   end
-  # テスト前にseeds.rb(presets群)を読み込む
-  config.before(:suite) { Rails.application.load_seed }
 end
