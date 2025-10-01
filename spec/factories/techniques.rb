@@ -8,4 +8,7 @@ FactoryBot.define do
     sequence(:name_en) { |n| technique_preset&.name_en || "Technique#{n}" }
     category { technique_preset&.category || :submission }
   end
+  trait :no_preset do
+    technique_preset { nil }
+  end
 end
