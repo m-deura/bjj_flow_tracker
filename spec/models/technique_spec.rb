@@ -32,14 +32,14 @@ RSpec.describe Technique, type: :model do
       expect(t.errors[:name_en]).to be_blank
     end
 
-    it "name_ja は user 単位でユニーク" do
+    it "name_ja は user 単位で一意" do
       create(:technique, user:, name_ja: "テスト1", name_en: "test1")
       dup = build(:technique, user:, name_ja: "テスト1", name_en: "another test1")
       expect(dup).to be_invalid
       expect(dup.errors).to be_of_kind(:name_ja, :taken)
     end
 
-    it "name_en は user 単位で大文字小文字を無視してユニーク" do
+    it "name_en は user 単位で大文字小文字を無視して一意" do
       create(:technique, user:, name_ja: "テスト1", name_en: "Guillotine")
       dup = build(:technique, user:, name_ja: "別テスト1", name_en: "gUiLlOtInE")
       expect(dup).to be_invalid
