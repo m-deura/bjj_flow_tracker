@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Technique, type: :model do
   let(:user) { create(:user) }
 
-  describe "associations" do
+  describe "関連" do
     it "ユーザーに必須で属する" do
       t = Technique.new(name_ja: "テスト1", name_en: "test1")
       expect(t).to be_invalid
@@ -16,62 +16,66 @@ RSpec.describe Technique, type: :model do
       expect(t.errors).to be_empty
     end
 
-    it "削除時に関連ノードが消える（dependent: :destroy）" do
+    it "削除時に関連ノードが消える" do
       technique = create(:technique, user:)
       create_list(:node, 2, technique:)
       expect { technique.destroy }.to change { Node.where(technique_id: technique.id).count }.from(2).to(0)
     end
   end
 
-  describe "validations" do
-    context "存在性" do
-      it "name_ja と name_en が両方空だとNG" do
-        t = Technique.new(user:)
-        expect(t).to be_invalid
-        # 両方が blank の場合、name_en のバリデーションチェックはスキップされる
-        expect(t.errors).to be_of_kind(:name_ja, :blank)
-        expect(t.errors[:name_en]).to be_blank
-      end
+  describe "バリデーション" do
+    it "name_ja と name_en の双方が空だと無効" do
+      t = Technique.new(user:)
+      expect(t).to be_invalid
+      # 両方が blank の場合、name_en のバリデーションチェックはスキップされる
+      expect(t.errors).to be_of_kind(:name_ja, :blank)
+      expect(t.errors[:name_en]).to be_blank
     end
 
-    context "一意性" do
-      it "name_ja は user 単位でユニーク" do
-        create(:technique, user:, name_ja: "テスト1", name_en: "test1")
-        dup = build(:technique, user:, name_ja: "テスト1", name_en: "test1")
-        expect(dup).to be_invalid
-        expect(dup.errors).to be_of_kind(:name_ja, :taken)
-      end
+    it "name_ja は user 単位で一意" do
+      create(:technique, user:, name_ja: "テスト1", name_en: "test1")
+      dup = build(:technique, user:, name_ja: "テスト1", name_en: "another test1")
+      expect(dup).to be_invalid
+      expect(dup.errors).to be_of_kind(:name_ja, :taken)
+    end
 
-      it "name_en は user 単位で大文字小文字を無視してユニーク" do
-        create(:technique, user:, name_ja: "ギロチン", name_en: "Guillotine")
-        dup = build(:technique, user:, name_ja: "別名", name_en: "gUiLlOtInE")
-        expect(dup).to be_invalid
-        expect(dup.errors).to be_of_kind(:name_en, :taken)
-      end
+    it "name_en は user 単位で大文字小文字を無視して一意" do
+      create(:technique, user:, name_ja: "テスト1", name_en: "Guillotine")
+      dup = build(:technique, user:, name_ja: "別テスト1", name_en: "gUiLlOtInE")
+      expect(dup).to be_invalid
+      expect(dup.errors).to be_of_kind(:name_en, :taken)
+    end
 
-      it "name_en と name_ja が同値のとき、name_en 側のユニーク検証はスキップ（重複エラー二重表示防止）" do
-        create(:technique, user:, name_ja: "test1", name_en: "test1")
-        dup = build(:technique, user:, name_ja: "test1", name_en: "test1")
-        expect(dup).to be_invalid
-        # name_ja 側にはエラーが出るが、name_en 側はスキップされる想定
-        expect(dup.errors).to be_of_kind(:name_ja, :taken)
-        expect(dup.errors[:name_en]).to be_blank
-      end
+    it "name_en と name_ja が同値のとき、name_en 側のユニーク検証はスキップ（重複エラー二重表示防止）" do
+      create(:technique, user:, name_ja: "test1", name_en: "test1")
+      dup = build(:technique, user:, name_ja: "test1", name_en: "test1")
+      expect(dup).to be_invalid
+      # name_ja 側にはエラーが出るが、name_en 側はスキップされる想定
+      expect(dup.errors).to be_of_kind(:name_ja, :taken)
+      expect(dup.errors[:name_en]).to be_blank
+    end
 
-      it "別ユーザーなら同名でもOK" do
-        other_user = create(:user)
-        create(:technique, user:, name_ja: "テスト1", name_en: "test1")
-        dup = build(:technique, user: other_user, name_ja: "テスト1", name_en: "test1")
-        expect(dup).to be_valid
-      end
+    it "別ユーザーならテクニック名が重複しても有効" do
+      other_user = create(:user)
+      create(:technique, user:, name_ja: "テスト1", name_en: "test1")
+      dup = build(:technique, user: other_user, name_ja: "テスト1", name_en: "test1")
+      expect(dup).to be_valid
     end
   end
 
   describe "enum :category" do
-    it "定義どおりのキーを持つ" do
-      expect(Technique.categories.keys).to contain_exactly(
-        "submission", "sweep", "pass", "guard", "control", "takedown"
-      )
+    it "定義されたキーを受け付ける" do
+      %i[submission sweep pass guard control takedown].each do |key|
+        tp = build(:technique_preset, name_ja: "ja-#{key}", name_en: "en-#{key}", category: key)
+        expect(tp).to be_valid
+        expect(tp.errors).to be_empty
+      end
+    end
+
+    it "不正なカテゴリーは受け付けない" do
+      expect {
+        create(:technique_preset, name_ja: "不正", name_en: "Invalid", category: :unknown)
+      }.to raise_error(ArgumentError)
     end
   end
 
