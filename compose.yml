@@ -34,7 +34,7 @@ services:
       db:
         condition: service_healthy
   chrome:
-    image: seleniarm/standalone-chromium:latest
+    image: seleniarm/standalone-chromium:140.0
     environment:
       - TZ=Asia/Tokyo
 volumes:
