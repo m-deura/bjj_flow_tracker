@@ -5,36 +5,43 @@ RSpec.describe Technique, type: :model do
 
   describe "関連" do
     it "ユーザーに必須で属する" do
-      t = Technique.new(name_ja: "テスト1", name_en: "test1")
+      t = build(:technique, user: nil, name_ja: "テスト1", name_en: "test1")
       expect(t).to be_invalid
       expect(t.errors).to be_of_kind(:user, :blank)
     end
 
     it "technique_preset は任意" do
-      t = Technique.new(user:, name_ja: "テスト1", name_en: "test1")
+      t = build(:technique, :no_preset, user:)
       expect(t).to be_valid
       expect(t.errors).to be_empty
     end
 
     it "削除時に関連ノードが消える" do
-      technique = create(:technique, user:)
-      create_list(:node, 2, technique:)
-      expect { technique.destroy }.to change { Node.where(technique_id: technique.id).count }.from(2).to(0)
+      t = create(:technique, user:)
+      create_list(:node, 2, technique: t)
+      expect { t.destroy }.to change { Node.where(technique_id: t.id).count }.from(2).to(0)
     end
   end
 
   describe "バリデーション" do
+    it "バリデーションをクリアするデータであれば有効" do
+      t = build(:technique)
+      expect(t).to be_valid
+      expect(t.errors).to be_empty
+    end
+
     it "name_ja と name_en の双方が空だと無効" do
-      t = Technique.new(user:)
+      t = build(:technique, user:, name_ja: "", name_en: "")
       expect(t).to be_invalid
       # 両方が blank の場合、name_en のバリデーションチェックはスキップされる
       expect(t.errors).to be_of_kind(:name_ja, :blank)
-      expect(t.errors[:name_en]).to be_blank
+      expect(t.errors[:name_en]).to be_empty
     end
 
     it "name_ja は user 単位で一意" do
-      create(:technique, user:, name_ja: "テスト1", name_en: "test1")
-      dup = build(:technique, user:, name_ja: "テスト1", name_en: "another test1")
+      dup_name_ja = "テスト1"
+      create(:technique, user:, name_ja: dup_name_ja, name_en: "test1")
+      dup = build(:technique, user:, name_ja: dup_name_ja, name_en: "another test1")
       expect(dup).to be_invalid
       expect(dup.errors).to be_of_kind(:name_ja, :taken)
     end
@@ -47,19 +54,23 @@ RSpec.describe Technique, type: :model do
     end
 
     it "name_en と name_ja が同値のとき、name_en 側のユニーク検証はスキップ（重複エラー二重表示防止）" do
-      create(:technique, user:, name_ja: "test1", name_en: "test1")
-      dup = build(:technique, user:, name_ja: "test1", name_en: "test1")
+      dup_name = "test1"
+      create(:technique, user:, name_ja: dup_name, name_en: dup_name)
+      dup = build(:technique, user:, name_ja: dup_name, name_en: dup_name)
       expect(dup).to be_invalid
       # name_ja 側にはエラーが出るが、name_en 側はスキップされる想定
       expect(dup.errors).to be_of_kind(:name_ja, :taken)
       expect(dup.errors[:name_en]).to be_blank
     end
 
-    it "別ユーザーならテクニック名が重複しても有効" do
+    it "別ユーザーならname_ja / name_en が重複しても有効" do
       other_user = create(:user)
-      create(:technique, user:, name_ja: "テスト1", name_en: "test1")
-      dup = build(:technique, user: other_user, name_ja: "テスト1", name_en: "test1")
+      dup_name_ja = "テスト1"
+      dup_name_en = "test1"
+      create(:technique, user:, name_ja: dup_name_ja, name_en: dup_name_en)
+      dup = build(:technique, user: other_user, name_ja: dup_name_ja, name_en: dup_name_en)
       expect(dup).to be_valid
+      expect(dup.errors).to be_empty
     end
   end
 
@@ -112,7 +123,7 @@ RSpec.describe Technique, type: :model do
   end
 
   describe "#name_for" do
-    let(:technique) { Technique.new(user:, name_ja: "テスト1", name_en: "test1") }
+    let(:technique) { build(:technique, user:, name_ja: "テスト1", name_en: "test1") }
 
     it "ja では name_ja" do
       expect(technique.name_for(:ja)).to eq "テスト1"
