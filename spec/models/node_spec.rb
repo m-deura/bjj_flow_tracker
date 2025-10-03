@@ -10,13 +10,13 @@ RSpec.describe Node, type: :model do
   end
 
   describe "リレーション" do
-    it "chart_preset が必須" do
+    it "chart が必須" do
       t = build(:node, chart: nil)
       expect(t).to be_invalid
       expect(t.errors).to be_of_kind(:chart, :blank)
     end
 
-    it "technique_preset が必須" do
+    it "technique が必須" do
       t = build(:node, technique: nil)
       expect(t).to be_invalid
       expect(t.errors).to be_of_kind(:technique, :blank)
