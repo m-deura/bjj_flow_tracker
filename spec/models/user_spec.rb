@@ -9,12 +9,12 @@ RSpec.describe User, type: :model do
     end
 
     it "provider/uid/name/email が必須" do
-      user = User.new
-      expect(user).to be_invalid
-      expect(user.errors).to be_of_kind(:provider, :blank)
-      expect(user.errors).to be_of_kind(:uid, :blank)
-      expect(user.errors).to be_of_kind(:name, :blank)
-      expect(user.errors).to be_of_kind(:email, :blank)
+      u = build(:user, provider: "", uid: "", name: "", email: "")
+      expect(u).to be_invalid
+      expect(u.errors).to be_of_kind(:provider, :blank)
+      expect(u.errors).to be_of_kind(:uid, :blank)
+      expect(u.errors).to be_of_kind(:name, :blank)
+      expect(u.errors).to be_of_kind(:email, :blank)
     end
 
     it "email はユニーク" do
@@ -29,11 +29,11 @@ RSpec.describe User, type: :model do
       u2 = build(:user, provider: "google_oauth2", uid: "u-1")
       expect(u2).to be_invalid
       # provider側にエラーが付く
-      expect(u2.errors).to be_of_kind(:provider || :uid, :taken)
+      expect(u2.errors).to be_of_kind(:provider, :taken)
     end
   end
 
-  describe "関連" do
+  describe "リレーション" do
     it "has_many :charts, :techniques, :nodes(through charts)" do
       user  = create(:user)
       chart = create(:chart, user:)
@@ -81,7 +81,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "after_create :copy_presets（コールバックの挙動）" do
+  describe "callbacks" do
     before do
       # ユーザー作成時に複製される元データ
       create(:technique_preset, name_ja: "ガード", name_en: "Guard",  category: :guard)
@@ -89,7 +89,7 @@ RSpec.describe User, type: :model do
       create(:technique_preset, name_ja: "パス",   name_en: "Pass",   category: :pass)
     end
 
-    it "TechniquePresetが複製される" do
+    it "copy_presets: TechniquePresetが複製される" do
       user = create(:user) # コールバック実行
       expect(user.techniques.count).to eq TechniquePreset.count
 
@@ -102,7 +102,7 @@ RSpec.describe User, type: :model do
     context "ChartPreset が存在する場合" do
       let(:cp) { ChartPreset.find_by!(name: "chart_preset_1") }  # seeds.rbから読み込んだ chart_preset_1
 
-      it "ApplyChartPreset が呼ばれる" do
+      it "copy_presets: ApplyChartPreset が呼ばれる" do
         allow(ApplyChartPreset).to receive(:call).and_call_original
         # 本物の実装を呼びつつ、あとで呼ばれたか検証
 
@@ -117,11 +117,10 @@ RSpec.describe User, type: :model do
 
     context "ChartPreset が存在しない場合" do
       before do
-        NodePreset.delete_all
-        ChartPreset.delete_all # seeds.rbから読み込んだ chart_preset_1 を削除
+        ChartPreset.destroy_all # seeds.rbから読み込んだ chart_preset_1 を削除
       end
 
-      it "ApplyChartPreset は呼ばれず、空チャートを1つ作成" do
+      it "copy_presets: ApplyChartPreset は呼ばれず、空チャートを1つ作成" do
         expect(ApplyChartPreset).not_to receive(:call)
 
         user = create(:user) # コールバック実行

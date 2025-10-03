@@ -3,28 +3,8 @@ require 'rails_helper'
 RSpec.describe Chart, type: :model do
   let(:user) { create(:user) }
 
-  describe "関連" do
-    it "ユーザーに必須で属する" do
-      c = build(:chart, user: nil, name: "test1")
-      expect(c).to be_invalid
-      expect(c.errors).to be_of_kind(:user, :blank)
-    end
-
-    it "chart_preset は任意" do
-      c = build(:chart, chart_preset: nil, user:, name: "test1")
-      expect(c).to be_valid
-      expect(c.errors).to be_empty
-    end
-
-    it "削除時に関連ノードが消える" do
-      c = create(:chart, user:)
-      create_list(:node, 2, chart: c)
-      expect { c.destroy }.to change { Node.where(chart_id: c.id).count }.from(2).to(0)
-    end
-  end
-
   describe "バリデーション" do
-    it "バリデーションをクリアするデータであれば有効" do
+    it "必須項目が揃っていれば有効" do
       c = build(:chart)
       expect(c).to be_valid
       expect(c.errors).to be_empty
@@ -51,6 +31,26 @@ RSpec.describe Chart, type: :model do
       dup = build(:chart, user: other_user, name: dup_name)
       expect(dup).to be_valid
       expect(dup.errors).to be_empty
+    end
+  end
+
+  describe "リレーション" do
+    it "ユーザーに必須で属する" do
+      c = build(:chart, user: nil, name: "test1")
+      expect(c).to be_invalid
+      expect(c.errors).to be_of_kind(:user, :blank)
+    end
+
+    it "chart_preset は任意" do
+      c = build(:chart, chart_preset: nil, user:, name: "test1")
+      expect(c).to be_valid
+      expect(c.errors).to be_empty
+    end
+
+    it "削除時に関連ノードが消える" do
+      c = create(:chart, user:)
+      create_list(:node, 2, chart: c)
+      expect { c.destroy }.to change { Node.where(chart_id: c.id).count }.from(2).to(0)
     end
   end
 end
