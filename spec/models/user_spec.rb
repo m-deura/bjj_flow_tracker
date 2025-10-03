@@ -2,6 +2,12 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe "バリデーション" do
+    it "必須項目が揃っていれば有効" do
+      u = build(:user)
+      expect(u).to be_valid
+      expect(u.errors).to be_empty
+    end
+
     it "provider/uid/name/email が必須" do
       user = User.new
       expect(user).to be_invalid
