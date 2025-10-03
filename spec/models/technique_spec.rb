@@ -24,6 +24,12 @@ RSpec.describe Technique, type: :model do
   end
 
   describe "バリデーション" do
+    it "バリデーションをクリアするデータであれば有効" do
+      t = build(:technique)
+      expect(t).to be_valid
+      expect(t.errors).to be_empty
+    end
+
     it "name_ja と name_en の双方が空だと無効" do
       t = build(:technique, user:, name_ja: "", name_en: "")
       expect(t).to be_invalid
