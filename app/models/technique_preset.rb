@@ -1,6 +1,7 @@
 class TechniquePreset < ApplicationRecord
-  has_many :techniques
-  has_many :node_presets
+  # ユーザー所有のテクニックが削除される可能性が高いため、dependent: :destroyは行わない
+  has_many :techniques, dependent: :restrict_with_exception
+  has_many :node_presets, dependent: :destroy
 
   validates :name_ja, presence: true, uniqueness: true
   validates :name_en, presence: true, uniqueness: true

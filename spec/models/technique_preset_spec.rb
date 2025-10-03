@@ -5,7 +5,6 @@ RSpec.describe TechniquePreset, type: :model do
     it "必須項目が揃っていれば有効" do
       tp = create(:technique_preset, name_ja: "テスト1", name_en: "test1", category: :control)
       expect(tp).to be_valid
-      expect(tp.save).to be true
       expect(tp.errors).to be_empty
     end
 
@@ -43,6 +42,27 @@ RSpec.describe TechniquePreset, type: :model do
         expect(tp.errors).to be_empty
     end
   end
+
+  describe "リレーション" do
+    it "関連テクニックがある場合は削除できない" do
+      tp = create(:technique_preset)
+      create(:technique, name_ja: "テスト1", name_en: "test1", technique_preset: tp)
+
+      expect {
+        tp.destroy
+      }.to raise_error(ActiveRecord::DeleteRestrictionError)
+    end
+
+    it "削除時に関連プリセットノードが消える" do
+      tp = create(:technique_preset)
+      create_list(:node_preset, 2, technique_preset: tp)
+
+      expect {
+        tp.destroy
+      }.to change { NodePreset.where(technique_preset_id: tp.id).count }.from(2).to(0)
+    end
+  end
+
 
   describe "enum :category" do
     it "定義されたキーを受け付ける" do
