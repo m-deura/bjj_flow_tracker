@@ -35,7 +35,7 @@ RSpec.describe Chart, type: :model do
   end
 
   describe "リレーション" do
-    it "ユーザーに必須で属する" do
+    it "user が必須" do
       c = build(:chart, user: nil, name: "test1")
       expect(c).to be_invalid
       expect(c.errors).to be_of_kind(:user, :blank)
