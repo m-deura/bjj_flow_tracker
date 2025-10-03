@@ -5,13 +5,13 @@ RSpec.describe Technique, type: :model do
 
   describe "関連" do
     it "ユーザーに必須で属する" do
-      t = Technique.new(name_ja: "テスト1", name_en: "test1")
+      t = build(:technique, user: nil, name_ja: "テスト1", name_en: "test1")
       expect(t).to be_invalid
       expect(t.errors).to be_of_kind(:user, :blank)
     end
 
     it "technique_preset は任意" do
-      t = Technique.new(user:, name_ja: "テスト1", name_en: "test1")
+      t = build(:technique, :no_preset, user:)
       expect(t).to be_valid
       expect(t.errors).to be_empty
     end
@@ -25,11 +25,11 @@ RSpec.describe Technique, type: :model do
 
   describe "バリデーション" do
     it "name_ja と name_en の双方が空だと無効" do
-      t = Technique.new(user:)
+      t = build(:technique, user:, name_ja: "", name_en: "")
       expect(t).to be_invalid
       # 両方が blank の場合、name_en のバリデーションチェックはスキップされる
       expect(t.errors).to be_of_kind(:name_ja, :blank)
-      expect(t.errors[:name_en]).to be_blank
+      expect(t.errors[:name_en]).to be_empty
     end
 
     it "name_ja は user 単位で一意" do
@@ -112,7 +112,7 @@ RSpec.describe Technique, type: :model do
   end
 
   describe "#name_for" do
-    let(:technique) { Technique.new(user:, name_ja: "テスト1", name_en: "test1") }
+    let(:technique) { build(:technique, user:, name_ja: "テスト1", name_en: "test1") }
 
     it "ja では name_ja" do
       expect(technique.name_for(:ja)).to eq "テスト1"
