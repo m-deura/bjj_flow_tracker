@@ -55,7 +55,7 @@ RSpec.describe Technique, type: :model do
   end
 
   describe "リレーション" do
-    it "ユーザーに必須で属する" do
+    it "user が必須" do
       t = build(:technique, user: nil, name_ja: "テスト1", name_en: "test1")
       expect(t).to be_invalid
       expect(t.errors).to be_of_kind(:user, :blank)
