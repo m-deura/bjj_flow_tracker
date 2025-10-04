@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     namespace :mypage do
       root to: "dashboard#show"
       resources :techniques
-      resources :charts, only: %i[show edit update] do
+      resources :charts do
         resources :nodes, shallow: true, only: %i[new create edit update destroy]
       end
       resource :setting, only: %i[show edit update]
@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     # API
     namespace :api do
       namespace :v1 do
-        resources :charts, only: %i[index show]
+        resources :charts, only: %i[show]
       end
     end
   end
