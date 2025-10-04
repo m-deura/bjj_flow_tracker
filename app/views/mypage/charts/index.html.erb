@@ -1,0 +1,70 @@
+<% content_for(:title, t(".title")) %>
+<div
+  class="min-h-screen px-4 py-6 bg-base-100 space-y-6"
+  data-controller="step-guide chart"
+  data-step-guide-scope-value="guides.charts"
+>
+
+  <div>
+    <div class="flex items-center space-x-2 m-4">
+      <h1 class="text-3xl font-bold ml-8"><%= t(".title") %></h1>
+      <div class="tooltip" data-tip="<%= t('defaults.start_guide') %>" data-action="click->step-guide#startChartsGuide">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center justify-center gap-3">
+      <%= link_to t("defaults.create") , new_mypage_chart_path, class: "btn btn-primary btn-wide", id: "guide-creating-button" %>
+      <%= search_form_for @q, url: mypage_charts_path, id: "guide-search-box", class: "w-80",
+            data: { turbo_frame: "chart-list",
+                    controller: "instant-search",
+                    action: "input->instant-search#autosubmit"
+            } do |f| %>
+        <label class="input">
+          <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <g
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              stroke-width="2.5"
+              fill="none"
+              stroke="currentColor"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </g>
+          </svg>
+          <%= f.search_field :name_cont, placeholder: t("defaults.search"), class: "search" %>
+        </label>
+      <% end %>
+    </div>
+
+    <%= turbo_frame_tag "chart-list" do %>
+      <div class="space-y-2 max-w-screen-2xl mx-auto mt-10">
+        <% if @charts.present? %>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 max-w-screen-2xl mx-auto">
+            <% @charts.each do |c| %>
+              <article class="relative bg-base-200 shadow-md rounded-box p-4 space-y-3">
+                <div class="items-start space-y-2 flex flex-col">
+                  <span class="text-lg font-medium" ><%= c.name %></span>
+                </div>
+
+                <%= link_to mypage_chart_path(id: c.id),
+                      data: { turbo_frame: "_top" },
+                      class: "absolute inset-0" do %>
+                        <span class="sr-only">Open the chart page: <%= c.name %></span>
+                <% end %>
+              </article>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="mt-10">
+            <p><%= t(".nothing_here") %></p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
