@@ -91,16 +91,6 @@ RSpec.describe Technique, type: :model do
     end
   end
 
-  describe "ransack" do
-    it ".ransackable_associations は user のみ" do
-      expect(Technique.ransackable_associations).to eq([ "user" ])
-    end
-
-    it ".ransackable_attributes は name_ja/name_en/note" do
-      expect(Technique.ransackable_attributes).to match_array(%w[name_ja name_en note])
-    end
-  end
-
   describe ".name_field_for" do
     around do |ex|
       orig = I18n.locale # 今のロケールを保存

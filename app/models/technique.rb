@@ -14,8 +14,9 @@ class Technique < ApplicationRecord
 
   attr_accessor :name  # フォーム用の仮想属性
 
+  # 関連では検索させない
   def self.ransackable_associations(auth_object = nil)
-    [ "user" ]
+    []
   end
 
   def self.ransackable_attributes(auth_object = nil)
