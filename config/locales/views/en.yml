@@ -2,10 +2,12 @@
 en:
   defaults:
     back: Back to List
+    cancel: Cancel
     create: New
     delete: Delete
     delete_confirm: Are you sure you want to delete?
     delete_item: Delete %{item}
+    edit: Edit
     flash_messages:
       created: "%{item} was successfully created"
       deleted: "%{item} was successfully deleted"
@@ -15,7 +17,7 @@ en:
       updated: "%{item} was successfully updated"
       wrong_input: There are errors in your input
     preparing: It is currently under construction!
-    search: Search Techniques
+    search: Search
     start_guide: Start Step Guide
   footer:
     inquiry: Contact
@@ -32,6 +34,7 @@ en:
   helpers:
     label:
       category: Category
+      chart_name: Chart Name
       children_nodes: Transitions
       note: Note
       root_nodes: Root Technique
@@ -42,9 +45,13 @@ en:
       update: Update
   mypage:
     charts:
+      index:
+        nothing_here: No charts to display
+        title: Flow Chart
+      new:
+        title: Create a New Chart
       show:
         create_nodes: Create a New Flow
-        title: Flow Chart
     dashboard:
       show:
         chart_details: Visualize match or sparring flows.
