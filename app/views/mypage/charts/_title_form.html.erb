@@ -1,0 +1,18 @@
+<%= form_with model: chart,
+              url: mypage_chart_path(id: @chart.id),
+              method: :patch,
+              class: "flex items-center gap-2" do |f| %>
+  <%= f.text_field :name,
+        class: "input input-sm input-bordered w-64",
+        autofocus: true %>
+
+  <%= f.submit t("helpers.submit.update"),
+        class: "btn btn-primary btn-sm" %>
+
+  <!-- キャンセル -->
+  <%= link_to t("defaults.cancel"),
+        mypage_chart_path(id: chart.id),
+        class: "btn btn-ghost btn-sm"
+  %>
+<% end %>
+
