@@ -1,18 +1,24 @@
-<%= form_with model: chart,
-              url: mypage_chart_path(id: @chart.id),
-              method: :patch,
-              class: "flex items-center gap-2" do |f| %>
-  <%= f.text_field :name,
-        class: "input input-sm input-bordered w-64",
-        autofocus: true %>
+  <%= form_with model: chart,
+                  url: mypage_chart_path(id: chart.id),
+                  method: :patch,
+                  class: "flex flex-col gap-4" do |f| %>
+    <div>
+      <%= f.text_field :name,
+          class: "input input-lg input-bordered min-w-64",
+          autofocus: true %>
+    </div>
 
-  <%= f.submit t("helpers.submit.update"),
-        class: "btn btn-primary btn-sm" %>
-
-  <!-- キャンセル -->
-  <%= link_to t("defaults.cancel"),
-        mypage_chart_path(id: chart.id),
-        class: "btn btn-ghost btn-sm"
-  %>
-<% end %>
+    <div>
+      <!-- 更新 -->
+      <%= f.button type: "submit", class: "btn btn-primary btn-sm" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+        </svg>
+        <span><%=t("helpers.submit.update") %></span>
+      <% end %>
+  
+      <!-- キャンセル -->
+      <%= link_to t("defaults.cancel"), mypage_chart_path(id: chart.id), class: "btn btn-ghost btn-sm" %>
+    </div>
+  <% end %>
 
