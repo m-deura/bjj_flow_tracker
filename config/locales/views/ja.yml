@@ -62,8 +62,6 @@ ja:
         metrics:
           charts:
             other: "%{count} チャート"
-          nodes:
-            other: "%{count} ノード"
           techniques:
             other: "%{count} テクニック"
         start_guide: ステップガイドを始める
