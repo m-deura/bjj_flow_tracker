@@ -42,48 +42,43 @@
       <% end %>
     </div>
 
+    <!-- カード -->
     <%= turbo_frame_tag "technique-list" do %>
       <div class="space-y-2 max-w-screen-2xl mx-auto mt-10">
         <% if @techniques.present? %>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 max-w-screen-2xl mx-auto">
-          <% @techniques.each do |t| %>
-            <article class="relative bg-base-200 shadow-md rounded-box p-4 space-y-3">
-              <div class="items-start space-y-2 flex flex-col">
-                <% case t.category %>
-                <% when "submission" then %>
-                  <span class="badge badge-soft bg-red-100"><%= t("enums.category.#{t.category}") %></span>
-                <% when "sweep" then %>
-                  <span class="badge badge-soft bg-blue-100"><%= t("enums.category.#{t.category}") %></span>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 max-w-screen-2xl mx-auto">
+            <% @techniques.each do |t| %>
+              <article class="relative bg-base-200 shadow-md rounded-box p-4 space-y-3">
+                <div class="items-start space-y-2 flex flex-col">
+                  <!-- バッジ -->
+                  <% badge_style =  %>
+                    <% case t.category %>
+                      <% when "submission" then "bg-red-100" %>
+                      <% when "sweep" then "bg-blue-100" %>
+                      <% when "pass" then "bg-green-100" %>
+                      <% when "guard" then "bg-gray-100" %>
+                      <% when "control" then "bg-purple-100" %>
+                      <% when "takedown" then "bg-orange-100" %>
+                    <% end %>
+                    <span class="badge badge-soft <%= badge_style %>"><%= t.category ? t("enums.category.#{t.category}") : t("enums.category.nil") %></span>
 
-                <% when "pass" then %>
-                  <span class="badge badge-soft bg-green-100"><%= t("enums.category.#{t.category}") %></span>
+                  <!-- テクニック名 -->
+                  <span class="text-lg font-medium" ><%= t.name_for %></span>
+                </div>
 
-                <% when "guard" then %>
-                  <span class="badge badge-soft bg-gray-100"><%= t("enums.category.#{t.category}") %></span>
-
-                <% when "control" then %>
-                  <span class="badge badge-soft bg-purple-100"><%= t("enums.category.#{t.category}") %></span>
-
-                <% when "takedown" then %>
-                  <span class="badge badge-soft bg-orange-100"><%= t("enums.category.#{t.category}") %></span>
-                <% else %>
-                  <span class="badge badge-soft"><%= t.category ? t("enums.category.#{t.category}") : t("enums.category.nil") %></span>
+                <!-- ノート -->
+                <% if t.note.present? %>
+                  <p class="text-sm text-base-content/70 line-clamp-3 break-words"><%= t.note %></p>
                 <% end %>
-                <span class="text-lg font-medium" ><%= t.name_for %></span>
-              </div>
 
-              <% if t.note.present? %>
-                <p class="text-sm text-base-content/70 line-clamp-3 break-words"><%= t.note %></p>
-              <% end %>
-
-              <!-- カード全面クリックでdrawerを開く & 中身を読み込む（stretched-link的アンカー） -->
-              <%= link_to edit_mypage_technique_path(t),
-                    class: "absolute inset-0 z-10",
-                    data: { turbo_frame: "technique-drawer", action: "click->drawer#open" } do %>
-                <span class="sr-only">Open the editing panel</span>
-              <% end %>
-            </article>
-          <% end %>
+                <!-- カード全面クリックでdrawerを開く & 中身を読み込む（stretched-link的アンカー） -->
+                <%= link_to edit_mypage_technique_path(t),
+                      class: "absolute inset-0 z-10",
+                      data: { turbo_frame: "technique-drawer", action: "click->drawer#open" } do %>
+                  <span class="sr-only">Open the editing panel</span>
+                <% end %>
+              </article>
+            <% end %>
           </div>
         <% else %>
           <div class="mt-10">
