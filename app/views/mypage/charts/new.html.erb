@@ -1,0 +1,20 @@
+<% content_for(:title, t(".title")) %>
+<h2 class="text-lg font-bold m-4"><%= t(".title") %></h2>
+<%= form_with model: @chart, url: mypage_charts_path, method: :post do |f| %>
+  <%= render "shared/error_messages", object: @chart %>
+
+  <div class="space-y-4 w-4/5 mx-auto">
+    <div class="space-y-2 mb-4">
+      <div class="flex items-center space-x-2">
+        <%= f.label :name, t("helpers.label.chart_name") %>
+        <div class="badge badge-sm badge-error badge-outline"><%= t("form.required") %></div>
+      </div>
+      <%= f.text_field :name, class: "input input-bordered w-full" %>
+  </div>
+
+  <div class="flex flex-col items-center space-y-2 my-4 w-72 mx-auto">
+    <%= f.submit t("helpers.submit.create"), class: "btn btn-primary btn-wide" %>
+    <%= link_to t("defaults.back"), mypage_charts_path, class: "btn btn-outline btn-wide" %>
+  </div>
+<% end %>
+

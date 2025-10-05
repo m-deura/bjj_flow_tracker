@@ -3,7 +3,7 @@
   data-controller="step-guide"
   data-step-guide-scope-value="guides.dashboard"
   data-step-guide-techniques-path-value="<%= mypage_techniques_path %>"
-  data-step-guide-charts-path-value="<%= mypage_chart_path(current_user.charts.first) %>"
+  data-step-guide-charts-path-value="<%= mypage_charts_path %>"
 >
   <!-- Hero -->
   <div class="hero shadow-lg mb-8">
@@ -62,7 +62,7 @@
     <% end %>
 
     <!-- Flow Chart -->
-    <%= link_to mypage_chart_path(@chart.id),
+    <%= link_to mypage_charts_path,
         id: "guide-chart",
         class: "card bg-base-100 hover:shadow-xl transition-shadow rounded-2xl" do %>
       <div class="card-body">
@@ -88,7 +88,7 @@
           </div>
 
           <div class="flex items-center gap-2">
-            <span class="sm:inline hidden badge badge-outline"><%= t(".metrics.nodes", count: @node_count) %></span>
+            <span class="sm:inline hidden badge badge-outline"><%= t(".metrics.charts", count: @chart_count) %></span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                  fill="none" class="size-5 opacity-60 group-hover:opacity-100 transition">
               <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8"

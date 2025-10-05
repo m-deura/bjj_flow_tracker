@@ -2,10 +2,12 @@
 ja:
   defaults:
     back: 一覧へ戻る
+    cancel: キャンセル
     create: 新規作成
     delete: 削除
     delete_confirm: 削除しますか？
     delete_item: "%{item}を削除"
+    edit: 変更
     flash_messages:
       created: "%{item}を作成しました"
       deleted: "%{item}を削除しました"
@@ -15,7 +17,7 @@ ja:
       updated: "%{item}を更新しました"
       wrong_input: 入力に誤りがあります
     preparing: 現在準備中です！
-    search: テクニックを検索
+    search: 検索
     start_guide: ステップガイドを開始
   footer:
     inquiry: お問い合わせ
@@ -32,6 +34,7 @@ ja:
   helpers:
     label:
       category: カテゴリー
+      chart_name: チャート名
       children_nodes: 展開先テクニック
       note: ノート
       root_nodes: 開始点テクニック
@@ -42,16 +45,23 @@ ja:
       update: 更新
   mypage:
     charts:
+      index:
+        metrics:
+          nodes:
+            other: "%{count} ノード"
+        nothing_here: 表示するチャートがありません
+        title: Flow Chart
+      new:
+        title: 新規チャートを作成
       show:
         create_nodes: 新しいフローを作る
-        title: Flow Chart
     dashboard:
       show:
         chart_details: 試合またはスパーの流れを可視化します。
         check_howtouse: 本アプリの使い方については、以下のステップガイドをご参照ください。
         metrics:
-          nodes:
-            other: "%{count} ノード"
+          charts:
+            other: "%{count} チャート"
           techniques:
             other: "%{count} テクニック"
         start_guide: ステップガイドを始める
