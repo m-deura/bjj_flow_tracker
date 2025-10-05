@@ -48,6 +48,9 @@ ja:
       index:
         nothing_here: 表示するチャートがありません
         title: Flow Chart
+        metrics:
+          nodes:
+            other: "%{count} ノード"
       new:
         title: 新規チャートを作成
       show:
@@ -57,6 +60,8 @@ ja:
         chart_details: 試合またはスパーの流れを可視化します。
         check_howtouse: 本アプリの使い方については、以下のステップガイドをご参照ください。
         metrics:
+          charts:
+            other: "%{count} チャート"
           nodes:
             other: "%{count} ノード"
           techniques:

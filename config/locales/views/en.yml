@@ -48,6 +48,10 @@ en:
       index:
         nothing_here: No charts to display
         title: Flow Chart
+        metrics:
+          nodes:
+            one: "%{count} node"
+            other: "%{count} nodes"
       new:
         title: Create a New Chart
       show:
@@ -57,9 +61,9 @@ en:
         chart_details: Visualize match or sparring flows.
         check_howtouse: For instructions on how to use this app, please refer to the Step-By-Step Guide below.
         metrics:
-          nodes:
-            one: "%{count} node"
-            other: "%{count} nodes"
+          charts:
+            one: "%{count} chart"
+            other: "%{count} charts"
           techniques:
             one: "%{count} technique"
             other: "%{count} techniques"
