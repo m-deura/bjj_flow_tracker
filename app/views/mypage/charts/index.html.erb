@@ -40,6 +40,7 @@
       <% end %>
     </div>
 
+    <!-- カード -->
     <%= turbo_frame_tag "chart-list" do %>
       <div class="space-y-2 max-w-screen-2xl mx-auto mt-10">
         <% if @charts.present? %>
@@ -47,13 +48,24 @@
             <% @charts.each do |c| %>
               <article class="relative bg-base-200 shadow-md rounded-box p-4 space-y-3">
                 <div class="items-start space-y-2 flex flex-col">
+                  <!-- バッジ -->
+                  <% badge_style = %>
+                    <% case c[:node_count].to_i %>
+                      <% when 50.. then "badge-accent" %>
+                      <% when 20.. then "badge-primary" %>
+                      <% else           "badge-secondary" %>
+                    <% end %>
+                  <span class="badge <%= badge_style %>"><%= t(".metrics.nodes", count: c[:node_count].to_i) %></span>
+  
+                  <!-- チャート名 -->
                   <span class="text-lg font-medium" ><%= c.name %></span>
                 </div>
 
+                <!-- カード全体をリンク化 -->
                 <%= link_to mypage_chart_path(id: c.id),
                       data: { turbo_frame: "_top" },
                       class: "absolute inset-0" do %>
-                        <span class="sr-only">Open the chart page: <%= c.name %></span>
+                  <span class="sr-only">Open the chart page: <%= c.name %></span>
                 <% end %>
               </article>
             <% end %>
