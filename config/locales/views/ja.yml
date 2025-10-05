@@ -46,11 +46,11 @@ ja:
   mypage:
     charts:
       index:
-        nothing_here: 表示するチャートがありません
-        title: Flow Chart
         metrics:
           nodes:
             other: "%{count} ノード"
+        nothing_here: 表示するチャートがありません
+        title: Flow Chart
       new:
         title: 新規チャートを作成
       show:

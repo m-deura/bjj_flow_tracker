@@ -46,12 +46,12 @@ en:
   mypage:
     charts:
       index:
-        nothing_here: No charts to display
-        title: Flow Chart
         metrics:
           nodes:
             one: "%{count} node"
             other: "%{count} nodes"
+        nothing_here: No charts to display
+        title: Flow Chart
       new:
         title: Create a New Chart
       show:
