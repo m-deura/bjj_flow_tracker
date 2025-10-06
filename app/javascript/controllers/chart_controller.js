@@ -192,6 +192,8 @@ export default class extends Controller {
 		this.toggleTarget.checked = true;
 
 		const drawer = this.drawerTarget
+		const node_edit_url = this.editUrlValue.replace(":id", data.id);
+		console.log(data.id)
 		const node_edit_url = this.editUrlValue.replace(":id", data);
 		console.log(`${data} in openDrawer function`)
 		drawer.src = node_edit_url  // edit_mypage_node_path(data.id)
