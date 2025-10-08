@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_09_15_033620) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_09_050415) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,9 +36,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_15_033620) do
     t.bigint "from_id", null: false
     t.bigint "to_id", null: false
     t.integer "count", default: 0, null: false
-    t.integer "flow", default: 1, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "flow", default: 0, null: false
+    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.index ["from_id", "to_id", "flow"], name: "index_edges_on_from_id_and_to_id_and_flow", unique: true
     t.index ["from_id"], name: "index_edges_on_from_id"
     t.index ["to_id"], name: "index_edges_on_to_id"
@@ -47,10 +47,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_15_033620) do
   create_table "node_presets", force: :cascade do |t|
     t.bigint "chart_preset_id", null: false
     t.bigint "technique_preset_id", null: false
-    t.string "ancestry", null: false, collation: "C"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["ancestry"], name: "index_node_presets_on_ancestry"
+    t.string "ancestry"
     t.index ["chart_preset_id"], name: "index_node_presets_on_chart_preset_id"
     t.index ["technique_preset_id"], name: "index_node_presets_on_technique_preset_id"
   end
@@ -58,10 +57,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_15_033620) do
   create_table "nodes", force: :cascade do |t|
     t.bigint "chart_id"
     t.bigint "technique_id"
-    t.string "ancestry", null: false, collation: "C"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["ancestry"], name: "index_nodes_on_ancestry"
+    t.string "ancestry"
     t.index ["chart_id"], name: "index_nodes_on_chart_id"
     t.index ["technique_id"], name: "index_nodes_on_technique_id"
   end
