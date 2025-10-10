@@ -43,7 +43,7 @@
         <div class="flex items-center justify-between">
           <%= link_to current_user ? mypage_root_path : root_path, class: "flex items-center navbar-start" do %>
             <%= image_tag "icon.svg", alt: "icon", class: "w-10 mr-1" %>
-            <span class="text-lg font-semibold"><%= base_title %></span>
+            <span class="font-bebas text-lg font-semibold"><%= base_title %></span>
           <% end %>
           <button type="button" command="close" commandfor="mobile-menu" class="-m-2.5 rounded-md p-2.5 text-gray-700">
             <span class="sr-only">Close menu</span>
