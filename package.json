@@ -14,8 +14,6 @@
     "@hotwired/turbo-rails": "^8.0.16",
     "@tailwindcss/cli": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
-    "cytoscape": "^3.33.0",
-    "cytoscape-dagre": "^2.5.0",
     "daisyui": "^5.0.46",
     "i18n-js": "^4.5.1",
     "intro.js": "^8.3.2",
