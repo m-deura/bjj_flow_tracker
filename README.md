@@ -39,36 +39,23 @@ BJJ Flow Tracker は、ブラジリアン柔術の練習メモを”試合およ
 | **インタラクティブな情報反映** | 定番の試合展開をまとめた情報提供型サービスはあるが、ユーザー自身の気づきを記録することはできない。 | 自分の練習ノートをフローチャート形式で整理・可視化できる。|
 | **使用ハードル**  | 「BJJフローチャート作成サービス」自体は僅かながら存在するが、ユーザーがゼロからテクニック及び動きを登録する必要がある。 | あらかじめプリセットとなるテクニックが登録されており、ユーザーは既存のテクニックを組み合わせるだけで自分の試合展開を構築できる。 |
 
-## 機能候補
+## 機能
 
-### 【 MVP リリースまで 】
-
-- ユーザー登録機能
 - ログイン機能
-- メインフロー表示機能 ※メインフロー：試合開始のポジション(TOP/BOTTOM)をルートノードとするフロー。
-- フローパーツ表示機能 ※フローパーツ：特定の状況から展開される一連のテクニックを独立させたフロー。メインフロー上で再利用できる。
-- テクニックノート編集機能
-- メインフロー編集機能
-- フローパーツ作成機能
-- フローパーツ編集機能
-- フローパーツ削除機能
-- クイックメモ編集機能
-- クイックメモ一括取り込み機能
-- お気に入り登録機能
-- お気に入り一覧機能
-- お気に入り解除機能
-
-### 【本リリースまで】
-
-- お問い合わせページ作成
-- テクニックノート共有機能
+- テクニック一覧機能
+- テクニック作成機能
+- テクニック編集機能
+- テクニック削除機能
+- チャート一覧機能
+- チャート作成機能
+- チャート編集機能
+- チャート削除機能
 - ゲストログイン機能
-- テクニックノート検索機能（マルチ検索・オートコンプリート）
-- テクニック名オートコンプリート機能
+- テクニックノート検索機能（インスタンス検索）
 - 多言語(英語)対応
 - PWA 対応
-- テクニックノート・フローパーツ共有機能（要検討）
-- テクニックノートサンプル準備
+- テクニック・チャート共有機能（要検討）
+- テクニックサンプル準備
 - チャートサンプル準備
 
 ## 機能の実装方針
@@ -83,9 +70,8 @@ BJJ Flow Tracker は、ブラジリアン柔術の練習メモを”試合およ
 | データベース           | PostgreSQL                         |
 | セレクトボックスUI     | tom-select                         |
 | ステップガイド         | intro.js                           |
-| チャート可視化         | cytoscape.js                       |
-| ノードレイアウト       | dagre.js                           |
-| ノードのツリー構造管理 | Ancestry                           |
+| チャート可視化         | G6                                 |
+| ノードのツリー構造管理 | typed_dag                          |
 | 認証機能               | Devise / OmniAuth-Google-OAuth2    |
 
 ## 画面遷移図
@@ -162,17 +148,40 @@ erDiagram
     datetime updated_at "更新日時 (NOT NULL)"
   }
 
+  edges {
+    int id PK "ID (NOT NULL)"
+    int from_id FK "出発ノードID（NOT NULL）"
+    int to_id FK "到達ノードID (NOT NULL)"
+    int flow "fromからtoまでのホップ数 (typed_dag用のカラム)"
+    int count "flowカラムのホップ数で到達できる推移辺の数 (typed_dag用のカラム)"
+    datetime created_at "作成日時 (NOT NULL)"
+    datetime updated_at "更新日時 (NOT NULL)"
+  }
+
+  edge_presets {
+    int id PK "ID (NOT NULL)"
+    int from_id FK "出発ノードID（NOT NULL）"
+    int to_id FK "到達ノードID (NOT NULL)"
+    datetime created_at "作成日時 (NOT NULL)"
+    datetime updated_at "更新日時 (NOT NULL)"
+  }
+
   users ||--o{ techniques : "1:多"
   users ||--o{ charts : "1:多"
 
   techniques ||--o{ nodes : "1:多"
 
   technique_presets ||--o{ techniques : "1:多"
+  technique_presets ||--o{ node_presets : "1:多"
 
   charts ||--o{ nodes : "1:多"
 
   chart_presets ||--o{ charts : "1:多"
+  chart_presets ||--o{ node_presets : "1:多"
 
-  node_presets ||--o{ chart_presets : "1:多"
-  node_presets ||--o{ technique_presets : "1:多"
+  nodes ||--o{ edges : "1:多(from)"
+  nodes ||--o{ edges : "1:多(to)"
+
+  node_presets ||--o{ edge_presets : "1:多(from)"
+  node_presets ||--o{ edge_presets : "1:多(to)"
 ```
