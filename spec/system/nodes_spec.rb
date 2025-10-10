@@ -222,7 +222,7 @@ RSpec.describe "Nodes", type: :system do
         expect(page).to have_content(I18n.t("defaults.flash_messages.updated", item: Node.model_name.human))
 
         # 再びノードをクリックしてドロワーを開く
-        open_drawer(@node.id)
+        click_node(@node.id)
 
         # technique2を削除して、techniaue3を追加
         within('turbo-frame#node-drawer') do
@@ -237,7 +237,7 @@ RSpec.describe "Nodes", type: :system do
         sleep 3
 
         # 再びノードをクリックしてドロワーを開く
-        open_drawer(@node.id)
+        click_node(@node.id)
 
         # technique3のみが表示されていること
         within('turbo-frame#node-drawer') do
