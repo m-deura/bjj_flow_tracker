@@ -34,17 +34,17 @@ RSpec.describe "Nodes", type: :system do
 
       # nodes の検査
       np_count = NodePreset.count
-      nodes = json.select { |e| e["data"] && e["data"]["id"] && e["data"]["label"] }
-      expect(nodes.size).to eq np_count + 1
-      expect(nodes.map { |n| n.dig("data", "id") }).to all(be_a(String).and(be_present))
+      nodes = json["nodes"].select { |n| n.dig("data", "label").present? && n["id"].present? }
+      expect(nodes.size).to eq np_count + 1 # テスト冒頭で作成した @technique1 の分 +1
+      expect(nodes.map { |n| n.dig("id") }).to all(be_a(String).and(be_present))
       expect(nodes.map { |n| n.dig("data", "label") }).to all(be_a(String).and(be_present))
 
       # edges の検査
-      edges = json.select { |e| e["data"] && e["data"]["source"] && e["data"]["target"] }
-      # ep_count = NodePreset.count
+      edges = json["edges"].select { |e| e["source"].present? && e["target"].present? }
+      # ep_count = EdgePreset.count
       # expect(edges.size).to eq ep_count
-      expect(edges.map { |e| e.dig("data", "source") }).to all(be_a(String).and(be_present))
-      expect(edges.map { |e| e.dig("data", "target") }).to all(be_a(String).and(be_present))
+      expect(edges.map { |e| e.dig("source") }).to all(be_a(String).and(be_present))
+      expect(edges.map { |e| e.dig("target") }).to all(be_a(String).and(be_present))
 
       # 許可外のカテゴリーが混じっていないこと
       allowed = Technique.categories.keys
