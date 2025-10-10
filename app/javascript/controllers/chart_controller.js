@@ -67,17 +67,20 @@ export default class extends Controller {
 		      container: this.cyTarget,
 					autoFit: 'view',
 					data: data,
-					zoomRange: [0.1, 5],
+					zoomRange: [0.1, 10],
 					behaviors: [
-						'zoom-canvas',
+						'zoom-canvas',  // PC用ズーム機能
 						'click-select',
 						'focus-element',
-						{
-							type: 'drag-canvas',
-							range: 3,
+						function () {  // モバイル用ズーム機能
+							return {
+								type: 'zoom-canvas',
+								trigger: ['pinch'],
+								sensitivity: 0.8, // Lower sensitivity for smoother zoom changes
+								};
 						},
 						{
-							type: 'scroll-canvas',
+							type: 'drag-canvas',
 							range: 3,
 						},
 					],
@@ -117,7 +120,6 @@ export default class extends Controller {
 					],
 		      layout: { 
 						type: 'antv-dagre', 
-						align: 'DL',
 						rankdir: 'LR', 
 						nodesep: 10,
 						ranksep: 80,
