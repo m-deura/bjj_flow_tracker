@@ -11,4 +11,11 @@ module GraphMacros
       page.has_css?('input.drawer-toggle:checked', visible: :all) &&
         page.has_css?("select#children_nodes")
   end
+
+  def open_drawer(node_id, tries: 5)
+    tries.times do
+    return true if click_node(node_id)
+    end
+    raise "drawer did not open for node #{node_id}"
+  end
 end
