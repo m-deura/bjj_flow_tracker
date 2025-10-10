@@ -166,13 +166,13 @@ export default class extends Controller {
 				// RSpecテストのノードクリック操作に利用
 				if (this.testEnabledValue) {
 					this._onTestClickNode = (e) => {
+						// 取得したノードをタップする
 						// e は CustomEvent で { detail: { id: ... } }
 						const id = String(e.detail.id)
-						if (!id) return
+						if (!id || !this.graph) return
 
 						// 取得したノードをタップする
-						// this.graph.emit(NodeEvent.CLICK, { target: { id } }); // これだとRSpecテストでの安定性が低かったので、以下のようにメソッドを直接呼び出す形式に変更。
-						this.openDrawer(id);
+						this.graph.emit(NodeEvent.CLICK, { target: { id } });
 						};
 					// RSpec内で発生させた「test:click-node」イベントを拾ったら、「_onTestClickNode」を実行
 					window.addEventListener('test:click-node', this._onTestClickNode)
