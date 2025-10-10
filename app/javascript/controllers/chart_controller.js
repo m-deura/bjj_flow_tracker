@@ -210,4 +210,11 @@ export default class extends Controller {
 			this.openDrawer(firstNode.id);
 		}
 	}
+
+	disconnect() {
+  if (this._onTestClickNode) {
+    window.removeEventListener('test:click-node', this._onTestClickNode);
+    this._onTestClickNode = null;
+  }
+	}
 }
