@@ -350,6 +350,9 @@ RSpec.describe "Nodes", type: :system do
                                      )
         end
 
+        # バツボタンをクリック
+        find('aside label[data-action*="chart#closeDrawer"]').click
+
         # ノードをクリックしてドロワーを開く
         click_node(@node2.id)
 
