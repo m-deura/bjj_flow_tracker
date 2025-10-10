@@ -155,28 +155,28 @@ export default class extends Controller {
 		      },
 		    })
 			
-		    this.graph.render();
-
-				// RSpecテストのノードクリック操作に利用
-				if (this.testEnabledValue) {
-		      this._onTestClickNode = (e) => {
-		        // e は CustomEvent で { detail: { id: ... } }
-		        const id = String(e.detail.id)
-						if (!id || !this.graph) return
-
-						// 取得したノードをタップする
-		        this.graph.emit(NodeEvent.CLICK, { target: { id } });
-		        }
-		      }
-				// RSpec内で発生させた「test:click-node」イベントを拾ったら、「_onTestClickNode」を実行
-		    window.addEventListener('test:click-node', this._onTestClickNode)
+				this.graph.render();
 
 				this.graph.on(NodeEvent.CLICK, (evt) => {
 					const { target } = evt; // Get the ID of the clicked node
   				// console.log(`Node ${target.id} was clicked`);
 					this.openDrawer(target.id);
-				})
-		  });
+				});
+
+				// RSpecテストのノードクリック操作に利用
+				if (this.testEnabledValue) {
+					this._onTestClickNode = (e) => {
+						// e は CustomEvent で { detail: { id: ... } }
+						const id = String(e.detail.id)
+						if (!id || !this.graph) return
+
+						// 取得したノードをタップする
+						this.graph.emit(NodeEvent.CLICK, { target: { id } });
+						}
+					// RSpec内で発生させた「test:click-node」イベントを拾ったら、「_onTestClickNode」を実行
+					window.addEventListener('test:click-node', this._onTestClickNode)
+				}
+			});
 		}
 
 	addNode() {
