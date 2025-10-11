@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_09_050415) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_11_072001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,6 +30,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_09_050415) do
     t.index ["chart_preset_id"], name: "index_charts_on_chart_preset_id"
     t.index ["user_id", "name"], name: "index_charts_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_charts_on_user_id"
+  end
+
+  create_table "edge_presets", force: :cascade do |t|
+    t.bigint "from_id", null: false
+    t.bigint "to_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["from_id"], name: "index_edge_presets_on_from_id"
+    t.index ["to_id"], name: "index_edge_presets_on_to_id"
   end
 
   create_table "edges", force: :cascade do |t|
@@ -105,6 +114,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_09_050415) do
 
   add_foreign_key "charts", "chart_presets"
   add_foreign_key "charts", "users"
+  add_foreign_key "edge_presets", "node_presets", column: "from_id"
+  add_foreign_key "edge_presets", "node_presets", column: "to_id"
   add_foreign_key "edges", "nodes", column: "from_id"
   add_foreign_key "edges", "nodes", column: "to_id"
   add_foreign_key "node_presets", "chart_presets"
