@@ -39,7 +39,7 @@ class ApplyChartPreset
           {
             from_id: from.id,
             to_id: to.id,
-            flow: 1,
+            flow: 1
           }
         ])
       end
