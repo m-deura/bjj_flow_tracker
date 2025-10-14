@@ -69,6 +69,7 @@ export default class extends Controller {
 					data: data,
 					zoomRange: [0.1, 10],
 					behaviors: [
+						'drag-canvas',
 						'zoom-canvas',  // PC用ズーム機能
 						'click-select',
 						'focus-element',
@@ -76,12 +77,8 @@ export default class extends Controller {
 							return {
 								type: 'zoom-canvas',
 								trigger: ['pinch'],
-								sensitivity: 0.8, // Lower sensitivity for smoother zoom changes
+								sensitivity: 0.5, // Lower sensitivity for smoother zoom changes
 								};
-						},
-						{
-							type: 'drag-canvas',
-							range: 3,
 						},
 					],
 					plugins: [
@@ -141,18 +138,32 @@ export default class extends Controller {
 		      },
 		      edge: {
 		        type: 'polyline',
-		        style: { 
-							stroke: '#94a3b8',
-							lineWidth: 1.5, 
-							endArrow: true,
-							endArrowType: 'vee',
-							endArrowSize: 7,
-							startDirections: 'right',
-							radius: 6,
+		        style: (edge) => {
+							const kind = edge?.data?.kind;
+							if (kind === 'reverse'){
+								return {
+          				lineDash: [6, 6],
+          				lineWidth: 1.5,
+          				strokeOpacity: 0.7,
+          				endArrow: true,
+          				cursor: 'default',
+          				// 補助線を下層に（重なり対策）
+          				zIndex: 0
+								};
+							}
+							return {
+								stroke: '#94a3b8',
+								lineWidth: 1.5, 
+								endArrow: true,
+								endArrowType: 'vee',
+								endArrowSize: 7,
+								startDirections: 'right',
+								radius: 6,
 							// router: { 
 							// 	type: 'orth',
 							// 	padding: 20,
 							// }
+							}
 						}
 		      },
 		    })

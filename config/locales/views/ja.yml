@@ -68,7 +68,7 @@ ja:
         take_note: 本日も練習で学んだことを記録しましょう。
         technique_details: 技の一覧と練習メモを管理します。
         title: Dashboard
-        updates: 更新情報
+        updates: サービス更新情報
         username: "%{name}さん！"
         welcome: ようこそ、
     nodes:

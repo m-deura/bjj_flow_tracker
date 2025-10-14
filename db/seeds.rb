@@ -173,6 +173,7 @@ ActiveRecord::Base.transaction do
   top_children = TechniquePreset.where(name_en: top_children_names)
   bottom_children = TechniquePreset.where(name_en: bottom_children_names)
 
+  # ancestry
   top_children.each do |t|
     top_node.children.find_or_create_by!(
       chart_preset: chart,
@@ -185,6 +186,17 @@ ActiveRecord::Base.transaction do
       chart_preset: chart,
       technique_preset: t
     )
+  end
+
+  # typed_dag
+  top_children.uniq.each do |tid|
+    child = NodePreset.find_or_create_by!(chart_preset_id: top_node.chart_preset_id, technique_preset_id: tid.id)
+    EdgePreset.find_or_create_by!(from_id: top_node.id, to_id: child.id)
+  end
+
+  bottom_children.uniq.each do |tid|
+    child = NodePreset.find_or_create_by!(chart_preset_id: bottom_node.chart_preset_id, technique_preset_id: tid.id)
+    EdgePreset.find_or_create_by!(from_id: bottom_node.id, to_id: child.id)
   end
 
   puts "✅ #{NodePreset.count} node(s) seeded."

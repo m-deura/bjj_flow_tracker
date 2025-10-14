@@ -1,7 +1,7 @@
 class Mypage::NodesController < ApplicationController
   def new
     @chart = current_user.charts.find(params[:chart_id])
-    exclude_ids = @chart.nodes.roots.pluck(:technique_id)
+    exclude_ids = @chart.nodes.all.pluck(:technique_id)
     @candidate_techniques = current_user.techniques.where.not(id: exclude_ids)
 
     @grouped = @candidate_techniques
@@ -71,14 +71,14 @@ class Mypage::NodesController < ApplicationController
     @form = NodeEditForm.new(node: @node, current_user: current_user)
 
     # 自身のテクニックIDと、展開先テクニックとして選択済みのテクニックIDは候補から除外
-    children_ids = @node.children.pluck(:technique_id)
+    children_ids = @node.dag_children.pluck(:technique_id)
     exclude_ids = [ @technique.id ] + children_ids
     @candidate_techniques = current_user.techniques.where.not(id: exclude_ids)
 
     # grouped_options_for_select 用
     @selected_ids = children_ids.map!(&:to_s)
     @grouped =
-      (@candidate_techniques + @node.children.includes(:technique).map(&:technique))
+      (@candidate_techniques + @node.dag_children.includes(:technique).map(&:technique))
         .group_by { |tech| tech.category ? tech.category.humanize : t("enums.category.nil") }
         .transform_values { |arr| arr.map { |tech| [ tech.name_for, tech.id ] } }
 
@@ -94,8 +94,6 @@ class Mypage::NodesController < ApplicationController
       **node_edit_form_params.to_h.symbolize_keys
       # Strong Parameterをハッシュに変換後、シンボルに変換(キーワード引数はシンボルである必要がある)。その後、** を使ってキーワード引数として展開。
     )
-
-    chart = @node.chart
 
     if @form.save
       redirect_to mypage_chart_path(chart), notice: t("defaults.flash_messages.updated", item: Node.model_name.human), status: :see_other
