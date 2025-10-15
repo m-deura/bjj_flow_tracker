@@ -83,7 +83,9 @@ ja:
       index:
         editing_panel_title: テクニックを編集
         nothing_here: 表示するテクニックがありません
-        result_count: "%{n} 件表示"
+        metrics:
+          techniques:
+            other: "%{n} 件"
         title: Technique
       new:
         title: 新規テクニックを作成

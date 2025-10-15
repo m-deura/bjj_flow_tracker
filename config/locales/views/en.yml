@@ -51,7 +51,7 @@ en:
         metrics:
           charts:
             one: "%{n} result"
-            other: "%{count} results"
+            other: "%{n} results"
           nodes:
             one: "%{count} node"
             other: "%{count} nodes"
@@ -87,10 +87,11 @@ en:
       index:
         editing_panel_title: Edit Technique
         nothing_here: No techniques to display
-        result_count:
-          one: "%{n} result"
-          other: "%{n} results"
-        title: Techniques
+        metrics:
+          techniques:
+            one: "%{n} result"
+            other: "%{n} results"
+        title: Technique
       new:
         title: Create a New Technique
   pages:

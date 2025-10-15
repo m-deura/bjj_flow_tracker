@@ -84,9 +84,9 @@
         <!-- 件数表示 -->
         <div class="font-bold text-lg">
           <span>
-            <%= t(".result_count",
-                count: @techniques.size,
-                n: number_with_delimiter(@techniques.size))
+            <%= t(".metrics.techniques",
+                count: @techniques_count,
+                n: number_with_delimiter(@techniques_count))
             %>
           </span>
         </div>
