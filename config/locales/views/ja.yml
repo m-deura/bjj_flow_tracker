@@ -49,6 +49,8 @@ ja:
     charts:
       index:
         metrics:
+          charts:
+            other: "%{n} 件"
           nodes:
             other: "%{count} ノード"
         nothing_here: 表示するチャートがありません

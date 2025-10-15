@@ -49,6 +49,9 @@ en:
     charts:
       index:
         metrics:
+          charts:
+            one: "%{n} result"
+            other: "%{count} results"
           nodes:
             one: "%{count} node"
             other: "%{count} nodes"
