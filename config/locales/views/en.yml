@@ -82,11 +82,11 @@ en:
         editing_panel_title: Edit Node
     techniques:
       index:
+        editing_panel_title: Edit Technique
+        nothing_here: No techniques to display
         result_count:
           one: "%{n} result"
           other: "%{n} results"
-        editing_panel_title: Edit Technique
-        nothing_here: No techniques to display
         title: Techniques
       new:
         title: Create a New Technique
