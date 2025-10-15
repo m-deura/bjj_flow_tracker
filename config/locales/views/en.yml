@@ -53,8 +53,8 @@ en:
             one: "%{n} result"
             other: "%{n} results"
           nodes:
-            one: "%{count} node"
-            other: "%{count} nodes"
+            one: "%{n} node"
+            other: "%{n} nodes"
         nothing_here: No charts to display
         title: Flow Chart
       new:
@@ -86,11 +86,11 @@ en:
     techniques:
       index:
         editing_panel_title: Edit Technique
-        nothing_here: No techniques to display
         metrics:
           techniques:
             one: "%{n} result"
             other: "%{n} results"
+        nothing_here: No techniques to display
         title: Technique
       new:
         title: Create a New Technique
