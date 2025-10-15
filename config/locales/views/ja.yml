@@ -49,8 +49,10 @@ ja:
     charts:
       index:
         metrics:
+          charts:
+            other: "%{n} 件"
           nodes:
-            other: "%{count} ノード"
+            other: "%{n} ノード"
         nothing_here: 表示するチャートがありません
         title: Flow Chart
       new:
@@ -63,9 +65,9 @@ ja:
         check_howtouse: 本アプリの使い方については、以下のステップガイドをご参照ください。
         metrics:
           charts:
-            other: "%{count} チャート"
+            other: "%{n} チャート"
           techniques:
-            other: "%{count} テクニック"
+            other: "%{n} テクニック"
         start_guide: ステップガイドを始める
         take_note: 本日も練習で学んだことを記録しましょう。
         technique_details: 技の一覧と練習メモを管理します。
@@ -80,6 +82,9 @@ ja:
     techniques:
       index:
         editing_panel_title: テクニックを編集
+        metrics:
+          techniques:
+            other: "%{n} 件"
         nothing_here: 表示するテクニックがありません
         title: Technique
       new:

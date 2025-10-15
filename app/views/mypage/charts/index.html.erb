@@ -40,9 +40,19 @@
       <% end %>
     </div>
 
-    <!-- カード -->
     <%= turbo_frame_tag "chart-list" do %>
       <div class="space-y-2 max-w-screen-2xl mx-auto mt-10">
+        <!-- 件数表示 -->
+        <div class="font-bold text-lg">
+          <span>
+            <%= t(".metrics.charts",
+                count: @charts_count,
+                n: number_with_delimiter(@charts_count))
+            %>
+          </span>
+        </div>
+
+        <!-- カード -->
         <% if @charts.present? %>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 max-w-screen-2xl mx-auto">
             <% @charts.each do |c| %>
