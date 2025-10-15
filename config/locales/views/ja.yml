@@ -79,6 +79,7 @@ ja:
         editing_panel_title: ノードを編集
     techniques:
       index:
+        result_count: "%{n} 件表示"
         editing_panel_title: テクニックを編集
         nothing_here: 表示するテクニックがありません
         title: Technique
