@@ -11,6 +11,8 @@ en:
     flash_messages:
       created: "%{item} was successfully created"
       deleted: "%{item} was successfully deleted"
+      guest_notice: Please note that data saved as a guest will not be stored permanently.
+      guest_signed_in: Signed in as a guest
       multiple_select: Please select one or more %{item}
       not_created: Failed to create %{item}
       not_updated: Failed to update %{item}
@@ -29,7 +31,7 @@ en:
     dashboard: Dashboard
     flow_chart: Flow Chart
     home: Home
-    logout: Log out
+    sign_out: Sign out
     technique: Technique
   helpers:
     label:
@@ -104,13 +106,11 @@ en:
         heading: Key Features
         subheading: From organizing techniques to building your game plan—all in one place.
       hero:
-        already_signed_in: You're already signed in
+        already_signed_in: Already Signed in
         catchphrase: Learn techniques as flows, not isolated moves
-        cta_demo: Try the demo
-        demo_modal:
-          body: To use the service, please sign in with your Google account.
-          title: This feature is not implemented yet.
         description: "%{app_name} lets you organize and visualize Brazilian Jiu-Jitsu techniques as flowcharts."
+        signed_in_as_guest: Signed in as a guest
+        try_as_guest: Try as Guest
       howto:
         cards:
           step1:
@@ -157,8 +157,8 @@ en:
           register: Register techniques
           update: Update after training
   shared:
-    login_with: Log in with %{provider}
     providers:
       google: Google
+    sign_in_with: Sign in with %{provider}
   terms:
     root_nodes: Flow Starting Point

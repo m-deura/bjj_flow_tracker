@@ -11,6 +11,8 @@ ja:
     flash_messages:
       created: "%{item}を作成しました"
       deleted: "%{item}を削除しました"
+      guest_notice: ゲストユーザーで保存したデータは永続しません。ご注意ください。
+      guest_signed_in: ゲストとしてログインしました
       multiple_select: "%{item}を1つ以上選択してください"
       not_created: "%{item}を作成できませんでした"
       not_updated: "%{item}を更新できませんでした"
@@ -29,7 +31,7 @@ ja:
     dashboard: Dashboard
     flow_chart: Flow Chart
     home: Home
-    logout: ログアウト
+    sign_out: ログアウト
     technique: Technique
   helpers:
     label:
@@ -103,11 +105,9 @@ ja:
       hero:
         already_signed_in: ログイン済みです
         catchphrase: 技は点でなく、“流れ”で覚える
-        cta_demo: デモを触ってみる
-        demo_modal:
-          body: 利用にあたっては、Googleアカウントでログインしてください。
-          title: 本機能は、現時点で未実装です。
         description: "%{app_name} は、ブラジリアン柔術のテクニックをフローチャート形式で整理・可視化できるツールです。"
+        signed_in_as_guest: ゲストログイン中です
+        try_as_guest: ゲストで試す
       howto:
         cards:
           step1:
@@ -154,8 +154,8 @@ ja:
           register: 技を登録
           update: 練習で更新
   shared:
-    login_with: "%{provider} でログイン"
     providers:
       google: Google
+    sign_in_with: "%{provider} でログイン"
   terms:
     root_nodes: フローの開始点
