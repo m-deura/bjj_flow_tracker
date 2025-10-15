@@ -67,11 +67,11 @@ en:
         check_howtouse: For instructions on how to use this app, please refer to the Step-By-Step Guide below.
         metrics:
           charts:
-            one: "%{count} chart"
-            other: "%{count} charts"
+            one: "%{n} chart"
+            other: "%{n} charts"
           techniques:
-            one: "%{count} technique"
-            other: "%{count} techniques"
+            one: "%{n} technique"
+            other: "%{n} techniques"
         start_guide: Start Step Guide
         take_note: Let's record what you learned in practice today.
         technique_details: Manage your techniques and training notes.

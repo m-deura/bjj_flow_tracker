@@ -52,7 +52,7 @@ ja:
           charts:
             other: "%{n} 件"
           nodes:
-            other: "%{count} ノード"
+            other: "%{n} ノード"
         nothing_here: 表示するチャートがありません
         title: Flow Chart
       new:
