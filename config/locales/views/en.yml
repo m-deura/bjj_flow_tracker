@@ -16,6 +16,8 @@ en:
       not_updated: Failed to update %{item}
       updated: "%{item} was successfully updated"
       wrong_input: There are errors in your input
+      guest_signed_in: Signed in as a guest
+      guest_notice: Please note that data saved as a guest will not be stored permanently.
     preparing: It is currently under construction!
     search: Search
     start_guide: Start Step Guide
@@ -29,7 +31,7 @@ en:
     dashboard: Dashboard
     flow_chart: Flow Chart
     home: Home
-    logout: Log out
+    sign_out: Sign out
     technique: Technique
   helpers:
     label:
@@ -104,9 +106,10 @@ en:
         heading: Key Features
         subheading: From organizing techniques to building your game plan—all in one place.
       hero:
-        already_signed_in: You're already signed in
+        already_signed_in: Already Signed in
+        signed_in_as_guest: Signed in as a guest
         catchphrase: Learn techniques as flows, not isolated moves
-        cta_demo: Try the demo
+        try_as_guest: Try as Guest
         demo_modal:
           body: To use the service, please sign in with your Google account.
           title: This feature is not implemented yet.
@@ -157,7 +160,7 @@ en:
           register: Register techniques
           update: Update after training
   shared:
-    login_with: Log in with %{provider}
+    sign_in_with: Sign in with %{provider}
     providers:
       google: Google
   terms:

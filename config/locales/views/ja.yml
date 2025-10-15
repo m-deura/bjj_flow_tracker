@@ -16,6 +16,8 @@ ja:
       not_updated: "%{item}を更新できませんでした"
       updated: "%{item}を更新しました"
       wrong_input: 入力に誤りがあります
+      guest_signed_in: ゲストとしてログインしました
+      guest_notice: ゲストユーザーで保存したデータは永続しません。ご注意ください。
     preparing: 現在準備中です！
     search: 検索
     start_guide: ステップガイドを開始
@@ -29,7 +31,7 @@ ja:
     dashboard: Dashboard
     flow_chart: Flow Chart
     home: Home
-    logout: ログアウト
+    sign_out: ログアウト
     technique: Technique
   helpers:
     label:
@@ -102,8 +104,9 @@ ja:
         subheading: 技の整理からゲームプラン作成まで、これ1つでOK
       hero:
         already_signed_in: ログイン済みです
+        signed_in_as_guest: ゲストログイン中です
         catchphrase: 技は点でなく、“流れ”で覚える
-        cta_demo: デモを触ってみる
+        try_as_guest: ゲストで試す
         demo_modal:
           body: 利用にあたっては、Googleアカウントでログインしてください。
           title: 本機能は、現時点で未実装です。
@@ -154,7 +157,7 @@ ja:
           register: 技を登録
           update: 練習で更新
   shared:
-    login_with: "%{provider} でログイン"
+    sign_in_with: "%{provider} でログイン"
     providers:
       google: Google
   terms:
