@@ -107,9 +107,6 @@ ja:
         signed_in_as_guest: ゲストログイン中です
         catchphrase: 技は点でなく、“流れ”で覚える
         try_as_guest: ゲストで試す
-        demo_modal:
-          body: 利用にあたっては、Googleアカウントでログインしてください。
-          title: 本機能は、現時点で未実装です。
         description: "%{app_name} は、ブラジリアン柔術のテクニックをフローチャート形式で整理・可視化できるツールです。"
       howto:
         cards:

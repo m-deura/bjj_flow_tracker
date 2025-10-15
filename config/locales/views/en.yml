@@ -110,9 +110,6 @@ en:
         signed_in_as_guest: Signed in as a guest
         catchphrase: Learn techniques as flows, not isolated moves
         try_as_guest: Try as Guest
-        demo_modal:
-          body: To use the service, please sign in with your Google account.
-          title: This feature is not implemented yet.
         description: "%{app_name} lets you organize and visualize Brazilian Jiu-Jitsu techniques as flowcharts."
       howto:
         cards:
