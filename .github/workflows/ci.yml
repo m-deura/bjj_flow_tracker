@@ -77,7 +77,7 @@ jobs:
           bundler-cache: true
 
       # jsbundling-rails / cssbundling-rails を使うなら Node とビルドが必要
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version-file: '.node-version'
           cache: 'yarn'
