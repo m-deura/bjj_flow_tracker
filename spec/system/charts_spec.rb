@@ -87,4 +87,18 @@ RSpec.describe "Charts", type: :system do
       expect(page).to have_current_path(mypage_charts_path(locale: I18n.locale))
     end
   end
+
+  describe "newアクション" do
+    it "新規作成フォームが表示される" do
+      visit new_mypage_chart_path(locale: I18n.locale)
+      expect(page).to have_field(I18n.t("helpers.label.chart_name"))
+      expect(page).to have_button(I18n.t("helpers.submit.create"))
+    end
+
+    it "一覧ページへ戻るリンクが機能する" do
+      visit new_mypage_chart_path(locale: I18n.locale)
+      click_link(I18n.t("defaults.back"))
+      expect(page).to have_current_path(mypage_charts_path(locale: I18n.locale))
+    end
+  end
 end
