@@ -31,6 +31,21 @@ class User < ApplicationRecord
     end
   end
 
+  def self.create_guest!
+    create!(
+      provider: "guest",
+      uid: SecureRandom.uuid,
+      email: "guest+#{SecureRandom.uuid}@example.com",
+      password: SecureRandom.base58(20),
+      name: "Guest",
+      image: "icon.svg"
+    )
+  end
+
+  def guest?
+    provider == "guest"
+  end
+
   private
 
   def copy_presets
@@ -50,7 +65,7 @@ class User < ApplicationRecord
           user: self,
           chart_preset: cp,
           chart_name: "preset_#{Time.current.strftime('%Y%m%d-%H%M%S')}"
-       )
+        )
       else
       # フォールバック：プリセットが無ければ空チャートだけ作る
       charts.find_or_create_by!(name: "empty_#{Time.current.strftime('%Y%m%d-%H%M%S')}")

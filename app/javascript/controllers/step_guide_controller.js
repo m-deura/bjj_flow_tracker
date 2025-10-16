@@ -28,7 +28,7 @@ export default class extends Controller {
 		return current || null
 	}
 
-	  // 未翻訳かどうかの判定ヘルパー
+	// 未翻訳かどうかの判定ヘルパー
 	tOrNull(key, vars = {}) {
 		const s = this.i18n.t(key, vars)
 		return (typeof s === "string" && /^\[missing /.test(s)) ? null : s
@@ -100,6 +100,10 @@ export default class extends Controller {
 				if (firstCard) firstCard.click();
 			}
 		});
+	}
+
+	startChartListGuide() {
+		this.start()
 	}
 
 	startChartGuide() {

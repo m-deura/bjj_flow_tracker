@@ -14,12 +14,13 @@ class Technique < ApplicationRecord
 
   attr_accessor :name  # フォーム用の仮想属性
 
+  # 関連では検索させない
   def self.ransackable_associations(auth_object = nil)
-    [ "user" ]
+    []
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    [ "name_ja", "name_en", "note" ]
+    [ "name_ja", "name_en", "note", "category" ]
   end
 
   LOCALE_NAME_FIELD = { ja: :name_ja, en: :name_en }.freeze

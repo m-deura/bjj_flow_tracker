@@ -2,10 +2,8 @@ class Mypage::TechniquesController < ApplicationController
   def index
     @q = current_user.techniques.ransack(params[:q])
     @techniques = @q.result(distinct: true).order(updated_at: :desc)
-
-
-    # ステップガイドに含まれるChartメニューへのアクセスリンクのため
-    @chart = current_user.charts.first
+    @techniques_count = @techniques.size
+    @categories = Technique.categories
   end
 
   def new
@@ -58,7 +56,7 @@ class Mypage::TechniquesController < ApplicationController
   end
 
   def destroy
-    technique = Technique.find(params[:id])
+    technique = current_user.techniques.find(params[:id])
     technique.destroy!
     redirect_to mypage_techniques_path, notice: t("defaults.flash_messages.deleted", item: Technique.model_name.human)
   end

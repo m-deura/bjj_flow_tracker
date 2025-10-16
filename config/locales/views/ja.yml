@@ -2,20 +2,24 @@
 ja:
   defaults:
     back: 一覧へ戻る
+    cancel: キャンセル
     create: 新規作成
     delete: 削除
     delete_confirm: 削除しますか？
     delete_item: "%{item}を削除"
+    edit: 変更
     flash_messages:
       created: "%{item}を作成しました"
       deleted: "%{item}を削除しました"
+      guest_notice: ゲストユーザーで保存したデータは永続しません。ご注意ください。
+      guest_signed_in: ゲストとしてログインしました
       multiple_select: "%{item}を1つ以上選択してください"
       not_created: "%{item}を作成できませんでした"
       not_updated: "%{item}を更新できませんでした"
       updated: "%{item}を更新しました"
       wrong_input: 入力に誤りがあります
     preparing: 現在準備中です！
-    search: テクニックを検索
+    search: 検索
     start_guide: ステップガイドを開始
   footer:
     inquiry: お問い合わせ
@@ -27,11 +31,12 @@ ja:
     dashboard: Dashboard
     flow_chart: Flow Chart
     home: Home
-    logout: ログアウト
+    sign_out: ログアウト
     technique: Technique
   helpers:
     label:
       category: カテゴリー
+      chart_name: チャート名
       children_nodes: 展開先テクニック
       note: ノート
       root_nodes: 開始点テクニック
@@ -42,23 +47,32 @@ ja:
       update: 更新
   mypage:
     charts:
+      index:
+        metrics:
+          charts:
+            other: "%{n} 件"
+          nodes:
+            other: "%{n} ノード"
+        nothing_here: 表示するチャートがありません
+        title: Flow Chart
+      new:
+        title: 新規チャートを作成
       show:
         create_nodes: 新しいフローを作る
-        title: Flow Chart
     dashboard:
       show:
         chart_details: 試合またはスパーの流れを可視化します。
         check_howtouse: 本アプリの使い方については、以下のステップガイドをご参照ください。
         metrics:
-          nodes:
-            other: "%{count} ノード"
+          charts:
+            other: "%{n} チャート"
           techniques:
-            other: "%{count} テクニック"
+            other: "%{n} テクニック"
         start_guide: ステップガイドを始める
         take_note: 本日も練習で学んだことを記録しましょう。
         technique_details: 技の一覧と練習メモを管理します。
         title: Dashboard
-        updates: 更新情報
+        updates: サービス更新情報
         username: "%{name}さん！"
         welcome: ようこそ、
     nodes:
@@ -68,6 +82,9 @@ ja:
     techniques:
       index:
         editing_panel_title: テクニックを編集
+        metrics:
+          techniques:
+            other: "%{n} 件"
         nothing_here: 表示するテクニックがありません
         title: Technique
       new:
@@ -93,11 +110,9 @@ ja:
       hero:
         already_signed_in: ログイン済みです
         catchphrase: 技は点でなく、“流れ”で覚える
-        cta_demo: デモを触ってみる
-        demo_modal:
-          body: 利用にあたっては、Googleアカウントでログインしてください。
-          title: 本機能は、現時点で未実装です。
         description: "%{app_name} は、ブラジリアン柔術のテクニックをフローチャート形式で整理・可視化できるツールです。"
+        signed_in_as_guest: ゲストログイン中です
+        try_as_guest: ゲストで試す
       howto:
         cards:
           step1:
@@ -144,8 +159,8 @@ ja:
           register: 技を登録
           update: 練習で更新
   shared:
-    login_with: "%{provider} でログイン"
     providers:
       google: Google
+    sign_in_with: "%{provider} でログイン"
   terms:
     root_nodes: フローの開始点

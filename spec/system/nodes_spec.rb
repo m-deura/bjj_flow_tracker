@@ -34,17 +34,17 @@ RSpec.describe "Nodes", type: :system do
 
       # nodes の検査
       np_count = NodePreset.count
-      nodes = json.select { |e| e["data"] && e["data"]["id"] && e["data"]["label"] }
-      expect(nodes.size).to eq np_count + 1
-      expect(nodes.map { |n| n.dig("data", "id") }).to all(be_a(String).and(be_present))
+      nodes = json["nodes"].select { |n| n.dig("data", "label").present? && n["id"].present? }
+      expect(nodes.size).to eq np_count + 1 # テスト冒頭で作成した @technique1 の分 +1
+      expect(nodes.map { |n| n.dig("id") }).to all(be_a(String).and(be_present))
       expect(nodes.map { |n| n.dig("data", "label") }).to all(be_a(String).and(be_present))
 
       # edges の検査
-      edges = json.select { |e| e["data"] && e["data"]["source"] && e["data"]["target"] }
-      # ep_count = NodePreset.count
-      # expect(edges.size).to eq ep_count
-      expect(edges.map { |e| e.dig("data", "source") }).to all(be_a(String).and(be_present))
-      expect(edges.map { |e| e.dig("data", "target") }).to all(be_a(String).and(be_present))
+      edges = json["edges"].select { |e| e["source"].present? && e["target"].present? }
+      ep_count = EdgePreset.count
+      expect(edges.size).to eq ep_count
+      expect(edges.map { |e| e.dig("source") }).to all(be_a(String).and(be_present))
+      expect(edges.map { |e| e.dig("target") }).to all(be_a(String).and(be_present))
 
       # 許可外のカテゴリーが混じっていないこと
       allowed = Technique.categories.keys
@@ -222,7 +222,7 @@ RSpec.describe "Nodes", type: :system do
         expect(page).to have_content(I18n.t("defaults.flash_messages.updated", item: Node.model_name.human))
 
         # 再びノードをクリックしてドロワーを開く
-        open_drawer(@node.id)
+        click_node(@node.id)
 
         # technique2を削除して、techniaue3を追加
         within('turbo-frame#node-drawer') do
@@ -233,11 +233,9 @@ RSpec.describe "Nodes", type: :system do
 
         expect(page).to have_current_path(mypage_chart_path(id: @chart.id, locale: I18n.locale))
         expect(page).to have_content(I18n.t("defaults.flash_messages.updated", item: Node.model_name.human))
-        # どうしてもテスト挙動が安定しないのでsleepして`Unable to find visible css "turbo-frame#node-drawer"`エラーに対応
-        sleep 3
 
         # 再びノードをクリックしてドロワーを開く
-        open_drawer(@node.id)
+        click_node(@node.id)
 
         # technique3のみが表示されていること
         within('turbo-frame#node-drawer') do
@@ -333,14 +331,17 @@ RSpec.describe "Nodes", type: :system do
 
   describe "destroyアクション" do
     before do
-      @node2 = @node.children.create!(chart_id: @chart.id, technique_id: @technique2.id)
-      @node2.children.create!(chart_id: @chart.id, technique_id: @technique3.id)
+      @node2 = Node.create!(chart_id: @chart.id, technique_id: @technique2.id)
+      @node3 = Node.create!(chart_id: @chart.id, technique_id: @technique3.id)
+      Edge.create!(from_id: @node.id, to_id: @node2.id, flow: 1)
+      Edge.create!(from_id: @node2.id, to_id: @node3.id, flow: 1)
     end
 
     context "削除ボタンをクリックした場合" do
-      it "当該ノードとその子ノードが削除されること。", :js do
+        it "当該ノードのみが削除される(子ノードは削除されない)こと。", :js do
         visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
-        # ノードをクリックしてドロワーを開く
+
+        # @node の子ノードとして @node2 が登録されていることを確認
         click_node(@node.id)
 
         within('#node-drawer') do
@@ -352,7 +353,10 @@ RSpec.describe "Nodes", type: :system do
                                      )
         end
 
-        # ノードをクリックしてドロワーを開く
+        # バツボタンをクリック
+        find('aside label[data-action*="chart#closeDrawer"]').click
+
+        # @node2 の子ノードとして @node3 が登録されていることを確認
         click_node(@node2.id)
 
         within('#node-drawer') do
@@ -364,14 +368,15 @@ RSpec.describe "Nodes", type: :system do
                                      )
         end
 
+        # @node2 の削除ボタンをクリックする
         expect {
           accept_confirm(I18n.t("defaults.delete_confirm")) do
             click_link(I18n.t("defaults.delete_item", item: Node.model_name.human))
           end
           expect(page).to have_content(I18n.t("defaults.flash_messages.deleted", item: Node.model_name.human))
-        }.to change(@chart.nodes, :count).by(-2)
+        }.to change(@chart.nodes, :count).by(-1)
 
-        # ノードをクリックしてドロワーを開く
+        # @node の子ノードとして登録されていた @node2 が消えていることを確認
         click_node(@node.id)
 
         within('#node-drawer') do
@@ -382,6 +387,13 @@ RSpec.describe "Nodes", type: :system do
                                       selected: []
                                      )
         end
+
+        # バツボタンをクリック
+        find('aside label[data-action*="chart#closeDrawer"]').click
+
+        # @node2 の子ノードとして登録されていた @node3 は削除されない
+        # （ドロワーを開くことができて、ドロワー内に編集フィールドがあることを確認できる）
+        click_node(@node3.id)
       end
     end
   end
