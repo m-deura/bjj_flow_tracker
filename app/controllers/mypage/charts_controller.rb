@@ -1,12 +1,10 @@
 class Mypage::ChartsController < ApplicationController
   def index
     @q = current_user.charts.ransack(params[:q])
-    base = @q.result.left_outer_joins(:nodes)  # 0 nodesのチャートも表示したいのでouter_join
-    @charts = base
-          .select("charts.*, COUNT(nodes.id) AS node_count")
-          .group("charts.id")
-          .order(updated_at: :desc)
-    @charts_count = base.distinct.count(:id)
+    @charts = @q.result(distinct: true).order(updated_at: :desc)
+      .left_outer_joins(:nodes) # 0nodesのチャートも表示したいのでouter_join
+      .select("charts.*, COUNT(nodes.id) AS node_count")
+      .group("charts.id")
   end
 
   def new

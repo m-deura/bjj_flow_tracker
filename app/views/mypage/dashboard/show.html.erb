@@ -49,8 +49,8 @@
   
           <!-- 右：メトリクス / 矢印 -->
           <div class="flex items-center gap-2">
-            <!-- lg以下だとバッジ内で文字列が折り返してしまうので非表示 -->
-            <span class="lg:inline hidden badge badge-outline"><%= t(".metrics.techniques", count: @techniques_count, n: number_with_delimiter(@techniques_count)) %></span>
+            <!-- sm以下だとバッジ内で文字列が折り返してしまうので非表示 -->
+            <span class="sm:inline hidden badge badge-outline"><%= t(".metrics.techniques", count: @technique_count) %></span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                  fill="none" class="size-5 opacity-60 group-hover:opacity-100 transition">
               <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8"
@@ -88,7 +88,7 @@
           </div>
 
           <div class="flex items-center gap-2">
-            <span class="lg:inline hidden badge badge-outline"><%= t(".metrics.charts", count: @charts_count, n: number_with_delimiter(@charts_count)) %></span>
+            <span class="sm:inline hidden badge badge-outline"><%= t(".metrics.charts", count: @chart_count) %></span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                  fill="none" class="size-5 opacity-60 group-hover:opacity-100 transition">
               <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8"
