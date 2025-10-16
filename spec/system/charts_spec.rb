@@ -101,4 +101,49 @@ RSpec.describe "Charts", type: :system do
       expect(page).to have_current_path(mypage_charts_path(locale: I18n.locale))
     end
   end
+
+  describe "editアクション" do
+    before do
+      user.charts.create! do |c|
+        c.name = "test1"
+      end
+    end
+
+    it "編集フォームが表示される", :js do
+      visit mypage_charts_path(locale: I18n.locale)
+
+      # カードをクリックして詳細画面に遷移
+      expect(page).to have_css('a[data-turbo-frame="_top"]')
+      find('a[data-turbo-frame="_top"]', match: :first).click
+
+      # 変更ボタンをクリックして、チャート名編集フォームを表示させる
+      click_link(I18n.t("defaults.edit"))
+
+      expect(page).to have_field("chart_name", with: "test1")
+      expect(page).to have_button(I18n.t("helpers.submit.update"))
+      expect(page).to have_link(I18n.t("defaults.cancel"))
+    end
+
+    it "キャンセルボタンが機能する(編集フォームが閉じる)", :js do
+      visit mypage_chart_path(id: cp_id, locale: I18n.locale)
+
+      # 変更ボタンをクリックして、チャート名編集フォームを表示させる
+      click_link(I18n.t("defaults.edit"))
+
+      expect(page).to have_field("chart_name", with: /preset_\d{8}-\d{6}/)
+      expect(page).to have_button(I18n.t("helpers.submit.update"))
+      expect(page).to have_link(I18n.t("defaults.cancel"))
+
+      # キャンセルボタンをクリック
+      click_link(I18n.t("defaults.cancel"))
+
+      expect(page).not_to have_field("chart_name", with: /preset_\d{8}-\d{6}/)
+      expect(page).not_to have_button(I18n.t("helpers.submit.update"))
+      expect(page).not_to have_link(I18n.t("defaults.cancel"))
+
+      expect(page).to have_content(/preset_\d{8}-\d{6}/)
+      expect(page).to have_link(I18n.t("defaults.edit"))
+      expect(page).to have_link(I18n.t("defaults.delete"))
+    end
+  end
 end
