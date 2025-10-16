@@ -262,4 +262,30 @@ RSpec.describe "Charts", type: :system do
       end
     end
   end
+
+  describe "destroyアクション" do
+    before do
+      user.charts.create! do |c|
+        c.name = "test1"
+      end
+    end
+
+    # モーダルが出てくるので要js
+    it "チャートを削除できる", :js do
+      visit mypage_charts_path(locale: I18n.locale)
+      expect(page).to have_css('a[data-turbo-frame="_top"]')
+      find('a[data-turbo-frame="_top"]', match: :first).click
+
+      expect {
+        accept_confirm(I18n.t("defaults.delete_confirm")) do
+          click_link(I18n.t("defaults.delete"))
+        end
+
+        expect(page).to have_content(I18n.t("defaults.flash_messages.deleted", item: Chart.model_name.human))
+      }.to change(user.charts, :count).by(-1)
+
+      expect(page).to have_current_path(mypage_charts_path(locale: I18n.locale))
+      expect(page).not_to have_content("test1")
+    end
+  end
 end
