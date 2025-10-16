@@ -47,13 +47,11 @@ RSpec.describe "Techniques", type: :system do
         user.techniques.create! do |t|
           t.set_name_for("test1")
           t.note = "test note!1"
-          t.category = "submission"
         end
 
         user.techniques.create! do |t|
           t.set_name_for("test2")
           t.note = "test note!2"
-          t.category = "control"
         end
       end
 
@@ -84,31 +82,7 @@ RSpec.describe "Techniques", type: :system do
     end
 
     context "カテゴリーフィルタをかけた場合" do
-      it "選択したカテゴリのテクニックのみが表示される", :js do
-        visit mypage_techniques_path(locale: I18n.locale)
-        submission = I18n.t("enums.category.submission")
-        control = I18n.t("enums.category.control")
-        find(:css, %(input[type="checkbox"][aria-label="#{submission}"])).click
-
-        # サブミットカテゴリーのテクニックのみが表示される
-        expect(page).to have_content(submission)
-        expect(page).not_to have_content(control)
-      end
-
-      it "リセットボタンが機能する", :js do
-        visit mypage_techniques_path(locale: I18n.locale)
-        submission = I18n.t("enums.category.submission")
-        control = I18n.t("enums.category.control")
-        find(:css, %(input[type="checkbox"][aria-label="#{submission}"])).click
-
-        # サブミットカテゴリーのテクニックのみが表示される
-        expect(page).to have_content(submission)
-        expect(page).not_to have_content(control)
-
-        # リセットボタンを押すと、コントロールカテゴリーのテクニックも表示されるようになる
-        find(:css, "input[type='reset']").click
-        expect(page).to have_content(submission)
-        expect(page).to have_content(control)
+      xit "選択したカテゴリのテクニックのみが表示される" do
       end
     end
   end

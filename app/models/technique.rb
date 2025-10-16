@@ -20,7 +20,7 @@ class Technique < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    [ "name_ja", "name_en", "note", "category" ]
+    [ "name_ja", "name_en", "note" ]
   end
 
   LOCALE_NAME_FIELD = { ja: :name_ja, en: :name_en }.freeze
