@@ -146,4 +146,51 @@ RSpec.describe "Charts", type: :system do
       expect(page).to have_link(I18n.t("defaults.delete"))
     end
   end
+
+  describe "createアクション" do
+    context "有効なデータの場合" do
+      it "チャートが作成できる" do
+        visit new_mypage_chart_path(locale: I18n.locale)
+        fill_in I18n.t("helpers.label.chart_name"), with: "test1"
+        expect {
+          click_button(I18n.t("helpers.submit.create"))
+        }.to change(user.charts, :count).by(1)
+        expect(page).to have_current_path(mypage_charts_path(locale: I18n.locale))
+        expect(page).to have_content("test1")
+        expect(page).to have_content(I18n.t("defaults.flash_messages.created", item: Chart.model_name.human))
+      end
+    end
+
+    context "チャート名が空の場合" do
+      it "チャートの作成に失敗する" do
+        visit new_mypage_chart_path(locale: I18n.locale)
+        expect {
+          click_button(I18n.t("helpers.submit.create"))
+        }.to change(user.charts, :count).by(0)
+        expect(page).to have_current_path(mypage_charts_path(locale: I18n.locale))
+        expect(page).to have_content(I18n.t("defaults.flash_messages.not_created", item: Chart.model_name.human))
+        # #{Chart.human_attribute_name(:name)} = I18n.t("activerecord.attributes.chart.name")
+        expect(page).to have_content("#{Chart.human_attribute_name(:name)}#{I18n.t('errors.messages.blank')}")
+      end
+    end
+
+    context "チャート名が既存データと重複する場合" do
+        let!(:chart) do
+          user.charts.create! do |c|
+            c.name = "test1"
+          end
+        end
+
+      it "チャートの作成に失敗する" do
+        visit new_mypage_chart_path(locale: I18n.locale)
+        fill_in I18n.t("helpers.label.chart_name"), with: "test1"
+        expect {
+          click_button(I18n.t("helpers.submit.create"))
+        }.to change(user.charts, :count).by(0)
+        expect(page).to have_current_path(mypage_charts_path(locale: I18n.locale))
+        expect(page).to have_content(I18n.t("defaults.flash_messages.not_created", item: Chart.model_name.human))
+        expect(page).to have_content("#{Chart.human_attribute_name(:name)}#{I18n.t('errors.messages.taken')}")
+      end
+    end
+  end
 end
