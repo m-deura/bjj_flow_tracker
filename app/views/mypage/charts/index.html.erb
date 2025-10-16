@@ -65,7 +65,12 @@
                       <% when 20.. then "badge-primary" %>
                       <% else           "badge-secondary" %>
                     <% end %>
-                  <span class="badge <%= badge_style %>"><%= t(".metrics.nodes", count: c[:node_count].to_i) %></span>
+                    <span class="badge <%= badge_style %>">
+                      <%= t(".metrics.nodes", 
+                            count: c[:node_count].to_i, 
+                            n: number_with_delimiter(c[:node_count]))
+                      %>
+                    </span>
   
                   <!-- チャート名 -->
                   <span class="text-lg font-medium" ><%= c.name %></span>
