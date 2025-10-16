@@ -193,4 +193,73 @@ RSpec.describe "Charts", type: :system do
       end
     end
   end
+
+  describe "updateアクション" do
+    before do
+      user.charts.create! do |c|
+        c.name = "test2"
+      end
+
+      # 後に作ったチャートが find('a[data-turbo-frame="_top"]', match: :first).click にマッチする
+      @test1_id = user.charts.create! do |c|
+        c.name = "test1"
+      end
+    end
+
+    context "有効なデータの場合" do
+      it "チャートが更新できる", :js do
+        visit mypage_charts_path(locale: I18n.locale)
+        expect(page).to have_css('a[data-turbo-frame="_top"]')
+        find('a[data-turbo-frame="_top"]', match: :first).click
+
+        # 変更ボタンをクリックして、チャート名編集フォームを表示させる
+        click_link(I18n.t("defaults.edit"))
+
+        fill_in "chart_name", with: "retest3"
+        click_button(I18n.t("helpers.submit.update"))
+
+        expect(page).to have_current_path(mypage_chart_path(id: @test1_id, locale: I18n.locale))
+        expect(page).to have_content("retest3")
+        expect(page).to have_content(I18n.t("defaults.flash_messages.updated", item: Chart.model_name.human))
+      end
+    end
+
+    context "チャート名が空の場合" do
+      it "チャートの更新に失敗する", :js do
+        visit mypage_charts_path(locale: I18n.locale)
+        expect(page).to have_css('a[data-turbo-frame="_top"]')
+        find('a[data-turbo-frame="_top"]', match: :first).click
+
+        # 変更ボタンをクリックして、チャート名編集フォームを表示させる
+        click_link(I18n.t("defaults.edit"))
+
+        fill_in "chart_name", with: ""
+        click_button(I18n.t("helpers.submit.update"))
+
+        expect(page).to have_current_path(mypage_chart_path(id: @test1_id, locale: I18n.locale))
+        expect(page).to have_content("test1")
+        expect(page).to have_content(I18n.t("defaults.flash_messages.not_updated", item: Chart.model_name.human))
+        expect(page).to have_content("#{Chart.human_attribute_name(:name)}#{I18n.t('errors.messages.blank')}")
+      end
+    end
+
+    context "チャート名が既存データと重複する場合" do
+      it "チャートの更新に失敗する", :js do
+        visit mypage_charts_path(locale: I18n.locale)
+        expect(page).to have_css('a[data-turbo-frame="_top"]')
+        find('a[data-turbo-frame="_top"]', match: :first).click
+
+        # 変更ボタンをクリックして、チャート名編集フォームを表示させる
+        click_link(I18n.t("defaults.edit"))
+
+        fill_in "chart_name", with: "test2"
+        click_button(I18n.t("helpers.submit.update"))
+
+        expect(page).to have_current_path(mypage_chart_path(id: @test1_id, locale: I18n.locale))
+        expect(page).to have_content("test1")
+        expect(page).to have_content(I18n.t("defaults.flash_messages.not_updated", item: Chart.model_name.human))
+        expect(page).to have_content("#{Chart.human_attribute_name(:name)}#{I18n.t('errors.messages.taken')}")
+      end
+    end
+  end
 end
