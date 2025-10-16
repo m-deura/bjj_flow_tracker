@@ -79,4 +79,12 @@ RSpec.describe "Charts", type: :system do
       end
     end
   end
+
+  describe "showアクション" do
+    it "一覧ページへ戻るリンクが機能する" do
+      visit mypage_chart_path(id: cp_id, locale: I18n.locale)
+      click_link(I18n.t("defaults.back"))
+      expect(page).to have_current_path(mypage_charts_path(locale: I18n.locale))
+    end
+  end
 end
