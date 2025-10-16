@@ -64,22 +64,6 @@ jobs:
       #   options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-      - name: Inspect Chrome/Driver on runner
-        run: |
-          set -eux
-          which -a chromedriver || true
-          ls -l $(which chromedriver) || true
-
-      - name: Remove the chromedriver that would be used
-        run: |
-          set -eux
-          if command -v chromedriver >/dev/null 2>&1; then
-            TARGET="$(command -v chromedriver)"
-            echo "Removing $TARGET"
-            sudo rm -f "$TARGET" || true
-          fi
-          which -a chromedriver || echo "no chromedriver in PATH (good)"
-    
       - name: Install packages
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y curl libjemalloc2 libvips postgresql-client
 
@@ -92,6 +76,7 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      # jsbundling-rails / cssbundling-rails を使うなら Node とビルドが必要
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.node-version'
