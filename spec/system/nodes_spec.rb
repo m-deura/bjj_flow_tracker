@@ -80,6 +80,14 @@ RSpec.describe "Nodes", type: :system do
   end
 
   describe "editアクション" do
+    it "ステップガイドが開始できる", :js do
+      visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
+      click_node(@node.id)
+
+      find(:css, '[data-action~="click->step-guide#startNodeGuide"]').click
+      expect(page).to have_css('.introjs-tour')
+    end
+
     it "ノードをクリックすると、ドロワーが開かれて編集フォームが表示される", :js do
       visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
 

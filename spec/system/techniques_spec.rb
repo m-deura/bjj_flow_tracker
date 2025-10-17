@@ -10,6 +10,10 @@ RSpec.describe "Techniques", type: :system do
   # pending "add some scenarios (or delete) #{__FILE__}"
 
   describe "indexアクション" do
+    it "ステップガイドが開始できる", :js do
+      visit mypage_techniques_path(locale: I18n.locale)
+      find(:css, '[data-action~="click->step-guide#startTechniqueGuide"]').click
+      expect(page).to have_css('.introjs-tour')
     end
 
     it "プリセットのテクニックが確認できる" do

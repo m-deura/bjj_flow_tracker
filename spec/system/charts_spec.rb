@@ -9,6 +9,12 @@ RSpec.describe "Charts", type: :system do
   let(:cp_id) { user.charts.where("name LIKE ?", "%preset%").first.id }
 
   describe "indexアクション" do
+    it "ステップガイドが開始できる", :js do
+      visit mypage_charts_path(locale: I18n.locale)
+      find(:css, '[data-action~="click->step-guide#startChartListGuide"]').click
+      expect(page).to have_css('.introjs-tour')
+    end
+
     it "プリセットのチャートが確認できる" do
       visit mypage_charts_path(locale: I18n.locale)
       expect(page).to have_content(/preset_\d{8}-\d{6}/)
@@ -80,6 +86,12 @@ RSpec.describe "Charts", type: :system do
       visit mypage_chart_path(id: cp_id, locale: I18n.locale)
       click_link(I18n.t("defaults.back"))
       expect(page).to have_current_path(mypage_charts_path(locale: I18n.locale))
+    end
+
+    it "ステップガイドが開始できる", :js do
+      visit mypage_chart_path(id: cp_id, locale: I18n.locale)
+      find(:css, '[data-action~="click->step-guide#startChartGuide"]').click
+      expect(page).to have_css('.introjs-tour')
     end
   end
 
