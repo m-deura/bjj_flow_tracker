@@ -26,11 +26,14 @@ module LoginMacros
     expect(new_user.charts.count).to eq(1)
 
     # トップページに表示されるボタンが意図通りになっているか確認
-    visit root_path
+    visit root_path(locale: I18n.locale)
     expect(page).to have_content(I18n.t("pages.top.hero.already_signed_in"))
     expect(page).to have_content(I18n.t("pages.top.hero.try_as_guest"))
     expect(page).not_to have_content(I18n.t("shared.sign_in_with", provider: I18n.t("shared.providers.google")))
     expect(page).not_to have_content(I18n.t("pages.top.hero.signed_in_as_guest"))
+
+    # 本来のログイン直後の遷移先に戻る
+    visit mypage_root_path(locale: I18n.locale)
   end
 
   def guest_login
@@ -64,5 +67,8 @@ module LoginMacros
     expect(page).not_to have_content(I18n.t("pages.top.hero.try_as_guest"))
     expect(page).to have_content(I18n.t("shared.sign_in_with", provider: I18n.t("shared.providers.google")))
     expect(page).to have_content(I18n.t("pages.top.hero.signed_in_as_guest"))
+
+    # 本来のログイン直後の遷移先に戻る
+    visit mypage_root_path(locale: I18n.locale)
   end
 end
