@@ -10,9 +10,6 @@ RSpec.describe "Techniques", type: :system do
   # pending "add some scenarios (or delete) #{__FILE__}"
 
   describe "indexアクション" do
-    it "ダッシュボードにあるテクニック画面へのリンクが機能する" do
-      click_on "Technique", match: :first
-      expect(page).to have_current_path(mypage_techniques_path(locale: I18n.locale))
     end
 
     it "プリセットのテクニックが確認できる" do

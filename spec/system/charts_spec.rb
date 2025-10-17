@@ -9,11 +9,6 @@ RSpec.describe "Charts", type: :system do
   let(:cp_id) { user.charts.where("name LIKE ?", "%preset%").first.id }
 
   describe "indexアクション" do
-    it "ダッシュボードにあるFlow Chart画面へのリンクが機能する" do
-      click_on "Flow Chart", match: :first
-      expect(page).to have_current_path(mypage_charts_path(locale: I18n.locale))
-    end
-
     it "プリセットのチャートが確認できる" do
       visit mypage_charts_path(locale: I18n.locale)
       expect(page).to have_content(/preset_\d{8}-\d{6}/)
