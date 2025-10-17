@@ -7,6 +7,9 @@ class Mypage::ChartsController < ApplicationController
           .group("charts.id")
           .order(updated_at: :desc)
     @charts_count = base.distinct.count(:id)
+
+    # チャートが一つもない場合は専用のガイドを表示する。
+    @guide_scope = base.exists? ? "guides.chart_list.default" : "guides.chart_list.zero_state"
   end
 
   def new

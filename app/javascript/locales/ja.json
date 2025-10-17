@@ -22,21 +22,56 @@
         }
       },
       "chart_list": {
-        "step0": {
-          "intro_html": "こちらは、各ユーザーが所有しているチャートが一覧で並んだ画面です。<br><br>個々のチャート画面では、テクニックを繋げて試合の動線を可視化することができます。"
+        "common": {
+          "step0": {
+            "intro_html": "こちらは、各ユーザーが所有しているチャートが一覧で並んだ画面です。<br><br>個々のチャート画面では、テクニックを繋げて試合の動線を可視化することができます。"
+          },
+          "step1": {
+            "intro_html": "このボタンからチャートを新規作成することができます。",
+            "selector": "#guide-creating-button",
+            "title": "新規作成"
+          },
+          "step2": {
+            "intro_html": "一覧にあるチャートは、ここから検索して表示を絞り込むことができます。",
+            "selector": "#guide-search-box",
+            "title": "検索"
+          }
         },
-        "step1": {
-          "intro_html": "このボタンからチャートを新規作成することができます。",
-          "selector": "#guide-creating-button",
-          "title": "新規作成"
+        "default": {
+          "step0": {
+            "intro_html": "こちらは、各ユーザーが所有しているチャートが一覧で並んだ画面です。<br><br>個々のチャート画面では、テクニックを繋げて試合の動線を可視化することができます。"
+          },
+          "step1": {
+            "intro_html": "このボタンからチャートを新規作成することができます。",
+            "selector": "#guide-creating-button",
+            "title": "新規作成"
+          },
+          "step2": {
+            "intro_html": "一覧にあるチャートは、ここから検索して表示を絞り込むことができます。",
+            "selector": "#guide-search-box",
+            "title": "検索"
+          },
+          "step3": {
+            "intro_html": "こちらの画面の説明は以上です。<br><br>まずは一覧にあるいずれかのカードをクリックして、チャートを開いてみましょう。<br><br>チャート画面の操作方法については、チャート画面のタイトル右にある <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n    <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n  </svg> をクリックしてください！"
+          }
         },
-        "step2": {
-          "intro_html": "一覧にあるチャートは、ここから検索して表示を絞り込むことができます。",
-          "selector": "#guide-search-box",
-          "title": "検索"
-        },
-        "step3": {
-          "intro_html": "こちらの画面の説明は以上です。<br><br>まずは一覧にあるいずれかのカードをクリックして、チャートを開いてみましょう。<br><br>チャート画面の操作方法については、チャート画面のタイトル右にある <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n    <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n  </svg> をクリックしてください！"
+        "zero_state": {
+          "step0": {
+            "intro_html": "こちらは、各ユーザーが所有しているチャートが一覧で並んだ画面です。<br><br>個々のチャート画面では、テクニックを繋げて試合の動線を可視化することができます。"
+          },
+          "step1": {
+            "intro_html": "このボタンからチャートを新規作成することができます。",
+            "selector": "#guide-creating-button",
+            "title": "新規作成"
+          },
+          "step2": {
+            "intro_html": "一覧にあるチャートは、ここから検索して表示を絞り込むことができます。",
+            "selector": "#guide-search-box",
+            "title": "検索"
+          },
+          "step3": {
+            "intro_html": "こちらの画面の説明は以上です。<br><br>本画面にはチャートが存在しないようですので、まずは新規作成してみましょう。<br><br>その後、作成したカードをクリックして、チャートを開いてみましょう。<br><br>チャート画面の操作方法については、チャート画面のタイトル右にある <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n    <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n  </svg> をクリックしてください！"
+          }
         }
       },
       "dashboard": {
