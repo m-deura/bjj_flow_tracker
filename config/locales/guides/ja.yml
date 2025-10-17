@@ -2,26 +2,94 @@
 ja:
   guides:
     chart:
-      step0:
-        intro_html: こちらは、テクニック同士の繋がりを可視化するための画面です。<br><br>このエリアにテクニックを配置し、フローチャートを作ることができます。
-      step1:
-        intro_html: ここからフローチャートの開始点(ルートノード)を新規作成できます。
-        selector: "#guide-creating-button"
-        title: 新規作成
-      step2:
-        intro_html: エリアにあるノード(丸い図形)をクリックすると、テクニックの詳細を確認・編集することができます。
-        selector: ".drawer-side"
-        title: チャート上のテクニック
-      step3:
-        intro_html: |-
-          本画面の操作について知りたい方は、ノード編集画面左上にある
-          <button type='button' class='underline' data-controller='step-guide' data-action='click->step-guide#startNodeGuide'>
-            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 relative top-[3px]'>
+      common:
+        step0:
+          intro_html: こちらは、テクニック同士の繋がりを可視化するための画面です。<br><br>このエリアにテクニックを配置し、フローチャートを作ることができます。
+        step1:
+          intro_html: ここからフローチャートの開始点(ルートノード)を新規作成できます。
+          selector: "#guide-creating-button"
+          title: ルートノードを新規作成
+      default:
+        step0:
+          intro_html: こちらは、テクニック同士の繋がりを可視化するための画面です。<br><br>このエリアにテクニックを配置し、フローチャートを作ることができます。
+        step1:
+          intro_html: ここからフローチャートの開始点(ルートノード)を新規作成できます。
+          selector: "#guide-creating-button"
+          title: ルートノードを新規作成
+        step2:
+          intro_html: エリアにあるノード(丸い図形)をクリックすると、テクニックの詳細を確認・編集することができます。
+          selector: ".drawer-side"
+          title: チャート上のテクニック
+        step3:
+          intro_html: |-
+            本画面の操作について知りたい方は、ノード編集画面上部にある
+            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
               <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
             </svg>
-          </button> をクリックしてください！
-        selector: ".drawer-side"
-        title: ノード編集
+            をクリックしてください！
+          selector: ".drawer-side"
+          title: ノード編集
+      zero_state:
+        step0:
+          intro_html: こちらは、テクニック同士の繋がりを可視化するための画面です。<br><br>このエリアにテクニックを配置し、フローチャートを作ることができます。
+        step1:
+          intro_html: ここからフローチャートの開始点(ルートノード)を新規作成できます。
+          selector: "#guide-creating-button"
+          title: ルートノードを新規作成
+        step2:
+          intro_html: |-
+            本画面にはまだノードが存在しないようですので、まずはフローの開始点(ルートノード)を新規作成してみましょう。<br><br>その後、作成したルートノードをクリックしてノード編集画面を開いてみましょう。<br><br>
+            ノード編集画面上部にある
+            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
+              <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
+            </svg>
+            をクリックすることで、続きの画面操作ガイドを開始することができます。
+    chart_list:
+      common:
+        step0:
+          intro_html: こちらは、各ユーザーが所有しているチャートが一覧で並んだ画面です。<br><br>個々のチャート画面では、テクニックを繋げて試合の動線を可視化することができます。
+        step1:
+          intro_html: このボタンからチャートを新規作成することができます。
+          selector: "#guide-creating-button"
+          title: 新規作成
+        step2:
+          intro_html: 一覧にあるチャートは、ここから検索して表示を絞り込むことができます。
+          selector: "#guide-search-box"
+          title: 検索
+      default:
+        step0:
+          intro_html: こちらは、各ユーザーが所有しているチャートが一覧で並んだ画面です。<br><br>個々のチャート画面では、テクニックを繋げて試合の動線を可視化することができます。
+        step1:
+          intro_html: このボタンからチャートを新規作成することができます。
+          selector: "#guide-creating-button"
+          title: 新規作成
+        step2:
+          intro_html: 一覧にあるチャートは、ここから検索して表示を絞り込むことができます。
+          selector: "#guide-search-box"
+          title: 検索
+        step3:
+          intro_html: |-
+            こちらの画面の説明は以上です。<br><br>まずは一覧にあるいずれかのカードをクリックして、チャートを開いてみましょう。<br><br>チャート画面の操作方法については、チャート画面のタイトル右にある
+            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
+              <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
+            </svg> をクリックしてください！
+      zero_state:
+        step0:
+          intro_html: こちらは、各ユーザーが所有しているチャートが一覧で並んだ画面です。<br><br>個々のチャート画面では、テクニックを繋げて試合の動線を可視化することができます。
+        step1:
+          intro_html: このボタンからチャートを新規作成することができます。
+          selector: "#guide-creating-button"
+          title: 新規作成
+        step2:
+          intro_html: 一覧にあるチャートは、ここから検索して表示を絞り込むことができます。
+          selector: "#guide-search-box"
+          title: 検索
+        step3:
+          intro_html: |-
+            こちらの画面の説明は以上です。<br><br>本画面にはチャートが存在しないようですので、まずは新規作成してみましょう。<br><br>その後、作成したカードをクリックして、チャートを開いてみましょう。<br><br>チャート画面の操作方法については、チャート画面のタイトル右にある
+            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
+              <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
+            </svg> をクリックしてください！
     dashboard:
       step0:
         intro_html: |-
@@ -37,7 +105,7 @@ ja:
           <strong>Technique</strong>では、技を登録・整理することができます。<br><br>
           スパー後の気づきを各テクニックのノート部分に追記すると、技が定着しやすくなります。<br><br>
           プリセットとして90個以上のテクニックが初期登録されていますが、足りない場合は新規登録を行ってください。<br><br>
-          Techniue画面の操作方法ガイドは、Technique画面左上の
+          Technique画面の操作方法ガイドは、Technique画面左上の
           <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
             <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
           </svg>
@@ -79,29 +147,71 @@ ja:
         selector: "#guide-deleting-button"
         title: ノード削除
       step4:
-        intro_html: "ここまで来たら、試しにノードを作ったり、展開先テクニックを追加したりして操作に慣れましょう！<br><br>本アプリに関するご不明点や改善点等がございましたら、画面下部にある <a class='underline font-bold' href='https://forms.gle/VGdTkDDsJkVQY7e79' target='_blank' rel='noopener noreferrer'>お問い合わせ</a> ページよりお気軽にご連絡ください！<br><br>それでは、よりよい柔術ライフを👋\""
+        intro_html: "ここまで来たら、試しにノードを作ったり、展開先テクニックを追加したりして操作に慣れましょう！<br><br>本アプリに関するご不明点や改善点等がございましたら、画面下部にある <a class='underline font-bold' href='https://forms.gle/VGdTkDDsJkVQY7e79' target='_blank' rel='noopener noreferrer'>お問い合わせ</a> ページよりお気軽にご連絡ください！<br><br>それでは、よりよい柔術ライフを👋"
     technique:
-      step0:
-        intro_html: こちらは、柔術のテクニックが一覧として並んでいる画面です。
-      step1:
-        intro_html: 一覧にないテクニックは、こちらのボタンから新規作成することができます。
-        selector: "#guide-creating-button"
-        title: 新規作成
-      step2:
-        intro_html: 一覧にあるテクニックは、ここから検索して表示を絞り込むことができます。
-        selector: "#guide-search-box"
-        title: 検索
-      step3:
-        intro_html: カードをクリックすると、テクニック個々の詳細を確認・編集することができます。
-        title: テクニック詳細
-      step4:
-        intro_html: こちらのノート欄に、日々の練習で気がついたことを記録していきましょう！
-        selector: ".drawer-side"
-        title: テクニック詳細
-      step5:
-        intro_html: |-
-          こちらの画面の説明は以上です。<br><br>本画面から確認できるテクニック同士を繋げて可視化する操作について知りたい場合は <a class='underline font-bold' href="%{charts_path}"> Flow Chart</a> メニューの左上にある
-            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
-              <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
-            </svg>
-          をクリックしてください！
+      common:
+        step0:
+          intro_html: こちらは、柔術のテクニックが一覧として並んでいる画面です。
+        step1:
+          intro_html: 一覧にないテクニックは、こちらのボタンから新規作成することができます。
+          selector: "#guide-creating-button"
+          title: 新規作成
+        step2:
+          intro_html: 一覧にあるテクニックは、ここからキーワード検索して表示を絞り込むことができます。
+          selector: "#guide-keyword-search"
+          title: キーワード検索
+        step3:
+          intro_html: テクニックのカテゴリーによる絞り込みも可能です。
+          selector: "#guide-category-search"
+          title: カテゴリー検索
+      default:
+        step0:
+          intro_html: こちらは、柔術のテクニックが一覧として並んでいる画面です。
+        step1:
+          intro_html: 一覧にないテクニックは、こちらのボタンから新規作成することができます。
+          selector: "#guide-creating-button"
+          title: 新規作成
+        step2:
+          intro_html: 一覧にあるテクニックは、ここからキーワード検索して表示を絞り込むことができます。
+          selector: "#guide-keyword-search"
+          title: キーワード検索
+        step3:
+          intro_html: テクニックのカテゴリーによる絞り込みも可能です。
+          selector: "#guide-category-search"
+          title: カテゴリー検索
+        step4:
+          intro_html: カードをクリックすると、テクニック個々の詳細を確認・編集することができます。
+          title: テクニック詳細
+        step5:
+          intro_html: こちらのノート欄に、日々の練習で気がついたことを記録していきましょう！
+          selector: ".drawer-side"
+          title: テクニック編集
+        step6:
+          intro_html: |-
+            こちらの画面の説明は以上です。<br><br>本画面から確認できるテクニック同士を繋げて可視化する操作について知りたい場合は <a class='underline font-bold' href="%{charts_path}"> Flow Chart</a> メニューの上部にある
+              <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
+                <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
+              </svg>
+            をクリックしてください！
+      zero_state:
+        step0:
+          intro_html: こちらは、柔術のテクニックが一覧として並んでいる画面です。
+        step1:
+          intro_html: 一覧にないテクニックは、こちらのボタンから新規作成することができます。
+          selector: "#guide-creating-button"
+          title: 新規作成
+        step2:
+          intro_html: 一覧にあるテクニックは、ここからキーワード検索して表示を絞り込むことができます。
+          selector: "#guide-keyword-search"
+          title: キーワード検索
+        step3:
+          intro_html: テクニックのカテゴリーによる絞り込みも可能です。
+          selector: "#guide-category-search"
+          title: カテゴリー検索
+        step4:
+          intro_html: |-
+            こちらの画面の説明は以上です。<br><br>本画面にはまだテクニックが存在しないようですので、まずは新規作成してみましょう。<br><br>その後、作成したテクニック同士を繋げて試合の展開を可視化する操作について知りたい場合は <a class='underline font-bold' href="%{charts_path}"> Flow Chart</a> メニューの上部にある
+              <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
+                <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
+              </svg>
+            をクリックしてください！
