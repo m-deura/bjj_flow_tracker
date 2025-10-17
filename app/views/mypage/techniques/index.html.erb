@@ -2,7 +2,7 @@
 <div
   class="drawer drawer-end min-h-screen px-4 py-6 bg-base-100 space-y-6"
   data-controller="step-guide drawer"
-  data-step-guide-scope-value="guides.technique"
+  data-step-guide-scope-value="<%= @guide_scope %>"
   data-step-guide-charts-path-value="<%= mypage_charts_path %>"
 >
   <input type="checkbox" class="drawer-toggle" data-drawer-target="toggle">
@@ -21,62 +21,65 @@
       <!-- 新規作成ボタン -->
       <%= link_to t("defaults.create") , new_mypage_technique_path, class: "btn btn-primary btn-wide", id: "guide-creating-button" %>
 
-      <!-- キーワード検索 -->
-      <%= search_form_for @q, url: mypage_techniques_path, id: "guide-search-box", class: "flex flex-col items-center justify-center w-80",
-            data: { turbo_frame: "technique-list",
-                    controller: "instant-search",
-                    action: "input->instant-search#autosubmit reset->instant-search#autosubmit"
-            } do |f| %>
-        <label class="input">
-          <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <g
-              stroke-linejoin="round"
-              stroke-linecap="round"
-              stroke-width="2.5"
-              fill="none"
-              stroke="currentColor"
-            >
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.3-4.3"></path>
-            </g>
-          </svg>
-          <%= f.search_field :name_ja_or_name_en_or_note_cont,
-              placeholder: t("defaults.search"),
-              class: "search"
-          %>
-        </label>
+      <div>
+        <%= search_form_for @q, url: mypage_techniques_path, class: "flex flex-col items-center justify-center w-80",
+              data: { turbo_frame: "technique-list",
+                      controller: "instant-search",
+                      action: "input->instant-search#autosubmit reset->instant-search#autosubmit"
+              } do |f| %>
 
-        <!-- カテゴリー検索 -->
-        <div class="mt-3 md:w-max">
-          <!-- 未分類も検索できるようにするため、category_in と category_null はグループ化してOR条件で検索 -->
-          <input type="hidden" name="q[g][0][m]" value="or">
-          <!-- カテゴリーボタン -->
-          <% @categories.each do |key, value| %>
-            <% label = t("enums.category.#{key}") %>
-            <input
-              class="btn"
-              type="checkbox"
-              name="q[g][0][category_in][]"
-              value="<%= value %>"
-              aria-label="<%= label %>"
-            >
-          <% end %>
-          <!-- 未分類ボタン -->
-            <input
-              class="btn"
-              type="checkbox"
-              name="q[g][0][category_null]"
-              value="true"
-              aria-label="<%= t("enums.category.nil") %>"
-            >
-          <!-- リセットボタン -->
-          <input 
-            class="btn btn-square"
-            type="reset"
-            value="×"
-          />
-        </div>
-      <% end %>
+          <!-- キーワード検索 -->
+          <label class="input" id="guide-keyword-search">
+            <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <g
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                stroke-width="2.5"
+                fill="none"
+                stroke="currentColor"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </g>
+            </svg>
+            <%= f.search_field :name_ja_or_name_en_or_note_cont,
+                placeholder: t("defaults.search"),
+                class: "search"
+            %>
+          </label>
+  
+          <!-- カテゴリー検索 -->
+          <div class="mt-3 md:w-max" id="guide-category-search">
+            <!-- 未分類も検索できるようにするため、category_in と category_null はグループ化してOR条件で検索 -->
+            <input type="hidden" name="q[g][0][m]" value="or">
+            <!-- カテゴリーボタン -->
+            <% @categories.each do |key, value| %>
+              <% label = t("enums.category.#{key}") %>
+              <input
+                class="btn"
+                type="checkbox"
+                name="q[g][0][category_in][]"
+                value="<%= value %>"
+                aria-label="<%= label %>"
+              >
+            <% end %>
+            <!-- 未分類ボタン -->
+              <input
+                class="btn"
+                type="checkbox"
+                name="q[g][0][category_null]"
+                value="true"
+                aria-label="<%= t("enums.category.nil") %>"
+              >
+            <!-- リセットボタン -->
+            <input 
+              class="btn btn-square"
+              type="reset"
+              value="×"
+            />
+          </div>
+        <% end %>
+      </div>
     </div>
 
     <%= turbo_frame_tag "technique-list" do %>

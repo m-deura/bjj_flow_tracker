@@ -95,7 +95,8 @@ export default class extends Controller {
 
 	startTechniqueGuide() {
 		this.start(function () {
-			if (this.getCurrentStep() === 3) {
+			// ガイドの途中でテクニック詳細・編集画面を開く。
+			if (this.getCurrentStep() === 4) {
 				const firstCard = document.querySelector("a[data-turbo-frame='technique-drawer']");
 				if (firstCard) firstCard.click();
 			}

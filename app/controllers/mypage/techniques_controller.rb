@@ -4,6 +4,9 @@ class Mypage::TechniquesController < ApplicationController
     @techniques = @q.result(distinct: true).order(updated_at: :desc)
     @techniques_count = @techniques.size
     @categories = Technique.categories
+
+    # テクニックが一つもない場合は専用のガイドを表示する。
+    @guide_scope = @techniques.exists? ? "guides.technique.default" : "guides.technique.zero_state"
   end
 
   def new
