@@ -29,6 +29,7 @@ class Mypage::ChartsController < ApplicationController
 
   def show
     @chart = current_user.charts.find(params[:id])
+    @guide_scope = @chart.nodes.exists? ? "guides.chart.default" : "guides.chart.zero_state"
   end
 
   def edit

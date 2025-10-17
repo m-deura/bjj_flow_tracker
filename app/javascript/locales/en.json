@@ -2,23 +2,48 @@
   "en": {
     "guides": {
       "chart": {
-        "step0": {
-          "intro_html": "This is the screen for visualizing connections between techniques.<br><br>You can place techniques here and create flowcharts."
+        "common": {
+          "step0": {
+            "intro_html": "This is the screen for visualizing connections between techniques.<br><br>You can place techniques here and create flowcharts."
+          },
+          "step1": {
+            "intro_html": "You can create a new starting point (root node) for your flowchart here.",
+            "selector": "#guide-creating-button",
+            "title": "New root node"
+          }
         },
-        "step1": {
-          "intro_html": "You can create a new starting point (root node) for your flowchart here.",
-          "selector": "#guide-creating-button",
-          "title": "New root node"
+        "default": {
+          "step0": {
+            "intro_html": "This is the screen for visualizing connections between techniques.<br><br>You can place techniques here and create flowcharts."
+          },
+          "step1": {
+            "intro_html": "You can create a new starting point (root node) for your flowchart here.",
+            "selector": "#guide-creating-button",
+            "title": "New root node"
+          },
+          "step2": {
+            "intro_html": "Click a node (circle) on the chart to view or edit the technique’s details.",
+            "selector": ".drawer-side",
+            "title": "Techniques on the chart"
+          },
+          "step3": {
+            "intro_html": "To learn more about operating this screen, click the\n<button type='button' class='underline' data-controller='step-guide' data-action='click->step-guide#startNodeGuide'>\n  <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 relative top-[3px]'>\n    <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n  </svg>\n</button> at the top of the node editing screen.",
+            "selector": ".drawer-side",
+            "title": "Node editing"
+          }
         },
-        "step2": {
-          "intro_html": "Click a node (circle) on the chart to view or edit the technique’s details.",
-          "selector": ".drawer-side",
-          "title": "Techniques on the chart"
-        },
-        "step3": {
-          "intro_html": "To learn more about operating this screen, click the\n<button type='button' class='underline' data-controller='step-guide' data-action='click->step-guide#startNodeGuide'>\n  <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 relative top-[3px]'>\n    <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n  </svg>\n</button> at the top left of the node editing screen.",
-          "selector": ".drawer-side",
-          "title": "Node editing"
+        "zero_state": {
+          "step0": {
+            "intro_html": "This is the screen for visualizing connections between techniques.<br><br>You can place techniques here and create flowcharts."
+          },
+          "step1": {
+            "intro_html": "You can create a new starting point (root node) for your flowchart here.",
+            "selector": "#guide-creating-button",
+            "title": "New root node"
+          },
+          "step2": {
+            "intro_html": "It looks like there are no nodes on this page yet, so let’s create a starting point (root node) to get started.<br><br>After that, try clicking one of the root nodes in the screen to open the node editor.<br><br>At the top of the node editor, click the\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg>\nto start the next part of the walkthrough."
+          }
         }
       },
       "chart_list": {
@@ -52,7 +77,7 @@
             "title": "Search"
           },
           "step3": {
-            "intro_html": "That’s all for this screen!<br><br>Try clicking one of the chart cards in the list to open it.<br><br>For instructions on how to operate the chart screen, click the <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n    <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n  </svg> icon next to the chart title!"
+            "intro_html": "That’s all for this screen!<br><br>Try clicking one of the chart cards in the list to open it.<br><br>For instructions on how to operate the chart screen, click the\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg> icon next to the chart title!"
           }
         },
         "zero_state": {
@@ -70,7 +95,7 @@
             "title": "Search"
           },
           "step3": {
-            "intro_html": "That’s all for this screen!<br><br>It looks like there are no charts on this page yet, so let’s create one to get started.<br><br>After that, try clicking one of the chart cards in the list to open it.<br><br>For instructions on how to operate the chart screen, click the <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n    <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n  </svg> icon next to the chart title!"
+            "intro_html": "That’s all for this screen!<br><br>It looks like there are no charts on this page yet, so let’s create one to get started.<br><br>After that, try clicking one of the chart cards in the list to open it.<br><br>For instructions on how to operate the chart screen, click the\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg> icon next to the chart title!"
           }
         }
       },
