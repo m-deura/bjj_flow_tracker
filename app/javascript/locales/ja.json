@@ -9,7 +9,7 @@
           "step1": {
             "intro_html": "ここからフローチャートの開始点(ルートノード)を新規作成できます。",
             "selector": "#guide-creating-button",
-            "title": "新規作成"
+            "title": "ルートノードを新規作成"
           }
         },
         "default": {
@@ -19,7 +19,7 @@
           "step1": {
             "intro_html": "ここからフローチャートの開始点(ルートノード)を新規作成できます。",
             "selector": "#guide-creating-button",
-            "title": "新規作成"
+            "title": "ルートノードを新規作成"
           },
           "step2": {
             "intro_html": "エリアにあるノード(丸い図形)をクリックすると、テクニックの詳細を確認・編集することができます。",
@@ -39,7 +39,7 @@
           "step1": {
             "intro_html": "ここからフローチャートの開始点(ルートノード)を新規作成できます。",
             "selector": "#guide-creating-button",
-            "title": "新規作成"
+            "title": "ルートノードを新規作成"
           },
           "step2": {
             "intro_html": "本画面にはまだノードが存在しないようですので、まずはフローの開始点(ルートノード)を新規作成してみましょう。<br><br>その後、作成したルートノードをクリックしてノード編集画面を開いてみましょう。<br><br>\nノード編集画面上部にある\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg>\nをクリックすることで、続きの画面操作ガイドを開始することができます。"
@@ -105,7 +105,7 @@
           "title": "このガイドについて"
         },
         "step1": {
-          "intro_html": "<strong>Technique</strong>では、技を登録・整理することができます。<br><br>\nスパー後の気づきを各テクニックのノート部分に追記すると、技が定着しやすくなります。<br><br>\nプリセットとして90個以上のテクニックが初期登録されていますが、足りない場合は新規登録を行ってください。<br><br>\nTechniue画面の操作方法ガイドは、Technique画面左上の\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg>\nをクリックすると表示されます。<br><br>",
+          "intro_html": "<strong>Technique</strong>では、技を登録・整理することができます。<br><br>\nスパー後の気づきを各テクニックのノート部分に追記すると、技が定着しやすくなります。<br><br>\nプリセットとして90個以上のテクニックが初期登録されていますが、足りない場合は新規登録を行ってください。<br><br>\nTechnique画面の操作方法ガイドは、Technique画面左上の\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg>\nをクリックすると表示されます。<br><br>",
           "selector": "#guide-technique",
           "title": "Technique：技を登録"
         },

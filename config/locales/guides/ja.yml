@@ -36,7 +36,7 @@ ja:
         step1:
           intro_html: ここからフローチャートの開始点(ルートノード)を新規作成できます。
           selector: "#guide-creating-button"
-          title: 新規作成
+          title: ルートノードを新規作成
       default:
         <<: *chart_common
         step2:
@@ -77,7 +77,7 @@ ja:
           <strong>Technique</strong>では、技を登録・整理することができます。<br><br>
           スパー後の気づきを各テクニックのノート部分に追記すると、技が定着しやすくなります。<br><br>
           プリセットとして90個以上のテクニックが初期登録されていますが、足りない場合は新規登録を行ってください。<br><br>
-          Techniue画面の操作方法ガイドは、Technique画面左上の
+          Technique画面の操作方法ガイドは、Technique画面左上の
           <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
             <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
           </svg>

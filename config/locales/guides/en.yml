@@ -68,7 +68,7 @@ en:
           The basic flow of usage is as follows:<br><br>
           <ol class="list-decimal list-inside">
             <li>Register techniques in <strong>Technique</strong></li>
-            <li>Connect techniques in <strong>Flow Chart</strong> to visualize match developments (your preferred patterns)</li>
+            <li>Connect techniques in <strong>Flow Chart</strong> to visualize the flow of a match (your preferred patterns)</li>
           </ol>
         title: About this guide
       step1:
@@ -85,7 +85,7 @@ en:
         title: 'Technique: Register techniques'
       step2:
         intro_html: |-
-          In <strong>Flow Chart</strong>, you can connect the techniques registered in Technique and visualize match developments.<br><br>
+          In <strong>Flow Chart</strong>, you can connect the techniques registered in Technique and visualize the flow of a match.<br><br>
           By organizing “which technique can follow this one,” you can make reviews and strategy planning more effective.<br><br>
           The usage guide for the Flow Chart screen can be opened by clicking the
           <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
@@ -95,7 +95,7 @@ en:
         selector: "#guide-chart"
         title: 'Flow Chart: Connect techniques'
       step3:
-        intro_html: To start, try drawing the pathways of your preferred match developments in the <strong>Flow Chart</strong>.<br><br>If a technique you use is missing, go back to <strong>Technique</strong> and add it.
+        intro_html: To start, try drawing the pathways of your preferred the flow of a match in the <strong>Flow Chart</strong>.<br><br>If a technique you use is missing, go back to <strong>Technique</strong> and add it.
         title: First goal
       step4:
         intro_html: |-

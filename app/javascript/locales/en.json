@@ -101,7 +101,7 @@
       },
       "dashboard": {
         "step0": {
-          "intro_html": "This guide will explain how to use the app.<br><br>\nThe basic flow of usage is as follows:<br><br>\n<ol class=\"list-decimal list-inside\">\n  <li>Register techniques in <strong>Technique</strong></li>\n  <li>Connect techniques in <strong>Flow Chart</strong> to visualize match developments (your preferred patterns)</li>\n</ol>",
+          "intro_html": "This guide will explain how to use the app.<br><br>\nThe basic flow of usage is as follows:<br><br>\n<ol class=\"list-decimal list-inside\">\n  <li>Register techniques in <strong>Technique</strong></li>\n  <li>Connect techniques in <strong>Flow Chart</strong> to visualize the flow of a match (your preferred patterns)</li>\n</ol>",
           "title": "About this guide"
         },
         "step1": {
@@ -110,12 +110,12 @@
           "title": "Technique: Register techniques"
         },
         "step2": {
-          "intro_html": "In <strong>Flow Chart</strong>, you can connect the techniques registered in Technique and visualize match developments.<br><br>\nBy organizing “which technique can follow this one,” you can make reviews and strategy planning more effective.<br><br>\nThe usage guide for the Flow Chart screen can be opened by clicking the\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg>\nicon at the top left of the Flow Chart screen.<br><br>",
+          "intro_html": "In <strong>Flow Chart</strong>, you can connect the techniques registered in Technique and visualize the flow of a match.<br><br>\nBy organizing “which technique can follow this one,” you can make reviews and strategy planning more effective.<br><br>\nThe usage guide for the Flow Chart screen can be opened by clicking the\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg>\nicon at the top left of the Flow Chart screen.<br><br>",
           "selector": "#guide-chart",
           "title": "Flow Chart: Connect techniques"
         },
         "step3": {
-          "intro_html": "To start, try drawing the pathways of your preferred match developments in the <strong>Flow Chart</strong>.<br><br>If a technique you use is missing, go back to <strong>Technique</strong> and add it.",
+          "intro_html": "To start, try drawing the pathways of your preferred the flow of a match in the <strong>Flow Chart</strong>.<br><br>If a technique you use is missing, go back to <strong>Technique</strong> and add it.",
           "title": "First goal"
         },
         "step4": {
