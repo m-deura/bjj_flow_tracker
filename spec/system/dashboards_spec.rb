@@ -35,6 +35,7 @@ RSpec.describe "Dashboards", type: :system do
       break unless has_next
 
       # 最終ステップガイドの"Done"ボタンを含む
+      expect(page).to have_css('.introjs-nextbutton')
       next_btn = find('.introjs-nextbutton')
 
       # Next or Done ボタンをクリック
