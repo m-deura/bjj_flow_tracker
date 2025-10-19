@@ -10,9 +10,41 @@ RSpec.describe "Techniques", type: :system do
   # pending "add some scenarios (or delete) #{__FILE__}"
 
   describe "indexアクション" do
-    it "ダッシュボードにあるテクニック画面へのリンクが機能する" do
-      click_on "Technique", match: :first
-      expect(page).to have_current_path(mypage_techniques_path(locale: I18n.locale))
+    it "ステップガイドが開始できる", :js do
+      visit mypage_techniques_path(locale: I18n.locale)
+      find(:css, '[data-action~="click->step-guide#startTechniqueGuide"]').click
+      expect(page).to have_css('.introjs-tour')
+    end
+
+    # ロケールファイル間のi18nキー非対称性は、CIで実行される i18n-tasks health によって検知されるのでテストは行わない。
+    it "ロケールファイルに書いたガイド数と実際のガイド数が一致する", :js do
+      visit mypage_techniques_path(locale: I18n.locale)
+      # ガイド開始
+      find(:css, '[data-action~="click->step-guide#startTechniqueGuide"]').click
+
+      # Next or Doneボタンのクリック数をカウント
+      clicks = 0
+
+      loop do
+        # Nextボタンが存在し、かつ有効か確認
+        has_next = page.has_css?('.introjs-nextbutton')
+        break unless has_next
+
+        # 最終ステップガイドの"Done"ボタンを含む
+        expect(page).to have_css('.introjs-nextbutton')
+        next_btn = find('.introjs-nextbutton')
+
+        # Next or Done ボタンをクリック
+        next_btn.click
+        clicks += 1
+      end
+
+      # ロケールファイルからガイド用のI18nキーを取り出してカウント
+      path = Rails.root.join("config/locales/guides/#{I18n.locale}.yml")
+      hash = YAML.safe_load(File.read(path))
+      steps = hash.dig("#{I18n.locale}", "guides", "technique", "default").keys.grep(/\Astep\d+\z/)
+
+      expect(steps.size).to eq clicks
     end
 
     it "プリセットのテクニックが確認できる" do
@@ -33,6 +65,37 @@ RSpec.describe "Techniques", type: :system do
       it "表示するテクニックがない旨が表示される" do
         visit mypage_techniques_path(locale: I18n.locale)
         expect(page).to have_content(I18n.t("mypage.techniques.index.nothing_here"))
+      end
+
+      # ロケールファイル間のi18nキー非対称性は、CIで実行される i18n-tasks health によって検知されるのでテストは行わない。
+      it "ロケールファイルに書いたガイド数と実際のガイド数が一致する", :js do
+        visit mypage_techniques_path(locale: I18n.locale)
+        # ガイド開始
+        find(:css, '[data-action~="click->step-guide#startTechniqueGuide"]').click
+
+        # Next or Doneボタンのクリック数をカウント
+        clicks = 0
+
+        loop do
+          # Nextボタンが存在し、かつ有効か確認
+          has_next = page.has_css?('.introjs-nextbutton')
+          break unless has_next
+
+          # 最終ステップガイドの"Done"ボタンを含む
+          expect(page).to have_css('.introjs-nextbutton')
+          next_btn = find('.introjs-nextbutton')
+
+          # Next or Done ボタンをクリック
+          next_btn.click
+          clicks += 1
+        end
+
+        # ロケールファイルからガイド用のI18nキーを取り出してカウント
+        path = Rails.root.join("config/locales/guides/#{I18n.locale}.yml")
+        hash = YAML.safe_load(File.read(path))
+        steps = hash.dig("#{I18n.locale}", "guides", "technique", "zero_state").keys.grep(/\Astep\d+\z/)
+
+        expect(steps.size).to eq clicks
       end
     end
 
