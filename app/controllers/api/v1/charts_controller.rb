@@ -33,7 +33,10 @@ class Api::V1::ChartsController < ApplicationController
       {
         source: edge.from_id.to_s,
         target: edge.to_id.to_s,
-        data: { kind: "flow" }
+        data: {
+          kind: "flow",
+          trigger: edge.trigger.to_s
+        }
       }
     end.compact # nextでスキップされたedgeはnilを返すため、これを排除する。
 
