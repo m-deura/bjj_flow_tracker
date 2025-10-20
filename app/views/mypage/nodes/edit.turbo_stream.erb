@@ -16,7 +16,7 @@
 
       <div
         id="guide-children"
-        class="space-y-2 w-4/5 mx-auto"
+        class="space-y-2 w-4/5 mx-auto mb-6"
       >
         <%= f.label "children", t("helpers.label.children_nodes") %>
         <%= f.select "children",
@@ -28,6 +28,30 @@
             data: { controller: "tom-select" }
         %>
       </div>
+
+      <!-- 選択中の子それぞれに trigger 入力欄を出す -->
+      <fieldset data-edge-trigger-target="fields" class="space-y-2 w-4/5 mx-auto ">
+        <% if @form.children.present? %>
+          <legend>
+            <span><%= t("helpers.label.triggers") %></span>
+          </legend>
+        <% end %>
+      <% Array(@form.children).each do |child| %>
+        <label class="block gap-2">
+          <span class="badge badge-outline mb-1">
+            <!-- 既存は @technique_names からIDで検索、新規はそのまま new: XXX を表示 -->
+            <%= @technique_names[child] || child %>
+          </span>
+          <input
+            type="text"
+            name="node_edit_form[triggers][<%= child %>]"
+            value="<%= @form.triggers&.[](child) %>"
+            class="input input-bordered w-full"
+            placeholder="<%= t('defaults.trigger') %>"
+          >
+        </label>
+        <% end %>
+      </fieldset>
     </div>
 
     <div class="divider my-8"></div>
