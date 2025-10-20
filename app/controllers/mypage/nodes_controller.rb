@@ -82,6 +82,14 @@ class Mypage::NodesController < ApplicationController
         .group_by { |tech| tech.category ? tech.category.humanize : t("enums.category.nil") }
         .transform_values { |arr| arr.map { |tech| [ tech.name_for, tech.id ] } }
 
+    # 既存テクニックのIDのみ取り出し
+    tech_ids = Array(@form.children) #=> ["3", "new: アームバー", "42"]
+            .map { |v| Integer(v, exception: false) } # 新規テクニックはIntegerではないないのでnilを返す
+            .compact #=> ["3", "42"]
+
+    # テクニックIDとテクニック名のペア配列をハッシュ化
+    @technique_names = Technique.where(id: tech_ids).map { |t| [ t.id.to_s, t.name_for ] }.to_h
+
     render :edit, formats: :turbo_stream
   end
 
@@ -121,6 +129,6 @@ class Mypage::NodesController < ApplicationController
 
   def node_edit_form_params
     # children が空でも配列を許容
-    params.require(:node_edit_form).permit(:name, :note, :category, children: [])
+    params.require(:node_edit_form).permit(:name, :note, :category, children: [], triggers: {})
   end
 end
