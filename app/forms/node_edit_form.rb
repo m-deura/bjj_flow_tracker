@@ -83,7 +83,8 @@ class NodeEditForm
     errors.add(:base, e.message)
     false
   rescue StandardError => e
-    errors.add(:base, "更新に失敗しました: #{e.message}")
+    # フォームオブジェクトではtメソッドが未定義
+    errors.add(:base, "#{I18n.t('defaults.flash_messages.not_updated', item: Node.model_name.human)}: #{e.message}")
     false
   end
 
