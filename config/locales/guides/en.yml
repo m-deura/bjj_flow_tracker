@@ -138,7 +138,7 @@ en:
         selector: "#guide-technique"
         title: Update technique
       step2:
-        intro_html: Here you can edit which techniques branch out from this one.<br><br>The techniques you select will appear connected to the right of this technique on the chart.
+        intro_html: Here you can edit which techniques branch out from this one.<br><br>The techniques you select will appear connected to the right of this technique on the chart.<br><br>You can also record the conditions required to transition to each of these techniques.
         selector: "#guide-children"
         title: Update subsequent techniques
       step3:
