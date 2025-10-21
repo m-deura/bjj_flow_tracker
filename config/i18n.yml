@@ -3,3 +3,5 @@ translations:
   - file: "app/javascript/locales/:locale.json"
     patterns:
       - "*.guides.*"
+      - "*.defaults.*"
+      - "*.helpers.*"
