@@ -58,7 +58,6 @@ export default class extends Controller {
     })
 
     this.fieldsTarget.appendChild(fieldset)
-		console.log(this.selectTarget.options)
   }
 
   currentValues() {
