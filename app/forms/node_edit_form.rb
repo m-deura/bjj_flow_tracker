@@ -123,9 +123,9 @@ class NodeEditForm
     # 新規テクニック
     # 現ロケールのカラムのみに値を入れる（もう片方はモデルの作成時補完に委ねる）
     field = Technique.name_field_for(I18n.locale) # :name_ja or :name_en
-    new_names.map do |n|
-      # キーがリテラルでないので、シンボル記法(:)ではなくロケット記法(=>)
-      t = current_user.techniques.find_or_create_by!(field => n).id
+    new_names.each do |n|
+      # キー(:name_ja or :name_en)がリテラルではなく変数に格納されているので、シンボル記法(:)ではなくロケット記法(旧記法である`=>`)を使う
+      t = current_user.techniques.find_or_create_by!(field => n)
       key_to_id["new: #{n}"] = t.id
     end
 
@@ -188,8 +188,8 @@ class NodeEditForm
       # 直辺を張る（重複回避）
       edge = Edge.find_or_create_by!(flow: 1, from_id: node.id, to_id: child.id)
 
-      if trigger_map[tid].key?
-        new_val = trigge_map[tid].presence
+      if trigger_map.key?(tid)
+        new_val = trigger_map[tid].presence
         edge.update!(trigger: new_val) if edge.trigger != new_val
       end
     end
