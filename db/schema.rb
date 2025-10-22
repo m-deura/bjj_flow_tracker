@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_19_114341) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_21_031416) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -99,6 +99,17 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_19_114341) do
     t.index ["user_id"], name: "index_techniques_on_user_id"
   end
 
+  create_table "transitions", force: :cascade do |t|
+    t.bigint "from_id", null: false
+    t.bigint "to_id", null: false
+    t.string "trigger"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["from_id", "to_id"], name: "index_transitions_on_from_id_and_to_id", unique: true
+    t.index ["from_id"], name: "index_transitions_on_from_id"
+    t.index ["to_id"], name: "index_transitions_on_to_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "provider", null: false
     t.string "uid", null: false
@@ -125,4 +136,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_19_114341) do
   add_foreign_key "nodes", "techniques"
   add_foreign_key "techniques", "technique_presets"
   add_foreign_key "techniques", "users"
+  add_foreign_key "transitions", "techniques", column: "from_id"
+  add_foreign_key "transitions", "techniques", column: "to_id"
 end
