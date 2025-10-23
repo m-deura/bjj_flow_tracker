@@ -2,6 +2,8 @@ class Technique < ApplicationRecord
   belongs_to :user
   belongs_to :technique_preset, optional: true
   has_many :nodes, dependent: :destroy
+  has_many :outgoing_transitions, class_name: "Transition", foreign_key: :from_id, inverse_of: :from, dependent: :destroy
+  has_many :incoming_transitions, class_name: "Transition", foreign_key: :to_id, inverse_of: :to, dependent: :destroy
 
   before_validation :populate_missing_name, on: :create
 
