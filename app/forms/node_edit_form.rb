@@ -32,19 +32,14 @@ class NodeEditForm
     self.category ||= technique.category
     self.children = normalize_children(self.children.presence || node.dag_children.pluck(:technique_id).map(&:to_s))
     self.triggers = normalize_triggers(self.triggers)
+  end
 
-    # フォーム初期表示（paramsが無い）なら、既存エッジの trigger を「technique_id文字列 => trigger」で埋める
-    if self.triggers.blank?
-      child_ids = node.dag_children.pluck(:technique_id)
-      # to側ノードをJOINして、technique_id と edge.trigger を一発で取得
-      pairs = Edge
-                .joins("JOIN nodes AS to_nodes ON to_nodes.id = edges.to_id")
-                .where(edges: { flow: 1, from_id: node.id },
-                       to_nodes: { technique_id: child_ids })
-                .pluck("to_nodes.technique_id", "edges.trigger")
-      # { "tech_id(文字列)" => "trigger" } に整形
-      self.triggers = pairs.to_h.transform_keys { |tid| tid.to_s }.compact
-    end
+  # JS に渡す、過去の保存値（from: 選択されたノードのテクニック）
+  def prefill_existing_triggers
+    Transition
+      .where(from_id: node.technique_id)
+      .pluck(:to_id, :trigger)
+      .to_h
   end
 
   # 保存処理
@@ -132,7 +127,7 @@ class NodeEditForm
     selected_ids = key_to_id.values.uniq
 
     # triggers は「元キー」ベースで来るので technique_id にマップし直す
-    # { technique_id: triigerカラムの内容 }
+    # { technique_id: triggerカラムの内容 }
     trigger_map = {}
     normalize_triggers(raw_triggers).each do |raw_key, trig|
       tid = key_to_id[raw_key]
@@ -151,7 +146,7 @@ class NodeEditForm
   def sync!(node:, ids_to_add:, ids_to_remove:, ids_to_update:, trigger_map:)
     Node.transaction do
       add_children!(node, ids_to_add, trigger_map)
-      update_edge_triggers!(node, ids_to_update, trigger_map)
+      update_triggers!(node, ids_to_update, trigger_map)
       remove_children!(node, ids_to_remove)
     end
   end
@@ -190,7 +185,11 @@ class NodeEditForm
 
       if trigger_map.key?(tid)
         new_val = trigger_map[tid].presence
-        edge.update!(trigger: new_val) if edge.trigger != new_val
+        if edge.trigger != new_val
+          transition = Transition.find_or_initialize_by(from_id: node.technique_id, to_id: tid)
+          transition.assign_attributes(trigger: new_val)
+          transition.save!
+        end
       end
     end
   end
@@ -200,25 +199,17 @@ class NodeEditForm
     parent.ancestors.exists?(id: child.id)
   end
 
-  def update_edge_triggers!(node, tech_ids, trigger_map)
+  def update_triggers!(node, tech_ids, trigger_map)
     nil if tech_ids.blank? || trigger_map.blank?
 
-    #
-    edges = Edge.joins("JOIN nodes AS to_nodes ON to_nodes.id = edges.to_id")
-              .where(edges: { flow: 1, from_id: node.id },
-                     to_nodes: { technique_id: tech_ids })
-
-    edges.find_each do |edge|
-      tid = Node.where(id: edge.to_id).pick(:technique_id)
-      next unless tid
-
+    tech_ids.each do |tid|
       # ユーザーがその行を編集したかをkey?で判定
       next unless trigger_map.key?(tid)
-
       new_val = trigger_map[tid].presence  # "" は nil に変換される
-      next if edge.trigger == new_val
 
-      edge.update!(trigger: trigger_map[tid])
+      tr = Transition.find_or_initialize_by(from_id: node.technique_id, to_id: tid)
+      next if tr.trigger == new_val
+      tr.update!(trigger: new_val)
     end
   end
 
