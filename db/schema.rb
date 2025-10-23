@@ -48,7 +48,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_21_031416) do
     t.integer "flow", default: 0, null: false
     t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.string "trigger"
     t.index ["from_id", "to_id", "flow"], name: "index_edges_on_from_id_and_to_id_and_flow", unique: true
     t.index ["from_id"], name: "index_edges_on_from_id"
     t.index ["to_id"], name: "index_edges_on_to_id"
