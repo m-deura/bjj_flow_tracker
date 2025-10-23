@@ -5,7 +5,7 @@ import { ensureI18n } from "../i18n/loader"
 export default class extends Controller {
   static targets = ["select", "fields"]
   static values = { 
-    existingTriggers: Object,  // 既存トリガーの初期値（technique_id文字列 or "new: XXX" → trigger）
+    existingTriggers: Object,  // 選択されたノードのテクニックIDに紐づくtransitionsテーブルのtriggerカラムを取得
   }
 
   async connect() {
@@ -72,14 +72,20 @@ export default class extends Controller {
   }
 
   prefillFor(rawKey) {
-    if (!this.hasExistingTriggersValue) return null
-    return this.existingTriggersValue?.[rawKey] || null
-  }
+		// 既存 Technique ID の場合は @trigger_map から trigger をプリフィル
+		const tid = Number(rawKey)
+		if (this.hasExistingTriggersValue) {
+		  const hit = this.existingTriggersValue[tid]
+		  if (hit != null) return hit
+		}
+		// 無ければ空
+		return null
+	}
 
-  // フォームのラベル・プレースホルダーに対するI18n対応
-  t(key, opts = {}) {
+	// フォームのラベル・プレースホルダーに対するI18n対応
+	t(key, opts = {}) {
 		if (this.i18n) return this.i18n.t(key, opts)
-  }
+	}
 
   disconnect() {
     this.selectTarget.removeEventListener("change", this.renderFields)

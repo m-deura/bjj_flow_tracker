@@ -90,6 +90,9 @@ class Mypage::NodesController < ApplicationController
     # テクニックIDとテクニック名のペア配列をハッシュ化
     @technique_names = Technique.where(id: tech_ids).map { |t| [ t.id.to_s, t.name_for ] }.to_h
 
+    # 選択されたノードのテクニックIDに紐づくtransitionsテーブルのtriggerカラムを取得(遷移条件入力フォーム出現時にtriggerカラムのデータをprefillするため)
+    @existing_triggers = @form.prefill_existing_triggers
+
     render :edit, formats: :turbo_stream
   end
 
