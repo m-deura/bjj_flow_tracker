@@ -23,13 +23,14 @@ class Api::V1::ChartsController < ApplicationController
     # typed_dag により edgeレコードは自動管理されるため、edgesテーブルの関連に chart_id を設けることができない。＝ chart.edges でチャート単位のエッジを直接取得できない。
     # そのため、「チャート上にあるノードを接続するエッジ」を以下の記述にて抽出することで代替する。
     node_ids = nodes.select(:id)
+
+    # ノードに紐づく直辺エッジのみを取得
     edges = Edge.where(flow: 1, from_id: node_ids)
               .or(Edge.where(flow: 1, to_id: node_ids))
               .distinct
 
     # 本エッジ
     flow_edges_data = edges.map do |edge|
-      next if edge.from_id == edge.to_id
       {
         source: edge.from_id.to_s,
         target: edge.to_id.to_s,
@@ -38,7 +39,7 @@ class Api::V1::ChartsController < ApplicationController
           trigger: edge.trigger.to_s
         }
       }
-    end.compact # nextでスキップされたedgeはnilを返すため、これを排除する。
+    end
 
     # 循環を示す逆走エッジ
     #   - technique_id ごとにまとめ、id昇順で隣接連結（n個なら n-1 本）
