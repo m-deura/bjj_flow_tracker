@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres
+    image: postgres:17
     restart: always
     environment:
       TZ: Asia/Tokyo
@@ -34,7 +34,7 @@ services:
       db:
         condition: service_healthy
   chrome:
-    image: seleniarm/standalone-chromium:140.0
+    image: seleniarm/standalone-chromium:latest
     environment:
       - TZ=Asia/Tokyo
 volumes:
