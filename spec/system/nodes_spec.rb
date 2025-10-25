@@ -130,6 +130,82 @@ RSpec.describe "Nodes", type: :system do
         expect(page).to have_field(I18n.t("helpers.label.technique_name"), with: @technique1.name_for)
         expect(page).to have_field(I18n.t("helpers.label.note"), with: @technique1.note)
         expect(page).to have_select(I18n.t("helpers.label.category"), selected: I18n.t("enums.category.nil"))
+        # 遷移条件編集フォームは表示されていないことを確認
+        expect(page).not_to have_content(I18n.t("helpers.label.triggers"))
+      end
+    end
+
+    it "セレクトボックスで展開先テクニックを選ぶと、遷移条件編集フォームが表示される", :js do
+      visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
+
+      click_node(@node.id)
+
+      within('#node-drawer') do
+        expect(page).to have_field(I18n.t("helpers.label.technique_name"), with: @technique1.name_for)
+        expect(page).to have_field(I18n.t("helpers.label.note"), with: @technique1.note)
+        expect(page).to have_select(I18n.t("helpers.label.category"), selected: I18n.t("enums.category.nil"))
+
+        # 遷移条件編集フォームは表示されていないことを確認
+        expect(page).not_to have_content(I18n.t("helpers.label.triggers"))
+        expect(page).not_to have_field("node_edit_form[triggers][#{@technique2.id}]")
+        expect(page).not_to have_css("span.badge", text: @technique2.name_for)
+      end
+
+      # セレクトボックスで @technique2 を選ぶ
+      select @technique2.name_for, from: "children_nodes"
+
+      within('#node-drawer') do
+        expect(page).to have_field(I18n.t("helpers.label.technique_name"), with: @technique1.name_for)
+        expect(page).to have_field(I18n.t("helpers.label.note"), with: @technique1.note)
+        expect(page).to have_select(I18n.t("helpers.label.category"), selected: I18n.t("enums.category.nil"))
+
+        # @technique2 に対応した遷移条件編集フォームが表示される
+        expect(page).to have_content(I18n.t("helpers.label.triggers"))
+        expect(page).to have_field("node_edit_form[triggers][#{@technique2.id}]")
+        expect(page).to have_css("span.badge", text: @technique2.name_for)
+      end
+    end
+
+    context "展開先テクニックが登録されている場合" do
+      before do # @technique1 の展開先として @technique2 を登録
+        Transition.create!(from: @technique1, to: @technique2, trigger: "test trigger")
+        node2 = @chart.nodes.create!(technique: @technique2)
+        Edge.create!(from: @node, to: node2, flow: 1)
+      end
+
+      it "編集ページに遷移条件編集フォームが表示される", :js do
+        visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
+
+        click_node(@node.id)
+
+        within('#node-drawer') do
+          expect(page).to have_content(I18n.t("helpers.label.triggers"))
+          expect(page).to have_field("node_edit_form[triggers][#{@technique2.id}]", with: "test trigger")
+          expect(page).to have_css("span.badge", text: @technique2.name_for)
+        end
+      end
+
+      it "登録済みの展開先テクニックをセレクトボックスから外すと、対応する遷移条件編集フォームが消える", :js do
+        visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
+
+        click_node(@node.id)
+
+        within('#node-drawer') do
+          expect(page).to have_content(I18n.t("helpers.label.triggers"))
+          expect(page).to have_field("node_edit_form[triggers][#{@technique2.id}]", with: "test trigger")
+          expect(page).to have_css("span.badge", text: @technique2.name_for)
+        end
+
+        # technique2を展開先テクニックから削除
+        within('turbo-frame#node-drawer') do
+          find('#children_nodes-ts-control').send_keys(:backspace)
+        end
+
+        within('#node-drawer') do
+          expect(page).not_to have_content(I18n.t("helpers.label.triggers"))
+          expect(page).not_to have_field("node_edit_form[triggers][#{@technique2.id}]", with: "test trigger")
+          expect(page).not_to have_css("span.badge", text: @technique2.name_for)
+        end
       end
     end
 
