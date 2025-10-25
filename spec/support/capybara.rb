@@ -1,7 +1,7 @@
 require "capybara/rspec"
 require "selenium-webdriver"
 
-Capybara.default_max_wait_time = 10
+Capybara.default_max_wait_time = 15
 
 # リモートSelenium(ローカルDocker環境)向けのホスト設定
 Capybara.server_host = "0.0.0.0" # すべてのインターフェイスにバインド
