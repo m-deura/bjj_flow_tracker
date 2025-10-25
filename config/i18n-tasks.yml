@@ -146,11 +146,14 @@ search:
 
 ## Consider these keys used:
 ignore_unused:
-  - 'guides.*'
   - 'active{model,record}.attributes.*'
   - 'activerecord.models.*'
   # 動的に翻訳キーを生成しておりunused判定されてしまうので、判定から除外
   - 'header.*'
+  # JS側のI18nのみで利用しており、Rails側ではunused判定されてしまうので除外
+  - '*.trigger'
+  - '*.triggers'
+  - 'guides.*'
 # - '{devise,kaminari,will_paginate}.*'
 # - 'simple_form.{yes,no}'
 # - 'simple_form.{placeholders,hints,labels}.*'
