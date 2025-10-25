@@ -35,11 +35,13 @@ class NodeEditForm
   end
 
   # JS に渡す、過去の保存値（from: 選択されたノードのテクニック）
+  # NodeControllerで使用している
   def prefill_existing_triggers
     Transition
       .where(from_id: node.technique_id)
       .pluck(:to_id, :trigger)
       .to_h
+      .transform_keys!(&:to_s)
   end
 
   # 保存処理
@@ -181,14 +183,14 @@ class NodeEditForm
       child ||= Node.create!(chart_id: node.chart_id, technique_id: tid)
 
       # 直辺を張る（重複回避）
-      edge = Edge.find_or_create_by!(flow: 1, from_id: node.id, to_id: child.id)
+      Edge.find_or_create_by!(flow: 1, from_id: node.id, to_id: child.id)
 
+      # ユーザーがその行を編集したかをkey?で判定
       if trigger_map.key?(tid)
         new_val = trigger_map[tid].presence
-        if edge.trigger != new_val
-          transition = Transition.find_or_initialize_by(from_id: node.technique_id, to_id: tid)
-          transition.assign_attributes(trigger: new_val)
-          transition.save!
+        tr = Transition.find_or_initialize_by(from_id: node.technique_id, to_id: tid)
+        if tr.trigger != new_val
+          tr.update!(trigger: new_val)
         end
       end
     end
@@ -208,8 +210,9 @@ class NodeEditForm
       new_val = trigger_map[tid].presence  # "" は nil に変換される
 
       tr = Transition.find_or_initialize_by(from_id: node.technique_id, to_id: tid)
-      next if tr.trigger == new_val
-      tr.update!(trigger: new_val)
+      if tr.trigger != new_val
+        tr.update!(trigger: new_val)
+      end
     end
   end
 
