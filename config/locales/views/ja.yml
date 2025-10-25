@@ -21,6 +21,7 @@ ja:
     preparing: 現在準備中です！
     search: 検索
     start_guide: ステップガイドを開始
+    trigger: 例：相手が足を引いたとき
   footer:
     inquiry: お問い合わせ
     privacy: プライバシーポリシー
@@ -41,6 +42,7 @@ ja:
       note: ノート
       root_nodes: 開始点テクニック
       technique_name: テクニック名
+      triggers: 遷移条件
     submit:
       create: 登録
       submit: 保存

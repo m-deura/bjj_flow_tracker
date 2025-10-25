@@ -21,3 +21,6 @@ application.register("step-guide", StepGuideController)
 
 import TomSelectController from "./tom_select_controller"
 application.register("tom-select", TomSelectController)
+
+import TriggerFieldsController from "./trigger_fields_controller"
+application.register("trigger-fields", TriggerFieldsController)

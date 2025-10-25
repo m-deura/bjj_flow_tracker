@@ -1,5 +1,29 @@
 {
   "en": {
+    "defaults": {
+      "back": "Back to List",
+      "cancel": "Cancel",
+      "create": "New",
+      "delete": "Delete",
+      "delete_confirm": "Are you sure you want to delete?",
+      "delete_item": "Delete %{item}",
+      "edit": "Edit",
+      "flash_messages": {
+        "created": "%{item} was successfully created",
+        "deleted": "%{item} was successfully deleted",
+        "guest_notice": "Please note that data saved as a guest will not be stored permanently.",
+        "guest_signed_in": "Signed in as a guest",
+        "multiple_select": "Please select one or more %{item}",
+        "not_created": "Failed to create %{item}",
+        "not_updated": "Failed to update %{item}",
+        "updated": "%{item} was successfully updated",
+        "wrong_input": "There are errors in your input"
+      },
+      "preparing": "It is currently under construction!",
+      "search": "Search",
+      "start_guide": "Start Step Guide",
+      "trigger": "e.g. When the opponent pulls back their leg"
+    },
     "guides": {
       "chart": {
         "common": {
@@ -133,7 +157,7 @@
           "title": "Update technique"
         },
         "step2": {
-          "intro_html": "Here you can edit which techniques branch out from this one.<br><br>The techniques you select will appear connected to the right of this technique on the chart.",
+          "intro_html": "Here you can edit which techniques branch out from this one.<br><br>The techniques you select will appear connected to the right of this technique on the chart.<br><br>You can also record the conditions required to transition to each of these techniques.",
           "selector": "#guide-children",
           "title": "Update subsequent techniques"
         },
@@ -222,6 +246,25 @@
             "intro_html": "That’s all for this screen.<br><br>\nIt looks like there are no techniques yet, so let’s create your first one.<br><br>\nAfter that, if you’d like to learn how to connect techniques to visualize the flow of a match, click the icon at the top of the\n<a class='underline font-bold' href=\"%{charts_path}\">Flow Chart</a> menu:\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg>"
           }
         }
+      }
+    },
+    "helpers": {
+      "label": {
+        "category": "Category",
+        "chart_name": "Chart Name",
+        "children_nodes": "Transitions",
+        "note": "Note",
+        "root_nodes": "Root Technique",
+        "technique_name": "Technique Name",
+        "triggers": "Transition Conditions"
+      },
+      "select": {
+        "prompt": "Please select"
+      },
+      "submit": {
+        "create": "Create",
+        "submit": "Save",
+        "update": "Update"
       }
     }
   }

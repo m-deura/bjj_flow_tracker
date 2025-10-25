@@ -57,14 +57,24 @@ export default class extends Controller {
 		};
 		const DEFAULT_FILL = '#FFFFFF'; //'#eef2ff'?
 
+		// tooltip共通定義
+		const tipBase = {
+		  type: 'tooltip',
+		  enable: (e, items) => e.targetType === 'edge' && items?.[0]?.data?.trigger,
+		  getContent: (_, items) => `<div>${items[0].data.trigger}</div>`,
+		};
+		// trigger両対応（hover / click）を短く
+		// trigger部分はプロパティ省略記法(key valueの値が同じ場合はまとめて書くことができる)
+		const tooltipBehaviors = ['hover', 'click'].map(trigger => ({ ...tipBase, trigger }));
+
 		const url = this.fetchUrlValue; // api_v1_chart_path(@chart)
 		console.log(this.element.dataset)
 		fetch(url)
 			.then((response) => response.json())
 			.then((data) => {
 
-    		this.graph = new Graph({
-		      container: this.cyTarget,
+				this.graph = new Graph({
+					container: this.cyTarget,
 					autoFit: 'view',
 					data: data,
 					zoomRange: [0.1, 10],
@@ -78,10 +88,12 @@ export default class extends Controller {
 								type: 'zoom-canvas',
 								trigger: ['pinch'],
 								sensitivity: 0.5, // Lower sensitivity for smoother zoom changes
+								origin: this.getCanvasCenter(), // Zoom with the viewport center as the origin
 								};
 						},
 					],
 					plugins: [
+						...tooltipBehaviors,
 		  			// {
 		    		// 	type: 'grid-line',
 		    		// 	key: 'my-grid-line', // Specify a unique 		identifier for dynamic updates
@@ -89,13 +101,6 @@ export default class extends Controller {
 		    		// 	stroke: '#0001',
 		    		// 	follow: true,
 		  			// },
-						{
-		    			type: 'tooltip',
-		    			enable: (e, items) => e.targetType === 'edge' && items[0].data.trigger, 
-		    			getContent: (e, items) => {
-		    			  return `<div>${items[0].data.trigger}</div>`;
-		    			},
-						},
 						// {
 		      	// 	type: 'toolbar',
 		      	// 	getItems: () => [
