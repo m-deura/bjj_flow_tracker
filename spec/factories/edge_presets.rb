@@ -4,7 +4,7 @@ FactoryBot.define do
       chart_preset { build(:chart_preset) }  # 同じチャートを共有させる
     end
 
-    from { association(:node_preset, chart_preset: chart_preset) }
-    to { association(:node_preset, chart_preset: chart_preset) }
+    from { create(:node_preset, chart_preset: chart_preset) }
+    to { create(:node_preset, chart_preset: chart_preset) }
   end
 end

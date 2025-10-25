@@ -4,8 +4,8 @@ FactoryBot.define do
       chart { build(:chart) }  # 同じチャートを共有させる
     end
 
-    from { association(:node, chart: chart) }
-    to { association(:node, chart: chart) }
+    from { create(:node, chart: chart) }
+    to { create(:node, chart: chart) }
     flow { 1 }
   end
 end
