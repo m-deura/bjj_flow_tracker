@@ -23,6 +23,9 @@ RSpec.describe "Nodes", type: :system do
       t.set_name_for("test3")
       t.note = "test note!3"
     end
+
+    # @technique1 と @technique2 を繋ぐ遷移条件
+    Transition.create!(from: @technique1, to: @technique2, trigger: "test trigger")
   end
 
   describe "indexアクション(チャート描写用JSON)" do
@@ -168,7 +171,6 @@ RSpec.describe "Nodes", type: :system do
 
     context "展開先テクニックが登録されている場合" do
       before do # @technique1 の展開先として @technique2 を登録
-        Transition.create!(from: @technique1, to: @technique2, trigger: "test trigger")
         node2 = @chart.nodes.create!(technique: @technique2)
         Edge.create!(from: @node, to: node2, flow: 1)
       end
@@ -297,7 +299,7 @@ RSpec.describe "Nodes", type: :system do
 
   describe "updateアクション" do
     context "有効なデータの場合" do
-      it "テクニックと展開先テクニックの同時更新ができる", :js do
+      it "テクニック/展開先テクニック/遷移条件の同時更新できる", :js do
         visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
 
         # ノードをクリックしてドロワーを開く
@@ -308,6 +310,16 @@ RSpec.describe "Nodes", type: :system do
         select I18n.t("enums.category.submission"), from: I18n.t("helpers.label.category")
         select @technique2.name_for, from: "children_nodes"
         select @technique3.name_for, from: "children_nodes"
+
+        # @technique2 と @technique 3 に対応した遷移条件編集フォームが表示される
+        expect(page).to have_field("node_edit_form[triggers][#{@technique2.id}]", with: "test trigger")
+        expect(page).to have_field("node_edit_form[triggers][#{@technique3.id}]")
+
+        # 遷移条件の上書きor追加
+        fill_in "node_edit_form[triggers][#{@technique2.id}]", with: "test trigger! 2"
+        fill_in "node_edit_form[triggers][#{@technique3.id}]", with: "test trigger! 3"
+
+        # 保存ボタンをクリック
         click_button(I18n.t("helpers.submit.submit"))
 
         expect(page).to have_current_path(mypage_chart_path(id: @chart.id, locale: I18n.locale))
@@ -323,6 +335,8 @@ RSpec.describe "Nodes", type: :system do
           expect(page).to have_select("children_nodes",
                                       selected: [ @technique2.name_for, @technique3.name_for ]
                                      )
+          expect(page).to have_field("node_edit_form[triggers][#{@technique2.id}]", with: "test trigger! 2")
+          expect(page).to have_field("node_edit_form[triggers][#{@technique3.id}]", with: "test trigger! 3")
         end
       end
 
@@ -383,6 +397,43 @@ RSpec.describe "Nodes", type: :system do
           expect(page).to have_field(I18n.t("helpers.label.technique_name"), with: "retest4")
           expect(page).to have_field(I18n.t("helpers.label.note"), with: "retest note!4")
           expect(page).to have_select(I18n.t("helpers.label.category"), selected: I18n.t("enums.category.submission"))
+        end
+      end
+
+      it "遷移条件が空でも更新できる", :js do
+        visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
+
+        # ノードをクリックしてドロワーを開く
+        click_node(@node.id)
+
+        fill_in I18n.t("helpers.label.technique_name"), with: "retest4"
+        fill_in I18n.t("helpers.label.note"), with: "retest note!4"
+        select I18n.t("enums.category.submission"), from: I18n.t("helpers.label.category")
+        select @technique2.name_for, from: "children_nodes"
+
+        # @technique2 に対応した遷移条件編集フォームが表示される
+        expect(page).to have_field("node_edit_form[triggers][#{@technique2.id}]", with: "test trigger")
+
+        # 遷移条件を空文字で上書き
+        fill_in "node_edit_form[triggers][#{@technique2.id}]", with: ""
+
+        # 保存ボタンをクリック
+        click_button(I18n.t("helpers.submit.submit"))
+
+        expect(page).to have_current_path(mypage_chart_path(id: @chart.id, locale: I18n.locale))
+        expect(page).to have_content(I18n.t("defaults.flash_messages.updated", item: Node.model_name.human))
+
+        # 再びノードをクリックしてドロワーを開く
+        click_node(@node.id)
+
+        within('#node-drawer') do
+          expect(page).to have_field(I18n.t("helpers.label.technique_name"), with: "retest4")
+          expect(page).to have_field(I18n.t("helpers.label.note"), with: "retest note!4")
+          expect(page).to have_select(I18n.t("helpers.label.category"), selected: I18n.t("enums.category.submission"))
+          expect(page).to have_select("children_nodes",
+                                      selected: [ @technique2.name_for ]
+                                     )
+          expect(page).to have_field("node_edit_form[triggers][#{@technique2.id}]", with: "")
         end
       end
     end
