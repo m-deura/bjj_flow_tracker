@@ -25,7 +25,9 @@ module TourMacros
       break unless page.has_css?('.introjs-nextbutton')
 
       # Nextボタン(最終ステップガイドの"Done"ボタンを含む)をクリック
-      find('.introjs-nextbutton', wait: 20).click
+      sleep 3
+      expect(page).to have_css('.introjs-nextbutton')
+      find('.introjs-nextbutton').click
 
       clicks += 1
     end
