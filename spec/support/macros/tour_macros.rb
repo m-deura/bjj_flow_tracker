@@ -21,12 +21,11 @@ module TourMacros
     # 4) 期待回数だけ「ある方のボタン」を見つけてクリック
     clicks = 0
     loop do
-      # Nextボタンが存在し、かつ有効か確認
-      has_next = page.has_css?('.introjs-nextbutton')
-      break unless has_next
+      # Nextボタンが存在するか確認
+      break unless page.has_css?('.introjs-nextbutton')
 
       # Nextボタン(最終ステップガイドの"Done"ボタンを含む)をクリック
-      find('.introjs-nextbutton').click
+      find('.introjs-nextbutton', wait: 20).click
 
       clicks += 1
     end
