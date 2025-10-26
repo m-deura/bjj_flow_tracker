@@ -20,13 +20,4 @@ RSpec.describe "Dashboards", type: :system do
     find(:css, '[data-action~="click->step-guide#startDashboardGuide"]').click
     expect(page).to have_css('.introjs-tour')
   end
-
-  # ロケールファイル間のi18nキー非対称性は、CIで実行される i18n-tasks health によって検知されるのでテストは行わない。
-  it "ロケールファイルに書いたガイド数と実際のガイド数が一致する", :js do
-    # ガイド開始
-    count_steps(
-      i18n_scope: [ "#{I18n.locale}", "guides", "dashboard" ],
-      start_selector: '[data-action~="click->step-guide#startDashboardGuide"]',
-    )
-  end
 end

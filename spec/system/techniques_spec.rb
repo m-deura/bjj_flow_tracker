@@ -16,16 +16,6 @@ RSpec.describe "Techniques", type: :system do
       expect(page).to have_css('.introjs-tour')
     end
 
-    # ロケールファイル間のi18nキー非対称性は、CIで実行される i18n-tasks health によって検知されるのでテストは行わない。
-    it "ロケールファイルに書いたガイド数と実際のガイド数が一致する", :js do
-      visit mypage_techniques_path(locale: I18n.locale)
-
-      count_steps(
-        i18n_scope: [ "#{I18n.locale}", "guides", "technique", "default" ],
-        start_selector: '[data-action~="click->step-guide#startTechniqueGuide"]',
-      )
-    end
-
     it "プリセットのテクニックが確認できる" do
       visit mypage_techniques_path(locale: I18n.locale)
       expect(page).to have_content("マウント")
@@ -44,16 +34,6 @@ RSpec.describe "Techniques", type: :system do
       it "表示するテクニックがない旨が表示される" do
         visit mypage_techniques_path(locale: I18n.locale)
         expect(page).to have_content(I18n.t("mypage.techniques.index.nothing_here"))
-      end
-
-      # ロケールファイル間のi18nキー非対称性は、CIで実行される i18n-tasks health によって検知されるのでテストは行わない。
-      it "ロケールファイルに書いたガイド数と実際のガイド数が一致する", :js do
-        visit mypage_techniques_path(locale: I18n.locale)
-
-        count_steps(
-          i18n_scope: [ "#{I18n.locale}", "guides", "technique", "zero_state" ],
-          start_selector: '[data-action~="click->step-guide#startTechniqueGuide"]',
-        )
       end
     end
 

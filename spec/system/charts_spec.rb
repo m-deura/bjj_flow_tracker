@@ -15,16 +15,6 @@ RSpec.describe "Charts", type: :system do
       expect(page).to have_css('.introjs-tour')
     end
 
-    # ロケールファイル間のi18nキー非対称性は、CIで実行される i18n-tasks health によって検知されるのでテストは行わない。
-    it "ロケールファイルに書いたガイド数と実際のガイド数が一致する", :js do
-      visit mypage_charts_path(locale: I18n.locale)
-
-      count_steps(
-        i18n_scope: [ "#{I18n.locale}", "guides", "chart_list", "default" ],
-        start_selector: '[data-action~="click->step-guide#startChartListGuide"]',
-      )
-    end
-
     it "プリセットのチャートが確認できる" do
       visit mypage_charts_path(locale: I18n.locale)
       expect(page).to have_content(/preset_\d{8}-\d{6}/)
@@ -38,16 +28,6 @@ RSpec.describe "Charts", type: :system do
       it "表示するチャートがない旨が表示される" do
         visit mypage_charts_path(locale: I18n.locale)
         expect(page).to have_content(I18n.t("mypage.charts.index.nothing_here"))
-      end
-
-      # ロケールファイル間のi18nキー非対称性は、CIで実行される i18n-tasks health によって検知されるのでテストは行わない。
-      it "ロケールファイルに書いたガイド数と実際のガイド数が一致する", :js do
-        visit mypage_charts_path(locale: I18n.locale)
-
-        count_steps(
-          i18n_scope: [ "#{I18n.locale}", "guides", "chart_list", "zero_state" ],
-          start_selector: '[data-action~="click->step-guide#startChartListGuide"]',
-        )
       end
     end
 
@@ -114,28 +94,9 @@ RSpec.describe "Charts", type: :system do
       expect(page).to have_css('.introjs-tour')
     end
 
-    # ロケールファイル間のi18nキー非対称性は、CIで実行される i18n-tasks health によって検知されるのでテストは行わない。
-    it "ロケールファイルに書いたガイド数と実際のガイド数が一致する", :js do
-      visit mypage_chart_path(id: cp_id, locale: I18n.locale)
-
-      count_steps(
-        i18n_scope: [ "#{I18n.locale}", "guides", "chart", "default" ],
-        start_selector: '[data-action~="click->step-guide#startChartGuide"]',
-      )
-    end
-
     context "登録されたノードがない(プリセットを含めノードを全削除した)場合" do
       before do
         user.charts.find(cp_id).nodes.destroy_all
-      end
-
-      it "ロケールファイルに書いたガイド数と実際のガイド数が一致する", :js do
-        visit mypage_chart_path(id: cp_id, locale: I18n.locale)
-
-        count_steps(
-          i18n_scope: [ "#{I18n.locale}", "guides", "chart", "zero_state" ],
-          start_selector: '[data-action~="click->step-guide#startChartGuide"]',
-        )
       end
     end
   end

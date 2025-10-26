@@ -1,6 +1,8 @@
 module TourMacros
   # i18n_scope: 例 [I18n.locale.to_s, "guides", "node"]
   # start_selector: 例 '[data-action~="click->step-guide#startNodeGuide"]'
+  # ロケールファイル間のi18nキー非対称性は、CIで実行される i18n-tasks health によって検知されるのでテストは行わない。
+  # TODO: 本メソッドを使った "ロケールファイルに書いたガイド数と実際のガイド数が一致する" テストを追加できたらよい（現状、CI環境だとflakyになりがちなので一時的に削除してしまっている）
   def count_steps(
     locale_file: Rails.root.join("config/locales/guides/#{I18n.locale}.yml"),
     i18n_scope:,

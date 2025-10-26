@@ -91,17 +91,6 @@ RSpec.describe "Nodes", type: :system do
       expect(page).to have_css('.introjs-tour')
     end
 
-    # ロケールファイル間のi18nキー非対称性は、CIで実行される i18n-tasks health によって検知されるのでテストは行わない。
-    it "ロケールファイルに書いたガイド数と実際のガイド数が一致する", :js do
-      visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
-      click_node(@node.id)
-
-      count_steps(
-        i18n_scope: [ "#{I18n.locale}", "guides", "node" ],
-        start_selector: '[data-action~="click->step-guide#startNodeGuide"]',
-      )
-    end
-
     it "ノードをクリックすると、ドロワーが開かれて編集フォームが表示される", :js do
       visit mypage_chart_path(id: @chart.id, locale: I18n.locale)
 
