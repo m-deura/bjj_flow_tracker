@@ -4,7 +4,10 @@
 
 <%= turbo_stream.update "node-drawer" do %>
   <%= form_with model: @form, url: mypage_node_path(@node), method: :patch do |f| %>
-    <div class="flex flex-col items-center">
+    <div class="flex flex-col items-center"
+      data-controller="trigger-fields"
+      data-trigger-fields-existing-triggers-value="<%= @existing_triggers.to_json %>"
+    >
       <div 
         id="guide-technique"
         class="w-full"
@@ -16,7 +19,7 @@
 
       <div
         id="guide-children"
-        class="space-y-2 w-4/5 mx-auto"
+        class="space-y-2 w-4/5 mx-auto mb-6"
       >
         <%= f.label "children", t("helpers.label.children_nodes") %>
         <%= f.select "children",
@@ -25,8 +28,11 @@
             id: "children_nodes",
             multiple: true,
             placeholder: t("defaults.search"),
-            data: { controller: "tom-select" }
+            data: { controller: "tom-select", trigger_fields_target: "select" }
         %>
+
+        <!-- 選択中の子それぞれに trigger 入力欄を出す -->
+        <div data-trigger-fields-target="fields" class="space-y-2"></div>
       </div>
     </div>
 

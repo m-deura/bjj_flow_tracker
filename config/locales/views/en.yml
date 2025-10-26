@@ -21,6 +21,7 @@ en:
     preparing: It is currently under construction!
     search: Search
     start_guide: Start Step Guide
+    trigger: e.g. When the opponent pulls back their leg
   footer:
     inquiry: Contact
     privacy: Privacy Policy
@@ -41,6 +42,7 @@ en:
       note: Note
       root_nodes: Root Technique
       technique_name: Technique Name
+      triggers: Transition Conditions
     submit:
       create: Create
       submit: Save

@@ -80,4 +80,5 @@ RSpec.configure do |config|
   config.include LoginMacros
   config.include GraphMacros
   config.include LocaleMacros
+  config.include TourMacros
 end
