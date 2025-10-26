@@ -18,32 +18,11 @@ RSpec.describe "Charts", type: :system do
     # ロケールファイル間のi18nキー非対称性は、CIで実行される i18n-tasks health によって検知されるのでテストは行わない。
     it "ロケールファイルに書いたガイド数と実際のガイド数が一致する", :js do
       visit mypage_charts_path(locale: I18n.locale)
-      # ガイド開始
-      find(:css, '[data-action~="click->step-guide#startChartListGuide"]').click
 
-      # Next or Doneボタンのクリック数をカウント
-      clicks = 0
-
-      loop do
-        # Nextボタンが存在し、かつ有効か確認
-        has_next = page.has_css?('.introjs-nextbutton')
-        break unless has_next
-
-        # 最終ステップガイドの"Done"ボタンを含む
-        expect(page).to have_css('.introjs-nextbutton')
-        next_btn = find('.introjs-nextbutton')
-
-        # Next or Done ボタンをクリック
-        next_btn.click
-        clicks += 1
-      end
-
-      # ロケールファイルからガイド用のI18nキーを取り出してカウント
-      path = Rails.root.join("config/locales/guides/#{I18n.locale}.yml")
-      hash = YAML.safe_load(File.read(path))
-      steps = hash.dig("#{I18n.locale}", "guides", "chart_list", "default").keys.grep(/\Astep\d+\z/)
-
-      expect(steps.size).to eq clicks
+      count_steps(
+        i18n_scope: [ "#{I18n.locale}", "guides", "chart_list", "default" ],
+        start_selector: '[data-action~="click->step-guide#startChartListGuide"]',
+      )
     end
 
     it "プリセットのチャートが確認できる" do
@@ -64,32 +43,11 @@ RSpec.describe "Charts", type: :system do
       # ロケールファイル間のi18nキー非対称性は、CIで実行される i18n-tasks health によって検知されるのでテストは行わない。
       it "ロケールファイルに書いたガイド数と実際のガイド数が一致する", :js do
         visit mypage_charts_path(locale: I18n.locale)
-        # ガイド開始
-        find(:css, '[data-action~="click->step-guide#startChartListGuide"]').click
 
-        # Next or Doneボタンのクリック数をカウント
-        clicks = 0
-
-        loop do
-          # Nextボタンが存在し、かつ有効か確認
-          has_next = page.has_css?('.introjs-nextbutton')
-          break unless has_next
-
-          # 最終ステップガイドの"Done"ボタンを含む
-          expect(page).to have_css('.introjs-nextbutton')
-          next_btn = find('.introjs-nextbutton')
-
-          # Next or Done ボタンをクリック
-          next_btn.click
-          clicks += 1
-        end
-
-        # ロケールファイルからガイド用のI18nキーを取り出してカウント
-        path = Rails.root.join("config/locales/guides/#{I18n.locale}.yml")
-        hash = YAML.safe_load(File.read(path))
-        steps = hash.dig("#{I18n.locale}", "guides", "chart_list", "zero_state").keys.grep(/\Astep\d+\z/)
-
-        expect(steps.size).to eq clicks
+        count_steps(
+          i18n_scope: [ "#{I18n.locale}", "guides", "chart_list", "zero_state" ],
+          start_selector: '[data-action~="click->step-guide#startChartListGuide"]',
+        )
       end
     end
 
@@ -159,32 +117,11 @@ RSpec.describe "Charts", type: :system do
     # ロケールファイル間のi18nキー非対称性は、CIで実行される i18n-tasks health によって検知されるのでテストは行わない。
     it "ロケールファイルに書いたガイド数と実際のガイド数が一致する", :js do
       visit mypage_chart_path(id: cp_id, locale: I18n.locale)
-      # ガイド開始
-      find(:css, '[data-action~="click->step-guide#startChartGuide"]').click
 
-      # Next or Doneボタンのクリック数をカウント
-      clicks = 0
-
-      loop do
-        # Nextボタンが存在し、かつ有効か確認
-        has_next = page.has_css?('.introjs-nextbutton')
-        break unless has_next
-
-        # 最終ステップガイドの"Done"ボタンを含む
-        expect(page).to have_css('.introjs-nextbutton')
-        next_btn = find('.introjs-nextbutton')
-
-        # Next or Done ボタンをクリック
-        next_btn.click
-        clicks += 1
-      end
-
-      # ロケールファイルからガイド用のI18nキーを取り出してカウント
-      path = Rails.root.join("config/locales/guides/#{I18n.locale}.yml")
-      hash = YAML.safe_load(File.read(path))
-      steps = hash.dig("#{I18n.locale}", "guides", "chart", "default").keys.grep(/\Astep\d+\z/)
-
-      expect(steps.size).to eq clicks
+      count_steps(
+        i18n_scope: [ "#{I18n.locale}", "guides", "chart", "default" ],
+        start_selector: '[data-action~="click->step-guide#startChartGuide"]',
+      )
     end
 
     context "登録されたノードがない(プリセットを含めノードを全削除した)場合" do
@@ -194,32 +131,11 @@ RSpec.describe "Charts", type: :system do
 
       it "ロケールファイルに書いたガイド数と実際のガイド数が一致する", :js do
         visit mypage_chart_path(id: cp_id, locale: I18n.locale)
-        # ガイド開始
-        find(:css, '[data-action~="click->step-guide#startChartGuide"]').click
 
-        # Next or Doneボタンのクリック数をカウント
-        clicks = 0
-
-        loop do
-          # Nextボタンが存在し、かつ有効か確認
-          has_next = page.has_css?('.introjs-nextbutton')
-          break unless has_next
-
-          # 最終ステップガイドの"Done"ボタンを含む
-          expect(page).to have_css('.introjs-nextbutton')
-          next_btn = find('.introjs-nextbutton')
-
-          # Next or Done ボタンをクリック
-          next_btn.click
-          clicks += 1
-        end
-
-        # ロケールファイルからガイド用のI18nキーを取り出してカウント
-        path = Rails.root.join("config/locales/guides/#{I18n.locale}.yml")
-        hash = YAML.safe_load(File.read(path))
-        steps = hash.dig("#{I18n.locale}", "guides", "chart", "zero_state").keys.grep(/\Astep\d+\z/)
-
-        expect(steps.size).to eq clicks
+        count_steps(
+          i18n_scope: [ "#{I18n.locale}", "guides", "chart", "zero_state" ],
+          start_selector: '[data-action~="click->step-guide#startChartGuide"]',
+        )
       end
     end
   end
