@@ -31,11 +31,10 @@ Rails.application.routes.draw do
     # My Pages
     namespace :mypage do
       root to: "dashboard#show"
-      resources :techniques
+      resources :techniques, only: %i[index new create edit update destroy]
       resources :charts do
         resources :nodes, shallow: true, only: %i[new create edit update destroy]
       end
-      resource :setting, only: %i[show edit update]
     end
 
     # API
