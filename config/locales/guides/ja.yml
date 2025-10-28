@@ -2,13 +2,6 @@
 ja:
   guides:
     chart:
-      common:
-        step0:
-          intro_html: こちらは、テクニック同士の繋がりを可視化するための画面です。<br><br>このエリアにテクニックを配置し、フローチャートを作ることができます。
-        step1:
-          intro_html: ここからフローチャートの開始点(ルートノード)を新規作成できます。
-          selector: "#guide-creating-button"
-          title: ルートノードを新規作成
       default:
         step0:
           intro_html: こちらは、テクニック同士の繋がりを可視化するための画面です。<br><br>このエリアにテクニックを配置し、フローチャートを作ることができます。
@@ -45,17 +38,6 @@ ja:
             </svg>
             をクリックすることで、続きの画面操作ガイドを開始することができます。
     chart_list:
-      common:
-        step0:
-          intro_html: こちらは、登録されたテクニックを繋げて試合の動線を可視化するためのチャートが一覧で並んだ画面です。<br><br>チャートはポジション単位で分けると整理しやすく、復習に便利です。<br><br>ただし、「得意展開」や「テーマ練習」など、自分の目的に合わせて分けるのもおすすめです。
-        step1:
-          intro_html: このボタンからチャートを新規作成することができます。
-          selector: "#guide-creating-button"
-          title: 新規作成
-        step2:
-          intro_html: 一覧にあるチャートは、ここから検索して表示を絞り込むことができます。
-          selector: "#guide-search-box"
-          title: 検索
       default:
         step0:
           intro_html: こちらは、登録されたテクニックを繋げて試合の動線を可視化するためのチャートが一覧で並んだ画面です。<br><br>チャートはポジション単位で分けると整理しやすく、復習に便利です。<br><br>ただし、「得意展開」や「テーマ練習」など、自分の目的に合わせて分けるのもおすすめです。
@@ -149,21 +131,6 @@ ja:
       step4:
         intro_html: "ここまで来たら、試しにノードを作ったり、展開先テクニックを追加したりして操作に慣れましょう！<br><br>本アプリに関するご不明点や改善点等がございましたら、画面下部にある <a class='underline font-bold' href='https://forms.gle/VGdTkDDsJkVQY7e79' target='_blank' rel='noopener noreferrer'>お問い合わせ</a> ページよりお気軽にご連絡ください！<br><br>それでは、よりよい柔術ライフを👋"
     technique:
-      common:
-        step0:
-          intro_html: こちらは、柔術のテクニックが一覧として並んでいる画面です。
-        step1:
-          intro_html: 一覧にないテクニックは、こちらのボタンから新規作成することができます。
-          selector: "#guide-creating-button"
-          title: 新規作成
-        step2:
-          intro_html: 一覧にあるテクニックは、ここからキーワード検索して表示を絞り込むことができます。
-          selector: "#guide-keyword-search"
-          title: キーワード検索
-        step3:
-          intro_html: テクニックのカテゴリーによる絞り込みも可能です。
-          selector: "#guide-category-search"
-          title: カテゴリー検索
       default:
         step0:
           intro_html: こちらは、柔術のテクニックが一覧として並んでいる画面です。

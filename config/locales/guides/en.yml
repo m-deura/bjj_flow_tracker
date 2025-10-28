@@ -2,13 +2,6 @@
 en:
   guides:
     chart:
-      common:
-        step0:
-          intro_html: This is the screen for visualizing connections between techniques.<br><br>You can place techniques here and create flowcharts.
-        step1:
-          intro_html: You can create new starting points (root nodes) for your flowchart here.
-          selector: "#guide-creating-button"
-          title: Create New Root Nodes
       default:
         step0:
           intro_html: This is the screen for visualizing connections between techniques.<br><br>You can place techniques here and create flowcharts.
@@ -44,17 +37,6 @@ en:
             </svg>
             to start the next part of the walkthrough.
     chart_list:
-      common:
-        step0:
-          intro_html: This is the page where your charts are listed — each chart visualizes how your registered techniques connect to form match scenarios.<br><br>Organizing your charts by position makes it easier to review and keep things tidy.<br><br>That said, you can also group them by your favorite sequences or specific training themes — whatever fits your goal best!
-        step1:
-          intro_html: Click this button to create a new chart.
-          selector: "#guide-creating-button"
-          title: Create a New Chart
-        step2:
-          intro_html: You can search and filter the charts displayed in the list using this search box.
-          selector: "#guide-search-box"
-          title: Search
       default:
         step0:
           intro_html: This is the page where your charts are listed — each chart visualizes how your registered techniques connect to form match scenarios.<br><br>Organizing your charts by position makes it easier to review and keep things tidy.<br><br>That said, you can also group them by your favorite sequences or specific training themes — whatever fits your goal best!
@@ -148,21 +130,6 @@ en:
       step4:
         intro_html: "Now try creating nodes and adding subsequent techniques to get familiar with the operations!<br><br>If you have any questions or suggestions about this app, feel free to contact us from the <a class='underline font-bold' href='https://forms.gle/VGdTkDDsJkVQY7e79' target='_blank' rel='noopener noreferrer'>contact page</a> at the bottom of the screen.<br><br>Enjoy your Jiu-Jitsu life! 👋"
     technique:
-      common:
-        step0:
-          intro_html: This is the screen where techniques are listed.
-        step1:
-          intro_html: If the technique you need isn’t listed, you can create a new one with this button.
-          selector: "#guide-creating-button"
-          title: Create a New Technique
-        step2:
-          intro_html: You can search for techniques here to filter the list.
-          selector: "#guide-keyword-search"
-          title: Keyword Search
-        step3:
-          intro_html: You can also filter techniques by category.
-          selector: "#guide-category-search"
-          title: Category Filter
       default:
         step0:
           intro_html: This is the screen where techniques are listed.
