@@ -52,24 +52,23 @@ BJJ Flow Tracker は、ブラジリアン柔術の練習メモを”試合およ
 
 | ステップガイド |
 | --- |
-| <p align="center"><a href="https://gyazo.com/90ad360f43519c31b1040c7e89773ba5"><video width="600" autoplay muted loop playsinline controls><source src="https://i.gyazo.com/90ad360f43519c31b1040c7e89773ba5.mp4" type="video/mp4"/></video></a></p> |
-| 各ページにあるステップガイド開始ボタン、もしくはタイトル右隣にある <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.5em" height="1.5em" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"/></svg> をクリックすると、そのページの概要と使い方を案内するステップガイドが始まります。これによって、初めての方でも迷わず画面を操作できます。
- |
+| <p align="center" width="600"><img src="https://github.com/user-attachments/assets/d0b2c47c-fd90-45fe-8d91-3a7153955c5a" width="600" alt="Step-by-Step Guide GIF"></p> |
+| 各ページにあるステップガイド開始ボタン、もしくはタイトル右隣にある <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.5em" height="1.5em" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"/></svg> をクリックすると、そのページの概要と使い方を案内するステップガイドが始まります。これによって、初めての方でも迷わず画面を操作できます。|
 
 | テクニック管理 |
 | --- |
-| <p align="center"><a href="https://gyazo.com/d92464e3a778e78b6be15fce973af02c"><video width="600" autoplay muted loop playsinline controls><source src="https://i.gyazo.com/d92464e3a778e78b6be15fce973af02c.mp4" type="video/mp4"/></video></a></p> |
+| <p align="center" width="600"><img src="https://github.com/user-attachments/assets/c757a0ac-7912-4ae4-8d69-d4cc3ae540d4" width="600" alt="Technique GIF"></p> |
 | それぞれの技に対して、気づきや動きのコツを記録できます。登録したテクニックは一覧から検索やカテゴリ別の絞り込みが可能。自分だけの「BJJノート」として知識を整理できます。 |
 
 | チャート管理 |
 | --- |
-| <p align="center"><a href="https://gyazo.com/9e23b70afde472cb9220151d0cb9ad74"><video width="600" autoplay muted loop playsinline controls><source src="https://i.gyazo.com/9e23b70afde472cb9220151d0cb9ad74.mp4" type="video/mp4"/></video></a></p><p align="center"><a href="https://gyazo.com/345bbc5eea2d8309cabfe3116fc7c15f"><img src="https://i.gyazo.com/345bbc5eea2d8309cabfe3116fc7c15f.png" alt="Image from Gyazo" width="600"/></a></p> |
+| <p align="center" width="600"><img src="https://github.com/user-attachments/assets/5def5cc1-7e12-48dc-b3ae-d38baa32da53" width="600" alt="Chart GIF"></p><p align="center"><a href="https://gyazo.com/345bbc5eea2d8309cabfe3116fc7c15f"><img src="https://i.gyazo.com/345bbc5eea2d8309cabfe3116fc7c15f.png" alt="Image from Gyazo" width="600"/></a></p> |
 | 登録した技を繋げて、試合やスパーの展開を可視化することができます。さらに、各テクニック間の遷移条件（どんな状況からその技に移ることができるのか）を記録することで、戦略的な分析にも役立てることもできます。 |
 
 | 言語(日英)切り替え |
 | --- |
-| <p align="center"><a href="https://gyazo.com/c00e8e9ba809c7bfe5008eac76c12fcc"><video width="600" autoplay muted loop playsinline controls><source src="https://i.gyazo.com/c00e8e9ba809c7bfe5008eac76c12fcc.mp4" type="video/mp4"/></video></a></p> |
-| 表示される言語を切り替えることができます（一部の固定ページは日本語のみの表示となります）。|
+| <p align="center" width="600"><img src="https://github.com/user-attachments/assets/86d71a9a-6dde-4a9b-9230-042969d711c0" width="600" alt="Language Switcher GIF"></p> |
+| 表示される言語を、日本語もしく英語に切り替えることができます（一部の固定ページは日本語のみの表示となります）。|
 
 ## ■ 技術スタック
 
