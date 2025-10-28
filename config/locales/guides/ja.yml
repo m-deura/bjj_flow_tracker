@@ -148,6 +148,7 @@ ja:
           title: カテゴリー検索
         step4:
           intro_html: カードをクリックすると、テクニック個々の詳細を確認・編集することができます。
+          selector: "article"
           title: テクニック詳細
         step5:
           intro_html: こちらのノート欄に、日々の練習で気がついたことを記録していきましょう！

@@ -167,7 +167,8 @@
           },
           "step4": {
             "intro_html": "Click a card to view or edit details of an individual technique.",
-            "title": "Technique details"
+            "selector": "article",
+            "title": "Technique Details"
           },
           "step5": {
             "intro_html": "Use the note field here to record your daily training insights!",
