@@ -79,8 +79,14 @@ class Mypage::NodesController < ApplicationController
     @selected_ids = children_ids.map!(&:to_s)
     @grouped =
       (@candidate_techniques + @node.dag_children.includes(:technique).map(&:technique))
-        .group_by { |tech| tech.category ? tech.category.humanize : t("enums.category.nil") }
-        .transform_values { |arr| arr.map { |tech| [ tech.name_for, tech.id ] } }
+      .group_by { |tech|
+          if tech.category.present?
+            t("enums.category.#{tech.category}", default: tech.category.humanize)
+          else
+            t("enums.category.nil")
+          end
+      }
+      .transform_values { |arr| arr.map { |tech| [ tech.name_for, tech.id ] } }
 
     # 既存テクニックのIDのみ取り出し
     tech_ids = Array(@form.children) #=> ["3", "new: アームバー", "42"]
