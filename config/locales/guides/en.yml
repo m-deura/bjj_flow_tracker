@@ -6,16 +6,16 @@ en:
         step0:
           intro_html: This is the screen for visualizing connections between techniques.<br><br>You can place techniques here and create flowcharts.
         step1:
-          intro_html: You can create a new starting point (root node) for your flowchart here.
+          intro_html: You can create new starting points (root nodes) for your flowchart here.
           selector: "#guide-creating-button"
-          title: New root node
+          title: Create New Root Nodes
       default:
         step0:
           intro_html: This is the screen for visualizing connections between techniques.<br><br>You can place techniques here and create flowcharts.
         step1:
-          intro_html: You can create a new starting point (root node) for your flowchart here.
+          intro_html: You can create new starting points (root nodes) for your flowchart here.
           selector: "#guide-creating-button"
-          title: New root node
+          title: Create New Root Nodes
         step2:
           intro_html: Click a node (circle) on the chart to view or edit the technique’s details.
           selector: ".drawer-side"
@@ -33,9 +33,9 @@ en:
         step0:
           intro_html: This is the screen for visualizing connections between techniques.<br><br>You can place techniques here and create flowcharts.
         step1:
-          intro_html: You can create a new starting point (root node) for your flowchart here.
+          intro_html: You can create new starting points (root nodes) for your flowchart here.
           selector: "#guide-creating-button"
-          title: New root node
+          title: Create New Root Nodes
         step2:
           intro_html: |-
             It looks like there are no nodes on this page yet, so let’s create a starting point (root node) to get started.<br><br>After that, try clicking one of the root nodes in the screen to open the node editor.<br><br>At the top of the node editor, click the
@@ -46,22 +46,22 @@ en:
     chart_list:
       common:
         step0:
-          intro_html: This is the screen where all the charts you own are listed.<br><br>On each individual chart page, you can connect techniques to visualize the flow of a match.
+          intro_html: This is the page where your charts are listed — each chart visualizes how your registered techniques connect to form match scenarios.<br><br>Organizing your charts by position makes it easier to review and keep things tidy.<br><br>That said, you can also group them by your favorite sequences or specific training themes — whatever fits your goal best!
         step1:
           intro_html: Click this button to create a new chart.
           selector: "#guide-creating-button"
-          title: Create New
+          title: Create a New Chart
         step2:
           intro_html: You can search and filter the charts displayed in the list using this search box.
           selector: "#guide-search-box"
           title: Search
       default:
         step0:
-          intro_html: This is the screen where all the charts you own are listed.<br><br>On each individual chart page, you can connect techniques to visualize the flow of a match.
+          intro_html: This is the page where your charts are listed — each chart visualizes how your registered techniques connect to form match scenarios.<br><br>Organizing your charts by position makes it easier to review and keep things tidy.<br><br>That said, you can also group them by your favorite sequences or specific training themes — whatever fits your goal best!
         step1:
           intro_html: Click this button to create a new chart.
           selector: "#guide-creating-button"
-          title: Create New
+          title: Create a New Chart
         step2:
           intro_html: You can search and filter the charts displayed in the list using this search box.
           selector: "#guide-search-box"
@@ -74,11 +74,11 @@ en:
             </svg> icon next to the chart title!
       zero_state:
         step0:
-          intro_html: This is the screen where all the charts you own are listed.<br><br>On each individual chart page, you can connect techniques to visualize the flow of a match.
+          intro_html: This is the page where your charts are listed — each chart visualizes how your registered techniques connect to form match scenarios.<br><br>Organizing your charts by position makes it easier to review and keep things tidy.<br><br>That said, you can also group them by your favorite sequences or specific training themes — whatever fits your goal best!
         step1:
           intro_html: Click this button to create a new chart.
           selector: "#guide-creating-button"
-          title: Create New
+          title: Create a New Chart
         step2:
           intro_html: You can search and filter the charts displayed in the list using this search box.
           selector: "#guide-search-box"
@@ -154,7 +154,7 @@ en:
         step1:
           intro_html: If the technique you need isn’t listed, you can create a new one with this button.
           selector: "#guide-creating-button"
-          title: New technique
+          title: Create a New Technique
         step2:
           intro_html: You can search for techniques here to filter the list.
           selector: "#guide-keyword-search"
@@ -169,7 +169,7 @@ en:
         step1:
           intro_html: If the technique you need isn’t listed, you can create a new one with this button.
           selector: "#guide-creating-button"
-          title: New technique
+          title: Create a New Technique
         step2:
           intro_html: You can search for techniques here to filter the list.
           selector: "#guide-keyword-search"
@@ -198,7 +198,7 @@ en:
         step1:
           intro_html: If the technique you need isn’t listed, you can create a new one with this button.
           selector: "#guide-creating-button"
-          title: New technique
+          title: Create a New Technique
         step2:
           intro_html: You can search for techniques here to filter the list.
           selector: "#guide-keyword-search"
