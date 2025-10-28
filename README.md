@@ -1,4 +1,7 @@
-## サービス概要
+## ■ サービス概要
+##### サービス名：BJJ Flow Tracker
+##### サービスURL：https://bjjflowtracker.com/
+<img src="app/assets/images/ogp.png" width="600" alt="ogp.png">
 
 BJJ Flow Tracker は、ブラジリアン柔術の練習メモを”試合およびスパーリングの流れ”に沿ったフロー図として記録・可視化できるサービスです。
 
@@ -6,7 +9,7 @@ BJJ Flow Tracker は、ブラジリアン柔術の練習メモを”試合およ
 
 個々のテクニックをフロー図に沿って状況ごとに整理することで、「いつ・どこで・どのようにそのテクニックを使うのか」が頭の中で整理され、スパーリングの「このポジションからの脱出、先週習ったのに思い出せない…」といった歯痒さをグッと減らすことができます。
 
-## サービスを作りたい理由
+## ■ 開発背景
 
 前提として、ブラジリアン柔術のテクニックは、特定のポジションや状況でしか使用することができません。そのため実際の試合では、自身と相手の双方がスタンディングからスタートした後、「その技が使える状況」に自力で遷移する必要があります。
 
@@ -16,49 +19,58 @@ BJJ Flow Tracker は、ブラジリアン柔術の練習メモを”試合およ
 
 この課題を解決するため、「技の記憶」と「状況遷移の整理」を結びつけて視覚的に整理できる本サービスの作成に思い至った次第です。
 
-## ユーザー層について
+## ■ メインの対象ユーザー
 
 - ブラジリアン柔術を上達させたいと思いながらも、練習記録のつけ方が分からず、日々の練習をただこなしてしまっている方
 - 練習記録はつけているが、見返す機会がなく記録を活かせていない方
 - 習ったテクニックがなかなか頭に残らないと感じている方
 
-## サービス利用のイメージ
+## ■ サービス利用のイメージ
+1. Technique メニューで技を登録・整理
 
-- 練習中に学んだことは、忘れないうちにクイックメモで素早く記録！後からじっくりフロー図に整理・集約することで、効率的にテクニックに関する学びを蓄積できます。
-- 本サービスで作成したフロー図は、試合の流れに沿って自分の知見を整理・集約した「自分専用の練習記録帳」として機能します。日々の練習やスパーリングの中で常にこのフローを思い浮かべながら動くことで、実戦での判断や振り返りにも役立ち、記録を見返す習慣が自然と生まれます。
+    技ごとに、動きのコツや気づきを記録することができます。プリセットとして90個以上のテクニックが初期登録されていますが、足りない場合は新規登録を行ってください。
+2. Flow Chart メニューで技を繋ぎ、試合の展開(得意パターン)を可視化
 
-## ユーザーの獲得について
+    Technique メニューで登録した技同士を繋げて、試合の展開を可視化することができます。「この技の次にどの技が使えるか」を整理することで、復習・戦略立案に役立てることができます。
 
-- 同じ道場に所属している会員に対して周知
-- SNSを利用した拡散
+本サービスで作成したフロー図は、試合の流れに沿って自分の知見を整理・集約した「自分専用の練習記録帳」として機能します。日々の練習やスパーリングの中で常にこのフローを思い浮かべながら動くことで、実戦での判断や振り返りにも役立ち、記録を見返す習慣が自然と生まれます。
 
-## サービスの差別化ポイント・推しポイント
+## ■ サービスの差別化ポイント・推しポイント
 
 | 観点 | 他サービスとの違い | 本サービスの強み
 | --------- | --------- | --------- | 
 | **インタラクティブな情報反映** | 定番の試合展開をまとめた情報提供型サービスはあるが、ユーザー自身の気づきを記録することはできない。 | 自分の練習ノートをフローチャート形式で整理・可視化できる。|
 | **使用ハードル**  | 「BJJフローチャート作成サービス」自体は僅かながら存在するが、ユーザーがゼロからテクニック及び動きを登録する必要がある。 | あらかじめプリセットとなるテクニックが登録されており、ユーザーは既存のテクニックを組み合わせるだけで自分の試合展開を構築できる。 |
 
-## 機能
+## ■ 機能紹介
 
-- ログイン機能
-- テクニック一覧機能
-- テクニック作成機能
-- テクニック編集機能
-- テクニック削除機能
-- チャート一覧機能
-- チャート作成機能
-- チャート編集機能
-- チャート削除機能
-- ゲストログイン機能
-- テクニックノート検索機能（インスタンス検索）
-- 多言語(英語)対応
-- PWA 対応
-- テクニック・チャート共有機能（要検討）
-- テクニックサンプル準備
-- チャートサンプル準備
+| ログイン |
+| --- |
+| <p align="center">[![Image from Gyazo](https://i.gyazo.com/6f6c9eb7c923a46a83a8acc2c58e7ac3.png)](https://gyazo.com/6f6c9eb7c923a46a83a8acc2c58e7ac3) </p> |
+| Googleアカウントを使って簡単にログインすることができます。ひとまずサービスを体験したい場合は、Googleアカウントを使わずゲストとしてログインすることも可能です。 |
 
-## 機能の実装方針
+| ステップガイド |
+| --- |
+| <p align="center"><a href="https://gyazo.com/90ad360f43519c31b1040c7e89773ba5"><video width="600" autoplay muted loop playsinline controls><source src="https://i.gyazo.com/90ad360f43519c31b1040c7e89773ba5.mp4" type="video/mp4"/></video></a></p> |
+| 各ページにあるステップガイド開始ボタン、もしくはタイトル右隣にある <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.5em" height="1.5em" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"/></svg> をクリックすると、そのページの概要と使い方を案内するステップガイドが始まります。これによって、初めての方でも迷わず画面を操作できます。
+ |
+
+| テクニック管理 |
+| --- |
+| <p align="center"><a href="https://gyazo.com/d92464e3a778e78b6be15fce973af02c"><video width="600" autoplay muted loop playsinline controls><source src="https://i.gyazo.com/d92464e3a778e78b6be15fce973af02c.mp4" type="video/mp4"/></video></a></p> |
+| それぞれの技に対して、気づきや動きのコツを記録できます。登録したテクニックは一覧から検索やカテゴリ別の絞り込みが可能。自分だけの「BJJノート」として知識を整理できます。 |
+
+| チャート管理 |
+| --- |
+| <p align="center"><a href="https://gyazo.com/9e23b70afde472cb9220151d0cb9ad74"><video width="600" autoplay muted loop playsinline controls><source src="https://i.gyazo.com/9e23b70afde472cb9220151d0cb9ad74.mp4" type="video/mp4"/></video></a></p><p align="center"><a href="https://gyazo.com/345bbc5eea2d8309cabfe3116fc7c15f"><img src="https://i.gyazo.com/345bbc5eea2d8309cabfe3116fc7c15f.png" alt="Image from Gyazo" width="600"/></a></p> |
+| 登録した技を繋げて、試合やスパーの展開を可視化することができます。さらに、各テクニック間の遷移条件（どんな状況からその技に移ることができるのか）を記録することで、戦略的な分析にも役立てることもできます。 |
+
+| 言語(日英)切り替え |
+| --- |
+| <p align="center"><a href="https://gyazo.com/c00e8e9ba809c7bfe5008eac76c12fcc"><video width="600" autoplay muted loop playsinline controls><source src="https://i.gyazo.com/c00e8e9ba809c7bfe5008eac76c12fcc.mp4" type="video/mp4"/></video></a></p> |
+| 表示される言語を切り替えることができます（一部の固定ページは日本語のみの表示となります）。|
+
+## ■ 技術スタック
 
 | 機能 / カテゴリー      | 技術                               |
 | ---------------------- | ---------------------------------- |
@@ -74,11 +86,11 @@ BJJ Flow Tracker は、ブラジリアン柔術の練習メモを”試合およ
 | ノードのツリー構造管理 | typed_dag                          |
 | 認証機能               | Devise / OmniAuth-Google-OAuth2    |
 
-## 画面遷移図
+## ■ 画面遷移図
 
 [Figma - 画面遷移図](https://www.figma.com/design/50XTJ2AdMyuF8x4kjTbcvT/BJJ-Flow-Tracker)
 
-## ER 図
+## ■ ER 図
 ```mermaid
 erDiagram
   users {
@@ -111,6 +123,15 @@ erDiagram
     string name_ja "テクニック名(日本語) (NOT NULL)"
     string name_en "テクニック名(英語) (NOT NULL)"
     int category "enumを使い、テクニックのカテゴリーを表現"
+    datetime created_at "作成日時 (NOT NULL)"
+    datetime updated_at "更新日時 (NOT NULL)"
+  }
+
+  transitions {
+    int id PK "ID (NOT NULL)"
+    int from_id FK "出発ノードID（NOT NULL）"
+    int to_id FK "到達ノードID (NOT NULL)"
+    string trigger "遷移条件"
     datetime created_at "作成日時 (NOT NULL)"
     datetime updated_at "更新日時 (NOT NULL)"
   }
@@ -170,6 +191,8 @@ erDiagram
   users ||--o{ charts : "1:多"
 
   techniques ||--o{ nodes : "1:多"
+  techniques ||--o{ transitions : "1:多(from)"
+  techniques ||--o{ transitions : "1:多(to)"
 
   technique_presets ||--o{ techniques : "1:多"
   technique_presets ||--o{ node_presets : "1:多"
