@@ -83,6 +83,7 @@ export default class extends Controller {
 			steps,
 			showBullets: false,
 			showProgress: true,
+			scrollTo: "tooltip",
 		});
 
 		if (onafterchange) tour.onAfterChange(onafterchange);
@@ -122,7 +123,6 @@ export default class extends Controller {
 
 	startNodeGuide(){
 		this.start(function() {
-			this.refresh();
 			// 小さい画面だと最終ステップガイドが見切れるため、画面上部へ自動スクロール。
 			if (this.getCurrentStep() === 4) {
 				window.scrollTo({ top: 0, behavior: "smooth" })
