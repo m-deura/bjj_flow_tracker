@@ -34,3 +34,5 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@import "driver.js/dist/driver.css";
