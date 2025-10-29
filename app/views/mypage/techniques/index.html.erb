@@ -22,7 +22,7 @@
       <%= link_to t("defaults.create") , new_mypage_technique_path, class: "btn btn-primary btn-wide", id: "guide-creating-button" %>
 
       <div>
-        <%= search_form_for @q, url: mypage_techniques_path, class: "flex flex-col items-center justify-center w-80",
+        <%= search_form_for @q, url: mypage_techniques_path, class: "flex flex-col items-center justify-center",
               data: { turbo_frame: "technique-list",
                       controller: "instant-search",
                       action: "input->instant-search#autosubmit reset->instant-search#autosubmit"
