@@ -88,7 +88,7 @@ RSpec.describe "Nodes", type: :system do
       click_node(@node.id)
 
       find(:css, '[data-action~="click->step-guide#startNodeGuide"]').click
-      expect(page).to have_css('.introjs-tour')
+      expect(page).to have_css('#driver-popover-content')
     end
 
     it "ノードをクリックすると、ドロワーが開かれて編集フォームが表示される", :js do

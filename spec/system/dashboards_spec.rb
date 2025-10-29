@@ -18,6 +18,6 @@ RSpec.describe "Dashboards", type: :system do
   it "ステップガイドが開始できる", :js do
     # ログイン後、ダッシュボードに遷移する前提
     find(:css, '[data-action~="click->step-guide#startDashboardGuide"]').click
-    expect(page).to have_css('.introjs-tour')
+    expect(page).to have_css('#driver-popover-content')
   end
 end
