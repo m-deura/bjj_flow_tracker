@@ -1238,11 +1238,6 @@ iconv-lite@0.6:
   resolved "https://registry.yarnpkg.com/internmap/-/internmap-2.0.3.tgz#6685f23755e43c524e251d29cbc97248e3061009"
   integrity sha512-5Hh7Y1wQbvY5ooGgPbDaL5iYLAPzMTUrjMulskHLH6wnv/A+1q5rgEaiuqEjB+oxGXIVZs1FF+R/KPN3ZSQYYg==
 
-intro.js@^8.3.2:
-  version "8.3.2"
-  resolved "https://registry.yarnpkg.com/intro.js/-/intro.js-8.3.2.tgz#942129bccf0490a750ab04b1db744e3bb5f000b7"
-  integrity sha512-+QsuU8P7Z/O7stAwZ8Uj6CPyKsY6xVx/7hKTVLjlIEPYHaT43XnEUUYHCln6Ehr7GlDuwczh6I8PD/HGf4EG0A==
-
 is-any-array@^2.0.0, is-any-array@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/is-any-array/-/is-any-array-2.0.1.tgz#9233242a9c098220290aa2ec28f82ca7fa79899e"
