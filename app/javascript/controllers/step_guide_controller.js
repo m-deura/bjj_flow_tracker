@@ -11,7 +11,6 @@ export default class extends Controller {
 	}
 
   async connect() {
-		// introJs.tour().setOption("dontShowAgain", true).start();
 		this.i18n = await ensureI18n();
 		this.scopeKey = this.scopeValue;
 		this.vars = {
@@ -50,22 +49,22 @@ export default class extends Controller {
 		for (const step of stepKeys) {
 			const base = `${this.scopeKey}.${step}`
 			const title = this.tOrNull(`${base}.title`)
-			const intro = this.tOrNull(`${base}.intro_html`, this.vars)
-			if (!title && !intro) continue  // どちらも無ければスキップ
+			const description = this.tOrNull(`${base}.description`, this.vars)
+			if (!title && !description) continue  // どちらも無ければスキップ
 		
-			// selector も i18n から取得する（無ければ null）
-			const selector = this.tOrNull(`${base}.selector`) || null
+			// element も i18n から取得する（無ければ null）
+			const element = this.tOrNull(`${base}.element`) || null
 			const popover = {}
 			if (title) popover.title = title
-			if (intro) popover.description = intro
+			if (description) popover.description = description
 
 			// ハイライトが当たった展開済みカードやドロワーが閉じられないようにする
 			const common = { popover, disableActiveInteraction: true }
 
-			if (selector) {
+			if (element) {
 				// セレクタ要素が存在しない場合は“全体ステップ”として落とす（スキップしたければ continue）
-				if (document.querySelector(selector)) {
-					steps.push({ element: selector, ...common })
+				if (document.querySelector(element)) {
+					steps.push({ element: element, ...common })
 				} else {
 					steps.push(common)
 				}

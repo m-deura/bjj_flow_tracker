@@ -28,178 +28,178 @@
       "chart": {
         "default": {
           "step0": {
-            "intro_html": "こちらは、テクニック同士の繋がりを可視化するための画面です。<br><br>このエリアにテクニックを配置し、フローチャートを作ることができます。"
+            "description": "こちらは、テクニック同士の繋がりを可視化するための画面です。<br><br>このエリアにテクニックを配置し、フローチャートを作ることができます。"
           },
           "step1": {
-            "intro_html": "ここからフローチャートの開始点(ルートノード)を新規作成できます。",
-            "selector": "#guide-creating-button",
+            "description": "ここからフローチャートの開始点(ルートノード)を新規作成できます。",
+            "element": "#guide-creating-button",
             "title": "ルートノードを新規作成"
           },
           "step2": {
-            "intro_html": "エリアにあるノード(丸い図形)をクリックすると、テクニックの詳細を確認・編集することができます。",
-            "selector": "aside",
+            "description": "エリアにあるノード(丸い図形)をクリックすると、テクニックの詳細を確認・編集することができます。",
+            "element": "aside",
             "title": "チャート上のテクニック"
           },
           "step3": {
-            "intro_html": "本画面の操作について知りたい方は、ノード編集画面上部にある\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg>\nをクリックしてください！",
-            "selector": "#guide-node-edit-screen-header",
+            "description": "本画面の操作について知りたい方は、ノード編集画面上部にある\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg>\nをクリックしてください！",
+            "element": "#guide-node-edit-screen-header",
             "title": "ノード編集"
           }
         },
         "zero_state": {
           "step0": {
-            "intro_html": "こちらは、テクニック同士の繋がりを可視化するための画面です。<br><br>このエリアにテクニックを配置し、フローチャートを作ることができます。"
+            "description": "こちらは、テクニック同士の繋がりを可視化するための画面です。<br><br>このエリアにテクニックを配置し、フローチャートを作ることができます。"
           },
           "step1": {
-            "intro_html": "ここからフローチャートの開始点(ルートノード)を新規作成できます。",
-            "selector": "#guide-creating-button",
+            "description": "ここからフローチャートの開始点(ルートノード)を新規作成できます。",
+            "element": "#guide-creating-button",
             "title": "ルートノードを新規作成"
           },
           "step2": {
-            "intro_html": "本画面にはまだノードが存在しないようですので、まずはフローの開始点(ルートノード)を新規作成してみましょう。<br><br>その後、作成したルートノードをクリックしてノード編集画面を開いてみましょう。<br><br>\nノード編集画面上部にある\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg>\nをクリックすることで、続きの画面操作ガイドを開始することができます。"
+            "description": "本画面にはまだノードが存在しないようですので、まずはフローの開始点(ルートノード)を新規作成してみましょう。<br><br>その後、作成したルートノードをクリックしてノード編集画面を開いてみましょう。<br><br>\nノード編集画面上部にある\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg>\nをクリックすることで、続きの画面操作ガイドを開始することができます。"
           }
         }
       },
       "chart_list": {
         "default": {
           "step0": {
-            "intro_html": "こちらは、登録されたテクニックを繋げて試合の動線を可視化するためのチャートが一覧で並んだ画面です。<br><br>チャートはポジション単位で分けると整理しやすく、復習に便利です。<br><br>ただし、「得意展開」や「テーマ練習」など、自分の目的に合わせて分けるのもおすすめです。"
+            "description": "こちらは、登録されたテクニックを繋げて試合の動線を可視化するためのチャートが一覧で並んだ画面です。<br><br>チャートはポジション単位で分けると整理しやすく、復習に便利です。<br><br>ただし、「得意展開」や「テーマ練習」など、自分の目的に合わせて分けるのもおすすめです。"
           },
           "step1": {
-            "intro_html": "このボタンからチャートを新規作成することができます。",
-            "selector": "#guide-creating-button",
+            "description": "このボタンからチャートを新規作成することができます。",
+            "element": "#guide-creating-button",
             "title": "新規作成"
           },
           "step2": {
-            "intro_html": "一覧にあるチャートは、ここから検索して表示を絞り込むことができます。",
-            "selector": "#guide-search-box",
+            "description": "一覧にあるチャートは、ここから検索して表示を絞り込むことができます。",
+            "element": "#guide-search-box",
             "title": "検索"
           },
           "step3": {
-            "intro_html": "こちらの画面の説明は以上です。<br><br>まずは一覧にあるいずれかのカードをクリックして、チャート画面を開いてみましょう。<br><br>チャート画面の操作方法については、チャート画面のタイトル右にある\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg> をクリックしてください！"
+            "description": "こちらの画面の説明は以上です。<br><br>まずは一覧にあるいずれかのカードをクリックして、チャート画面を開いてみましょう。<br><br>チャート画面の操作方法については、チャート画面のタイトル右にある\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg> をクリックしてください！"
           }
         },
         "zero_state": {
           "step0": {
-            "intro_html": "こちらは、登録されたテクニックを繋げて試合の動線を可視化するためのチャートが一覧で並んだ画面です。<br><br>チャートはポジション単位で分けると整理しやすく、復習に便利です。<br><br>ただし、「得意展開」や「テーマ練習」など、自分の目的に合わせて分けるのもおすすめです。"
+            "description": "こちらは、登録されたテクニックを繋げて試合の動線を可視化するためのチャートが一覧で並んだ画面です。<br><br>チャートはポジション単位で分けると整理しやすく、復習に便利です。<br><br>ただし、「得意展開」や「テーマ練習」など、自分の目的に合わせて分けるのもおすすめです。"
           },
           "step1": {
-            "intro_html": "このボタンからチャートを新規作成することができます。",
-            "selector": "#guide-creating-button",
+            "description": "このボタンからチャートを新規作成することができます。",
+            "element": "#guide-creating-button",
             "title": "新規作成"
           },
           "step2": {
-            "intro_html": "一覧にあるチャートは、ここから検索して表示を絞り込むことができます。",
-            "selector": "#guide-search-box",
+            "description": "一覧にあるチャートは、ここから検索して表示を絞り込むことができます。",
+            "element": "#guide-search-box",
             "title": "検索"
           },
           "step3": {
-            "intro_html": "こちらの画面の説明は以上です。<br><br>本画面にはチャートが存在しないようですので、まずは新規作成してみましょう。<br><br>その後、作成されたチャートを開いてみましょう。<br><br>チャート画面の操作方法については、チャート画面のタイトル右にある\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg> をクリックしてください！"
+            "description": "こちらの画面の説明は以上です。<br><br>本画面にはチャートが存在しないようですので、まずは新規作成してみましょう。<br><br>その後、作成されたチャートを開いてみましょう。<br><br>チャート画面の操作方法については、チャート画面のタイトル右にある\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg> をクリックしてください！"
           }
         }
       },
       "dashboard": {
         "step0": {
-          "intro_html": "ここでは、アプリの使い方を説明します。<br><br>\n基本的な使い方の流れは以下の通りです。<br><br>\n<ol class=\"list-decimal list-inside\">\n  <li><strong>Technique</strong> で技を登録</li>\n  <li><strong>Flow Chart</strong> で技同士をつないで、試合の展開（得意パターン）を可視化</li>\n</ol>",
+          "description": "ここでは、アプリの使い方を説明します。<br><br>\n基本的な使い方の流れは以下の通りです。<br><br>\n<ol class=\"list-decimal list-inside\">\n  <li><strong>Technique</strong> で技を登録</li>\n  <li><strong>Flow Chart</strong> で技同士をつないで、試合の展開（得意パターン）を可視化</li>\n</ol>",
           "title": "このガイドについて"
         },
         "step1": {
-          "intro_html": "<strong>Technique</strong>では、技を登録・整理することができます。<br><br>\nスパー後の気づきを各テクニックのノート部分に追記すると、技が定着しやすくなります。<br><br>\nプリセットとして90個以上のテクニックが初期登録されていますが、足りない場合は新規登録を行ってください。<br><br>\nTechnique画面の操作方法ガイドは、Technique画面左上の\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg>\nをクリックすると表示されます。<br><br>",
-          "selector": "#guide-technique",
+          "description": "<strong>Technique</strong>では、技を登録・整理することができます。<br><br>\nスパー後の気づきを各テクニックのノート部分に追記すると、技が定着しやすくなります。<br><br>\nプリセットとして90個以上のテクニックが初期登録されていますが、足りない場合は新規登録を行ってください。<br><br>\nTechnique画面の操作方法ガイドは、Technique画面左上の\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg>\nをクリックすると表示されます。<br><br>",
+          "element": "#guide-technique",
           "title": "Technique：技を登録"
         },
         "step2": {
-          "intro_html": "<strong>Flow Chart</strong>では、Techniqueに登録された技同士を繋げて、試合の展開を可視化することができます。<br><br>\n「この技の次にどの技が使えるか」を整理することで、復習・戦略立案に役立てることができます。<br><br>\nFlow Chart画面の操作方法ガイドは、Flow Chart画面左上の\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg>\nをクリックすると表示されます。<br><br>",
-          "selector": "#guide-chart",
+          "description": "<strong>Flow Chart</strong>では、Techniqueに登録された技同士を繋げて、試合の展開を可視化することができます。<br><br>\n「この技の次にどの技が使えるか」を整理することで、復習・戦略立案に役立てることができます。<br><br>\nFlow Chart画面の操作方法ガイドは、Flow Chart画面左上の\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg>\nをクリックすると表示されます。<br><br>",
+          "element": "#guide-chart",
           "title": "Flow Chart：技をつなぐ"
         },
         "step3": {
-          "intro_html": "まずは、<strong>Flow Chart</strong>で、自分が得意としている試合の動線を描いてみてください。<br><br>自分が使うテクニックが用意されていない場合は、<strong>Technique</strong>に戻って、テクニックを新規追加してみてください。",
+          "description": "まずは、<strong>Flow Chart</strong>で、自分が得意としている試合の動線を描いてみてください。<br><br>自分が使うテクニックが用意されていない場合は、<strong>Technique</strong>に戻って、テクニックを新規追加してみてください。",
           "title": "最初のゴール"
         },
         "step4": {
-          "intro_html": "それでは始めましょう！<br><br>\n分からなくなったら、もう一度このガイドを開けば大丈夫です！",
+          "description": "それでは始めましょう！<br><br>\n分からなくなったら、もう一度このガイドを開けば大丈夫です！",
           "title": "準備OK！"
         }
       },
       "node": {
         "step0": {
-          "intro_html": "ここでは、ノード編集画面について説明します。"
+          "description": "ここでは、ノード編集画面について説明します。"
         },
         "step1": {
-          "intro_html": "このフィールドから、テクニックの情報を更新することができます。<br><br>この画面で更新された情報は、<a class='underline font-bold' href=\"%{techniques_path}\">Technique</a> 上の内容にも反映されます。",
-          "selector": "#guide-technique",
+          "description": "このフィールドから、テクニックの情報を更新することができます。<br><br>この画面で更新された情報は、<a class='underline font-bold' href=\"%{techniques_path}\">Technique</a> 上の内容にも反映されます。",
+          "element": "#guide-technique",
           "title": "テクニック更新"
         },
         "step2": {
-          "intro_html": "このテクニックから派生する技(展開先テクニック)を編集することができます。<br><br>ここで選択されたテクニックは、このテクニックの右側に接続される形でチャート上に描写されます。<br><br>また、展開先ごとに「その技に遷移するのに必要な条件」を記録することもできます。",
-          "selector": "#guide-children",
+          "description": "このテクニックから派生する技(展開先テクニック)を編集することができます。<br><br>ここで選択されたテクニックは、このテクニックの右側に接続される形でチャート上に描写されます。<br><br>また、展開先ごとに「その技に遷移するのに必要な条件」を記録することもできます。",
+          "element": "#guide-children",
           "title": "展開先テクニック更新"
         },
         "step3": {
-          "intro_html": "こちらからノードを削除することができます。<br><br>ノードを削除すると、展開先テクニックとして接続されていたノードもすべて削除されますので、ご注意ください。",
-          "selector": "#guide-deleting-button",
+          "description": "こちらからノードを削除することができます。<br><br>ノードを削除すると、展開先テクニックとして接続されていたノードもすべて削除されますので、ご注意ください。",
+          "element": "#guide-deleting-button",
           "title": "ノード削除"
         },
         "step4": {
-          "intro_html": "ここまで来たら、試しにノードを作ったり、展開先テクニックを追加したりして操作に慣れましょう！<br><br>本アプリに関するご不明点や改善点等がございましたら、画面下部にある <a class='underline font-bold' href='https://forms.gle/VGdTkDDsJkVQY7e79' target='_blank' rel='noopener noreferrer'>お問い合わせ</a> ページよりお気軽にご連絡ください！<br><br>それでは、よりよい柔術ライフを👋"
+          "description": "ここまで来たら、試しにノードを作ったり、展開先テクニックを追加したりして操作に慣れましょう！<br><br>本アプリに関するご不明点や改善点等がございましたら、画面下部にある <a class='underline font-bold' href='https://forms.gle/VGdTkDDsJkVQY7e79' target='_blank' rel='noopener noreferrer'>お問い合わせ</a> ページよりお気軽にご連絡ください！<br><br>それでは、よりよい柔術ライフを👋"
         }
       },
       "technique": {
         "default": {
           "step0": {
-            "intro_html": "こちらは、柔術のテクニックが一覧として並んでいる画面です。"
+            "description": "こちらは、柔術のテクニックが一覧として並んでいる画面です。"
           },
           "step1": {
-            "intro_html": "一覧にないテクニックは、こちらのボタンから新規作成することができます。",
-            "selector": "#guide-creating-button",
+            "description": "一覧にないテクニックは、こちらのボタンから新規作成することができます。",
+            "element": "#guide-creating-button",
             "title": "新規作成"
           },
           "step2": {
-            "intro_html": "一覧にあるテクニックは、ここからキーワード検索して表示を絞り込むことができます。",
-            "selector": "#guide-keyword-search",
+            "description": "一覧にあるテクニックは、ここからキーワード検索して表示を絞り込むことができます。",
+            "element": "#guide-keyword-search",
             "title": "キーワード検索"
           },
           "step3": {
-            "intro_html": "テクニックのカテゴリーによる絞り込みも可能です。",
-            "selector": "#guide-category-search",
+            "description": "テクニックのカテゴリーによる絞り込みも可能です。",
+            "element": "#guide-category-search",
             "title": "カテゴリー検索"
           },
           "step4": {
-            "intro_html": "カードをクリックすると、テクニック個々の詳細を確認・編集することができます。",
-            "selector": "article",
+            "description": "カードをクリックすると、テクニック個々の詳細を確認・編集することができます。",
+            "element": "article",
             "title": "テクニック詳細"
           },
           "step5": {
-            "intro_html": "こちらのノート欄に、日々の練習で気がついたことを記録していきましょう！",
-            "selector": "aside",
+            "description": "こちらのノート欄に、日々の練習で気がついたことを記録していきましょう！",
+            "element": "aside",
             "title": "テクニック編集"
           },
           "step6": {
-            "intro_html": "こちらの画面の説明は以上です。<br><br>本画面から確認できるテクニック同士を繋げて可視化する操作について知りたい場合は <a class='underline font-bold' href=\"%{charts_path}\"> Flow Chart</a> メニューの上部にある\n  <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n    <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n  </svg>\nをクリックしてください！"
+            "description": "こちらの画面の説明は以上です。<br><br>本画面から確認できるテクニック同士を繋げて可視化する操作について知りたい場合は <a class='underline font-bold' href=\"%{charts_path}\"> Flow Chart</a> メニューの上部にある\n  <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n    <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n  </svg>\nをクリックしてください！"
           }
         },
         "zero_state": {
           "step0": {
-            "intro_html": "こちらは、柔術のテクニックが一覧として並んでいる画面です。"
+            "description": "こちらは、柔術のテクニックが一覧として並んでいる画面です。"
           },
           "step1": {
-            "intro_html": "一覧にないテクニックは、こちらのボタンから新規作成することができます。",
-            "selector": "#guide-creating-button",
+            "description": "一覧にないテクニックは、こちらのボタンから新規作成することができます。",
+            "element": "#guide-creating-button",
             "title": "新規作成"
           },
           "step2": {
-            "intro_html": "一覧にあるテクニックは、ここからキーワード検索して表示を絞り込むことができます。",
-            "selector": "#guide-keyword-search",
+            "description": "一覧にあるテクニックは、ここからキーワード検索して表示を絞り込むことができます。",
+            "element": "#guide-keyword-search",
             "title": "キーワード検索"
           },
           "step3": {
-            "intro_html": "テクニックのカテゴリーによる絞り込みも可能です。",
-            "selector": "#guide-category-search",
+            "description": "テクニックのカテゴリーによる絞り込みも可能です。",
+            "element": "#guide-category-search",
             "title": "カテゴリー検索"
           },
           "step4": {
-            "intro_html": "こちらの画面の説明は以上です。<br><br>本画面にはまだテクニックが存在しないようですので、まずは新規作成してみましょう。<br><br>その後、作成したテクニック同士を繋げて試合の展開を可視化する操作について知りたい場合は <a class='underline font-bold' href=\"%{charts_path}\"> Flow Chart</a> メニューの上部にある\n  <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n    <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n  </svg>\nをクリックしてください！"
+            "description": "こちらの画面の説明は以上です。<br><br>本画面にはまだテクニックが存在しないようですので、まずは新規作成してみましょう。<br><br>その後、作成したテクニック同士を繋げて試合の展開を可視化する操作について知りたい場合は <a class='underline font-bold' href=\"%{charts_path}\"> Flow Chart</a> メニューの上部にある\n  <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n    <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n  </svg>\nをクリックしてください！"
           }
         }
       }
