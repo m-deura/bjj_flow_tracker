@@ -31,19 +31,29 @@
             "description": "こちらは、テクニック同士の繋がりを可視化するための画面です。<br><br>このエリアにテクニックを配置し、フローチャートを作ることができます。"
           },
           "step1": {
-            "description": "ここからフローチャートの開始点(ルートノード)を新規作成できます。",
-            "element": "#guide-creating-button",
-            "title": "ルートノードを新規作成"
+            "description": "このボタンをクリックすると、チャート名を編集することができます。",
+            "element": "#guide-chart-edit-button",
+            "title": "チャート名を編集"
           },
           "step2": {
-            "description": "エリアにあるノード(丸い図形)をクリックすると、テクニックの詳細を確認・編集することができます。",
-            "element": "aside",
-            "title": "チャート上のテクニック"
+            "description": "このボタンをクリックすると、チャートを削除することができます。",
+            "element": "#guide-chart-delete-button",
+            "title": "チャートを削除"
           },
           "step3": {
+            "description": "ここからフローチャートの開始点(ルートノード)を新規作成できます。",
+            "element": "#guide-create-button",
+            "title": "ルートノードを新規作成"
+          },
+          "step4": {
+            "description": "エリアにあるノード(丸い図形)をクリックすると、テクニックの詳細を確認・編集することができます。",
+            "element": "aside",
+            "title": "チャート上のテクニック(ノード)"
+          },
+          "step5": {
             "description": "本画面の操作について知りたい方は、ノード編集画面上部にある\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg>\nをクリックしてください！",
             "element": "#guide-node-edit-screen-header",
-            "title": "ノード編集"
+            "title": "ノードを編集"
           }
         },
         "zero_state": {
@@ -51,11 +61,21 @@
             "description": "こちらは、テクニック同士の繋がりを可視化するための画面です。<br><br>このエリアにテクニックを配置し、フローチャートを作ることができます。"
           },
           "step1": {
-            "description": "ここからフローチャートの開始点(ルートノード)を新規作成できます。",
-            "element": "#guide-creating-button",
-            "title": "ルートノードを新規作成"
+            "description": "このボタンをクリックすると、チャート名を編集することができます。",
+            "element": "#guide-chart-edit-button",
+            "title": "チャート名を編集"
           },
           "step2": {
+            "description": "このボタンをクリックすると、チャートを削除することができます。",
+            "element": "#guide-chart-delete-button",
+            "title": "チャートを削除"
+          },
+          "step3": {
+            "description": "ここからフローチャートの開始点(ルートノード)を新規作成できます。",
+            "element": "#guide-create-button",
+            "title": "ルートノードを新規作成"
+          },
+          "step4": {
             "description": "本画面にはまだノードが存在しないようですので、まずはフローの開始点(ルートノード)を新規作成してみましょう。<br><br>その後、作成したルートノードをクリックしてノード編集画面を開いてみましょう。<br><br>\nノード編集画面上部にある\n<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>\n  <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />\n</svg>\nをクリックすることで、続きの画面操作ガイドを開始することができます。"
           }
         }
@@ -67,7 +87,7 @@
           },
           "step1": {
             "description": "このボタンからチャートを新規作成することができます。",
-            "element": "#guide-creating-button",
+            "element": "#guide-create-button",
             "title": "新規作成"
           },
           "step2": {
@@ -85,7 +105,7 @@
           },
           "step1": {
             "description": "このボタンからチャートを新規作成することができます。",
-            "element": "#guide-creating-button",
+            "element": "#guide-create-button",
             "title": "新規作成"
           },
           "step2": {
@@ -138,7 +158,7 @@
         },
         "step3": {
           "description": "こちらからノードを削除することができます。<br><br>ノードを削除すると、展開先テクニックとして接続されていたノードもすべて削除されますので、ご注意ください。",
-          "element": "#guide-deleting-button",
+          "element": "#guide-delete-button",
           "title": "ノード削除"
         },
         "step4": {
@@ -152,7 +172,7 @@
           },
           "step1": {
             "description": "一覧にないテクニックは、こちらのボタンから新規作成することができます。",
-            "element": "#guide-creating-button",
+            "element": "#guide-create-button",
             "title": "新規作成"
           },
           "step2": {
@@ -185,7 +205,7 @@
           },
           "step1": {
             "description": "一覧にないテクニックは、こちらのボタンから新規作成することができます。",
-            "element": "#guide-creating-button",
+            "element": "#guide-create-button",
             "title": "新規作成"
           },
           "step2": {

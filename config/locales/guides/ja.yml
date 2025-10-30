@@ -6,14 +6,22 @@ ja:
         step0:
           description: こちらは、テクニック同士の繋がりを可視化するための画面です。<br><br>このエリアにテクニックを配置し、フローチャートを作ることができます。
         step1:
-          description: ここからフローチャートの開始点(ルートノード)を新規作成できます。
-          element: "#guide-creating-button"
-          title: ルートノードを新規作成
+          description: このボタンをクリックすると、チャート名を編集することができます。
+          element: "#guide-chart-edit-button"
+          title: チャート名を編集
         step2:
+          description: このボタンをクリックすると、チャートを削除することができます。
+          element: "#guide-chart-delete-button"
+          title: チャートを削除
+        step3:
+          description: ここからフローチャートの開始点(ルートノード)を新規作成できます。
+          element: "#guide-create-button"
+          title: ルートノードを新規作成
+        step4:
           description: エリアにあるノード(丸い図形)をクリックすると、テクニックの詳細を確認・編集することができます。
           element: "aside"
-          title: チャート上のテクニック
-        step3:
+          title: チャート上のテクニック(ノード)
+        step5:
           description: |-
             本画面の操作について知りたい方は、ノード編集画面上部にある
             <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
@@ -21,15 +29,23 @@ ja:
             </svg>
             をクリックしてください！
           element: "#guide-node-edit-screen-header"
-          title: ノード編集
+          title: ノードを編集
       zero_state:
         step0:
           description: こちらは、テクニック同士の繋がりを可視化するための画面です。<br><br>このエリアにテクニックを配置し、フローチャートを作ることができます。
         step1:
-          description: ここからフローチャートの開始点(ルートノード)を新規作成できます。
-          element: "#guide-creating-button"
-          title: ルートノードを新規作成
+          description: このボタンをクリックすると、チャート名を編集することができます。
+          element: "#guide-chart-edit-button"
+          title: チャート名を編集
         step2:
+          description: このボタンをクリックすると、チャートを削除することができます。
+          element: "#guide-chart-delete-button"
+          title: チャートを削除
+        step3:
+          description: ここからフローチャートの開始点(ルートノード)を新規作成できます。
+          element: "#guide-create-button"
+          title: ルートノードを新規作成
+        step4:
           description: |-
             本画面にはまだノードが存在しないようですので、まずはフローの開始点(ルートノード)を新規作成してみましょう。<br><br>その後、作成したルートノードをクリックしてノード編集画面を開いてみましょう。<br><br>
             ノード編集画面上部にある
@@ -43,7 +59,7 @@ ja:
           description: こちらは、登録されたテクニックを繋げて試合の動線を可視化するためのチャートが一覧で並んだ画面です。<br><br>チャートはポジション単位で分けると整理しやすく、復習に便利です。<br><br>ただし、「得意展開」や「テーマ練習」など、自分の目的に合わせて分けるのもおすすめです。
         step1:
           description: このボタンからチャートを新規作成することができます。
-          element: "#guide-creating-button"
+          element: "#guide-create-button"
           title: 新規作成
         step2:
           description: 一覧にあるチャートは、ここから検索して表示を絞り込むことができます。
@@ -60,7 +76,7 @@ ja:
           description: こちらは、登録されたテクニックを繋げて試合の動線を可視化するためのチャートが一覧で並んだ画面です。<br><br>チャートはポジション単位で分けると整理しやすく、復習に便利です。<br><br>ただし、「得意展開」や「テーマ練習」など、自分の目的に合わせて分けるのもおすすめです。
         step1:
           description: このボタンからチャートを新規作成することができます。
-          element: "#guide-creating-button"
+          element: "#guide-create-button"
           title: 新規作成
         step2:
           description: 一覧にあるチャートは、ここから検索して表示を絞り込むことができます。
@@ -126,7 +142,7 @@ ja:
         title: 展開先テクニック更新
       step3:
         description: こちらからノードを削除することができます。<br><br>ノードを削除すると、展開先テクニックとして接続されていたノードもすべて削除されますので、ご注意ください。
-        element: "#guide-deleting-button"
+        element: "#guide-delete-button"
         title: ノード削除
       step4:
         description: "ここまで来たら、試しにノードを作ったり、展開先テクニックを追加したりして操作に慣れましょう！<br><br>本アプリに関するご不明点や改善点等がございましたら、画面下部にある <a class='underline font-bold' href='https://forms.gle/VGdTkDDsJkVQY7e79' target='_blank' rel='noopener noreferrer'>お問い合わせ</a> ページよりお気軽にご連絡ください！<br><br>それでは、よりよい柔術ライフを👋"
@@ -136,7 +152,7 @@ ja:
           description: こちらは、柔術のテクニックが一覧として並んでいる画面です。
         step1:
           description: 一覧にないテクニックは、こちらのボタンから新規作成することができます。
-          element: "#guide-creating-button"
+          element: "#guide-create-button"
           title: 新規作成
         step2:
           description: 一覧にあるテクニックは、ここからキーワード検索して表示を絞り込むことができます。
@@ -166,7 +182,7 @@ ja:
           description: こちらは、柔術のテクニックが一覧として並んでいる画面です。
         step1:
           description: 一覧にないテクニックは、こちらのボタンから新規作成することができます。
-          element: "#guide-creating-button"
+          element: "#guide-create-button"
           title: 新規作成
         step2:
           description: 一覧にあるテクニックは、ここからキーワード検索して表示を絞り込むことができます。

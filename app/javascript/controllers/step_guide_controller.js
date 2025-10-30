@@ -113,7 +113,7 @@ export default class extends Controller {
 
 		this.start((drv) => {
 			// step2の時、chart_controllerに頼んでドロワーを開く。
-			if (drv.getActiveIndex() === 2) {
+			if (drv.getActiveIndex() === 4) {
 				controller.dispatch("openNode"); 
 				// アロー関数じゃないので、ここでthis.dispatchと書くとthisはdriver()を指すようになる。
 				// アロー関数は外側のthisを使う一方、function() の場合thisは呼び出し側が決める仕様。

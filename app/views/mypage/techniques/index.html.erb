@@ -19,7 +19,7 @@
 
     <div class="flex flex-col items-center justify-center gap-3">
       <!-- 新規作成ボタン -->
-      <%= link_to t("defaults.create") , new_mypage_technique_path, class: "btn btn-primary btn-wide", id: "guide-creating-button" %>
+      <%= link_to t("defaults.create") , new_mypage_technique_path, class: "btn btn-primary btn-wide", id: "guide-create-button" %>
 
       <div>
         <%= search_form_for @q, url: mypage_techniques_path, class: "flex flex-col items-center justify-center",
@@ -125,7 +125,7 @@
                 <%= link_to edit_mypage_technique_path(t),
                       class: "absolute inset-0 z-10",
                       data: { turbo_frame: "technique-drawer", action: "click->drawer#open" } do %>
-                  <span class="sr-only">Open the editing panel</span>
+                  <span class="sr-only">Open the editor panel</span>
                 <% end %>
               </article>
             <% end %>
