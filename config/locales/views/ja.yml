@@ -79,11 +79,11 @@ ja:
         welcome: ようこそ、
     nodes:
       drawer_header:
-        creating_panel_title: フローの開始点を作成
-        editing_panel_title: ノードを編集
+        create_panel_title: フローの開始点を作成
+        edit_panel_title: ノードを編集
     techniques:
       index:
-        editing_panel_title: テクニックを編集
+        edit_panel_title: テクニックを編集
         metrics:
           techniques:
             other: "%{n} 件"
