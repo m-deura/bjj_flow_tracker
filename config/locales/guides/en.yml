@@ -21,7 +21,7 @@ en:
             </svg>
             at the top of the node editing screen.
           element: "#guide-node-edit-screen-header"
-          title: Node editing
+          title: Editing a Node
       zero_state:
         step0:
           description: This is the screen for visualizing connections between techniques.<br><br>You can place techniques here and create flowcharts.
@@ -31,7 +31,7 @@ en:
           title: Create New Root Nodes
         step2:
           description: |-
-            It looks like there are no nodes on this page yet, so let’s create a starting point (root node) to get started.<br><br>After that, try clicking one of the root nodes in the screen to open the node editor.<br><br>At the top of the node editor, click the
+            It looks like there are no nodes on this page yet, so let’s create a starting point (root node) to get started.<br><br>After that, try clicking one of the root nodes in the screen to open the node edit screen.<br><br>At the top of the node edit screen, click the
             <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
               <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
             </svg>
@@ -114,7 +114,7 @@ en:
         title: All set!
     node:
       step0:
-        description: This section explains the node editing screen.
+        description: This section explains the node edit screen.
       step1:
         description: Use this field to update the technique’s information.<br><br>Changes made here will also be reflected in the <a class='underline font-bold' href="%{techniques_path}">Technique</a> list.
         element: "#guide-technique"
@@ -152,7 +152,7 @@ en:
         step5:
           description: Use the note field here to record your daily training insights!
           element: "aside"
-          title: Technique Editor
+          title: Technique Edit Screen
         step6:
           description: |-
             That’s all for this screen.<br><br>If you’d like to learn how to connect techniques and visualize them, go to the <a class='underline font-bold' href="%{charts_path}">Flow Chart</a> menu and click the
