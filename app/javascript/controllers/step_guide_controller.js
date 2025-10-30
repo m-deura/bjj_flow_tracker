@@ -58,8 +58,7 @@ export default class extends Controller {
 			if (title) popover.title = title
 			if (description) popover.description = description
 
-			// ハイライトが当たった展開済みカードやドロワーが閉じられないようにする
-			const common = { popover, disableActiveInteraction: true }
+			const common = { popover }
 
 			if (element) {
 				// セレクタ要素が存在しない場合は“全体ステップ”として落とす（スキップしたければ continue）
@@ -82,6 +81,9 @@ export default class extends Controller {
 
 		this._driver = driver({
 			steps,
+			showProgress: true,
+			// ハイライトが当たった展開済みカードやドロワーが閉じられないようにする
+			disableActiveInteraction: true, 
 			onHighlighted: (_el, _step, { driver: drv }) => { // 第三引数の options から driver だけを drv という名前で分割代入を使って取り出す 
 				if (typeof onStepHighlighted === "function") onStepHighlighted(drv)
 			},
