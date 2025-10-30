@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
-import introJs from "intro.js"
 import { ensureI18n } from "../i18n/loader"
+import { driver } from "driver.js";
 
 // Connects to data-controller="step-guide"
 export default class extends Controller {
@@ -11,7 +11,6 @@ export default class extends Controller {
 	}
 
   async connect() {
-		// introJs.tour().setOption("dontShowAgain", true).start();
 		this.i18n = await ensureI18n();
 		this.scopeKey = this.scopeValue;
 		this.vars = {
@@ -29,6 +28,7 @@ export default class extends Controller {
 	}
 
 	// 未翻訳かどうかの判定ヘルパー
+	// vars で指定されたものを i18n-js のinterpolation(e.g. %{technique_path]}) を使って置換
 	tOrNull(key, vars = {}) {
 		const s = this.i18n.t(key, vars)
 		return (typeof s === "string" && /^\[missing /.test(s)) ? null : s
@@ -39,7 +39,8 @@ export default class extends Controller {
 		const dict = this.scopeDict()
 		if (!dict) return []
 		
-		// stepキーを抽出して数値順に
+		// stepキーを抽出して昇順に並べる
+		// \Dは「数字じゃない文字」= step
 		const stepKeys = Object.keys(dict)
 			.filter(k => /^step\d+$/i.test(k))
 			.sort((a, b) => parseInt(a.replace(/\D/g, ""), 10) - parseInt(b.replace(/\D/g, ""), 10))
@@ -48,22 +49,21 @@ export default class extends Controller {
 		for (const step of stepKeys) {
 			const base = `${this.scopeKey}.${step}`
 			const title = this.tOrNull(`${base}.title`)
-			const intro = this.tOrNull(`${base}.intro_html`, this.vars)
-			if (!title && !intro) continue  // どちらも無ければスキップ
+			const description = this.tOrNull(`${base}.description`, this.vars)
+			if (!title && !description) continue  // どちらも無ければスキップ
 		
-			// selector も i18n から取得する（無ければ null）
-			const selector = this.tOrNull(`${base}.selector`) || null
-			const part = {}
-			if (title) part.title = title
-			if (intro) part.intro = intro
+			// element も i18n から取得する（無ければ null）
+			const element = this.tOrNull(`${base}.element`) || null
+			const popover = {}
+			if (title) popover.title = title
+			if (description) popover.description = description
 
-			// ハイライトが当たった展開済みカードやドロワーが閉じられないようにする
-			const common = { ...part, disableInteraction: true }
+			const common = { popover }
 
-			if (selector) {
+			if (element) {
 				// セレクタ要素が存在しない場合は“全体ステップ”として落とす（スキップしたければ continue）
-				if (document.querySelector(selector)) {
-					steps.push({ element: selector, ...common })
+				if (document.querySelector(element)) {
+					steps.push({ element: element, ...common })
 				} else {
 					steps.push(common)
 				}
@@ -75,31 +75,33 @@ export default class extends Controller {
 	}
 
 	// どのガイドでも共通起動
-	start(onafterchange) {
-		const steps = this.buildSteps();
-		if (!steps.length) return;
+	start(onStepHighlighted) {
+		const steps = this.buildSteps()
+		if (!steps.length) return
 
-		const tour = introJs.tour().setOptions({
+		this._driver = driver({
 			steps,
-			showBullets: false,
 			showProgress: true,
-			scrollTo: "tooltip",
-		});
+			// ハイライトが当たった展開済みカードやドロワーが閉じられないようにする
+			disableActiveInteraction: true, 
+			onHighlighted: (_el, _step, { driver: drv }) => { // 第三引数の options から driver だけを drv という名前で分割代入を使って取り出す 
+				if (typeof onStepHighlighted === "function") onStepHighlighted(drv)
+			},
+		})
 
-		if (onafterchange) tour.onAfterChange(onafterchange);
-		tour.start();
-	}
+		this._driver.drive()
+  }
 
 	startDashboardGuide() {
 		this.start()
 	}
 
 	startTechniqueGuide() {
-		this.start(function () {
+		this.start((drv) => {
 			// ガイドの途中でテクニック詳細・編集画面を開く。
-			if (this.getCurrentStep() === 4) {
-				const firstCard = document.querySelector("a[data-turbo-frame='technique-drawer']");
-				if (firstCard) firstCard.click();
+			if (drv.getActiveIndex() === 4) {
+				const firstCard = document.querySelector("a[data-turbo-frame='technique-drawer']")
+				if (firstCard) firstCard.click()
 			}
 		});
 	}
@@ -111,22 +113,17 @@ export default class extends Controller {
 	startChartGuide() {
 		const controller = this; // ← Stimulusのthisを退避
 
-		this.start(function() {
+		this.start((drv) => {
 			// step2の時、chart_controllerに頼んでドロワーを開く。
-			if (this.getCurrentStep() === 2) {
+			if (drv.getActiveIndex() === 4) {
 				controller.dispatch("openNode"); 
-				// アロー関数じゃないので、ここでthis.dispatchと書くとthisはtour()を指すようになる。
+				// アロー関数じゃないので、ここでthis.dispatchと書くとthisはdriver()を指すようになる。
 				// アロー関数は外側のthisを使う一方、function() の場合thisは呼び出し側が決める仕様。
 			}
 		});
 	}
 
 	startNodeGuide(){
-		this.start(function() {
-			// 小さい画面だと最終ステップガイドが見切れるため、画面上部へ自動スクロール。
-			if (this.getCurrentStep() === 4) {
-				window.scrollTo({ top: 0, behavior: "smooth" })
-			}
-		});
+		this.start()
 	}
 }

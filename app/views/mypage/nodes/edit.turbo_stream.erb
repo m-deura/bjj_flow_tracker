@@ -1,5 +1,5 @@
 <%= turbo_stream.update "node-drawer-header" do %>
-  <%= render "drawer_header", editing: true %>
+  <%= render "drawer_header", is_edit: true %>
 <% end %>
 
 <%= turbo_stream.update "node-drawer" do %>
@@ -42,7 +42,7 @@
       <%= f.submit t("helpers.submit.submit"), class: "btn btn-primary btn-wide", data: { turbo_frame: "_top" } %>
       <%= link_to t("defaults.delete_item", item: Node.model_name.human), 
         mypage_node_path(@node),
-        id: "guide-deleting-button",
+        id: "guide-delete-button",
         class: "btn btn-error btn-wide",
         data: { 
                 turbo_method: :delete,

@@ -13,7 +13,7 @@ RSpec.describe "Techniques", type: :system do
     it "ステップガイドが開始できる", :js do
       visit mypage_techniques_path(locale: I18n.locale)
       find(:css, '[data-action~="click->step-guide#startTechniqueGuide"]').click
-      expect(page).to have_css('.introjs-tour')
+      expect(page).to have_css('#driver-popover-content')
     end
 
     it "プリセットのテクニックが確認できる" do

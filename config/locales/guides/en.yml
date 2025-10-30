@@ -2,96 +2,94 @@
 en:
   guides:
     chart:
-      common:
-        step0:
-          intro_html: This is the screen for visualizing connections between techniques.<br><br>You can place techniques here and create flowcharts.
-        step1:
-          intro_html: You can create new starting points (root nodes) for your flowchart here.
-          selector: "#guide-creating-button"
-          title: Create New Root Nodes
       default:
         step0:
-          intro_html: This is the screen for visualizing connections between techniques.<br><br>You can place techniques here and create flowcharts.
+          description: This is the screen for visualizing connections between techniques.<br><br>You can place techniques here and create flowcharts.
         step1:
-          intro_html: You can create new starting points (root nodes) for your flowchart here.
-          selector: "#guide-creating-button"
-          title: Create New Root Nodes
+          description: You can edit the chart name here.
+          element: "#guide-chart-edit-button"
+          title: Edit Chart Name
         step2:
-          intro_html: Click a node (circle) on the chart to view or edit the technique’s details.
-          selector: ".drawer-side"
-          title: Techniques on the chart
+          description: You can delete the chart here.
+          element: "#guide-chart-delete-button"
+          title: Delete Chart
         step3:
-          intro_html: |-
+          description: You can create new starting points (root nodes) for your flowchart here.
+          element: "#guide-create-button"
+          title: Create New Root Nodes
+        step4:
+          description: Click a node (circle) on the chart to view or edit the technique’s details.
+          element: aside
+          title: Technique on the chart (Node)
+        step5:
+          description: |-
             To learn more about operating this screen, click the
             <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
               <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
             </svg>
-            at the top of the node editing screen.
-          selector: ".drawer-side"
-          title: Node editing
+            at the top of the node edit screen.
+          element: "#guide-node-edit-screen-header"
+          title: Edit Node
       zero_state:
         step0:
-          intro_html: This is the screen for visualizing connections between techniques.<br><br>You can place techniques here and create flowcharts.
+          description: This is the screen for visualizing connections between techniques.<br><br>You can place techniques here and create flowcharts.
         step1:
-          intro_html: You can create new starting points (root nodes) for your flowchart here.
-          selector: "#guide-creating-button"
-          title: Create New Root Nodes
+          description: You can edit the chart name here.
+          element: "#guide-chart-edit-button"
+          title: Edit Chart Name
         step2:
-          intro_html: |-
-            It looks like there are no nodes on this page yet, so let’s create a starting point (root node) to get started.<br><br>After that, try clicking one of the root nodes in the screen to open the node editor.<br><br>At the top of the node editor, click the
+          description: You can delete the chart here.
+          element: "#guide-chart-delete-button"
+          title: Delete Chart
+        step3:
+          description: You can create new starting points (root nodes) for your flowchart here.
+          element: "#guide-create-button"
+          title: Create New Root Nodes
+        step4:
+          description: |-
+            It looks like there are no nodes on this page yet, so let’s create a starting point (root node) to get started.<br><br>After that, try clicking one of the root nodes in the screen to open the node edit screen.<br><br>At the top of the node edit screen, click the
             <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
               <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
             </svg>
             to start the next part of the walkthrough.
     chart_list:
-      common:
-        step0:
-          intro_html: This is the page where your charts are listed — each chart visualizes how your registered techniques connect to form match scenarios.<br><br>Organizing your charts by position makes it easier to review and keep things tidy.<br><br>That said, you can also group them by your favorite sequences or specific training themes — whatever fits your goal best!
-        step1:
-          intro_html: Click this button to create a new chart.
-          selector: "#guide-creating-button"
-          title: Create a New Chart
-        step2:
-          intro_html: You can search and filter the charts displayed in the list using this search box.
-          selector: "#guide-search-box"
-          title: Search
       default:
         step0:
-          intro_html: This is the page where your charts are listed — each chart visualizes how your registered techniques connect to form match scenarios.<br><br>Organizing your charts by position makes it easier to review and keep things tidy.<br><br>That said, you can also group them by your favorite sequences or specific training themes — whatever fits your goal best!
+          description: This is the page where your charts are listed — each chart visualizes how your registered techniques connect to form match scenarios.<br><br>Organizing your charts by position makes it easier to review and keep things tidy.<br><br>That said, you can also group them by your favorite sequences or specific training themes — whatever fits your goal best!
         step1:
-          intro_html: Click this button to create a new chart.
-          selector: "#guide-creating-button"
+          description: Click this button to create a new chart.
+          element: "#guide-create-button"
           title: Create a New Chart
         step2:
-          intro_html: You can search and filter the charts displayed in the list using this search box.
-          selector: "#guide-search-box"
+          description: You can search and filter the charts displayed in the list using this search box.
+          element: "#guide-search-box"
           title: Search
         step3:
-          intro_html: |-
+          description: |-
             That’s all for this screen!<br><br>Try clicking one of the chart cards in the list to open it.<br><br>For instructions on how to operate the chart screen, click the
             <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
               <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
             </svg> icon next to the chart title!
       zero_state:
         step0:
-          intro_html: This is the page where your charts are listed — each chart visualizes how your registered techniques connect to form match scenarios.<br><br>Organizing your charts by position makes it easier to review and keep things tidy.<br><br>That said, you can also group them by your favorite sequences or specific training themes — whatever fits your goal best!
+          description: This is the page where your charts are listed — each chart visualizes how your registered techniques connect to form match scenarios.<br><br>Organizing your charts by position makes it easier to review and keep things tidy.<br><br>That said, you can also group them by your favorite sequences or specific training themes — whatever fits your goal best!
         step1:
-          intro_html: Click this button to create a new chart.
-          selector: "#guide-creating-button"
+          description: Click this button to create a new chart.
+          element: "#guide-create-button"
           title: Create a New Chart
         step2:
-          intro_html: You can search and filter the charts displayed in the list using this search box.
-          selector: "#guide-search-box"
+          description: You can search and filter the charts displayed in the list using this search box.
+          element: "#guide-search-box"
           title: Search
         step3:
-          intro_html: |-
+          description: |-
             That’s all for this screen!<br><br>It looks like there are no charts on this page yet, so let’s create one to get started.<br><br>After that, try clicking one of the chart cards in the list to open it.<br><br>For instructions on how to operate the chart screen, click the
             <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
               <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
             </svg> icon next to the chart title!
     dashboard:
       step0:
-        intro_html: |-
+        description: |-
           This guide will explain how to use the app.<br><br>
           The basic flow of usage is as follows:<br><br>
           <ol class="list-decimal list-inside">
@@ -100,7 +98,7 @@ en:
           </ol>
         title: About this guide
       step1:
-        intro_html: |-
+        description: |-
           In <strong>Technique</strong>, you can register and organize your techniques.<br><br>
           Adding your insights from sparring to each technique’s note section will help reinforce learning.<br><br>
           Over 90 techniques are preloaded as presets, but feel free to add new ones if needed.<br><br>
@@ -109,10 +107,10 @@ en:
             <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
           </svg>
           icon at the top left of the Technique screen.<br><br>
-        selector: "#guide-technique"
+        element: "#guide-technique"
         title: 'Technique: Register techniques'
       step2:
-        intro_html: |-
+        description: |-
           In <strong>Flow Chart</strong>, you can connect the techniques registered in Technique and visualize the flow of a match.<br><br>
           By organizing “which technique can follow this one,” you can make reviews and strategy planning more effective.<br><br>
           The usage guide for the Flow Chart screen can be opened by clicking the
@@ -120,73 +118,59 @@ en:
             <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
           </svg>
           icon at the top left of the Flow Chart screen.<br><br>
-        selector: "#guide-chart"
+        element: "#guide-chart"
         title: 'Flow Chart: Connect techniques'
       step3:
-        intro_html: To start, try drawing the pathways of your preferred the flow of a match in the <strong>Flow Chart</strong>.<br><br>If a technique you use is missing, go back to <strong>Technique</strong> and add it.
+        description: To start, try drawing the pathways of your preferred the flow of a match in the <strong>Flow Chart</strong>.<br><br>If a technique you use is missing, go back to <strong>Technique</strong> and add it.
         title: First goal
       step4:
-        intro_html: |-
+        description: |-
           Let’s get started!<br><br>
           If you ever feel lost, you can always reopen this guide!
         title: All set!
     node:
       step0:
-        intro_html: This section explains the node editing screen.
+        description: This section explains the node edit screen.
       step1:
-        intro_html: Use this field to update the technique’s information.<br><br>Changes made here will also be reflected in the <a class='underline font-bold' href="%{techniques_path}">Technique</a> list.
-        selector: "#guide-technique"
+        description: Use this field to update the technique’s information.<br><br>Changes made here will also be reflected in the <a class='underline font-bold' href="%{techniques_path}">Technique</a> list.
+        element: "#guide-technique"
         title: Update technique
       step2:
-        intro_html: Here you can edit which techniques branch out from this one.<br><br>The techniques you select will appear connected to the right of this technique on the chart.<br><br>You can also record the conditions required to transition to each of these techniques.
-        selector: "#guide-children"
+        description: Here you can edit which techniques branch out from this one.<br><br>The techniques you select will appear connected to the right of this technique on the chart.<br><br>You can also record the conditions required to transition to each of these techniques.
+        element: "#guide-children"
         title: Update subsequent techniques
       step3:
-        intro_html: You can delete the node here.<br><br>Deleting a node will also remove all nodes that were connected as subsequent techniques, so please be careful.
-        selector: "#guide-deleting-button"
+        description: You can delete the node here.<br><br>Deleting a node will also remove all nodes that were connected as subsequent techniques, so please be careful.
+        element: "#guide-delete-button"
         title: Delete node
       step4:
-        intro_html: "Now try creating nodes and adding subsequent techniques to get familiar with the operations!<br><br>If you have any questions or suggestions about this app, feel free to contact us from the <a class='underline font-bold' href='https://forms.gle/VGdTkDDsJkVQY7e79' target='_blank' rel='noopener noreferrer'>contact page</a> at the bottom of the screen.<br><br>Enjoy your Jiu-Jitsu life! 👋"
+        description: "Now try creating nodes and adding subsequent techniques to get familiar with the operations!<br><br>If you have any questions or suggestions about this app, feel free to contact us from the <a class='underline font-bold' href='https://forms.gle/VGdTkDDsJkVQY7e79' target='_blank' rel='noopener noreferrer'>contact page</a> at the bottom of the screen.<br><br>Enjoy your Jiu-Jitsu life! 👋"
     technique:
-      common:
-        step0:
-          intro_html: This is the screen where techniques are listed.
-        step1:
-          intro_html: If the technique you need isn’t listed, you can create a new one with this button.
-          selector: "#guide-creating-button"
-          title: Create a New Technique
-        step2:
-          intro_html: You can search for techniques here to filter the list.
-          selector: "#guide-keyword-search"
-          title: Keyword Search
-        step3:
-          intro_html: You can also filter techniques by category.
-          selector: "#guide-category-search"
-          title: Category Filter
       default:
         step0:
-          intro_html: This is the screen where techniques are listed.
+          description: This is the screen where techniques are listed.
         step1:
-          intro_html: If the technique you need isn’t listed, you can create a new one with this button.
-          selector: "#guide-creating-button"
+          description: If the technique you need isn’t listed, you can create a new one with this button.
+          element: "#guide-create-button"
           title: Create a New Technique
         step2:
-          intro_html: You can search for techniques here to filter the list.
-          selector: "#guide-keyword-search"
+          description: You can search for techniques here to filter the list.
+          element: "#guide-keyword-search"
           title: Keyword Search
         step3:
-          intro_html: You can also filter techniques by category.
-          selector: "#guide-category-search"
+          description: You can also filter techniques by category.
+          element: "#guide-category-search"
           title: Category Filter
         step4:
-          intro_html: Click a card to view or edit details of an individual technique.
-          title: Technique details
+          description: Click a card to view or edit details of an individual technique.
+          element: article
+          title: Technique Details
         step5:
-          intro_html: Use the note field here to record your daily training insights!
-          selector: ".drawer-side"
-          title: Technique Editor
+          description: Use the note field here to record your daily training insights!
+          element: aside
+          title: Technique Edit Screen
         step6:
-          intro_html: |-
+          description: |-
             That’s all for this screen.<br><br>If you’d like to learn how to connect techniques and visualize them, go to the <a class='underline font-bold' href="%{charts_path}">Flow Chart</a> menu and click the
               <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
                 <path stroke-linecap='round' stroke-linejoin='round' d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z' />
@@ -194,21 +178,21 @@ en:
             icon at the top.<br><br>
       zero_state:
         step0:
-          intro_html: This is the screen where techniques are listed.
+          description: This is the screen where techniques are listed.
         step1:
-          intro_html: If the technique you need isn’t listed, you can create a new one with this button.
-          selector: "#guide-creating-button"
+          description: If the technique you need isn’t listed, you can create a new one with this button.
+          element: "#guide-create-button"
           title: Create a New Technique
         step2:
-          intro_html: You can search for techniques here to filter the list.
-          selector: "#guide-keyword-search"
+          description: You can search for techniques here to filter the list.
+          element: "#guide-keyword-search"
           title: Keyword Search
         step3:
-          intro_html: You can also filter techniques by category.
-          selector: "#guide-category-search"
+          description: You can also filter techniques by category.
+          element: "#guide-category-search"
           title: Category Filter
         step4:
-          intro_html: |-
+          description: |-
             That’s all for this screen.<br><br>
             It looks like there are no techniques yet, so let’s create your first one.<br><br>
             After that, if you’d like to learn how to connect techniques to visualize the flow of a match, click the icon at the top of the

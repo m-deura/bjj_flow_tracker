@@ -12,7 +12,7 @@ RSpec.describe "Charts", type: :system do
     it "ステップガイドが開始できる", :js do
       visit mypage_charts_path(locale: I18n.locale)
       find(:css, '[data-action~="click->step-guide#startChartListGuide"]').click
-      expect(page).to have_css('.introjs-tour')
+      expect(page).to have_css('#driver-popover-content')
     end
 
     it "プリセットのチャートが確認できる" do
@@ -91,7 +91,7 @@ RSpec.describe "Charts", type: :system do
     it "ステップガイドが開始できる", :js do
       visit mypage_chart_path(id: cp_id, locale: I18n.locale)
       find(:css, '[data-action~="click->step-guide#startChartGuide"]').click
-      expect(page).to have_css('.introjs-tour')
+      expect(page).to have_css('#driver-popover-content')
     end
 
     context "登録されたノードがない(プリセットを含めノードを全削除した)場合" do

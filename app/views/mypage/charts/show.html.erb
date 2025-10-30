@@ -30,7 +30,7 @@
     <div class="mx-auto w-[90%] h-[60dvh] border border-base-300 relative min-h-0">
     <!-- z-1を使ってcyコンテナより手前に出しておかないとボタンが効かなくなる -->
       <button
-        id="guide-creating-button"
+        id="guide-create-button"
         type="button"
         class="btn btn-primary btn-wide absolute top-4 left-4 z-1" 
         data-action="click->chart#addNode"
@@ -58,7 +58,7 @@
       data-step-guide-techniques-path-value="<%= mypage_techniques_path %>"
     >
 
-      <div class="flex p-3 justify-between items-center">
+      <div class="flex p-3 justify-between items-center" id="guide-node-edit-screen-header">
         <%= turbo_frame_tag "node-drawer-header" do %>
           <!-- empty until the node clicked -->
         <% end %>

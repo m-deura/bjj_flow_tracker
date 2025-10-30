@@ -83,11 +83,11 @@ en:
         welcome: Welcome,
     nodes:
       drawer_header:
-        creating_panel_title: Create Starting Point
-        editing_panel_title: Edit Node
+        create_panel_title: Create Starting Point
+        edit_panel_title: Edit Node
     techniques:
       index:
-        editing_panel_title: Edit Technique
+        edit_panel_title: Edit Technique
         metrics:
           techniques:
             one: "%{n} result"

@@ -81,7 +81,7 @@ BJJ Flow Tracker は、ブラジリアン柔術の練習メモを”試合およ
 | インフラ               | Render / Cloudflare                |
 | データベース           | PostgreSQL                         |
 | セレクトボックスUI     | tom-select                         |
-| ステップガイド         | intro.js                           |
+| ステップガイド         | Driver.js                          |
 | チャート可視化         | G6                                 |
 | ノードのツリー構造管理 | typed_dag                          |
 | 認証機能               | Devise / OmniAuth-Google-OAuth2    |

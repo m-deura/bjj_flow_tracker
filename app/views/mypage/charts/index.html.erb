@@ -16,7 +16,7 @@
     </div>
 
     <div class="flex flex-col items-center justify-center gap-3">
-      <%= link_to t("defaults.create") , new_mypage_chart_path, class: "btn btn-primary btn-wide", id: "guide-creating-button" %>
+      <%= link_to t("defaults.create") , new_mypage_chart_path, class: "btn btn-primary btn-wide", id: "guide-create-button" %>
       <%= search_form_for @q, url: mypage_charts_path, id: "guide-search-box", class: "w-80",
             data: { turbo_frame: "chart-list",
                     controller: "instant-search",
