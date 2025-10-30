@@ -19,7 +19,7 @@ ja:
           title: ルートノードを新規作成
         step4:
           description: エリアにあるノード(丸い図形)をクリックすると、テクニックの詳細を確認・編集することができます。
-          element: "aside"
+          element: aside
           title: チャート上のテクニック(ノード)
         step5:
           description: |-
@@ -164,11 +164,11 @@ ja:
           title: カテゴリー検索
         step4:
           description: カードをクリックすると、テクニック個々の詳細を確認・編集することができます。
-          element: "article"
+          element: article
           title: テクニック詳細
         step5:
           description: こちらのノート欄に、日々の練習で気がついたことを記録していきましょう！
-          element: "aside"
+          element: aside
           title: テクニック編集
         step6:
           description: |-

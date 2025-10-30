@@ -19,7 +19,7 @@ en:
           title: Create New Root Nodes
         step4:
           description: Click a node (circle) on the chart to view or edit the technique’s details.
-          element: "aside"
+          element: aside
           title: Technique on the chart (Node)
         step5:
           description: |-
@@ -163,11 +163,11 @@ en:
           title: Category Filter
         step4:
           description: Click a card to view or edit details of an individual technique.
-          element: "article"
+          element: article
           title: Technique Details
         step5:
           description: Use the note field here to record your daily training insights!
-          element: "aside"
+          element: aside
           title: Technique Edit Screen
         step6:
           description: |-
