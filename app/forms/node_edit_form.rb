@@ -156,14 +156,6 @@ class NodeEditForm
   def add_children!(node, tech_ids, trigger_map)
     return if tech_ids.blank?
 
-    # ancestry: 追加（親が一つしか持てない関係上、集約させたいノードであっても新規作成してしまう(typed_dagと並行運用できない)ので、コメントアウト）
-    # tech_ids.each do |tid|
-    #  node.children.find_or_create_by!(
-    #    chart: node.chart,
-    #    technique_id: tid
-    #  )
-    # end
-
     tech_ids.uniq.each do |tid|
       # binding.pry
       # 同一チャート×同一テクの既存候補（自分自身は除外）
@@ -218,9 +210,6 @@ class NodeEditForm
 
   def remove_children!(node, tech_ids)
     return if tech_ids.blank?
-
-    # ancestry: 削除
-    node.children.where(technique_id: tech_ids).destroy_all
 
     # typed_dag：直辺のみ削除
     targets = Node.where(chart_id: node.chart_id, technique_id: tech_ids)
