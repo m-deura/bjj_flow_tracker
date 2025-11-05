@@ -159,34 +159,15 @@ ActiveRecord::Base.transaction do
     tp.name_ja = "ボトムポジション"
   end
 
-  top_node = chart.node_presets.find_or_create_by!(technique_preset: top) do |n|
-    n.ancestry = "/"
-  end
+  top_node = chart.node_presets.find_or_create_by!(technique_preset: top)
 
-  bottom_node = chart.node_presets.find_or_create_by!(technique_preset: bottom) do |n|
-    n.ancestry = "/"
-  end
+  bottom_node = chart.node_presets.find_or_create_by!(technique_preset: bottom)
 
   top_children_names = [ "Toreando Pass", "Knee Slice Pass" ]
   bottom_children_names = [ "Collar Sleeve Guard", "Spider Guard", "Lasso Guard" ]
 
   top_children = TechniquePreset.where(name_en: top_children_names)
   bottom_children = TechniquePreset.where(name_en: bottom_children_names)
-
-  # ancestry
-  top_children.each do |t|
-    top_node.children.find_or_create_by!(
-      chart_preset: chart,
-      technique_preset: t
-    )
-  end
-
-  bottom_children.each do |t|
-    bottom_node.children.find_or_create_by!(
-      chart_preset: chart,
-      technique_preset: t
-    )
-  end
 
   # typed_dag
   top_children.uniq.each do |tid|
