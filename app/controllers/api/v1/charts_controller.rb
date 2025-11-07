@@ -12,13 +12,6 @@ class Api::V1::ChartsController < ApplicationController
       }
     end
 
-    # ancestry
-    # edges_data = nodes.map do |node|
-    #  if node.has_parent?
-    #    { source: node.parent_id.to_s, target: node.id.to_s }
-    #  end
-    # end.compact # has_parent?に該当しないnodeはnilを返すため、これを排除する。
-
     # typed_dag
     # typed_dag により edgeレコードは自動管理されるため、edgesテーブルの関連に chart_id を設けることができない。＝ chart.edges でチャート単位のエッジを直接取得できない。
     # そのため、「チャート上にあるノードを接続するエッジ」を以下の記述にて抽出することで代替する。
