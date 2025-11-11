@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_21_031416) do
+ActiveRecord::Schema[7.2].define(version: 2025_11_09_002613) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,7 +58,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_21_031416) do
     t.bigint "technique_preset_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "ancestry"
     t.index ["chart_preset_id"], name: "index_node_presets_on_chart_preset_id"
     t.index ["technique_preset_id"], name: "index_node_presets_on_technique_preset_id"
   end
@@ -68,7 +67,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_21_031416) do
     t.bigint "technique_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "ancestry"
     t.index ["chart_id"], name: "index_nodes_on_chart_id"
     t.index ["technique_id"], name: "index_nodes_on_technique_id"
   end
