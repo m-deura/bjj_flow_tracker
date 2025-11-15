@@ -38,12 +38,10 @@ class Mypage::NodesController < ApplicationController
           current_user.techniques.find_or_create_by!(field => n).id
         end
 
-        # TODO: chart/ancestry/techniqueでユニーク制約を切っておきたいが、ancestryを入れ替える可能性があるので一旦保留
         ids_to_add = existing_ids + new_ids
         ids_to_add.each do |tid|
           Node.find_or_create_by!(
             chart: @chart,
-            ancestry: "/",
             technique_id: tid
           )
         end

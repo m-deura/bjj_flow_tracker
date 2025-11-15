@@ -155,7 +155,6 @@ erDiagram
     int id PK "ID (NOT NULL)"
     int chart_id FK "チャートID"
     int technique_id FK "テクニックID"
-    string ancestry "ツリー構造上で本ノードに至るまでのパス"
     datetime created_at "作成日時 (NOT NULL)"
     datetime updated_at "更新日時 (NOT NULL)"
   }
@@ -164,7 +163,6 @@ erDiagram
     int id PK "ID (NOT NULL)"
     int chart_preset_id FK "チャートID"
     int technique_preset_id FK "テクニックID"
-    string ancestry "ツリー構造上で本ノードに至るまでのパス"
     datetime created_at "作成日時 (NOT NULL)"
     datetime updated_at "更新日時 (NOT NULL)"
   }

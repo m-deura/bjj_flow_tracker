@@ -87,8 +87,6 @@ gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
 
 # to keep the tree structure in nodes table
-gem "ancestry"
-# to keep the tree structure in nodes table
 gem "typed_dag"
 
 # for i18n
