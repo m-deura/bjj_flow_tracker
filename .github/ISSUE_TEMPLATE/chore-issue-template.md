@@ -1,7 +1,7 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
-title: 'feat: '
+name: Chore issue template
+about: Describe this issue template's purpose here.
+title: 'chore: '
 labels: ''
 assignees: ''
 
