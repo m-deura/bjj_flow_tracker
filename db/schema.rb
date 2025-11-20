@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_11_09_002613) do
+ActiveRecord::Schema[7.2].define(version: 2025_11_18_135941) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,8 +63,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_09_002613) do
   end
 
   create_table "nodes", force: :cascade do |t|
-    t.bigint "chart_id"
-    t.bigint "technique_id"
+    t.bigint "chart_id", null: false
+    t.bigint "technique_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["chart_id"], name: "index_nodes_on_chart_id"
