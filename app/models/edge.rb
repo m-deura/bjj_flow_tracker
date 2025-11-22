@@ -4,7 +4,9 @@ class Edge < ApplicationRecord
 
   # has_one :chart, through: :from, source: :chart
 
+  validates :count, presence: true
   validates :flow, presence: true
+  validates :from_id, uniqueness: { scope: [ :to_id, :flow ] }
 
   # typed_dagがedgeを自動生成するため、edgesテーブルに chart_id を設けることができない。
   # その代わり、delegate で from(Nodeインスタンス)しか持っていない関連chartメソッドを使えるようにする
